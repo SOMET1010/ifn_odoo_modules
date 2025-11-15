@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Vue Formulaire Partenaires avec onglet IFN -->
+        <record id="view_res_partner_form_ifn" model="ir.ui.view">
+            <field name="name">res.partner.form.ifn</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <separator string="Informations IFN"/>
+                    <group name="ifn_info" string="Profil IFN">
+                        <group>
+                            <field name="x_ifn_role" widget="selection"/>
+                            <field name="x_ifn_uid" readonly="1"/>
+                            <field name="x_ifn_qr" widget="image" class="oe_avatar" options="{'preview_image': 'image_medium'}" attrs="{'invisible': [('x_ifn_qr', '=', False)]}"/>
+                            <field name="x_ifn_profile_status"/>
+                        </group>
+                        <group>
+                            <field name="x_ifn_market_id" options="{'no_create': True}"/>
+                            <field name="x_ifn_coop_id" options="{'no_create': True}"/>
+                            <field name="x_ifn_validation_date" readonly="1"/>
+                            <field name="x_ifn_validator_id" readonly="1"/>
+                        </group>
+                    </group>
+                </xpath>
+
+                <xpath expr="//notebook" position="inside">
+                    <page string="Profil IFN" name="ifn_profile" groups="group_ifn_user">
+                        <group>
+                            <group string="Identification">
+                                <field name="x_ifn_uid" readonly="1"/>
+                                <field name="x_ifn_qr_ref" readonly="1"/>
+                                <field name="x_ifn_qr_generated_date" readonly="1"/>
+                                <field name="x_ifn_id_card_type"/>
+                                <field name="x_ifn_id_card_number"/>
+                                <field name="x_ifn_photo" widget="image" class="oe_avatar" options="{'preview_image': 'image_medium'}"/>
+                            </group>
+                            <group string="Rattachement">
+                                <field name="x_ifn_role"/>
+                                <field name="x_ifn_market_id"/>
+                                <field name="x_ifn_coop_id"/>
+                                <field name="x_ifn_family_head_id" domain="[('x_ifn_role', 'in', ['merchant', 'producer'])]"/>
+                                <field name="x_ifn_timezone"/>
+                            </group>
+                        </group>
+
+                        <group string="Géolocalisation">
+                            <group>
+                                <field name="x_ifn_geo_lat" widget="float" digits="(10,6)"/>
+                                <field name="x_ifn_geo_lng" widget="float" digits="(10,6)"/>
+                            </group>
+                            <group>
+                                <field name="x_ifn_geo_point" widget="geo_edit_map"/>
+                            </group>
+                        </group>
+
+                        <group string="Préférences Linguistiques">
+                            <group>
+                                <field name="x_ifn_lang_pref"/>
+                                <field name="x_ifn_voice_pronunciation"/>
+                            </group>
+                            <group>
+                                <field name="x_ifn_voice_consent"/>
+                                <field name="x_ifn_voice_consent_date" attrs="{'invisible': [('x_ifn_voice_consent', '=', False)]}"/>
+                            </group>
+                        </group>
+
+                        <group string="Consentements">
+                            <group>
+                                <field name="x_ifn_data_processing_consent"/>
+                                <field name="x_ifn_data_processing_consent_date" attrs="{'invisible': [('x_ifn_data_processing_consent', '=', False)]}"/>
+                            </group>
+                            <group>
+                                <field name="x_ifn_marketing_consent"/>
+                                <field name="x_ifn_marketing_consent_date" attrs="{'invisible': [('x_ifn_marketing_consent', '=', False)]}"/>
+                            </group>
+                        </group>
+
+                        <group string="Informations Sociales (Placeholders)">
+                            <group>
+                                <field name="x_ifn_cnps_number" placeholder="Numéro CNPS"/>
+                                <field name="x_ifn_cnam_number" placeholder="Numéro CNAM"/>
+                            </group>
+                            <group>
+                                <field name="x_ifn_cmu_number" placeholder="Numéro CMU"/>
+                            </group>
+                        </group>
+
+                        <group string="Notifications">
+                            <group>
+                                <field name="x_ifn_notification_preferences"/>
+                            </group>
+                            <group>
+                                <field name="x_ifn_created_date" readonly="1"/>
+                                <field name="x_ifn_updated_date" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group string="Notes IFN">
+                            <field name="x_ifn_notes" nolabel="1" placeholder="Notes spécifiques IFN..."/>
+                        </group>
+                    </page>
+
+                    <page string="Actions IFN" name="ifn_actions" groups="group_ifn_agent">
+                        <div class="oe_button_box">
+                            <button name="action_regenerate_qr" type="object" class="btn-primary" string="Régénérer QR">
+                                <i class="fa fa-qrcode"/>
+                            </button>
+                            <button name="action_print_qr_attestation" type="object" class="btn-secondary" string="Imprimer Attestation">
+                                <i class="fa fa-print"/>
+                            </button>
+                            <button name="action_validate_profile" type="object" class="btn-success" string="Valider Profil"
+                                    attrs="{'invisible': [('x_ifn_profile_status', '!=', 'pending_validation')]}">
+                                <i class="fa fa-check"/>
+                            </button>
+                            <button name="action_request_validation" type="object" class="btn-info" string="Demander Validation"
+                                    attrs="{'invisible': [('x_ifn_profile_status', 'not in', ['draft'])]}">
+                                <i class="fa fa-send"/>
+                            </button>
+                            <button name="action_suspend_profile" type="object" class="btn-warning" string="Suspendre Profil"
+                                    attrs="{'invisible': [('x_ifn_profile_status', '!=', 'validated')]}">
+                                <i class="fa fa-pause"/>
+                            </button>
+                            <button name="action_archive_profile" type="object" class="btn-danger" string="Archiver Profil">
+                                <i class="fa fa-archive"/>
+                            </button>
+                            <button name="action_reactivate_profile" type="object" class="btn-success" string="Réactiver Profil"
+                                    attrs="{'invisible': [('x_ifn_profile_status', '!=', 'suspended')]}">
+                                <i class="fa fa-play"/>
+                            </button>
+                        </div>
+                    </page>
+                </xpath>
+
+                <xpath expr="//div[@class='oe_chatter']" position="before">
+                    <div class="alert alert-info" role="alert" attrs="{'invisible': [('x_ifn_profile_status', '=', 'validated')]}">
+                        <strong>Statut du profil IFN:</strong>
+                        <field name="x_ifn_profile_status" readonly="1"/>
+                        <span t-if="record.x_ifn_profile_status.value == 'pending_validation'">
+                            <br/>Le profil est en attente de validation par un agent IFN.
+                        </span>
+                        <span t-if="record.x_ifn_profile_status.value == 'draft'">
+                            <br/>Le profil doit être complété et validé pour être pleinement actif.
+                        </span>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Vue Liste Partenaires avec colonnes IFN -->
+        <record id="view_res_partner_tree_ifn" model="ir.ui.view">
+            <field name="name">res.partner.tree.ifn</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='email']" position="after">
+                    <field name="x_ifn_role"/>
+                    <field name="x_ifn_market_id"/>
+                    <field name="x_ifn_coop_id"/>
+                    <field name="x_ifn_profile_status"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Vue Recherche Partenaires avec filtres IFN -->
+        <record id="view_res_partner_filter_ifn" model="ir.ui.view">
+            <field name="name">res.partner.filter.ifn</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <field name="x_ifn_role"/>
+                    <field name="x_ifn_uid"/>
+                    <field name="x_ifn_market_id"/>
+                    <field name="x_ifn_coop_id"/>
+                    <field name="x_ifn_profile_status"/>
+
+                    <separator/>
+                    <filter string="Marchands" name="filter_merchants" domain="[('x_ifn_role', '=', 'merchant')]"/>
+                    <filter string="Producteurs" name="filter_producers" domain="[('x_ifn_role', '=', 'producer')]"/>
+                    <filter string="Gestionnaires Coop" name="filter_coop_managers" domain="[('x_ifn_role', '=', 'coop_manager')]"/>
+                    <filter string="Agents" name="filter_agents" domain="[('x_ifn_role', '=', 'agent')]"/>
+                    <filter string="Profils validés" name="filter_validated" domain="[('x_ifn_profile_status', '=', 'validated')]"/>
+                    <filter string="En attente validation" name="filter_pending" domain="[('x_ifn_profile_status', '=', 'pending_validation')]"/>
+
+                    <group expand="0" string="Grouper par">
+                        <filter string="Rôle IFN" name="group_role" context="{'group_by': 'x_ifn_role'}"/>
+                        <filter string="Marché" name="group_market" context="{'group_by': 'x_ifn_market_id'}"/>
+                        <filter string="Coopérative" name="group_coop" context="{'group_by': 'x_ifn_coop_id'}"/>
+                        <filter string="Statut Profil" name="group_status" context="{'group_by': 'x_ifn_profile_status'}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Vue Kanban Partenaires avec info IFN -->
+        <record id="view_res_partner_kanban_ifn" model="ir.ui.view">
+            <field name="name">res.partner.kanban.ifn</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='o_kanban_manage_button_section']" position="after">
+                    <div class="o_kanban_manage_button_section" t-if="record.x_ifn_role.raw_value">
+                        <t t-if="record.x_ifn_role.raw_value === 'merchant'">
+                            <span class="badge badge-primary">Marchand</span>
+                        </t>
+                        <t t-if="record.x_ifn_role.raw_value === 'producer'">
+                            <span class="badge badge-success">Producteur</span>
+                        </t>
+                        <t t-if="record.x_ifn_role.raw_value === 'coop_manager'">
+                            <span class="badge badge-info">Gestionnaire</span>
+                        </t>
+                        <t t-if="record.x_ifn_role.raw_value === 'agent'">
+                            <span class="badge badge-warning">Agent</span>
+                        </t>
+                        <t t-if="record.x_ifn_role.raw_value === 'admin'">
+                            <span class="badge badge-danger">Admin</span>
+                        </t>
+                    </div>
+                </xpath>
+
+                <xpath expr="//div[@class='oe_kanban_details']" position="inside">
+                    <div t-if="record.x_ifn_market_id.value" class="text-muted small">
+                        <i class="fa fa-map-marker"/> <t t-esc="record.x_ifn_market_id.value"/>
+                    </div>
+                    <div t-if="record.x_ifn_coop_id.value" class="text-muted small">
+                        <i class="fa fa-building"/> <t t-esc="record.x_ifn_coop_id.value"/>
+                    </div>
+                    <div t-if="record.x_ifn_uid.value" class="text-muted small">
+                        <i class="fa fa-id-badge"/> <t t-esc="record.x_ifn_uid.value"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Action Partenaires IFN -->
+        <record id="action_res_partner_ifn" model="ir.actions.act_window">
+            <field name="name">Partenaires IFN</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('x_ifn_role', '!=', False)]</field>
+            <field name="context">{
+                'default_is_company': False,
+                'default_x_ifn_role': 'producer',
+                'default_x_ifn_lang_pref': 'fr',
+                'default_x_ifn_data_processing_consent': True,
+                'form_view_initial_mode': 'edit'
+            }</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Créer votre premier partenaire IFN
+                </p>
+                <p>
+                    Les partenaires IFN sont les acteurs principaux de l'écosystème:
+                    marchands, producteurs, gestionnaires de coopératives, agents et administrateurs.
+                </p>
+            </field>
+        </record>
+
+        <!-- Actions par rôle pour création rapide -->
+        <record id="action_res_partner_merchant" model="ir.actions.act_window">
+            <field name="name">Nouveau Marchand IFN</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context">{
+                'default_is_company': False,
+                'default_x_ifn_role': 'merchant',
+                'default_x_ifn_lang_pref': 'fr',
+                'default_x_ifn_data_processing_consent': True,
+                'form_view_initial_mode': 'edit'
+            }</field>
+        </record>
+
+        <record id="action_res_partner_producer" model="ir.actions.act_window">
+            <field name="name">Nouveau Producteur IFN</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context">{
+                'default_is_company': False,
+                'default_x_ifn_role': 'producer',
+                'default_x_ifn_lang_pref': 'di',
+                'default_x_ifn_data_processing_consent': True,
+                'form_view_initial_mode': 'edit'
+            }</field>
+        </record>
+
+        <record id="action_res_partner_coop_manager" model="ir.actions.act_window">
+            <field name="name">Nouveau Gestionnaire Coop IFN</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context">{
+                'default_is_company': False,
+                'default_x_ifn_role': 'coop_manager',
+                'default_x_ifn_lang_pref': 'fr',
+                'default_x_ifn_data_processing_consent': True,
+                'form_view_initial_mode': 'edit'
+            }</field>
+        </record>
+
+    </data>
+</odoo>

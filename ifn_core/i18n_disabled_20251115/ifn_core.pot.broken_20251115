@@ -1,0 +1,331 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* ifn_core
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_role
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_role
+msgid "Rôle IFN"
+msgstr ""
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_role:0
+msgid "Marchand"
+msgstr ""
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_role:0
+msgid "Producteur"
+msgstr ""
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_role:0
+msgid "Gestionnaire Coop"
+msgstr ""
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_role:0
+msgid "Agent"
+msgstr ""
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_role:0
+msgid "Administrateur"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_uid
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_uid
+msgid "UID IFN"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_qr
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_qr
+msgid "QR IFN"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_market_id
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_market_id
+msgid "Marché d'attache"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_coop_id
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_coop_id
+msgid "Coopérative"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_lang_pref
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_lang_pref
+msgid "Langue préférée"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_geo_lat
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_geo_lat
+msgid "Latitude IFN"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_geo_lng
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_geo_lng
+msgid "Longitude IFN"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_voice_consent
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_voice_consent
+msgid "Consentement voix"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_data_processing_consent
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_data_processing_consent
+msgid "Consentement traitement données"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_profile_status
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_profile_status
+msgid "Statut du profil"
+msgstr ""
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_profile_status:0
+msgid "Brouillon"
+msgstr ""
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_profile_status:0
+msgid "En attente de validation"
+msgstr ""
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_profile_status:0
+msgid "Validé"
+msgstr ""
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_profile_status:0
+msgid "Suspendu"
+msgstr ""
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_profile_status:0
+msgid "Archivé"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_market__name
+msgid "Nom du marché"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_market__code
+msgid "Code marché"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_coop__name
+msgid "Nom de la coopérative"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_coop__code
+msgid "Code coopérative"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.ui.menu,name:ifn_core.menu_ifn_root
+msgid "IFN"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.ui.menu,name:ifn_core.menu_ifn_administration
+msgid "Administration"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.ui.menu,name:ifn_core.menu_ifn_references
+msgid "Référentiels"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.ui.menu,name:ifn_core.menu_ifn_actors
+msgid "Gestion des Acteurs"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.ui.menu,name:ifn_core.menu_ifn_monitoring
+msgid "Monitoring et KPIs"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.actions.act_window,name:ifn_core.action_ifn_market
+msgid "Marchés IFN"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.actions.act_window,name:ifn_core.action_ifn_coop
+msgid "Coopératives IFN"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.actions.act_window,name:ifn_core.action_res_partner_ifn
+msgid "Partenaires IFN"
+msgstr ""
+
+#. module: ifn_core
+#: model:res.groups,name:ifn_core.group_ifn_user
+msgid "Utilisateur IFN"
+msgstr ""
+
+#. module: ifn_core
+#: model:res.groups,name:ifn_core.group_ifn_merchant
+msgid "Marchand IFN"
+msgstr ""
+
+#. module: ifn_core
+#: model:res.groups,name:ifn_core.group_ifn_producer
+msgid "Producteur IFN"
+msgstr ""
+
+#. module: ifn_core
+#: model:res.groups,name:ifn_core.group_ifn_coop_manager
+msgid "Gestionnaire Coopérative IFN"
+msgstr ""
+
+#. module: ifn_core
+#: model:res.groups,name:ifn_core.group_ifn_agent
+msgid "Agent IFN"
+msgstr ""
+
+#. module: ifn_core
+#: model:res.groups,name:ifn_core.group_ifn_admin
+msgid "Administrateur IFN"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_market__region
+msgid "Region"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_market__commune
+msgid "Commune"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_coop__manager_name
+msgid "Manager name"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_coop__manager_phone
+msgid "Manager phone"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_coop__capacity_storage
+msgid "Capacity storage"
+msgstr"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_coop__member_count
+msgid "Member count"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_zone__name
+msgid "Zone name"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_zone__zone_type
+msgid "Zone type"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_product_category_ref__name
+msgid "Category name"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_product_category_ref__category_type
+msgid "Category type"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_settings__ifn_module_enabled
+msgid "IFN module enabled"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_settings__ifn_portal_enabled
+msgid "IFN portal enabled"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_settings__ifn_qr_enabled
+msgid "IFN QR enabled"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_settings__ifn_audit_enabled
+msgid "IFN audit enabled"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_audit_log__action
+msgid "Action"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_audit_log__user_id
+msgid "User"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_audit_log__create_date
+msgid "Create date"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_kpi_snapshot__snapshot_date
+msgid "Snapshot date"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_kpi_snapshot__total_partners
+msgid "Total partners"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_kpi_snapshot__validated_profiles
+msgid "Validated profiles"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_kpi_snapshot__qr_generation_rate
+msgid "QR generation rate"
+msgstr ""
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_kpi_snapshot__validation_rate
+msgid "Validation rate"
+msgstr ""

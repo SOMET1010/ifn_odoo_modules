@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Merchant Dashboard Page -->
+        <template id="page_dashboard" name="Merchant Dashboard">
+            <t t-call="ifn_portal_common.portal_layout">
+                <t t-set="title">Tableau de Bord Marchand</t>
+
+                <div class="container-fluid ifn-merchant-dashboard">
+                    <!-- Header Section -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h1 class="h3 mb-0">
+                                        <i class="fa fa-tachometer-alt me-2"></i>
+                                        Tableau de Bord
+                                    </h1>
+                                    <p class="text-muted mb-0">
+                                        Bienvenue <t t-esc="partner.name"/>
+                                    </p>
+                                </div>
+                                <div class="text-end">
+                                    <small class="text-muted">
+                                        Dernière connexion: <t t-esc="partner.merchant_last_login or 'Jamais'"/>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KPI Cards -->
+                    <div class="row mb-4">
+                        <!-- Revenue KPI -->
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-grow-1">
+                                            <h6 class="text-muted mb-2">Chiffre d'Affaires (Aujourd'hui)</h6>
+                                            <h3 class="mb-0 text-success">
+                                                <t t-esc="kpi_data.revenue_today"/> F
+                                            </h3>
+                                            <small class="text-muted">
+                                                Semaine: <t t-esc="kpi_data.revenue_week"/> F |
+                                                Mois: <t t-esc="kpi_data.revenue_month"/> F
+                                            </small>
+                                        </div>
+                                        <div class="ms-3">
+                                            <i class="fa fa-chart-line fa-2x text-success"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stock Alerts KPI -->
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-grow-1">
+                                            <h6 class="text-muted mb-2">Alertes Stock</h6>
+                                            <h3 class="mb-0 text-warning">
+                                                <t t-esc="kpi_data.stock_alerts"/>
+                                            </h3>
+                                            <small class="text-muted">Produits en rupture</small>
+                                        </div>
+                                        <div class="ms-3">
+                                            <i class="fa fa-exclamation-triangle fa-2x text-warning"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Status KPI -->
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-grow-1">
+                                            <h6 class="text-muted mb-2">Cotisations Sociales</h6>
+                                            <h3 class="mb-0">
+                                                <span t-attf-class="#{kpi_data.social_status == 'paid' ? 'text-success' : 'text-warning'}">
+                                                    <t t-esc="kpi_data.social_status == 'paid' ? 'À jour' : 'À payer'"/>
+                                                </span>
+                                            </h3>
+                                            <small class="text-muted">
+                                                Échéance: <t t-esc="kpi_data.social_due_date"/>
+                                            </small>
+                                        </div>
+                                        <div class="ms-3">
+                                            <i t-attf-class="fa fa-2x #{kpi_data.social_status == 'paid' ? 'fa-check-circle text-success' : 'fa-clock text-warning'}"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h5 class="mb-3">Actions Rapides</h5>
+                            <div class="d-flex flex-wrap gap-2">
+                                <a href="/portal/merchant/sell" class="btn btn-primary btn-lg">
+                                    <i class="fa fa-shopping-cart me-2"></i>
+                                    Vendre
+                                </a>
+                                <a href="/portal/merchant/stock" class="btn btn-secondary btn-lg">
+                                    <i class="fa fa-boxes me-2"></i>
+                                    Stock
+                                </a>
+                                <a href="/portal/merchant/purchase" class="btn btn-info btn-lg">
+                                    <i class="fa fa-truck me-2"></i>
+                                    Approvisionnement
+                                </a>
+                                <a href="/portal/merchant/payments" class="btn btn-success btn-lg">
+                                    <i class="fa fa-money-bill-wave me-2"></i>
+                                    Encaissements
+                                </a>
+                                <a href="/portal/merchant/social" class="btn btn-warning btn-lg">
+                                    <i class="fa fa-shield-alt me-2"></i>
+                                    Social
+                                </a>
+                                <a href="/portal/merchant/training" class="btn btn-dark btn-lg">
+                                    <i class="fa fa-graduation-cap me-2"></i>
+                                    Formation
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="row">
+                        <!-- Last Sales -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">
+                                        <i class="fa fa-shopping-bag me-2"></i>
+                                        Dernières Ventes
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="list-group list-group-flush">
+                                        <t t-foreach="kpi_data.last_sales" t-as="sale">
+                                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                <div>
+                                                    <strong><t t-esc="sale.product"/></strong>
+                                                    <br/>
+                                                    <small class="text-muted"><t t-esc="sale.date"/></small>
+                                                </div>
+                                                <strong class="text-success"><t t-esc="sale.amount"/> F</strong>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Last Payments -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">
+                                        <i class="fa fa-credit-card me-2"></i>
+                                        Derniers Encaissements
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="list-group list-group-flush">
+                                        <t t-foreach="kpi_data.last_payments" t-as="payment">
+                                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                <div>
+                                                    <span class="badge bg-success me-2"><t t-esc="payment.method"/></span>
+                                                    <br/>
+                                                    <small class="text-muted"><t t-esc="payment.date"/></small>
+                                                </div>
+                                                <strong><t t-esc="payment.amount"/> F</strong>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Voice Usage Stats -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card bg-light">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted mb-2">Adoption Commandes Vocales</h6>
+                                    <h2 class="mb-0"><t t-esc="kpi_data.voice_operations_percent"/>%</h2>
+                                    <small class="text-muted">des opérations réalisées par la voix</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Sell Page -->
+        <template id="page_sell" name="Merchant Sell">
+            <t t-call="ifn_portal_common.portal_layout">
+                <t t-set="title">Vente</t>
+
+                <div class="container-fluid ifn-merchant-sell">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h1 class="h3">
+                                <i class="fa fa-shopping-cart me-2"></i>
+                                Nouvelle Vente
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- Product Search Section -->
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Recherche de Produit</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-barcode"></i>
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="Scanner code-barres / QR code" id="barcode-input"/>
+                                                <button class="btn btn-outline-primary" type="button" id="scan-btn">
+                                                    <i class="fa fa-camera"></i> Scanner
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-search"></i>
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="Rechercher produit..." id="search-input"/>
+                                                <button class="btn btn-outline-primary" type="button" id="voice-btn">
+                                                    <i class="fa fa-microphone"></i> Parler
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-light">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted">Total Panier</h6>
+                                    <h2 class="text-primary mb-0" id="cart-total">0 F</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shopping Cart -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Panier</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table" id="cart-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Produit</th>
+                                                    <th>Quantité</th>
+                                                    <th>Prix Unitaire</th>
+                                                    <th>Total</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Cart items will be added here dynamically -->
+                                            </tbody>
+                                        </table>
+                                        <div id="empty-cart" class="text-center text-muted py-4">
+                                            <i class="fa fa-shopping-basket fa-3x mb-3"></i>
+                                            <p>Votre panier est vide</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Section -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Paiement</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Mode de Paiement</label>
+                                            <div class="btn-group w-100" role="group">
+                                                <input type="radio" class="btn-check" name="payment-method" id="payment-cash" autocomplete="off" checked="checked"/>
+                                                <label class="btn btn-outline-primary" for="payment-cash">
+                                                    <i class="fa fa-money-bill"></i> Espèces
+                                                </label>
+
+                                                <input type="radio" class="btn-check" name="payment-method" id="payment-momo" autocomplete="off"/>
+                                                <label class="btn btn-outline-primary" for="payment-momo">
+                                                    <i class="fa fa-mobile-alt"></i> Mobile Money
+                                                </label>
+
+                                                <input type="radio" class="btn-check" name="payment-method" id="payment-credit" autocomplete="off"/>
+                                                <label class="btn btn-outline-primary" for="payment-credit">
+                                                    <i class="fa fa-credit-card"></i> Crédit
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button class="btn btn-success btn-lg w-100" id="checkout-btn" disabled="disabled">
+                                                <i class="fa fa-cash-register me-2"></i>
+                                                Encaisser
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+    </data>
+</odoo>

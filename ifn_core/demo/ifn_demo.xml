@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Utilisateurs de démo pour les différents rôles IFN -->
+
+        <!-- Marchand de démo -->
+        <record id="user_merchant_demo" model="res.users">
+            <field name="name">Konan Mari Marchand</field>
+            <field name="login">marchand@ifn.org</field>
+            <field name="password">marchand123</field>
+            <field name="email">konan.marchand@ifn.org</field>
+            <field name="phone">+225 07 89 45 12</field>
+            <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('group_ifn_merchant'))]"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="company_ids" eval="[(4, ref('base.main_company'))]"/>
+        </record>
+
+        <!-- Partenaire associé au marchand -->
+        <record id="partner_merchant_demo" model="res.partner">
+            <field name="name">Konan Mari Marchand</field>
+            <field name="user_id" ref="user_merchant_demo"/>
+            <field name="email">konan.marchand@ifn.org</field>
+            <field name="phone">+225 07 89 45 12</field>
+            <field name="street">Marché de Treichville</field>
+            <field name="city">Abidjan</field>
+            <field name="country_id" ref="base.ci"/>
+            <field name="x_ifn_role">merchant</field>
+            <field name="x_ifn_market_id" ref="ifn_market_abidjan"/>
+            <field name="x_ifn_lang_pref">fr</field>
+            <field name="x_ifn_voice_consent">True</field>
+            <field name="x_ifn_voice_consent_date" eval="(DateTime.now() - timedelta(days=30)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="x_ifn_data_processing_consent">True</field>
+            <field name="x_ifn_data_processing_consent_date" eval="(DateTime.now() - timedelta(days=30)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="x_ifn_geo_lat">5.2914</field>
+            <field name="x_ifn_geo_lng">-4.0254</field>
+            <field name="x_ifn_profile_status">validated</field>
+            <field name="x_ifn_validation_date" eval="(DateTime.now() - timedelta(days=25)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="function">Marchand de fruits et légumes</field>
+            <field name="is_company">False</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Producteur de démo -->
+        <record id="user_producer_demo" model="res.users">
+            <field name="name">Kouadio Paul Producteur</field>
+            <field name="login">producteur@ifn.org</field>
+            <field name="password">producteur123</field>
+            <field name="email">kouadio.producteur@ifn.org</field>
+            <field name="phone">+225 07 45 78 23</field>
+            <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('group_ifn_producer'))]"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="company_ids" eval="[(4, ref('base.main_company'))]"/>
+        </record>
+
+        <!-- Partenaire associé au producteur -->
+        <record id="partner_producer_demo" model="res.partner">
+            <field name="name">Kouadio Paul Producteur</field>
+            <field name="user_id" ref="user_producer_demo"/>
+            <field name="email">kouadio.producteur@ifn.org</field>
+            <field name="phone">+225 07 45 78 23</field>
+            <field name="street">Plantation Yamoussoukro</field>
+            <field name="city">Yamoussoukro</field>
+            <field name="country_id" ref="base.ci"/>
+            <field name="x_ifn_role">producer</field>
+            <field name="x_ifn_market_id" ref="ifn_market_bouake"/>
+            <field name="x_ifn_coop_id" ref="ifn_coop_cacao_bouake"/>
+            <field name="x_ifn_lang_pref">di</field>
+            <field name="x_ifn_voice_consent">True</field>
+            <field name="x_ifn_voice_consent_date" eval="(DateTime.now() - timedelta(days=45)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="x_ifn_data_processing_consent">True</field>
+            <field name="x_ifn_data_processing_consent_date" eval="(DateTime.now() - timedelta(days=45)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="x_ifn_geo_lat">6.8276</field>
+            <field name="x_ifn_geo_lng">-5.2893</field>
+            <field name="x_ifn_profile_status">validated</field>
+            <field name="x_ifn_validation_date" eval="(DateTime.now() - timedelta(days=40)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="function">Producteur de cacao</field>
+            <field name="is_company">False</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Gestionnaire coopérative de démo -->
+        <record id="user_coop_manager_demo" model="res.users">
+            <field name="name">Touré Aminata Gestionnaire</field>
+            <field name="login">coop_manager@ifn.org</field>
+            <field name="password">coopmanager123</field>
+            <field name="email">toure.coop@ifn.org</field>
+            <field name="phone">+225 07 12 45 67</field>
+            <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('group_ifn_coop_manager'))]"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="company_ids" eval="[(4, ref('base.main_company'))]"/>
+        </record>
+
+        <!-- Partenaire associé au gestionnaire coopérative -->
+        <record id="partner_coop_manager_demo" model="res.partner">
+            <field name="name">Touré Aminata Gestionnaire</field>
+            <field name="user_id" ref="user_coop_manager_demo"/>
+            <field name="email">toure.coop@ifn.org</field>
+            <field name="phone">+225 07 12 45 67</field>
+            <field name="street">Siège Coopérative</field>
+            <field name="city">Korhogo</field>
+            <field name="country_id" ref="base.ci"/>
+            <field name="x_ifn_role">coop_manager</field>
+            <field name="x_ifn_market_id" ref="ifn_market_korhogo"/>
+            <field name="x_ifn_coop_id" ref="ifn_coop_ananas_korhogo"/>
+            <field name="x_ifn_lang_pref">ba</field>
+            <field name="x_ifn_voice_consent">True</field>
+            <field name="x_ifn_voice_consent_date" eval="(DateTime.now() - timedelta(days=60)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="x_ifn_data_processing_consent">True</field>
+            <field name="x_ifn_data_processing_consent_date" eval="(DateTime.now() - timedelta(days=60)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="x_ifn_geo_lat">9.4617</field>
+            <field name="x_ifn_geo_lng">-5.6269</field>
+            <field name="x_ifn_profile_status">validated</field>
+            <field name="x_ifn_validation_date" eval="(DateTime.now() - timedelta(days=55)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="function">Gestionnaire Coopérative Fruitière</field>
+            <field name="is_company">False</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Agent IFN de démo -->
+        <record id="user_agent_demo" model="res.users">
+            <field name="name">Bamba Koffi Agent</field>
+            <field name="login">agent@ifn.org</field>
+            <field name="password">agent123</field>
+            <field name="email">bamba.agent@ifn.org</field>
+            <field name="phone">+225 07 89 34 12</field>
+            <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('group_ifn_agent'))]"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="company_ids" eval="[(4, ref('base.main_company'))]"/>
+        </record>
+
+        <!-- Partenaire associé à l'agent -->
+        <record id="partner_agent_demo" model="res.partner">
+            <field name="name">Bamba Koffi Agent</field>
+            <field name="user_id" ref="user_agent_demo"/>
+            <field name="email">bamba.agent@ifn.org</field>
+            <field name="phone">+225 07 89 34 12</field>
+            <field name="street">Bureau IFN Abidjan</field>
+            <field name="city">Abidjan</field>
+            <field name="country_id" ref="base.ci"/>
+            <field name="x_ifn_role">agent</field>
+            <field name="x_ifn_market_id" ref="ifn_market_abidjan"/>
+            <field name="x_ifn_lang_pref">fr</field>
+            <field name="x_ifn_voice_consent">True</field>
+            <field name="x_ifn_voice_consent_date" eval="(DateTime.now() - timedelta(days=90)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="x_ifn_data_processing_consent">True</field>
+            <field name="x_ifn_data_processing_consent_date" eval="(DateTime.now() - timedelta(days=90)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="x_ifn_geo_lat">5.3600</field>
+            <field name="x_ifn_geo_lng">-4.0083</field>
+            <field name="x_ifn_profile_status">validated</field>
+            <field name="x_ifn_validation_date" eval="(DateTime.now() - timedelta(days=85)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="function">Agent de terrain IFN</field>
+            <field name="is_company">False</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Administrateur IFN de démo -->
+        <record id="user_admin_demo" model="res.users">
+            <field name="name">Sangaré Administrateur</field>
+            <field name="login">admin@ifn.org</field>
+            <field name="password">admin123</field>
+            <field name="email">sangare.admin@ifn.org</field>
+            <field name="phone">+225 20 22 33 44</field>
+            <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('group_ifn_admin'))]"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="company_ids" eval="[(4, ref('base.main_company'))]"/>
+        </record>
+
+        <!-- Partenaire associé à l'administrateur -->
+        <record id="partner_admin_demo" model="res.partner">
+            <field name="name">Sangaré Administrateur</field>
+            <field name="user_id" ref="user_admin_demo"/>
+            <field name="email">sangare.admin@ifn.org</field>
+            <field name="phone">+225 20 22 33 44</field>
+            <field name="street">Siège IFN</field>
+            <field name="city">Abidjan</field>
+            <field name="country_id" ref="base.ci"/>
+            <field name="x_ifn_role">admin</field>
+            <field name="x_ifn_market_id" ref="ifn_market_abidjan"/>
+            <field name="x_ifn_lang_pref">fr</field>
+            <field name="x_ifn_voice_consent">True</field>
+            <field name="x_ifn_voice_consent_date" eval="(DateTime.now() - timedelta(days=120)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="x_ifn_data_processing_consent">True</field>
+            <field name="x_ifn_data_processing_consent_date" eval="(DateTime.now() - timedelta(days=120)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="x_ifn_geo_lat">5.3600</field>
+            <field name="x_ifn_geo_lng">-4.0083</field>
+            <field name="x_ifn_profile_status">validated</field>
+            <field name="x_ifn_validation_date" eval="(DateTime.now() - timedelta(days=115)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="function">Administrateur Système IFN</field>
+            <field name="is_company">False</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Partenaires supplémentaires pour avoir plus de données de démo -->
+
+        <!-- Producteurs additionnels -->
+        <record id="partner_producer2_demo" model="res.partner">
+            <field name="name">Yao Jean</field>
+            <field name="email">yao.jean@ifn.org</field>
+            <field name="phone">+225 07 34 56 78</field>
+            <field name="street">Plantation Dabou</field>
+            <field name="city">Dabou</field>
+            <field name="country_id" ref="base.ci"/>
+            <field name="x_ifn_role">producer</field>
+            <field name="x_ifn_market_id" ref="ifn_market_abidjan"/>
+            <field name="x_ifn_coop_id" ref="ifn_coop_cafe_abidjan"/>
+            <field name="x_ifn_lang_pref">fr</field>
+            <field name="x_ifn_voice_consent">True</field>
+            <field name="x_ifn_data_processing_consent">True</field>
+            <field name="x_ifn_geo_lat">5.1264</field>
+            <field name="x_ifn_geo_lng">-4.3764</field>
+            <field name="x_ifn_profile_status">validated</field>
+            <field name="function">Producteur de café</field>
+            <field name="is_company">False</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="partner_producer3_demo" model="res.partner">
+            <field name="name">Konaté Mariam</field>
+            <field name="email">konate.mariam@ifn.org</field>
+            <field name="phone">+225 07 56 78 90</field>
+            <field name="street">Plantation Boundiali</field>
+            <field name="city">Boundiali</field>
+            <field name="country_id" ref="base.ci"/>
+            <field name="x_ifn_role">producer</field>
+            <field name="x_ifn_market_id" ref="ifn_market_korhogo"/>
+            <field name="x_ifn_coop_id" ref="ifn_coop_ananas_korhogo"/>
+            <field name="x_ifn_lang_pref">ba</field>
+            <field name="x_ifn_voice_consent">False</field>
+            <field name="x_ifn_data_processing_consent">True</field>
+            <field name="x_ifn_geo_lat">9.5212</field>
+            <field name="x_ifn_geo_lng">-6.4724</field>
+            <field name="x_ifn_profile_status">pending_validation</field>
+            <field name="function">Productrice d'ananas</field>
+            <field name="is_company">False</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Marchands additionnels -->
+        <record id="partner_merchant2_demo" model="res.partner">
+            <field name="name">Ouattara Adama</field>
+            <field name="email">ouattara.adama@ifn.org</field>
+            <field name="phone">+225 07 23 45 67</field>
+            <field name="street">Marché de Bouaké</field>
+            <field name="city">Bouaké</field>
+            <field name="country_id" ref="base.ci"/>
+            <field name="x_ifn_role">merchant</field>
+            <field name="x_ifn_market_id" ref="ifn_market_bouake"/>
+            <field name="x_ifn_lang_pref">di</field>
+            <field name="x_ifn_voice_consent">True</field>
+            <field name="x_ifn_data_processing_consent">True</field>
+            <field name="x_ifn_geo_lat">7.6933</field>
+            <field name="x_ifn_geo_lng">-5.0303</field>
+            <field name="x_ifn_profile_status">validated</field>
+            <field name="function">Marchand de céréales</field>
+            <field name="is_company">False</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Liens familiaux -->
+        <record id="partner_family_head_demo" model="res.partner">
+            <field name="name">Kouassi Famille</field>
+            <field name="email">kouassi.famille@ifn.org</field>
+            <field name="phone">+225 07 45 67 89</field>
+            <field name="street">Village Kounouhiré</field>
+            <field name="city">Soubré</field>
+            <field name="country_id" ref="base.ci"/>
+            <field name="x_ifn_role">producer</field>
+            <field name="x_ifn_market_id" ref="ifn_market_abidjan"/>
+            <field name="x_ifn_lang_pref">ba</field>
+            <field name="x_ifn_voice_consent">True</field>
+            <field name="x_ifn_data_processing_consent">True</field>
+            <field name="x_ifn_geo_lat">5.7579</field>
+            <field name="x_ifn_geo_lng">-6.6135</field>
+            <field name="x_ifn_profile_status">validated</field>
+            <field name="function">Chef de famille producteur</field>
+            <field name="is_company">False</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Membre de la famille -->
+        <record id="partner_family_member_demo" model="res.partner">
+            <field name="name">Kouassi Awa</field>
+            <field name="email">kouassi.awa@ifn.org</field>
+            <field name="phone">+225 07 56 78 90</field>
+            <field name="street">Village Kounouhiré</field>
+            <field name="city">Soubré</field>
+            <field name="country_id" ref="base.ci"/>
+            <field name="x_ifn_role">producer</field>
+            <field name="x_ifn_market_id" ref="ifn_market_abidjan"/>
+            <field name="x_ifn_family_head_id" ref="partner_family_head_demo"/>
+            <field name="x_ifn_lang_pref">ba</field>
+            <field name="x_ifn_voice_consent">True</field>
+            <field name="x_ifn_data_processing_consent">True</field>
+            <field name="x_ifn_geo_lat">5.7579</field>
+            <field name="x_ifn_geo_lng">-6.6135</field>
+            <field name="x_ifn_profile_status">draft</field>
+            <field name="function">Membre famille productrice</field>
+            <field name="is_company">False</field>
+            <field name="active">True</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- 
+        Template d'exemple pour l'intégration des icônes IFN
+        Ce template démontre l'utilisation du nouveau système d'icônes
+        avec les 18 pictogrammes IFN et les optimisations.
+        -->
+
+        <!-- Exemple d'intégration des icônes dans la navigation -->
+        <template id="ifn_icons_navigation_example" name="IFN Navigation avec Icônes">
+            <div class="ifn-navigation-icons">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <!-- Logo avec icône -->
+                    <a class="navbar-brand" href="/">
+                        <div class="ifn-brand-icon">
+                            <div id="brand-logo" class="ifn-icon" 
+                                 data-icon="home" 
+                                 style="width: 32px; height: 32px;">
+                                <div class="ifn-icon-fallback--loading">IFN</div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- Menu principal avec icônes -->
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="/portal">
+                            <div class="ifn-nav-icon" data-icon="home">
+                                <div class="ifn-icon-fallback--loading">Chargement...</div>
+                            </div>
+                            <span>Accueil</span>
+                        </a>
+                        
+                        <a class="nav-link" href="/portal/stock">
+                            <div class="ifn-nav-icon" data-icon="stock">
+                                <div class="ifn-icon-fallback--loading">Chargement...</div>
+                            </div>
+                            <span>Stock</span>
+                        </a>
+                        
+                        <a class="nav-link" href="/portal/sales">
+                            <div class="ifn-nav-icon" data-icon="sell">
+                                <div class="ifn-icon-fallback--loading">Chargement...</div>
+                            </div>
+                            <span>Ventes</span>
+                        </a>
+                        
+                        <a class="nav-link" href="/portal/education">
+                            <div class="ifn-nav-icon" data-icon="education">
+                                <div class="ifn-icon-fallback--loading">Chargement...</div>
+                            </div>
+                            <span>Formation</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Actions utilisateur avec icônes -->
+                    <div class="navbar-nav ms-auto">
+                        <!-- Notifications -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" 
+                               id="notificationsDropdown" 
+                               role="button" 
+                               data-bs-toggle="dropdown">
+                                <div class="ifn-icon-container" data-icon="notifications">
+                                    <div class="ifn-icon-fallback--loading">🔔</div>
+                                </div>
+                                <span class="badge bg-danger ifn-notification-badge" 
+                                      style="display: none;">3</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><h6 class="dropdown-header">Notifications</h6></li>
+                                <li><a class="dropdown-item" href="#">Nouveau message</a></li>
+                                <li><a class="dropdown-item" href="#">Stock faible</a></li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Profil utilisateur -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" 
+                               id="userDropdown" 
+                               role="button" 
+                               data-bs-toggle="dropdown">
+                                <div class="ifn-icon-container" data-icon="profile">
+                                    <div class="ifn-icon-fallback--loading">👤</div>
+                                </div>
+                                <span>Utilisateur</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/portal/profile">
+                                    <div class="ifn-icon-inline" data-icon="edit">Modifier</div>
+                                </a></li>
+                                <li><a class="dropdown-item" href="/portal/settings">
+                                    <div class="ifn-icon-inline" data-icon="settings">Paramètres</div>
+                                </a></li>
+                                <li><hr class="dropdown-divider"/></li>
+                                <li><a class="dropdown-item" href="/web/session/logout">
+                                    <div class="ifn-icon-inline" data-icon="error">Déconnexion</div>
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
+            <!-- Script d'initialisation des icônes -->
+            <script type="text/javascript">
+                (function() {
+                    // Attendre que le système soit prêt
+                    function initIcons() {
+                        if (window.IFN_Icons && window.IFN_IconSystem) {
+                            // Initialiser toutes les icônes de navigation
+                            document.querySelectorAll('[data-icon]').forEach(function(element) {
+                                const iconName = element.dataset.icon;
+                                const options = {
+                                    size: '24px',
+                                    color: 'primary',
+                                    showLoading: false
+                                };
+                                
+                                IFN_Icons.renderIcon(iconName, {
+                                    container: element,
+                                    ...options
+                                }).catch(function() {
+                                    if (window.IFN_IconFallbacks) {
+                                        IFN_IconFallbacks.applyFallback(element, iconName);
+                                    }
+                                });
+                            });
+                            
+                            // Précharger les icônes communes
+                            IFN_IconSystem.preloadIcon('home');
+                            IFN_IconSystem.preloadIcon('notifications');
+                            IFN_IconSystem.preloadIcon('profile');
+                        } else {
+                            // Réessayer dans 100ms
+                            setTimeout(initIcons, 100);
+                        }
+                    }
+                    
+                    // Démarrer l'initialisation
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', initIcons);
+                    } else {
+                        initIcons();
+                    }
+                })();
+            </script>
+        </template>
+
+        <!-- Exemple d'utilisation dans un tableau de bord -->
+        <template id="ifn_icons_dashboard_example" name="IFN Dashboard avec Icônes">
+            <div class="ifn-dashboard">
+                <h2><div class="ifn-icon-inline" data-icon="stats">Tableau de Bord</div></h2>
+                
+                <!-- Cartes statistiques avec icônes -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div class="ifn-icon-container mb-3" 
+                                     data-icon="sell" 
+                                     style="width: 48px; height: 48px; margin: 0 auto;">
+                                    <div class="ifn-icon-fallback--loading">📦</div>
+                                </div>
+                                <h5 class="card-title">Ventes</h5>
+                                <p class="card-text">
+                                    <span class="h4">1,234</span><br/>
+                                    <small class="text-muted">+12% ce mois</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div class="ifn-icon-container mb-3" 
+                                     data-icon="stock" 
+                                     style="width: 48px; height: 48px; margin: 0 auto;">
+                                    <div class="ifn-icon-fallback--loading">📋</div>
+                                </div>
+                                <h5 class="card-title">Stock</h5>
+                                <p class="card-text">
+                                    <span class="h4">856</span><br/>
+                                    <small class="text-muted">23 produits</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div class="ifn-icon-container mb-3" 
+                                     data-icon="payment" 
+                                     style="width: 48px; height: 48px; margin: 0 auto;">
+                                    <div class="ifn-icon-fallback--loading">💳</div>
+                                </div>
+                                <h5 class="card-title">Revenus</h5>
+                                <p class="card-text">
+                                    <span class="h4">€45,678</span><br/>
+                                    <small class="text-muted">+8% ce mois</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div class="ifn-icon-container mb-3" 
+                                     data-icon="social" 
+                                     style="width: 48px; height: 48px; margin: 0 auto;">
+                                    <div class="ifn-icon-fallback--loading">👥</div>
+                                </div>
+                                <h5 class="card-title">Clients</h5>
+                                <p class="card-text">
+                                    <span class="h4">2,341</span><br/>
+                                    <small class="text-muted">45 nouveaux</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Actions rapides -->
+                <div class="ifn-quick-actions mt-4">
+                    <h4><div class="ifn-icon-inline" data-icon="add">Actions Rapides</div></h4>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary">
+                            <div class="ifn-icon-inline" data-icon="add">Nouveau Produit</div>
+                        </button>
+                        <button type="button" class="btn btn-success">
+                            <div class="ifn-icon-inline" data-icon="upload">Importer CSV</div>
+                        </button>
+                        <button type="button" class="btn btn-info">
+                            <div class="ifn-icon-inline" data-icon="search">Rechercher</div>
+                        </button>
+                        <button type="button" class="btn btn-warning">
+                            <div class="ifn-icon-inline" data-icon="sync">Synchroniser</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Script spécialisé pour le dashboard -->
+            <script type="text/javascript">
+                (function() {
+                    function initDashboardIcons() {
+                        if (window.IFN_Icons) {
+                            // Icônes grandes pour les statistiques
+                            document.querySelectorAll('.ifn-dashboard [data-icon]').forEach(function(element) {
+                                const iconName = element.dataset.icon;
+                                const size = element.style.height || '48px';
+                                
+                                IFN_Icons.renderIcon(iconName, {
+                                    container: element,
+                                    size: size,
+                                    showLoading: false
+                                }).catch(function() {
+                                    console.warn('Erreur icône dashboard:', iconName);
+                                });
+                            });
+                            
+                            // Préchargement spécifique au dashboard
+                            if (window.IFN_IconSystem) {
+                                IFN_IconSystem.preloadIcon('sell');
+                                IFN_IconSystem.preloadIcon('stock');
+                                IFN_IconSystem.preloadIcon('payment');
+                                IFN_IconSystem.preloadIcon('social');
+                            }
+                        }
+                    }
+                    
+                    // Initialisation différée pour le dashboard
+                    setTimeout(initDashboardIcons, 200);
+                })();
+            </script>
+        </template>
+
+        <!-- Exemple avec fallbacks et accessibilité -->
+        <template id="ifn_icons_accessibility_example" name="IFN Icônes Accessibilité">
+            <div class="ifn-accessibility-demo">
+                <h3>Exemples d'Accessibilité</h3>
+                
+                <!-- Icône informative (annoncée) -->
+                <div class="ifn-accessibility-example">
+                    <div class="ifn-icon-container" 
+                         data-icon="help"
+                         data-size="32px"
+                         data-aria-label="Aide et support technique"
+                         role="img">
+                        <div class="ifn-icon-fallback--loading">Aide</div>
+                    </div>
+                    <p>Cette icône est annoncée par les lecteurs d'écran.</p>
+                </div>
+                
+                <!-- Icône décorative (masquée) -->
+                <div class="ifn-accessibility-example">
+                    <button class="btn btn-primary">
+                        <span aria-hidden="true">
+                            <div class="ifn-icon-container" data-icon="add" style="width: 16px; height: 16px;">
+                                <div class="ifn-icon-fallback--loading">+</div>
+                            </div>
+                        </span>
+                        <span>Ajouter un élément</span>
+                    </button>
+                    <p>L'icône est masquée car elle est décorative.</p>
+                </div>
+                
+                <!-- État de synchronisation -->
+                <div class="ifn-sync-status">
+                    <div class="ifn-icon-container" 
+                         data-icon="sync"
+                         data-aria-label="Synchronisation en cours"
+                         role="status">
+                        <div class="ifn-icon-fallback--loading">🔄</div>
+                    </div>
+                    <span>Synchronisation en cours...</span>
+                </div>
+                
+                <!-- États avec fallbacks -->
+                <div class="ifn-status-examples">
+                    <div class="status-item">
+                        <div class="ifn-icon-container" data-icon="success">
+                            <div class="ifn-icon-fallback--loading">✓</div>
+                        </div>
+                        <span>Opération réussie</span>
+                    </div>
+                    
+                    <div class="status-item">
+                        <div class="ifn-icon-container" data-icon="error">
+                            <div class="ifn-icon-fallback--loading">✗</div>
+                        </div>
+                        <span>Erreur détectée</span>
+                    </div>
+                    
+                    <div class="status-item">
+                        <div class="ifn-icon-container" data-icon="warning">
+                            <div class="ifn-icon-fallback--loading">⚠</div>
+                        </div>
+                        <span>Attention requise</span>
+                    </div>
+                    
+                    <div class="status-item">
+                        <div class="ifn-icon-container" data-icon="info">
+                            <div class="ifn-icon-fallback--loading">i</div>
+                        </div>
+                        <span>Information</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Script pour l'accessibilité -->
+            <script type="text/javascript">
+                (function() {
+                    function initAccessibilityIcons() {
+                        if (window.IFN_Icons && window.IFN_IconFallbacks) {
+                            document.querySelectorAll('.ifn-accessibility-demo [data-icon]').forEach(function(element) {
+                                const iconName = element.dataset.icon;
+                                const options = {
+                                    container: element,
+                                    size: element.dataset.size || '24px',
+                                    ariaLabel: element.dataset.ariaLabel,
+                                    ariaHidden: element.hasAttribute('aria-hidden'),
+                                    showLoading: false
+                                };
+                                
+                                // Gestion spéciale selon le contexte
+                                if (element.getAttribute('role') === 'img') {
+                                    options.ariaLabel = options.ariaLabel || IFN_Icons.icons[iconName]?.name;
+                                }
+                                
+                                IFN_Icons.renderIcon(iconName, options)
+                                    .catch(function(error) {
+                                        console.warn('Fallback accessibilité:', iconName);
+                                        IFN_IconFallbacks.applyFallback(element, iconName);
+                                    });
+                            });
+                        }
+                    }
+                    
+                    // Initialisation avec délai pour les lecteurs d'écran
+                    setTimeout(initAccessibilityIcons, 300);
+                })();
+            </script>
+        </template>
+
+        <!-- Template de test des performances -->
+        <template id="ifn_icons_performance_test" name="Test Performance Icônes">
+            <div class="ifn-performance-test">
+                <h3>Test de Performance du Système d'Icônes</h3>
+                
+                <div class="ifn-test-controls">
+                    <button class="btn btn-primary" onclick="testIconLoading()">
+                        <div class="ifn-icon-inline" data-icon="view">Tester le Chargement</div>
+                    </button>
+                    <button class="btn btn-success" onclick="testIconPreload()">
+                        <div class="ifn-icon-inline" data-icon="download">Tester le Préchargement</div>
+                    </button>
+                    <button class="btn btn-info" onclick="showIconStats()">
+                        <div class="ifn-icon-inline" data-icon="stats">Voir les Statistiques</div>
+                    </button>
+                </div>
+                
+                <div class="ifn-test-results mt-3">
+                    <div id="test-output" class="alert alert-info">
+                        Cliquez sur les boutons de test pour vérifier les performances.
+                    </div>
+                </div>
+                
+                <!-- Grille de test avec toutes les icônes -->
+                <div class="ifn-icons-grid-test mt-4">
+                    <h4>Test de toutes les icônes</h4>
+                    <div class="row" id="icons-test-grid">
+                        <!-- Généré dynamiquement -->
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                function testIconLoading() {
+                    const output = document.getElementById('test-output');
+                    output.innerHTML = 'Test du chargement des icônes...';
+                    
+                    const startTime = performance.now();
+                    
+                    if (window.IFN_Icons) {
+                        // Test de rendu d'icônes
+                        const icons = ['home', 'sell', 'stock', 'payment', 'social'];
+                        const promises = icons.map(name => 
+                            IFN_Icons.renderIcon(name, {
+                                size: '24px',
+                                showLoading: false
+                            })
+                        );
+                        
+                        Promise.all(promises).then(() => {
+                            const duration = performance.now() - startTime;
+                            output.innerHTML = `
+                                <strong>Test réussi!</strong><br/>
+                                Temps de chargement: ${duration.toFixed(2)}ms<br/>
+                                Icônes testées: ${icons.join(', ')}
+                            `;
+                            output.className = 'alert alert-success';
+                        }).catch(error => {
+                            output.innerHTML = `Erreur: ${error.message}`;
+                            output.className = 'alert alert-danger';
+                        });
+                    }
+                }
+                
+                function testIconPreload() {
+                    const output = document.getElementById('test-output');
+                    output.innerHTML = 'Test du préchargement...';
+                    
+                    if (window.IFN_IconSystem) {
+                        const allIcons = Object.keys(IFN_Icons.icons);
+                        const testIcons = allIcons.slice(0, 5); // Tester 5 icônes
+                        
+                        const startTime = performance.now();
+                        testIcons.forEach(name => IFN_IconSystem.preloadIcon(name));
+                        
+                        setTimeout(() => {
+                            const duration = performance.now() - startTime;
+                            output.innerHTML = `
+                                <strong>Préchargement lancé!</strong><br/>
+                                Temps: ${duration.toFixed(2)}ms<br/>
+                                Icônes préchargées: ${testIcons.join(', ')}
+                            `;
+                            output.className = 'alert alert-success';
+                        }, 500);
+                    }
+                }
+                
+                function showIconStats() {
+                    const output = document.getElementById('test-output');
+                    
+                    if (window.IFN_IconSystem) {
+                        const stats = IFN_IconSystem.getStats();
+                        output.innerHTML = `
+                            <strong>Statistiques du Système:</strong><br/>
+                            Initialisé: ${stats.initialized}<br/>
+                            Icônes chargées: ${stats.iconsLoaded}<br/>
+                            Taille du cache: ${stats.cacheSize}<br/>
+                            Priorités: ${JSON.stringify(stats.priorities, null, 2)}
+                        `;
+                        output.className = 'alert alert-info';
+                    }
+                }
+                
+                // Générer la grille de test au chargement
+                (function() {
+                    if (window.IFN_Icons) {
+                        const grid = document.getElementById('icons-test-grid');
+                        const allIcons = Object.keys(IFN_Icons.icons);
+                        
+                        allIcons.forEach(iconName => {
+                            const col = document.createElement('div');
+                            col.className = 'col-md-2 mb-3';
+                            col.innerHTML = `
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <div class="ifn-icon-container" 
+                                             data-icon="${iconName}" 
+                                             style="width: 48px; height: 48px; margin: 0 auto;">
+                                            <div class="ifn-icon-fallback--loading">...</div>
+                                        </div>
+                                        <small class="text-muted">${iconName}</small>
+                                    </div>
+                                </div>
+                            `;
+                            grid.appendChild(col);
+                        });
+                        
+                        // Initialiser les icônes de test
+                        setTimeout(() => {
+                            document.querySelectorAll('#icons-test-grid [data-icon]').forEach(element => {
+                                const iconName = element.dataset.icon;
+                                IFN_Icons.renderIcon(iconName, {
+                                    container: element,
+                                    size: '48px',
+                                    showLoading: false
+                                }).catch(error => {
+                                    console.warn('Erreur test:', iconName, error);
+                                });
+                            });
+                        }, 100);
+                    }
+                })();
+            </script>
+        </template>
+
+    </data>
+</odoo>

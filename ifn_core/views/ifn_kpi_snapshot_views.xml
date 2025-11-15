@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Vue Liste des Snapshots KPI -->
+        <record id="view_ifn_kpi_snapshot_tree" model="ir.ui.view">
+            <field name="name">ifn.kpi.snapshot.tree</field>
+            <field name="model">ifn.kpi.snapshot</field>
+            <field name="arch" type="xml">
+                <tree string="Snapshots KPI IFN">
+                    <field name="snapshot_date"/>
+                    <field name="snapshot_type"/>
+                    <field name="market_name"/>
+                    <field name="coop_name"/>
+                    <field name="total_partners"/>
+                    <field name="validated_profiles"/>
+                    <field name="qr_generation_rate" widget="percentage"/>
+                    <field name="validation_rate" widget="percentage"/>
+                    <field name="status"/>
+                    <field name="processing_time_seconds" widget="float" digits="(10,3)"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vue Recherche des Snapshots KPI -->
+        <record id="view_ifn_kpi_snapshot_search" model="ir.ui.view">
+            <field name="name">ifn.kpi.snapshot.search</field>
+            <field name="model">ifn.kpi.snapshot</field>
+            <field name="arch" type="xml">
+                <search string="Recherche Snapshots KPI">
+                    <field name="snapshot_date"/>
+                    <field name="snapshot_type"/>
+                    <field name="market_id"/>
+                    <field name="coop_id"/>
+                    <field name="status"/>
+
+                    <filter string="Snapshots globaux" name="global" domain="[('is_global', '=', True)]"/>
+                    <filter string="Par marché" name="by_market" domain="[('market_id', '!=', False)]"/>
+                    <filter string="Par coopérative" name="by_coop" domain="[('coop_id', '!=', False)]"/>
+                    <separator/>
+                    <filter string="Quotidiens" name="daily" domain="[('snapshot_type', '=', 'daily')]"/>
+                    <filter string="Hebdomadaires" name="weekly" domain="[('snapshot_type', '=', 'weekly')]"/>
+                    <filter string="Mensuels" name="monthly" domain="[('snapshot_type', '=', 'monthly')]"/>
+                    <separator/>
+                    <filter string="Traité" name="processed" domain="[('status', '=', 'processed')]"/>
+                    <filter string="En erreur" name="error" domain="[('status', '=', 'error')]"/>
+                    <separator/>
+                    <filter string="30 derniers jours" name="last_30_days" domain="[('snapshot_date', '>=', (context_today() - datetime.timedelta(days=30)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="7 derniers jours" name="last_7_days" domain="[('snapshot_date', '>=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
+                    <filter name="yesterday" string="Hier" domain="[('snapshot_date', '=', (context_today() - datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"/>
+
+                    <group expand="0" string="Grouper par">
+                        <filter string="Date" name="group_date" context="{'group_by': 'snapshot_date'}"/>
+                        <filter string="Type" name="group_type" context="{'group_by': 'snapshot_type'}"/>
+                        <filter string="Marché" name="group_market" context="{'group_by': 'market_id'}"/>
+                        <filter string="Coopérative" name="group_coop" context="{'group_by': 'coop_id'}"/>
+                        <filter string="Statut" name="group_status" context="{'group_by': 'status'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Vue Formulaire des Snapshots KPI -->
+        <record id="view_ifn_kpi_snapshot_form" model="ir.ui.view">
+            <field name="name">ifn.kpi.snapshot.form</field>
+            <field name="model">ifn.kpi.snapshot</field>
+            <field name="arch" type="xml">
+                <form string="Snapshot KPI IFN">
+                    <header>
+                        <button name="action_view_partners" type="object" string="Voir Partenaires"
+                                class="btn-primary"/>
+                        <button name="action_export_kpis" type="object" string="Exporter CSV"
+                                class="btn-secondary"/>
+                        <field name="status" widget="statusbar" statusbar_visible="draft,processed,validated"/>
+                    </header>
+
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="display_name"/>
+                            </h1>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span class="text-muted">Type: </span>
+                                    <field name="snapshot_type" readonly="1"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <span class="text-muted">Généré le: </span>
+                                    <field name="generated_at" readonly="1"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <group name="scope_info">
+                            <group string="Périmètre">
+                                <field name="is_global" readonly="1"/>
+                                <field name="market_id" readonly="1"/>
+                                <field name="coop_id" readonly="1"/>
+                            </group>
+                            <group string="Métadonnées">
+                                <field name="generated_by" readonly="1"/>
+                                <field name="processing_time_seconds" readonly="1"/>
+                                <field name="error_message" attrs="{'invisible': [('status', '!=', 'error')]}"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="KPIs Utilisateurs" name="user_kpis">
+                                <div class="oe_button_box">
+                                    <button class="oe_stat_button" icon="fa-users">
+                                        <field name="total_partners" widget="statinfo" string="Total Partenaires"/>
+                                    </button>
+                                    <button class="oe_stat_button" icon="fa-check-circle">
+                                        <field name="active_partners" widget="statinfo" string="Partenaires Actifs"/>
+                                    </button>
+                                    <button class="oe_stat_button" icon="fa-user-plus">
+                                        <field name="new_partners_today" widget="statinfo" string="Nouveaux Aujourd'hui"/>
+                                    </button>
+                                    <button class="oe_stat_button" icon="fa-check">
+                                        <field name="validated_profiles" widget="statinfo" string="Profils Validés"/>
+                                    </button>
+                                </div>
+
+                                <group>
+                                    <group string="Répartition par Rôle">
+                                        <field name="merchant_count"/>
+                                        <field name="producer_count"/>
+                                        <field name="coop_manager_count"/>
+                                        <field name="agent_count"/>
+                                        <field name="admin_count"/>
+                                    </group>
+                                    <group string="Nouveaux Partenaires">
+                                        <field name="new_partners_today"/>
+                                        <field name="new_partners_week"/>
+                                        <field name="new_partners_month"/>
+                                    </group>
+                                </group>
+
+                                <group string="Validation Profils">
+                                    <field name="validated_profiles"/>
+                                    <field name="pending_validation"/>
+                                    <field name="validation_rate" widget="percentage"/>
+                                </group>
+                            </page>
+
+                            <page string="KPIs Adoption" name="adoption_kpis">
+                                <div class="oe_button_box">
+                                    <button class="oe_stat_button" icon="fa-qrcode">
+                                        <field name="partners_with_qr" widget="statinfo" string="Avec QR"/>
+                                    </button>
+                                    <button class="oe_stat_button" icon="fa-map-marker">
+                                        <field name="geo_located_partners" widget="statinfo" string="Géolocalisés"/>
+                                    </button>
+                                    <button class="oe_stat_button" icon="fa-microphone">
+                                        <field name="voice_consent_count" widget="statinfo" string="Consentement Voix"/>
+                                    </button>
+                                    <button class="oe_stat_button" icon="fa-shield">
+                                        <field name="data_processing_consent_count" widget="statinfo" string="Consentement Données"/>
+                                    </button>
+                                </div>
+
+                                <group>
+                                    <group string="Taux d'Adoption">
+                                        <field name="qr_generation_rate" widget="percentage"/>
+                                        <field name="geo_location_rate" widget="percentage"/>
+                                    </group>
+                                    <group string="Consentements">
+                                        <field name="voice_consent_count"/>
+                                        <field name="data_processing_consent_count"/>
+                                        <field name="marketing_consent_count"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <page string="KPIs Référentiels" name="reference_kpis">
+                                <div class="oe_button_box">
+                                    <button class="oe_stat_button" icon="fa-building">
+                                        <field name="total_markets" widget="statinfo" string="Total Marchés"/>
+                                    </button>
+                                    <button class="oe_stat_button" icon="fa-users">
+                                        <field name="total_coops" widget="statinfo" string="Total Coopératives"/>
+                                    </button>
+                                    <button class="oe_stat_button" icon="fa-sitemap">
+                                        <field name="total_zones" widget="statinfo" string="Total Zones"/>
+                                    </button>
+                                </div>
+
+                                <group>
+                                    <group string="Marchés">
+                                        <field name="total_markets"/>
+                                        <field name="active_markets"/>
+                                    </group>
+                                    <group string="Coopératives">
+                                        <field name="total_coops"/>
+                                        <field name="active_coops"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <page string="Internationalisation" name="i18n_kpis">
+                                <group>
+                                    <group string="Langues">
+                                        <field name="top_language"/>
+                                        <field name="language_distribution" nolabel="1" widget="text" readonly="1"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <page string="Qualité et Performance" name="quality_kpis">
+                                <div class="oe_button_box">
+                                    <button class="oe_stat_button" icon="fa-check-square">
+                                        <field name="avg_profile_completion" widget="statinfo" string="Complétion Profil (%)"/>
+                                    </button>
+                                    <button class="oe_stat_button" icon="fa-database">
+                                        <field name="data_quality_score" widget="statinfo" string="Qualité Données (%)"/>
+                                    </button>
+                                </div>
+
+                                <group>
+                                    <group string="Qualité">
+                                        <field name="avg_profile_completion" widget="percentage"/>
+                                        <field name="data_quality_score" widget="percentage"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <page string="Notes" name="notes">
+                                <group>
+                                    <field name="notes" nolabel="1" placeholder="Notes sur ce snapshot..."/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Vue Graphique des Snapshots KPI -->
+        <record id="view_ifn_kpi_snapshot_graph" model="ir.ui.view">
+            <field name="name">ifn.kpi.snapshot.graph</field>
+            <field name="model">ifn.kpi.snapshot</field>
+            <field name="arch" type="xml">
+                <graph string="Évolution des KPIs">
+                    <field name="snapshot_date" type="row"/>
+                    <field name="total_partners" type="measure"/>
+                    <field name="validated_profiles" type="measure"/>
+                    <field name="qr_generation_rate" type="measure"/>
+                    <field name="validation_rate" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Actions des Snapshots KPI -->
+        <record id="action_ifn_kpi_snapshot" model="ir.actions.act_window">
+            <field name="name">Snapshots KPI IFN</field>
+            <field name="res_model">ifn.kpi.snapshot</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="context">{
+                'search_default_last_30_days': 1,
+                'search_default_group_date': 1
+            }</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Aucun snapshot KPI disponible
+                </p>
+                <p>
+                    Les snapshots KPI sont générés automatiquement pour suivre
+                    l'évolution des indicateurs clés de l'écosystème IFN.
+                </p>
+            </field>
+        </record>
+
+        <!-- Action Dashboard KPI -->
+        <record id="action_ifn_kpi_dashboard" model="ir.actions.act_window">
+            <field name="name">Tableau de Bord KPI</field>
+            <field name="res_model">ifn.kpi.snapshot</field>
+            <field name="view_mode">graph</field>
+            <field name="context">{
+                'search_default_last_30_days': 1
+            }</field>
+            <field name="target">current</field>
+        </record>
+
+    </data>
+</odoo>

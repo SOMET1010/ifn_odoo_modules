@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- CRON Job: Snapshots KPIs quotidiens -->
+        <record id="ir_cron_ifn_kpi_snapshot_daily" model="ir.cron">
+            <field name="name">IFN: Generate Daily KPI Snapshots</field>
+            <field name="model_id" ref="model_ifn_kpi_snapshot"/>
+            <field name="state">code</field>
+            <field name="code">model.generate_daily_snapshots()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="doall" eval="False"/>
+            <field name="priority">5</field>
+        </record>
+
+        <!-- CRON Job: Nettoyage logs audit (hebdomadaire) -->
+        <record id="ir_cron_ifn_audit_cleanup_weekly" model="ir.cron">
+            <field name="name">IFN: Cleanup Old Audit Logs</field>
+            <field name="model_id" ref="model_ifn_audit_log"/>
+            <field name="state">code</field>
+            <field name="code">model.cleanup_old_logs()</field>
+            <field name="interval_number">7</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="doall" eval="False"/>
+            <field name="priority">10</field>
+        </record>
+
+        <!-- CRON Job: Vérification QR expirés (mensuel) -->
+        <record id="ir_cron_ifn_qr_refresh_monthly" model="ir.cron">
+            <field name="name">IFN: Refresh Expired QR Codes</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">model._ifn_refresh_expired_qr_codes()</field>
+            <field name="interval_number">30</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="doall" eval="False"/>
+            <field name="priority">15</field>
+        </record>
+
+        <!-- CRON Job: Synchronisation données (quotidien) -->
+        <record id="ir_cron_ifn_data_sync_daily" model="ir.cron">
+            <field name="name">IFN: Daily Data Synchronization</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">model._ifn_daily_data_sync()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="doall" eval="False"/>
+            <field name="priority">8</field>
+        </record>
+
+        <!-- CRON Job: Vérification profils en attente (quotidien) -->
+        <record id="ir_cron_ifn_profile_validation_reminder" model="ir.cron">
+            <field name="name">IFN: Profile Validation Reminder</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">model._ifn_send_validation_reminders()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="doall" eval="False"/>
+            <field name="priority">7</field>
+        </record>
+
+        <!-- CRON Job: Rapport mensuel IFN -->
+        <record id="ir_cron_ifn_monthly_report" model="ir.cron">
+            <field name="name">IFN: Generate Monthly Report</field>
+            <field name="model_id" ref="model_ifn_kpi_snapshot"/>
+            <field name="state">code</field>
+            <field name="code">model._ifn_generate_monthly_report()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="doall" eval="False"/>
+            <field name="priority">20</field>
+        </record>
+
+    </data>
+</odoo>

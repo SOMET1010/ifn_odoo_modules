@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Template principal pour la page d'accueil IFN -->
+    <template id="ifn_homepage" name="IFN Homepage">
+        <!-- Hero Section -->
+        <section class="ifn-hero-section py-5" style="background: linear-gradient(135deg, #009739 0%, #008030 100%); color: white;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h2 class="ifn-hero-title" style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem;">
+                            La plateforme inclusive pour les acteurs économiques de Côte d'Ivoire
+                        </h2>
+                        <p class="ifn-hero-subtitle" style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem;">
+                            Rejoignez des milliers de marchands, producteurs et coopératives
+                            qui transforment leur activité avec nos solutions numériques.
+                        </p>
+                        <div class="ifn-hero-features">
+                            <div class="row">
+                                <div class="col-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ifn-feature-icon-badge" style="background: rgba(255,255,255,0.2); border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-right: 0.75rem;">
+                                            <i class="fa fa-gift" style="font-size: 1.1rem; color: #FFEB3B;"/>
+                                        </div>
+                                        <span>100% Gratuit</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ifn-feature-icon-badge" style="background: rgba(255,255,255,0.2); border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-right: 0.75rem;">
+                                            <i class="fa fa-globe" style="font-size: 1.1rem; color: #4CAF50;"/>
+                                        </div>
+                                        <span>3 Langues</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ifn-feature-icon-badge" style="background: rgba(255,255,255,0.2); border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-right: 0.75rem;">
+                                            <i class="fa fa-mobile" style="font-size: 1.1rem; color: #2196F3;"/>
+                                        </div>
+                                        <span>Mobile Friendly</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ifn-feature-icon-badge" style="background: rgba(255,255,255,0.2); border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-right: 0.75rem;">
+                                            <i class="fa fa-headset" style="font-size: 1.1rem; color: #FF9800;"/>
+                                        </div>
+                                        <span>Support Local</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="ifn-hero-illustration text-center">
+                            <!-- Pictogrammes des produits IFN -->
+                            <div class="ifn-products-showcase">
+                                <div class="ifn-product-icon ifn-yam" style="position: absolute; top: 20%; left: 10%; animation: float 3s ease-in-out infinite;">
+                                    <i class="fa fa-seedling fa-3x" style="color: #F77F00; opacity: 0.9;"/>
+                                </div>
+                                <div class="ifn-product-icon ifn-plantain" style="position: absolute; top: 10%; right: 20%; animation: float 3s ease-in-out infinite 0.5s;">
+                                    <i class="fa fa-leaf fa-3x" style="color: #009739; opacity: 0.9;"/>
+                                </div>
+                                <div class="ifn-product-icon ifn-cassava" style="position: absolute; bottom: 30%; left: 5%; animation: float 3s ease-in-out infinite 1s;">
+                                    <i class="fa fa-tree fa-3x" style="color: #FFB74D; opacity: 0.9;"/>
+                                </div>
+                                <div class="ifn-product-icon ifn-cocoa" style="position: absolute; bottom: 20%; right: 10%; animation: float 3s ease-in-out infinite 1.5s;">
+                                    <i class="fa fa-coffee fa-3x" style="color: #8D6E63; opacity: 0.9;"/>
+                                </div>
+                                <div class="ifn-product-icon ifn-users" style="animation: pulse 2s infinite;">
+                                    <i class="fa fa-users fa-8x" style="color: white; opacity: 0.8;"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="ifn-features-section py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center mb-5">
+                        <h2 class="display-5">Nos Solutions Spécialisées</h2>
+                        <p class="lead text-muted">
+                            Des outils adaptés à chaque type d'acteur économique
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="ifn-feature-card card h-100" style="border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <div class="card-body text-center p-4">
+                                <div class="ifn-feature-icon mb-3">
+                                    <div class="ifn-feature-icon-container">
+                                        <i class="fa fa-shopping-cart fa-4x" style="color: var(--ifn-orange, #F77F00);"/>
+                                        <div class="ifn-icon-badge">
+                                            <i class="fa fa-store"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4 class="card-title">Pour les Marchands</h4>
+                                <p class="card-text text-muted">
+                                    Gérez votre boutique, suivez vos ventes,
+                                    gérez votre stock et connectez-vous avec les fournisseurs.
+                                </p>
+                                <ul class="list-unstyled text-start">
+                                    <li class="mb-2"><i class="fa fa-cash-register text-success me-2"/>Gestion des ventes</li>
+                                    <li class="mb-2"><i class="fa fa-boxes text-success me-2"/>Suivi de stock</li>
+                                    <li class="mb-2"><i class="fa fa-chart-line text-success me-2"/>Analytics</li>
+                                </ul>
+                                <a href="/ifn/signup?role=marchand" class="btn btn-primary btn-lg">
+                                    <i class="fa fa-arrow-right me-2"/> Commencer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="ifn-feature-card card h-100" style="border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <div class="card-body text-center p-4">
+                                <div class="ifn-feature-icon mb-3">
+                                    <div class="ifn-feature-icon-container">
+                                        <i class="fa fa-seedling fa-4x" style="color: var(--ifn-green, #009739);"/>
+                                        <div class="ifn-icon-badge">
+                                            <i class="fa fa-tractor"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4 class="card-title">Pour les Producteurs</h4>
+                                <p class="card-text text-muted">
+                                    Suivez votre production, gérez vos récoltes
+                                    et vendez directement aux acheteurs.
+                                </p>
+                                <ul class="list-unstyled text-start">
+                                    <li class="mb-2"><i class="fa fa-seedling text-success me-2"/>Suivi de production</li>
+                                    <li class="mb-2"><i class="fa fa-calendar-alt text-success me-2"/>Prévisions de récolte</li>
+                                    <li class="mb-2"><i class="fa fa-handshake text-success me-2"/>Vente directe</li>
+                                </ul>
+                                <a href="/ifn/signup?role=producteur" class="btn btn-success btn-lg">
+                                    <i class="fa fa-arrow-right me-2"/> Commencer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="ifn-feature-card card h-100" style="border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <div class="card-body text-center p-4">
+                                <div class="ifn-feature-icon mb-3">
+                                    <div class="ifn-feature-icon-container">
+                                        <i class="fa fa-users fa-4x" style="color: var(--ifn-orange, #F77F00);"/>
+                                        <div class="ifn-icon-badge">
+                                            <i class="fa fa-building"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4 class="card-title">Pour les Coopératives</h4>
+                                <p class="card-text text-muted">
+                                    Gérez vos membres, optimisez la collecte
+                                    et améliorez votre chaîne d'approvisionnement.
+                                </p>
+                                <ul class="list-unstyled text-start">
+                                    <li class="mb-2"><i class="fa fa-address-card text-success me-2"/>Gestion des membres</li>
+                                    <li class="mb-2"><i class="fa fa-route text-success me-2"/>Collecte optimisée</li>
+                                    <li class="mb-2"><i class="fa fa-search text-success me-2"/>Traçabilité</li>
+                                </ul>
+                                <a href="/ifn/signup?role=coop" class="btn btn-primary btn-lg">
+                                    <i class="fa fa-arrow-right me-2"/> Commencer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Produits Section avec Pictogrammes -->
+        <section class="ifn-products-section py-5" style="background: var(--ifn-light-gray, #F8F9FA);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center mb-5">
+                        <h2 class="display-5">Nos Produits Culturels</h2>
+                        <p class="lead text-muted">
+                            Découvrez les produits agricoles valorisés par notre plateforme
+                        </p>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-2 col-md-4 col-6">
+                        <div class="ifn-product-card text-center p-3">
+                            <div class="ifn-product-icon mb-3">
+                                <div class="ifn-icon-circle" style="background: linear-gradient(135deg, #F77F00, #E67300);">
+                                    <i class="fa fa-seedling fa-2x text-white"></i>
+                                </div>
+                            </div>
+                            <h6 class="ifn-product-name mb-2">Igname</h6>
+                            <small class="text-muted">Racine précieuse</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6">
+                        <div class="ifn-product-card text-center p-3">
+                            <div class="ifn-product-icon mb-3">
+                                <div class="ifn-icon-circle" style="background: linear-gradient(135deg, #009739, #008030);">
+                                    <i class="fa fa-leaf fa-2x text-white"></i>
+                                </div>
+                            </div>
+                            <h6 class="ifn-product-name mb-2">Plantain</h6>
+                            <small class="text-muted">Fruit alimentaire</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6">
+                        <div class="ifn-product-card text-center p-3">
+                            <div class="ifn-product-icon mb-3">
+                                <div class="ifn-icon-circle" style="background: linear-gradient(135deg, #8D6E63, #6D4C41);">
+                                    <i class="fa fa-tree fa-2x text-white"></i>
+                                </div>
+                            </div>
+                            <h6 class="ifn-product-name mb-2">Manioc</h6>
+                            <small class="text-muted">Tubercule clé</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6">
+                        <div class="ifn-product-card text-center p-3">
+                            <div class="ifn-product-icon mb-3">
+                                <div class="ifn-icon-circle" style="background: linear-gradient(135deg, #3E2723, #2E1F17);">
+                                    <i class="fa fa-coffee fa-2x text-white"></i>
+                                </div>
+                            </div>
+                            <h6 class="ifn-product-name mb-2">Cacao</h6>
+                            <small class="text-muted">Or noir</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6">
+                        <div class="ifn-product-card text-center p-3">
+                            <div class="ifn-product-icon mb-3">
+                                <div class="ifn-icon-circle" style="background: linear-gradient(135deg, #FFC107, #FF8F00);">
+                                    <i class="fa fa-sun fa-2x text-white"></i>
+                                </div>
+                            </div>
+                            <h6 class="ifn-product-name mb-2">Maïs</h6>
+                            <small class="text-muted">Céréale locale</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6">
+                        <div class="ifn-product-card text-center p-3">
+                            <div class="ifn-product-icon mb-3">
+                                <div class="ifn-icon-circle" style="background: linear-gradient(135deg, #E91E63, #C2185B);">
+                                    <i class="fa fa-heart fa-2x text-white"></i>
+                                </div>
+                            </div>
+                            <h6 class="ifn-product-name mb-2">Palmier</h6>
+                            <small class="text-muted">Ressource précieuse</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-12 text-center">
+                        <a href="/ifn/products" class="btn btn-outline-primary btn-lg">
+                            <i class="fa fa-list me-2"></i>
+                            Voir tous les produits
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="ifn-stats-section py-5" style="background: var(--ifn-light-gray, #F8F9FA);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center mb-5">
+                        <h2 class="display-5">Chiffres Clés</h2>
+                        <p class="lead text-muted">
+                            Notre impact sur l'écosystème ivoirien
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-4">
+                        <div class="text-center">
+                            <div class="ifn-stat-number" style="font-size: 3rem; font-weight: 700; color: var(--ifn-orange, #F77F00);">
+                                1000+
+                            </div>
+                            <div class="ifn-stat-label text-muted">
+                                Utilisateurs Actifs
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="text-center">
+                            <div class="ifn-stat-number" style="font-size: 3rem; font-weight: 700; color: var(--ifn-green, #009739);">
+                                15+
+                            </div>
+                            <div class="ifn-stat-label text-muted">
+                                Régions Couvertes
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="text-center">
+                            <div class="ifn-stat-number" style="font-size: 3rem; font-weight: 700; color: var(--ifn-orange, #F77F00);">
+                                3
+                            </div>
+                            <div class="ifn-stat-label text-muted">
+                                Langues Supportées
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="text-center">
+                            <div class="ifn-stat-number" style="font-size: 3rem; font-weight: 700; color: var(--ifn-green, #009739);">
+                                100%
+                            </div>
+                            <div class="ifn-stat-label text-muted">
+                                Mobile Friendly
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="ifn-cta-section py-5" style="background: var(--ifn-gradient, linear-gradient(135deg, #F77F00 0%, #E67300 100%)); color: white;">
+            <div class="container text-center">
+                <h2 class="mb-4" style="font-size: 2.5rem; font-weight: 700;">
+                    Prêt à transformer votre activité ?
+                </h2>
+                <p class="lead mb-5" style="font-size: 1.3rem;">
+                    Rejoignez notre communauté et accédez à des outils numériques
+                    adaptés au contexte ivoirien
+                </p>
+                <div class="ifn-cta-actions">
+                    <a href="/ifn/signup" class="btn btn-light btn-lg me-3" style="padding: 1rem 2rem;">
+                        <i class="fa fa-rocket me-2"/> Créer mon compte gratuit
+                    </a>
+                    <a href="/portal" class="btn btn-outline-light btn-lg" style="padding: 1rem 2rem;">
+                        <i class="fa fa-eye me-2"/> Voir une démo
+                    </a>
+                </div>
+                <!-- Éléments de confiance visuels -->
+                <div class="ifn-trust-elements mt-5">
+                    <div class="row align-items-center justify-content-center g-4">
+                        <div class="col-auto">
+                            <div class="d-flex align-items-center">
+                                <div class="trust-badge" style="background: rgba(255,255,255,0.15); border-radius: 50px; padding: 0.5rem 1rem; display: flex; align-items: center;">
+                                    <i class="fa fa-shield-alt me-2" style="color: #4CAF50; font-size: 1.2rem;"></i>
+                                    <span>Sécurisé</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="d-flex align-items-center">
+                                <div class="trust-badge" style="background: rgba(255,255,255,0.15); border-radius: 50px; padding: 0.5rem 1rem; display: flex; align-items: center;">
+                                    <i class="fa fa-heart me-2" style="color: #E91E63; font-size: 1.2rem;"></i>
+                                    <span>1000+ utilisateurs</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="d-flex align-items-center">
+                                <div class="trust-badge" style="background: rgba(255,255,255,0.15); border-radius: 50px; padding: 0.5rem 1rem; display: flex; align-items: center;">
+                                    <i class="fa fa-clock me-2" style="color: #FF9800; font-size: 1.2rem;"></i>
+                                    <span>24/7 Support</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <small style="opacity: 0.9;">
+                        <i class="fa fa-lock me-1"/> Pas besoin de carte bancaire •
+                        <i class="fa fa-check-circle me-1"/> Support en français, baoulé et dioula •
+                        <i class="fa fa-mobile me-1"/> Application mobile disponible
+                    </small>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="ifn-testimonials-section py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center mb-5">
+                        <h2 class="display-5">Témoignages</h2>
+                        <p class="lead text-muted">
+                            Ce que nos utilisateurs disent de nous
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100" style="border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <div class="card-body p-4">
+                                <div class="mb-3">
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                </div>
+                                <p class="card-text text-muted">
+                                    "La plateforme IFN a transformé ma boutique.
+                                    Je peux maintenant suivre mes ventes en temps réel
+                                    et gérer mon stock facilement."
+                                </p>
+                                <div class="d-flex align-items-center">
+                                    <div class="ifn-avatar me-3" style="width: 50px; height: 50px; border-radius: 50%; background: var(--ifn-orange, #F77F00); display: flex; align-items: center; justify-content: center; color: white;">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Adama Koné</h6>
+                                        <small class="text-muted">Marchand, Abidjan</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100" style="border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <div class="card-body p-4">
+                                <div class="mb-3">
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                </div>
+                                <p class="card-text text-muted">
+                                    "Grâce à IFN, je peux vendre ma production
+                                    directement aux acheteurs sans intermédiaires.
+                                    C'est révolutionnaire pour nous les producteurs."
+                                </p>
+                                <div class="d-flex align-items-center">
+                                    <div class="ifn-avatar me-3" style="width: 50px; height: 50px; border-radius: 50%; background: var(--ifn-green, #009739); display: flex; align-items: center; justify-content: center; color: white;">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Kouadio Yéo</h6>
+                                        <small class="text-muted">Producteur, Yamoussoukro</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100" style="border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <div class="card-body p-4">
+                                <div class="mb-3">
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                </div>
+                                <p class="card-text text-muted">
+                                    "Notre coopérative a gagné en efficacité.
+                                    La gestion des membres et la collecte sont
+                                    maintenant simplifiées et transparentes."
+                                </p>
+                                <div class="d-flex align-items-center">
+                                    <div class="ifn-avatar me-3" style="width: 50px; height: 50px; border-radius: 50%; background: var(--ifn-orange, #F77F00); display: flex; align-items: center; justify-content: center; color: white;">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Awa Touré</h6>
+                                        <small class="text-muted">Gestionnaire Coop, Bouaké</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CSS Styles -->
+        <style>
+            :root {
+                --ifn-orange: #F77F00;
+                --ifn-green: #009739;
+                --ifn-white: #FFFFFF;
+                --ifn-black: #212121;
+                --ifn-gray: #6C757D;
+                --ifn-light-gray: #F8F9FA;
+                --ifn-orange-light: #FFF4E6;
+                --ifn-green-light: #E8F5E8;
+                --ifn-orange-dark: #E67300;
+                --ifn-green-dark: #008030;
+                --ifn-gradient: linear-gradient(135deg, var(--ifn-orange) 0%, var(--ifn-orange-dark) 100%);
+                --ifn-gradient-green: linear-gradient(135deg, var(--ifn-green) 0%, var(--ifn-green-dark) 100%);
+                --ifn-shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+                --ifn-shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+                --ifn-shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+                --ifn-border-radius: 8px;
+                --ifn-border-radius-lg: 12px;
+                --ifn-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .ifn-feature-card {
+                transition: var(--ifn-transition);
+            }
+
+            .ifn-feature-card:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--ifn-shadow-lg);
+            }
+
+            .ifn-stat-number {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            .ifn-cta-actions .btn {
+                transition: var(--ifn-transition);
+            }
+
+            .ifn-cta-actions .btn:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--ifn-shadow-md);
+            }
+
+            .ifn-testimonials-section .card {
+                transition: var(--ifn-transition);
+            }
+
+            .ifn-testimonials-section .card:hover {
+                transform: translateY(-3px);
+                box-shadow: var(--ifn-shadow-lg);
+            }
+
+            /* Animations et effets visuels */
+            @keyframes float {
+                0%, 100% {
+                    transform: translateY(0px);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+
+            @keyframes pulse {
+                0%, 100% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.05);
+                }
+            }
+
+            /* Showcase des produits dans la hero */
+            .ifn-products-showcase {
+                position: relative;
+                width: 300px;
+                height: 300px;
+                margin: 0 auto;
+            }
+
+            .ifn-product-icon {
+                transition: var(--ifn-transition);
+            }
+
+            .ifn-product-icon:hover {
+                transform: scale(1.1);
+                filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+            }
+
+            /* Section produits */
+            .ifn-products-section {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .ifn-products-section::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, var(--ifn-orange), var(--ifn-green), var(--ifn-orange));
+            }
+
+            .ifn-product-card {
+                background: var(--ifn-white);
+                border-radius: var(--ifn-border-radius-lg);
+                box-shadow: var(--ifn-shadow-sm);
+                transition: var(--ifn-transition);
+                border: 1px solid rgba(0,0,0,0.05);
+            }
+
+            .ifn-product-card:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--ifn-shadow-lg);
+                background: linear-gradient(145deg, var(--ifn-white) 0%, rgba(247, 127, 0, 0.02) 100%);
+            }
+
+            .ifn-icon-circle {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto;
+                transition: var(--ifn-transition);
+                box-shadow: var(--ifn-shadow-sm);
+            }
+
+            .ifn-product-card:hover .ifn-icon-circle {
+                transform: scale(1.1) rotate(5deg);
+                box-shadow: var(--ifn-shadow-md);
+            }
+
+            .ifn-product-name {
+                color: var(--ifn-black);
+                font-weight: 600;
+                transition: var(--ifn-transition);
+            }
+
+            .ifn-product-card:hover .ifn-product-name {
+                color: var(--ifn-orange);
+            }
+
+            /* Features avec badges d'icônes */
+            .ifn-feature-icon-container {
+                position: relative;
+                display: inline-block;
+            }
+
+            .ifn-icon-badge {
+                position: absolute;
+                top: -5px;
+                right: -5px;
+                background: var(--ifn-white);
+                border: 2px solid var(--ifn-orange);
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.75rem;
+                color: var(--ifn-orange);
+                box-shadow: var(--ifn-shadow-sm);
+            }
+
+            /* Éléments de confiance */
+            .ifn-trust-elements {
+                border-top: 1px solid rgba(255,255,255,0.2);
+                padding-top: 2rem;
+            }
+
+            .trust-badge {
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255,255,255,0.3);
+                transition: var(--ifn-transition);
+            }
+
+            .trust-badge:hover {
+                background: rgba(255,255,255,0.25) !important;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+
+            /* Badges d'icônes dans la hero */
+            .ifn-feature-icon-badge {
+                transition: var(--ifn-transition);
+            }
+
+            .ifn-feature-icon-badge:hover {
+                transform: scale(1.1);
+                box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .ifn-hero-title {
+                    font-size: 2rem !important;
+                }
+
+                .ifn-hero-subtitle {
+                    font-size: 1rem !important;
+                }
+
+                .ifn-features-section .display-5 {
+                    font-size: 2rem;
+                }
+
+                .ifn-stats-section .display-5 {
+                    font-size: 2rem;
+                }
+
+                .ifn-cta-section h2 {
+                    font-size: 2rem !important;
+                }
+
+                .ifn-testimonials-section .display-5 {
+                    font-size: 2rem;
+                }
+
+                .ifn-products-showcase {
+                    width: 250px;
+                    height: 250px;
+                }
+
+                .ifn-trust-elements .row {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .ifn-trust-elements .col-auto {
+                    margin: 0.25rem 0;
+                }
+            }
+        </style>
+    </template>
+
+    <!-- Héritage de la page d'accueil par défaut avec un ID différent -->
+    <template id="ifn_portal_homepage_override" inherit_id="website.homepage" customize_show="True">
+        <!-- Remplacer le contenu principal de la page d'accueil -->
+        <xpath expr="//div[hasclass('oe_structure')]" position="replace">
+            <t t-call="ifn_portal_common.ifn_homepage"/>
+        </xpath>
+
+          </template>
+</odoo>

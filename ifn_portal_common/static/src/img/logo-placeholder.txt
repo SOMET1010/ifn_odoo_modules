@@ -1,0 +1,3 @@
+# IFN Logo Placeholder
+# Remplacer par le véritable logo IFN
+# Dimensions recommandées: 200x50px pour header, 50x50px pour favicon

@@ -1,0 +1,1733 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Page d'accueil du portail -->
+    <template id="portal_home" name="IFN Portal Home">
+        <t t-call="ifn_portal_common.ifn_portal_layout">
+            <t t-set="title">Accueil du Portail</t>
+            <t t-set="subtitle">Bienvenue sur votre espace personnel IFN</t>
+            <t t-set="icon">fa fa-home</t>
+
+            <!-- Cartes principales -->
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="ifn-card ifn-card-primary">
+                        <div class="card-body text-center">
+                            <i class="fa fa-shopping-cart ifn-card-icon"/>
+                            <h5 class="card-title">Ventes</h5>
+                            <p class="card-text">
+                                Gérez vos ventes et commandes
+                            </p>
+                            <a href="#" class="btn btn-primary">
+                                Accéder
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="ifn-card ifn-card-success">
+                        <div class="card-body text-center">
+                            <i class="fa fa-box ifn-card-icon"/>
+                            <h5 class="card-title">Stock</h5>
+                            <p class="card-text">
+                                Suivez votre inventaire
+                            </p>
+                            <a href="#" class="btn btn-success">
+                                Accéder
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="ifn-card ifn-card-info">
+                        <div class="card-body text-center">
+                            <i class="fa fa-credit-card ifn-card-icon"/>
+                            <h5 class="card-title">Paiements</h5>
+                            <p class="card-text">
+                                Consultez vos transactions
+                            </p>
+                            <a href="#" class="btn btn-info">
+                                Accéder
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KPIs -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h3>Vos indicateurs</h3>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="ifn-kpi">
+                        <div class="ifn-kpi-value">0</div>
+                        <div class="ifn-kpi-label">Commandes en cours</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="ifn-kpi">
+                        <div class="ifn-kpi-value">0</div>
+                        <div class="ifn-kpi-label">Produits en stock</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="ifn-kpi">
+                        <div class="ifn-kpi-value">0 XOF</div>
+                        <div class="ifn-kpi-label">Chiffre d'affaires</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="ifn-kpi">
+                        <div class="ifn-kpi-value">0</div>
+                        <div class="ifn-kpi-label">Clients actifs</div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Page des paramètres -->
+    <template id="portal_settings" name="IFN Portal Settings">
+        <t t-call="ifn_portal_common.ifn_portal_layout">
+            <t t-set="title">Paramètres du Portail</t>
+            <t t-set="subtitle">Personnalisez votre expérience</t>
+            <t t-set="icon">fa fa-cog</t>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <form id="ifn-settings-form" class="ifn-settings-form">
+                        <!-- Préférences de langue -->
+                        <div class="ifn-form-section">
+                            <h4>Langue</h4>
+                            <div class="form-group">
+                                <label for="language-select">Choisissez votre langue</label>
+                                <select class="form-control" id="language-select" name="language">
+                                    <option value="fr_FR" t-att-selected="preferences.language == 'fr_FR'">
+                                        🇫🇷 Français
+                                    </option>
+                                    <option value="ba_BA" t-att-selected="preferences.language == 'ba_BA'">
+                                        🇨🇮 Baoulé
+                                    </option>
+                                    <option value="di_DJ" t-att-selected="preferences.language == 'di_DJ'">
+                                        🇨🇮 Dioula
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Accessibilité -->
+                        <div class="ifn-form-section">
+                            <h4>Accessibilité</h4>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input"
+                                           id="high-contrast" name="high_contrast"
+                                           t-att-checked="preferences.high_contrast"/>
+                                    <label class="custom-control-label" for="high-contrast">
+                                        Contraste élevé
+                                    </label>
+                                </div>
+                                <small class="form-text text-muted">
+                                    Améliore le contraste pour une meilleure lisibilité
+                                </small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="font-size">Taille de la police</label>
+                                <select class="form-control" id="font-size" name="font_size">
+                                    <option value="normal" t-att-selected="preferences.font_size == 'normal'">
+                                        Normal
+                                    </option>
+                                    <option value="large" t-att-selected="preferences.font_size == 'large'">
+                                        Grand
+                                    </option>
+                                    <option value="extra-large" t-att-selected="preferences.font_size == 'extra-large'">
+                                        Très grand
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Fonctionnalités avancées -->
+                        <div class="ifn-form-section">
+                            <h4>Fonctionnalités avancées</h4>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input"
+                                           id="voice-enabled" name="voice_enabled"
+                                           t-att-checked="preferences.voice_enabled"/>
+                                    <label class="custom-control-label" for="voice-enabled">
+                                        Assistance vocale
+                                    </label>
+                                </div>
+                                <small class="form-text text-muted">
+                                    Active les commandes vocales et la lecture automatique
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- Boutons d'action -->
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save"/> Enregistrer les préférences
+                            </button>
+                            <a href="/portal" class="btn btn-secondary">
+                                <i class="fa fa-arrow-left"/> Retour à l'accueil
+                            </a>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Informations utilisateur -->
+                <div class="col-md-4">
+                    <div class="ifn-user-info-card">
+                        <h5>Vos informations</h5>
+                        <div class="ifn-user-avatar text-center mb-3">
+                            <img t-att-src="'/web/image/res.partner/%s/image' % partner.id"
+                                 t-att-alt="partner.name"
+                                 class="rounded-circle ifn-avatar"/>
+                        </div>
+                        <div class="ifn-user-details">
+                            <p><strong>Nom:</strong> <t t-esc="partner.name"/></p>
+                            <p><strong>Email:</strong> <t t-esc="partner.email"/></p>
+                            <p><strong>Téléphone:</strong> <t t-esc="partner.phone"/></p>
+                            <p><strong>UID IFN:</strong> <t t-esc="partner.ifn_uid or 'Non défini'"/></p>
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm btn-block" id="generate-qr">
+                            <i class="fa fa-qrcode"/> Afficher mon QR Code
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Page des notifications -->
+    <template id="portal_notifications" name="IFN Portal Notifications">
+        <t t-call="ifn_portal_common.ifn_portal_layout">
+            <t t-set="title">Notifications</t>
+            <t t-set="subtitle" t-value="f'{unread_count} notification(s) non lue(s)' if unread_count else 'Aucune notification non lue'"/>
+            <t t-set="icon">fa fa-bell</t>
+
+            <!-- Actions -->
+            <div class="ifn-notification-actions mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="mark-all-read">
+                    <i class="fa fa-check-double"/> Tout marquer comme lu
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" id="refresh-notifications">
+                    <i class="fa fa-sync"/> Actualiser
+                </button>
+            </div>
+
+            <!-- Liste des notifications -->
+            <div class="ifn-notifications-list">
+                <t t-if="messages">
+                    <t t-foreach="messages" t-as="message">
+                        <div class="ifn-notification-item" t-att-data-message-id="message.id"
+                             t-att-class="'unread' if message.needaction else 'read'">
+                            <div class="notification-icon">
+                                <i class="fa fa-info-circle"/>
+                            </div>
+                            <div class="notification-content">
+                                <h6 class="notification-title">
+                                    <t t-esc="message.subject or 'Notification'"/>
+                                </h6>
+                                <p class="notification-text">
+                                    <t t-esc="message.body"/>
+                                </p>
+                                <small class="notification-date">
+                                    <i class="fa fa-clock"/>
+                                    <t t-esc="message.date"/>
+                                </small>
+                            </div>
+                            <div class="notification-actions">
+                                <button class="btn btn-sm btn-outline-primary mark-read"
+                                        t-if="message.needaction"
+                                        t-att-data-message-id="message.id">
+                                    <i class="fa fa-check"/>
+                                </button>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+                <t t-else="">
+                    <div class="ifn-empty-state">
+                        <i class="fa fa-bell-slash ifn-empty-icon"/>
+                        <h5>Aucune notification</h5>
+                        <p>Vous n'avez aucune notification pour le moment.</p>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <!-- Page des documents -->
+    <template id="portal_documents" name="IFN Portal Documents">
+        <t t-call="ifn_portal_common.ifn_portal_layout">
+            <t t-set="title">Mes Documents</t>
+            <t t-set="subtitle">Téléchargez vos documents officiels</t>
+            <t t-set="icon">fa fa-file-alt</t>
+
+            <!-- Filtres -->
+            <div class="ifn-document-filters mb-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="document-search"
+                                   placeholder="Rechercher un document..."/>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control" id="document-type-filter">
+                            <option value="">Tous les types</option>
+                            <option value="receipt">Reçus</option>
+                            <option value="certificate">Certificats</option>
+                            <option value="contract">Contrats</option>
+                            <option value="invoice">Factures</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control" id="document-date-filter">
+                            <option value="">Toutes les dates</option>
+                            <option value="today">Aujourd'hui</option>
+                            <option value="week">Cette semaine</option>
+                            <option value="month">Ce mois</option>
+                            <option value="year">Cette année</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Liste des documents -->
+            <div class="ifn-documents-list">
+                <t t-if="attachments">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Nom du document</th>
+                                    <th>Type</th>
+                                    <th>Taille</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="attachments" t-as="attachment">
+                                    <tr>
+                                        <td>
+                                            <i class="fa fa-file-pdf-o text-danger"/>
+                                            <t t-esc="attachment.name"/>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-secondary">Document</span>
+                                        </td>
+                                        <td>
+                                            <t t-esc="attachment.file_size and '%.1f Ko' % (attachment.file_size / 1024) or 'N/A'"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="attachment.create_date"/>
+                                        </td>
+                                        <td>
+                                            <a t-att-href="'/web/content/%s?download=true' % attachment.id"
+                                               class="btn btn-sm btn-primary" target="_blank">
+                                                <i class="fa fa-download"/> Télécharger
+                                            </a>
+                                            <button class="btn btn-sm btn-outline-secondary"
+                                                    t-att-data-id="attachment.id">
+                                                <i class="fa fa-eye"/> Aperçu
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+                <t t-else="">
+                    <div class="ifn-empty-state">
+                        <i class="fa fa-folder-open ifn-empty-icon"/>
+                        <h5>Aucun document</h5>
+                        <p>Vous n'avez aucun document disponible pour le moment.</p>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <!-- Template d'inscription IFN moderne -->
+    <template id="ifn_signup" name="IFN Inscription">
+        <t t-call="ifn_portal_common.ifn_public_layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <!-- Hero Section moderne avec fond dégradé -->
+                <section class="ifn-signup-hero">
+                    <div class="ifn-hero-background">
+                        <div class="ifn-hero-pattern"></div>
+                    </div>
+                    <div class="container">
+                        <div class="row align-items-center min-vh-100">
+                            <!-- Colonne gauche : contenu marketing -->
+                            <div class="col-lg-6">
+                                <div class="ifn-hero-content">
+                                    <!-- Logo moderne IFN -->
+                                    <div class="ifn-hero-logo mb-4">
+                                        <div class="ifn-logo-modern">
+                                            <span class="ifn-logo-text">IFN</span>
+                                            <span class="ifn-logo-tagline">CI</span>
+                                        </div>
+                                    </div>
+
+                                    <h1 class="ifn-hero-title">
+                                        Rejoignez l'écosystème numérique
+                                        <span class="ifn-highlight">inclusif ivoirien</span>
+                                    </h1>
+
+                                    <p class="ifn-hero-subtitle">
+                                        La plateforme conçue pour les marchands, producteurs et coopératives
+                                        de Côte d'Ivoire. Accédez à des solutions adaptées à votre réalité.
+                                    </p>
+
+                                    <!-- Statistiques de confiance -->
+                                    <div class="ifn-trust-stats">
+                                        <div class="trust-item">
+                                            <div class="trust-number">15k+</div>
+                                            <div class="trust-label">Utilisateurs</div>
+                                        </div>
+                                        <div class="trust-item">
+                                            <div class="trust-number">98%</div>
+                                            <div class="trust-label">Satisfaction</div>
+                                        </div>
+                                        <div class="trust-item">
+                                            <div class="trust-number">24/7</div>
+                                            <div class="trust-label">Support</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Témoignage -->
+                                    <div class="ifn-testimonial">
+                                        <div class="testimonial-content">
+                                            <i class="fas fa-quote-left quote-icon"></i>
+                                            <p class="testimonial-text">
+                                                "Grâce à IFN, j'ai pu digitaliser ma boutique et augmenter
+                                                mes ventes de 40% en 6 mois."
+                                            </p>
+                                            <div class="testimonial-author">
+                                                <div class="author-avatar">
+                                                    <i class="fas fa-user"></i>
+                                                </div>
+                                                <div class="author-info">
+                                                    <div class="author-name">Awa Koné</div>
+                                                    <div class="author-title">Marchande - Abidjan</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Colonne droite : formulaire d'inscription -->
+                            <div class="col-lg-6">
+                                <div class="ifn-signup-form-wrapper">
+                                    <!-- En-tête du formulaire -->
+                                    <div class="ifn-form-header">
+                                        <h2 class="ifn-form-title">Créer votre compte</h2>
+                                        <p class="ifn-form-subtitle">Rejoignez-nous en 2 minutes</p>
+                                        <div class="ifn-language-flags">
+                                            <span class="flag active" title="Français">🇫🇷</span>
+                                            <span class="flag" title="Baoulé">🇨🇮</span>
+                                            <span class="flag" title="Dioula">🇨🇮</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Formulaire d'inscription par étapes -->
+                                    <form method="post" action="/ifn/signup/submit" class="ifn-signup-form" id="ifn-signup-form">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token"/>
+                                        <input type="hidden" name="current_step" id="currentStep" value="1"/>
+
+                                        <!-- Progress bar des étapes -->
+                                        <div class="ifn-progress-bar">
+                                            <div class="progress-steps">
+                                                <div class="step" data-step="1">
+                                                    <div class="step-dot active"></div>
+                                                    <span class="step-label">Profil</span>
+                                                </div>
+                                                <div class="step" data-step="2">
+                                                    <div class="step-dot"></div>
+                                                    <span class="step-label">Infos</span>
+                                                </div>
+                                                <div class="step" data-step="3">
+                                                    <div class="step-dot"></div>
+                                                    <span class="step-label">Lieu</span>
+                                                </div>
+                                                <div class="step" data-step="4">
+                                                    <div class="step-dot"></div>
+                                                    <span class="step-label">Sécurité</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Étape 1: Type de compte -->
+                                        <div class="ifn-form-step active" data-step="1">
+                                            <div class="step-header">
+                                                <div class="step-icon">
+                                                    <i class="fas fa-users"></i>
+                                                </div>
+                                                <div class="step-info">
+                                                    <h3>Choisissez votre profil</h3>
+                                                    <p>Sélectionnez le type de compte qui correspond à votre activité</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="member-types-grid">
+                                                <t t-foreach="member_types" t-as="type">
+                                                    <div class="member-type-card" t-att-data-type="type.value">
+                                                        <input type="radio" name="member_type"
+                                                               t-att-value="type.value"
+                                                               t-att-id="'member_' + type.value"
+                                                               class="member-type-input" required="required"/>
+                                                        <label class="member-type-label" t-att-for="'member_' + type.value">
+                                                            <div class="member-type-icon">
+                                                                <i t-att-class="'fas ' + type.icon"></i>
+                                                            </div>
+                                                            <div class="member-type-content">
+                                                                <h4 t-esc="type.label"/>
+                                                                <p class="member-type-desc">
+                                                                    <t t-if="type.value == 'merchant'">
+                                                                        Vendez des produits et gérez votre boutique en ligne
+                                                                    </t>
+                                                                    <t t-elif="type.value == 'producer'">
+                                                                        Cultivez et vendez vos récoltes directement
+                                                                    </t>
+                                                                    <t t-elif="type.value == 'coop_manager'">
+                                                                        Gérez votre coopérative et vos membres
+                                                                    </t>
+                                                                </p>
+                                                                <div class="member-type-features">
+                                                                    <span><i class="fas fa-check"></i> Gestion</span>
+                                                                    <span><i class="fas fa-check"></i> Paiements</span>
+                                                                    <span><i class="fas fa-check"></i> Support</span>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </t>
+                                            </div>
+                                        </div>
+
+                                        <!-- Étape 2: Informations personnelles -->
+                                        <div class="ifn-form-step" data-step="2">
+                                            <div class="step-header">
+                                                <div class="step-icon">
+                                                    <i class="fas fa-user"></i>
+                                                </div>
+                                                <div class="step-info">
+                                                    <h3>Vos informations</h3>
+                                                    <p>Renseignez vos coordonnées personnelles</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="first_name"
+                                                               name="first_name" placeholder="Prénom" required="required"/>
+                                                        <label for="first_name">
+                                                            <i class="fas fa-user me-2"></i>Prénom
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="last_name"
+                                                               name="last_name" placeholder="Nom" required="required"/>
+                                                        <label for="last_name">
+                                                            <i class="fas fa-user me-2"></i>Nom
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input type="email" class="form-control" id="email"
+                                                               name="email" placeholder="Email" required="required"/>
+                                                        <label for="email">
+                                                            <i class="fas fa-envelope me-2"></i>Email
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input type="tel" class="form-control" id="phone"
+                                                               name="phone" placeholder="Téléphone" required="required"/>
+                                                        <label for="phone">
+                                                            <i class="fas fa-phone me-2"></i>Téléphone
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Étape 3: Localisation -->
+                                        <div class="ifn-form-step" data-step="3">
+                                            <div class="step-header">
+                                                <div class="step-icon">
+                                                    <i class="fas fa-map-marker-alt"></i>
+                                                </div>
+                                                <div class="step-info">
+                                                    <h3>Où se trouve votre activité ?</h3>
+                                                    <p>Indiquez votre localisation géographique</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <select class="form-select" id="region" name="region" required="required">
+                                                            <option value="">Sélectionnez votre région</option>
+                                                            <t t-foreach="regions" t-as="region">
+                                                                <option t-att-value="region" t-esc="region"/>
+                                                            </t>
+                                                        </select>
+                                                        <label for="region">
+                                                            <i class="fas fa-map-marker-alt me-2"></i>Région
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="village"
+                                                               name="village" placeholder="Village/Ville"/>
+                                                        <label for="village">
+                                                            <i class="fas fa-home me-2"></i>Village/Ville
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Étape 4: Sécurité -->
+                                        <div class="ifn-form-step" data-step="4">
+                                            <div class="step-header">
+                                                <div class="step-icon">
+                                                    <i class="fas fa-shield-alt"></i>
+                                                </div>
+                                                <div class="step-info">
+                                                    <h3>Sécurisez votre compte</h3>
+                                                    <p>Choisissez un mot de passe sécurisé</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input type="password" class="form-control" id="password"
+                                                               name="password" placeholder="Mot de passe"
+                                                               required="required" minlength="8"/>
+                                                        <label for="password">
+                                                            <i class="fas fa-lock me-2"></i>Mot de passe
+                                                        </label>
+                                                    </div>
+                                                    <div class="password-strength">
+                                                        <div class="strength-bar">
+                                                            <div class="strength-fill"></div>
+                                                        </div>
+                                                        <small class="strength-text">Force du mot de passe</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input type="password" class="form-control" id="confirm_password"
+                                                               name="confirm_password" placeholder="Confirmer"
+                                                               required="required" minlength="8"/>
+                                                        <label for="confirm_password">
+                                                            <i class="fas fa-lock me-2"></i>Confirmer
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Conditions et validation -->
+                                            <div class="form-agreements">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="terms" required="required"/>
+                                                    <label class="form-check-label" for="terms">
+                                                        J'accepte les <a href="/terms" class="ifn-link">conditions d'utilisation</a>
+                                                        et la <a href="/privacy" class="ifn-link">politique de confidentialité</a>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="marketing"/>
+                                                    <label class="form-check-label" for="marketing">
+                                                        Je souhaite recevoir des offres et informations par email
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Navigation entre étapes -->
+                                        <div class="ifn-form-navigation">
+                                            <button type="button" class="btn btn-outline-secondary ifn-btn-prev" id="prevStep" disabled="disabled">
+                                                <i class="fas fa-arrow-left me-2"></i>Précédent
+                                            </button>
+                                            <button type="button" class="btn btn-primary ifn-btn-next" id="nextStep">
+                                                Suivant<i class="fas fa-arrow-right ms-2"></i>
+                                            </button>
+                                            <button type="submit" class="btn btn-success ifn-btn-submit" id="submitBtn" style="display: none;">
+                                                <i class="fas fa-rocket me-2"></i>Créer mon compte IFN
+                                            </button>
+                                        </div>
+
+                                        <!-- Lien de connexion -->
+                                        <div class="ifn-form-footer">
+                                            <p>
+                                                Vous avez déjà un compte ?
+                                                <a href="/web/login" class="ifn-link">Connectez-vous ici</a>
+                                            </p>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Styles CSS modernes pour l'inscription -->
+                <style>
+                    /* Hero Section */
+                    .ifn-signup-hero {
+                        min-height: 100vh;
+                        background: linear-gradient(135deg, #009739 0%, #008030 50%, #F77F00 100%);
+                        position: relative;
+                        overflow: hidden;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .ifn-hero-background {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        opacity: 0.1;
+                    }
+
+                    .ifn-hero-pattern {
+                        background-image:
+                            radial-gradient(circle at 20% 50%, rgba(255,255,255,0.3) 0%, transparent 50%),
+                            radial-gradient(circle at 80% 80%, rgba(255,255,255,0.2) 0%, transparent 50%),
+                            radial-gradient(circle at 40% 20%, rgba(255,255,255,0.25) 0%, transparent 50%);
+                        background-size: 100% 100%;
+                        animation: float 6s ease-in-out infinite;
+                    }
+
+                    @keyframes float {
+                        0%, 100% { transform: translateY(0px); }
+                        50% { transform: translateY(-20px); }
+                    }
+
+                    /* Logo moderne */
+                    .ifn-hero-logo .ifn-logo-modern {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                    }
+
+                    .ifn-logo-text {
+                        background: rgba(255,255,255,0.95);
+                        color: #009739;
+                        font-weight: 800;
+                        font-size: 2.5rem;
+                        padding: 0.75rem 1.5rem;
+                        border-radius: 12px;
+                        letter-spacing: -1px;
+                        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+                    }
+
+                    .ifn-logo-tagline {
+                        background: rgba(255,255,255,0.9);
+                        color: #F77F00;
+                        font-weight: 700;
+                        font-size: 1rem;
+                        padding: 0.5rem 1rem;
+                        border-radius: 8px;
+                        align-self: flex-end;
+                        margin-bottom: 0.5rem;
+                        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+                    }
+
+                    /* Contenu Hero */
+                    .ifn-hero-content {
+                        color: white;
+                        z-index: 2;
+                        position: relative;
+                    }
+
+                    .ifn-hero-title {
+                        font-size: 3rem;
+                        font-weight: 800;
+                        line-height: 1.2;
+                        margin-bottom: 1.5rem;
+                        text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                    }
+
+                    .ifn-highlight {
+                        color: #F77F00;
+                        display: block;
+                        font-size: 3.5rem;
+                        margin-top: 0.5rem;
+                    }
+
+                    .ifn-hero-subtitle {
+                        font-size: 1.25rem;
+                        line-height: 1.6;
+                        margin-bottom: 3rem;
+                        opacity: 0.95;
+                        max-width: 500px;
+                    }
+
+                    /* Statistiques de confiance */
+                    .ifn-trust-stats {
+                        display: flex;
+                        gap: 2rem;
+                        margin-bottom: 3rem;
+                    }
+
+                    .trust-item {
+                        text-align: center;
+                    }
+
+                    .trust-number {
+                        font-size: 2.5rem;
+                        font-weight: 800;
+                        color: #F77F00;
+                        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+                    }
+
+                    .trust-label {
+                        font-size: 0.9rem;
+                        opacity: 0.9;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                    }
+
+                    /* Témoignage */
+                    .ifn-testimonial {
+                        background: rgba(255,255,255,0.1);
+                        backdrop-filter: blur(10px);
+                        border-radius: 20px;
+                        padding: 2rem;
+                        border: 1px solid rgba(255,255,255,0.2);
+                        max-width: 400px;
+                    }
+
+                    .quote-icon {
+                        color: #F77F00;
+                        font-size: 2rem;
+                        margin-bottom: 1rem;
+                        opacity: 0.8;
+                    }
+
+                    .testimonial-text {
+                        font-size: 1.1rem;
+                        line-height: 1.6;
+                        margin-bottom: 1.5rem;
+                        font-style: italic;
+                    }
+
+                    .testimonial-author {
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+                    }
+
+                    .author-avatar {
+                        width: 50px;
+                        height: 50px;
+                        background: rgba(255,255,255,0.2);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 1.2rem;
+                    }
+
+                    .author-name {
+                        font-weight: 700;
+                        color: white;
+                    }
+
+                    .author-title {
+                        font-size: 0.9rem;
+                        opacity: 0.8;
+                    }
+
+                    /* Formulaire d'inscription */
+                    .ifn-signup-form-wrapper {
+                        background: white;
+                        border-radius: 24px;
+                        box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+                        overflow: hidden;
+                        max-width: 600px;
+                        margin: 0 auto;
+                    }
+
+                    .ifn-form-header {
+                        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+                        padding: 2.5rem 2rem 2rem;
+                        text-align: center;
+                        border-bottom: 1px solid #e9ecef;
+                    }
+
+                    .ifn-form-title {
+                        font-size: 2rem;
+                        font-weight: 700;
+                        color: #2c3e50;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    .ifn-form-subtitle {
+                        color: #6c757d;
+                        font-size: 1.1rem;
+                        margin-bottom: 1.5rem;
+                    }
+
+                    .ifn-language-flags {
+                        display: flex;
+                        justify-content: center;
+                        gap: 0.5rem;
+                    }
+
+                    .ifn-language-flags .flag {
+                        font-size: 1.5rem;
+                        padding: 0.5rem;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        opacity: 0.6;
+                    }
+
+                    .ifn-language-flags .flag.active {
+                        opacity: 1;
+                        background: rgba(0,151,57,0.1);
+                        box-shadow: 0 0 0 2px #009739;
+                    }
+
+                    .ifn-language-flags .flag:hover {
+                        opacity: 1;
+                        transform: translateY(-2px);
+                    }
+
+                    /* Progress bar des étapes */
+                    .ifn-progress-bar {
+                        padding: 2rem 2rem 1rem;
+                        background: white;
+                    }
+
+                    .progress-steps {
+                        display: flex;
+                        justify-content: space-between;
+                        position: relative;
+                    }
+
+                    .progress-steps::before {
+                        content: '';
+                        position: absolute;
+                        top: 20px;
+                        left: 0;
+                        right: 0;
+                        height: 2px;
+                        background: #e9ecef;
+                        z-index: 1;
+                    }
+
+                    .step {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        position: relative;
+                        z-index: 2;
+                    }
+
+                    .step-dot {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background: #e9ecef;
+                        border: 3px solid white;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: 700;
+                        color: #6c757d;
+                        transition: all 0.3s ease;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    .step-dot.active {
+                        background: #009739;
+                        color: white;
+                        transform: scale(1.1);
+                    }
+
+                    .step-dot.completed {
+                        background: #28a745;
+                        color: white;
+                    }
+
+                    .step-label {
+                        font-size: 0.85rem;
+                        font-weight: 600;
+                        color: #6c757d;
+                        text-align: center;
+                    }
+
+                    .step.active .step-label {
+                        color: #009739;
+                    }
+
+                    /* Étapes du formulaire */
+                    .ifn-form-step {
+                        padding: 0 2rem 2rem;
+                        display: none;
+                        animation: fadeInUp 0.5s ease;
+                    }
+
+                    .ifn-form-step.active {
+                        display: block;
+                    }
+
+                    @keyframes fadeInUp {
+                        from {
+                            opacity: 0;
+                            transform: translateY(30px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+
+                    .step-header {
+                        display: flex;
+                        align-items: center;
+                        gap: 1.5rem;
+                        margin-bottom: 2rem;
+                        padding-bottom: 1.5rem;
+                        border-bottom: 2px solid #f8f9fa;
+                    }
+
+                    .step-icon {
+                        width: 60px;
+                        height: 60px;
+                        background: linear-gradient(135deg, #009739, #008030);
+                        color: white;
+                        border-radius: 16px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 1.5rem;
+                        box-shadow: 0 8px 25px rgba(0,151,57,0.3);
+                    }
+
+                    .step-info h3 {
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                        color: #2c3e50;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    .step-info p {
+                        color: #6c757d;
+                        font-size: 1rem;
+                    }
+
+                    /* Cartes de type de membre */
+                    .member-types-grid {
+                        display: grid;
+                        gap: 1.5rem;
+                    }
+
+                    .member-type-card {
+                        position: relative;
+                        background: #f8f9fa;
+                        border-radius: 16px;
+                        border: 2px solid transparent;
+                        transition: all 0.3s ease;
+                        cursor: pointer;
+                        overflow: hidden;
+                    }
+
+                    .member-type-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+                        border-color: #009739;
+                    }
+
+                    .member-type-card.selected {
+                        background: linear-gradient(135deg, rgba(0,151,57,0.05), rgba(0,128,48,0.1));
+                        border-color: #009739;
+                        box-shadow: 0 8px 30px rgba(0,151,57,0.2);
+                    }
+
+                    .member-type-input {
+                        position: absolute;
+                        opacity: 0;
+                        cursor: pointer;
+                    }
+
+                    .member-type-label {
+                        display: flex;
+                        align-items: center;
+                        gap: 1.5rem;
+                        padding: 1.5rem;
+                        cursor: pointer;
+                        margin: 0;
+                    }
+
+                    .member-type-icon {
+                        width: 60px;
+                        height: 60px;
+                        background: linear-gradient(135deg, #009739, #008030);
+                        color: white;
+                        border-radius: 12px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 1.5rem;
+                        flex-shrink: 0;
+                    }
+
+                    .member-type-content h4 {
+                        font-size: 1.25rem;
+                        font-weight: 700;
+                        color: #2c3e50;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    .member-type-desc {
+                        color: #6c757d;
+                        font-size: 0.95rem;
+                        margin-bottom: 1rem;
+                        line-height: 1.5;
+                    }
+
+                    .member-type-features {
+                        display: flex;
+                        gap: 1rem;
+                        flex-wrap: wrap;
+                    }
+
+                    .member-type-features span {
+                        font-size: 0.85rem;
+                        color: #009739;
+                        font-weight: 600;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.25rem;
+                    }
+
+                    /* Form floating labels */
+                    .form-floating {
+                        margin-bottom: 1rem;
+                    }
+
+                    .form-floating label {
+                        color: #6c757d;
+                        font-weight: 500;
+                    }
+
+                    .form-floating .form-control:focus {
+                        border-color: #009739;
+                        box-shadow: 0 0 0 0.2rem rgba(0,151,57,0.25);
+                    }
+
+                    /* Force du mot de passe */
+                    .password-strength {
+                        margin-top: 0.5rem;
+                    }
+
+                    .strength-bar {
+                        height: 6px;
+                        background: #e9ecef;
+                        border-radius: 3px;
+                        overflow: hidden;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    .strength-fill {
+                        height: 100%;
+                        width: 0%;
+                        transition: all 0.3s ease;
+                        border-radius: 3px;
+                    }
+
+                    .strength-fill.weak {
+                        width: 25%;
+                        background: #dc3545;
+                    }
+
+                    .strength-fill.medium {
+                        width: 50%;
+                        background: #ffc107;
+                    }
+
+                    .strength-fill.strong {
+                        width: 100%;
+                        background: #28a745;
+                    }
+
+                    .strength-text {
+                        font-size: 0.85rem;
+                        color: #6c757d;
+                    }
+
+                    /* Conditions */
+                    .form-agreements {
+                        background: #f8f9fa;
+                        border-radius: 12px;
+                        padding: 1.5rem;
+                        margin-top: 2rem;
+                    }
+
+                    .form-check {
+                        margin-bottom: 1rem;
+                    }
+
+                    .form-check-label {
+                        font-size: 0.95rem;
+                        line-height: 1.5;
+                    }
+
+                    .ifn-link {
+                        color: #009739;
+                        text-decoration: none;
+                        font-weight: 600;
+                    }
+
+                    .ifn-link:hover {
+                        color: #008030;
+                        text-decoration: underline;
+                    }
+
+                    /* Navigation */
+                    .ifn-form-navigation {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 2rem;
+                        border-top: 1px solid #e9ecef;
+                        background: #f8f9fa;
+                    }
+
+                    .ifn-btn-prev,
+                    .ifn-btn-next,
+                    .ifn-btn-submit {
+                        padding: 0.75rem 2rem;
+                        border-radius: 25px;
+                        font-weight: 600;
+                        transition: all 0.3s ease;
+                        border: none;
+                    }
+
+                    .ifn-btn-prev:hover:not(:disabled) {
+                        transform: translateY(-2px);
+                        box-shadow: 0 8px 25px rgba(108,117,125,0.3);
+                    }
+
+                    .ifn-btn-next:hover {
+                        background: #008030;
+                        transform: translateY(-2px);
+                        box-shadow: 0 8px 25px rgba(0,151,57,0.3);
+                    }
+
+                    .ifn-btn-submit:hover {
+                        background: #28a745;
+                        transform: translateY(-2px);
+                        box-shadow: 0 8px 25px rgba(40,167,69,0.3);
+                    }
+
+                    .ifn-form-footer {
+                        text-align: center;
+                        padding: 1.5rem 2rem;
+                        background: white;
+                        color: #6c757d;
+                    }
+
+                    /* Responsive */
+                    @media (max-width: 991.98px) {
+                        .ifn-signup-hero {
+                            padding: 2rem 0;
+                        }
+
+                        .ifn-hero-title {
+                            font-size: 2rem;
+                        }
+
+                        .ifn-highlight {
+                            font-size: 2.5rem;
+                        }
+
+                        .ifn-signup-form-wrapper {
+                            margin-top: 2rem;
+                        }
+
+                        .member-type-label {
+                            flex-direction: column;
+                            text-align: center;
+                        }
+
+                        .member-type-features {
+                            justify-content: center;
+                        }
+                    }
+
+                    @media (max-width: 576px) {
+                        .ifn-hero-content {
+                            text-align: center;
+                        }
+
+                        .ifn-trust-stats {
+                            justify-content: center;
+                        }
+
+                        .ifn-testimonial {
+                            margin: 0 auto;
+                        }
+
+                        .ifn-form-navigation {
+                            flex-direction: column;
+                            gap: 1rem;
+                        }
+
+                        .ifn-btn-prev,
+                        .ifn-btn-next,
+                        .ifn-btn-submit {
+                            width: 100%;
+                        }
+                    }
+                </style>
+
+                <!-- Script pour la navigation entre étapes -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const form = document.getElementById('ifn-signup-form');
+                        const steps = document.querySelectorAll('.ifn-form-step');
+                        const stepDots = document.querySelectorAll('.step-dot');
+                        const prevBtn = document.getElementById('prevStep');
+                        const nextBtn = document.getElementById('nextStep');
+                        const submitBtn = document.getElementById('submitBtn');
+                        const currentStepInput = document.getElementById('currentStep');
+
+                        let currentStep = 1;
+                        const totalSteps = 4;
+
+                        // Navigation entre étapes
+                        function showStep(step) {
+                            steps.forEach((s, index) => {
+                                s.classList.toggle('active', index + 1 === step);
+                            });
+
+                            stepDots.forEach((dot, index) => {
+                                dot.classList.toggle('active', index + 1 === step);
+                                dot.classList.toggle('completed', index + 1 < step);
+                            });
+
+                            // Mettre à jour les boutons
+                            prevBtn.disabled = step === 1;
+                            nextBtn.style.display = step === totalSteps ? 'none' : 'inline-flex';
+                            submitBtn.style.display = step === totalSteps ? 'inline-flex' : 'none';
+
+                            currentStepInput.value = step;
+                            currentStep = step;
+                        }
+
+                        // Validation d'étape
+                        function validateStep(step) {
+                            const currentStepElement = document.querySelector(`.ifn-form-step[data-step="${step}"]`);
+                            const requiredFields = currentStepElement.querySelectorAll('[required]');
+
+                            for (let field of requiredFields) {
+                                if (!field.value.trim()) {
+                                    field.focus();
+                                    field.classList.add('is-invalid');
+                                    return false;
+                                }
+                                field.classList.remove('is-invalid');
+                            }
+
+                            // Validation spéciale pour le mot de passe
+                            if (step === 4) {
+                                const password = document.getElementById('password').value;
+                                const confirmPassword = document.getElementById('confirm_password').value;
+
+                                if (password !== confirmPassword) {
+                                    document.getElementById('confirm_password').focus();
+                                    document.getElementById('confirm_password').classList.add('is-invalid');
+                                    return false;
+                                }
+                            }
+
+                            return true;
+                        }
+
+                        // Événements des boutons
+                        nextBtn.addEventListener('click', function() {
+                            if (validateStep(currentStep)) {
+                                showStep(currentStep + 1);
+                            }
+                        });
+
+                        prevBtn.addEventListener('click', function() {
+                            showStep(currentStep - 1);
+                        });
+
+                        // Sélection du type de membre
+                        document.querySelectorAll('.member-type-input').forEach(input => {
+                            input.addEventListener('change', function() {
+                                document.querySelectorAll('.member-type-card').forEach(card => {
+                                    card.classList.remove('selected');
+                                });
+                                if (this.checked) {
+                                    this.closest('.member-type-card').classList.add('selected');
+                                }
+                            });
+                        });
+
+                        // Force du mot de passe
+                        const passwordInput = document.getElementById('password');
+                        const strengthFill = document.querySelector('.strength-fill');
+                        const strengthText = document.querySelector('.strength-text');
+
+                        passwordInput.addEventListener('input', function() {
+                            const password = this.value;
+                            let strength = 0;
+
+                            if (password.length >= 8) strength++;
+                            if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
+                            if (password.match(/[0-9]/)) strength++;
+                            if (password.match(/[^a-zA-Z0-9]/)) strength++;
+
+                            strengthFill.className = 'strength-fill';
+                            if (strength <= 1) {
+                                strengthFill.classList.add('weak');
+                                strengthText.textContent = 'Faible';
+                            } else if (strength === 2) {
+                                strengthFill.classList.add('medium');
+                                strengthText.textContent = 'Moyen';
+                            } else {
+                                strengthFill.classList.add('strong');
+                                strengthText.textContent = 'Fort';
+                            }
+                        });
+
+                        // Initialisation
+                        showStep(1);
+                    });
+                </script>
+            </div>
+        </t>
+    </template>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="email" class="form-label">Email *</label>
+                                                <input type="email" class="form-control" id="email" name="email" required="required"/>
+                                                <small class="form-text text-muted">Un email de confirmation vous sera envoyé</small>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="phone" class="form-label">Téléphone *</label>
+                                                <input type="tel" class="form-control" id="phone" name="phone" required="required"/>
+                                                <small class="form-text text-muted">Format: +225 XX XX XX XX XX</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Étape 3: Localisation -->
+                                    <div class="ifn-form-step" id="step-location">
+                                        <div class="ifn-step-header">
+                                            <h3>Où êtes-vous situé ?</h3>
+                                            <p class="text-muted">Indiquez votre localisation pour une meilleure expérience</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="region" class="form-label">Région *</label>
+                                                <select class="form-select" id="region" name="region" required="required">
+                                                    <option value="">Sélectionnez une région</option>
+                                                    <t t-foreach="regions" t-as="region">
+                                                        <option t-att-value="region" t-esc="region"/>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="village" class="form-label">Village/Commune</label>
+                                                <input type="text" class="form-control" id="village" name="village"
+                                                       placeholder="Ex: Cocody, Yopougon..."/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Étape 4: Sécurité -->
+                                    <div class="ifn-form-step" id="step-security">
+                                        <div class="ifn-step-header">
+                                            <h3>Sécurité de votre compte</h3>
+                                            <p class="text-muted">Choisissez un mot de passe sécurisé</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="password" class="form-label">Mot de passe *</label>
+                                                <input type="password" class="form-control" id="password" name="password" required="required"
+                                                       minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"/>
+                                                <small class="form-text text-muted">8 caractères minimum, avec majuscule, minuscule et chiffre</small>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="confirm_password" class="form-label">Confirmer le mot de passe *</label>
+                                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required="required"/>
+                                            </div>
+                                        </div>
+                                        <div class="ifn-password-strength" id="password-strength">
+                                            <div class="progress" style="height: 5px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                            </div>
+                                            <small class="form-text">Force du mot de passe: <span id="strength-text">Faible</span></small>
+                                        </div>
+                                    </div>
+
+                                    <!-- Actions -->
+                                    <div class="ifn-form-actions">
+                                        <div class="d-flex justify-content-between">
+                                            <button type="button" class="btn btn-outline-secondary" id="prev-step" style="display: none;">
+                                                <i class="fa fa-arrow-left"/> Précédent
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="next-step">
+                                                Suivant <i class="fa fa-arrow-right"/>
+                                            </button>
+                                            <button type="submit" class="btn btn-success" id="submit-form" style="display: none;">
+                                                <i class="fa fa-check"/> S'inscrire
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Conditions -->
+                                    <div class="ifn-terms mt-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="terms" required="required"/>
+                                            <label class="form-check-label" for="terms">
+                                                J'accepte les <a href="#" class="ifn-link">conditions d'utilisation</a> et
+                                                la <a href="#" class="ifn-link">politique de confidentialité</a> IFN
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <!-- Template de succès d'inscription -->
+    <template id="ifn_signup_success" name="IFN Inscription Réussie">
+        <t t-call="ifn_portal_common.ifn_public_layout">
+            <div id="wrap" class="oe_structure">
+                <section class="ifn-success-section py-5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 text-center">
+                                <div class="ifn-success-icon mb-4">
+                                    <i class="fa fa-check-circle fa-5x text-success"/>
+                                </div>
+                                <h1 class="ifn-success-title">Inscription réussie !</h1>
+                                <div class="ifn-success-content">
+                                    <p class="lead">Bonjour <strong t-esc="user_name"/>,</p>
+                                    <p class="mb-4">
+                                        Votre compte IFN a été créé avec succès.
+                                        Votre identifiant unique est: <code class="ifn-uid" t-esc="ifn_uid"/>
+                                    </p>
+                                    <div class="alert alert-info">
+                                        <h5>Prochaines étapes:</h5>
+                                        <ol class="text-start">
+                                            <li>Vérifiez votre email (<t t-esc="email"/>) pour confirmer votre adresse</li>
+                                            <li>Vérifiez votre téléphone via le lien SMS que vous recevrez</li>
+                                            <li>Connectez-vous et complétez votre profil</li>
+                                        </ol>
+                                    </div>
+                                    <div class="ifn-success-actions">
+                                        <a href="/web/login" class="btn btn-primary btn-lg me-3">
+                                            <i class="fa fa-sign-in-alt"/> Se connecter
+                                        </a>
+                                        <a href="/ifn" class="btn btn-outline-secondary btn-lg">
+                                            <i class="fa fa-home"/> Retour à l'accueil
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <!-- Template d'erreur d'inscription -->
+    <template id="ifn_signup_error" name="IFN Erreur d'Inscription">
+        <t t-call="ifn_portal_common.ifn_public_layout">
+            <div id="wrap" class="oe_structure">
+                <section class="ifn-error-section py-5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6 text-center">
+                                <div class="ifn-error-icon mb-4">
+                                    <i class="fa fa-exclamation-triangle fa-5x text-warning"/>
+                                </div>
+                                <h1 class="ifn-error-title">Erreur d'inscription</h1>
+                                <div class="ifn-error-content">
+                                    <div class="alert alert-danger">
+                                        <strong t-esc="error"/>
+                                    </div>
+                                    <div class="ifn-error-actions">
+                                        <a href="/ifn/signup" class="btn btn-primary">
+                                            <i class="fa fa-arrow-left"/> Retour au formulaire
+                                        </a>
+                                        <a href="/ifn" class="btn btn-outline-secondary">
+                                            <i class="fa fa-home"/> Accueil
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <!-- Template de succès de vérification -->
+    <template id="ifn_verify_success" name="IFN Vérification Réussie">
+        <t t-call="ifn_portal_common.ifn_public_layout">
+            <div id="wrap" class="oe_structure">
+                <section class="ifn-verify-success-section py-5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6 text-center">
+                                <div class="ifn-verify-success-icon mb-4">
+                                    <i class="fa fa-check-circle fa-5x text-success"/>
+                                </div>
+                                <h1>Vérification réussie</h1>
+                                <div class="ifn-verify-content">
+                                    <div class="alert alert-success">
+                                        <t t-esc="message"/>
+                                    </div>
+                                    <a href="/web/login" class="btn btn-primary">
+                                        <i class="fa fa-sign-in-alt"/> Se connecter
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <!-- Template d'erreur de vérification -->
+    <template id="ifn_verify_error" name="IFN Erreur de Vérification">
+        <t t-call="ifn_portal_common.ifn_public_layout">
+            <div id="wrap" class="oe_structure">
+                <section class="ifn-verify-error-section py-5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6 text-center">
+                                <div class="ifn-verify-error-icon mb-4">
+                                    <i class="fa fa-times-circle fa-5x text-danger"/>
+                                </div>
+                                <h1>Erreur de vérification</h1>
+                                <div class="ifn-verify-content">
+                                    <div class="alert alert-danger">
+                                        <t t-esc="message"/>
+                                    </div>
+                                    <a href="/web/login" class="btn btn-primary">
+                                        <i class="fa fa-sign-in-alt"/> Se connecter
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <!-- Templates simplifiés pour les erreurs et succès du controller -->
+    <template id="ifn_signup_success_simple" name="IFN Inscription Réussie (Simple)">
+        <t t-call="ifn_portal_common.ifn_public_layout">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 text-center">
+                        <div class="ifn-form-section">
+                            <div class="mb-4">
+                                <i class="fa fa-check-circle fa-5x text-success"/>
+                            </div>
+                            <h1 class="mb-4">Inscription réussie !</h1>
+                            <div class="mb-4">
+                                <p class="lead">Bonjour <strong t-esc="user_name"/>,</p>
+                                <p class="mb-4">
+                                    Votre compte IFN a été créé avec succès.
+                                    Votre identifiant unique est: <code class="badge badge-primary" t-esc="ifn_uid"/>
+                                </p>
+                                <div class="alert alert-info text-left">
+                                    <h5>Prochaines étapes:</h5>
+                                    <ol class="mb-0">
+                                        <li>Vérifiez votre email (<t t-esc="email"/>) pour confirmer votre adresse</li>
+                                        <li>Vérifiez votre téléphone via le lien SMS que vous recevrez</li>
+                                        <li>Connectez-vous et complétez votre profil</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="ifn-success-actions">
+                                <a href="/web/login" class="btn btn-primary btn-lg me-3">
+                                    <i class="fa fa-sign-in-alt"/> Se connecter
+                                </a>
+                                <a href="/ifn/signup" class="btn btn-outline-secondary btn-lg">
+                                    <i class="fa fa-home"/> Retour à l'accueil
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="ifn_signup_error_simple" name="IFN Erreur d'Inscription (Simple)">
+        <t t-call="ifn_portal_common.ifn_public_layout">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-center">
+                        <div class="ifn-form-section">
+                            <div class="mb-4">
+                                <i class="fa fa-exclamation-triangle fa-5x text-warning"/>
+                            </div>
+                            <h1 class="mb-4">Erreur d'inscription</h1>
+                            <div class="mb-4">
+                                <div class="alert alert-danger">
+                                    <strong t-esc="error"/>
+                                </div>
+                            </div>
+                            <div class="ifn-error-actions">
+                                <a href="/ifn/signup" class="btn btn-primary me-3">
+                                    <i class="fa fa-arrow-left"/> Retour au formulaire
+                                </a>
+                                <a href="/" class="btn btn-outline-secondary">
+                                    <i class="fa fa-home"/> Accueil
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

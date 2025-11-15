@@ -1,0 +1,27 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ifn_market_user,ifn_market.user,model_ifn_market,group_ifn_user,1,0,0,0
+access_ifn_market_agent,ifn_market.agent,model_ifn_market,group_ifn_agent,1,1,1,0
+access_ifn_market_admin,ifn_market.admin,model_ifn_market,group_ifn_admin,1,1,1,1
+access_ifn_coop_user,ifn_coop.user,model_ifn_coop,group_ifn_user,1,0,0,0
+access_ifn_coop_manager,ifn_coop.manager,model_ifn_coop,group_ifn_coop_manager,1,1,1,0
+access_ifn_coop_agent,ifn_coop.agent,model_ifn_coop,group_ifn_agent,1,1,1,0
+access_ifn_coop_admin,ifn_coop.admin,model_ifn_coop,group_ifn_admin,1,1,1,1
+access_ifn_zone_user,ifn_zone.user,model_ifn_zone,group_ifn_user,1,0,0,0
+access_ifn_zone_agent,ifn_zone.agent,model_ifn_zone,group_ifn_agent,1,1,1,0
+access_ifn_zone_admin,ifn_zone.admin,model_ifn_zone,group_ifn_admin,1,1,1,1
+access_ifn_product_category_ref_user,ifn_product_category_ref.user,model_ifn_product_category_ref,group_ifn_user,1,0,0,0
+access_ifn_product_category_ref_agent,ifn_product_category_ref.agent,model_ifn_product_category_ref,group_ifn_agent,1,1,1,0
+access_ifn_product_category_ref_admin,ifn_product_category_ref.admin,model_ifn_product_category_ref,group_ifn_admin,1,1,1,1
+access_ifn_settings_user,ifn_settings.user,model_ifn_settings,group_ifn_admin,1,1,1,1
+access_ifn_audit_log_user,ifn_audit_log.user,model_ifn_audit_log,group_ifn_agent,1,1,0,0
+access_ifn_audit_log_admin,ifn_audit_log.admin,model_ifn_audit_log,group_ifn_admin,1,1,1,1
+access_ifn_kpi_snapshot_user,ifn_kpi_snapshot.user,model_ifn_kpi_snapshot,group_ifn_user,1,0,0,0
+access_ifn_kpi_snapshot_agent,ifn_kpi_snapshot.agent,model_ifn_kpi_snapshot,group_ifn_agent,1,1,1,0
+access_ifn_kpi_snapshot_admin,ifn_kpi_snapshot.admin,model_ifn_kpi_snapshot,group_ifn_admin,1,1,1,1
+
+# Accès étendus pour res.partner avec champs IFN
+access_ifn_partner_merchant,ifn_partner.merchant,model_res_partner,group_ifn_merchant,1,1,1,0
+access_ifn_partner_producer,ifn_partner.producer,model_res_partner,group_ifn_producer,1,1,1,0
+access_ifn_partner_coop_manager,ifn_partner.coop_manager,model_res_partner,group_ifn_coop_manager,1,1,1,0
+access_ifn_partner_agent,ifn_partner.agent,model_res_partner,group_ifn_agent,1,1,1,0
+access_ifn_partner_admin,ifn_partner.admin,model_res_partner,group_ifn_admin,1,1,1,1

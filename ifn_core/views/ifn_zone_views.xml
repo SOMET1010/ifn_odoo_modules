@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Vue Liste des Zones -->
+        <record id="view_ifn_zone_tree" model="ir.ui.view">
+            <field name="name">ifn.zone.tree</field>
+            <field name="model">ifn.zone</field>
+            <field name="arch" type="xml">
+                <tree string="Zones IFN">
+                    <field name="display_name"/>
+                    <field name="zone_type"/>
+                    <field name="parent_id"/>
+                    <field name="level"/>
+                    <field name="market_count" widget="badge"/>
+                    <field name="coop_count" widget="badge"/>
+                    <field name="partner_count" widget="badge"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vue Recherche des Zones -->
+        <record id="view_ifn_zone_search" model="ir.ui.view">
+            <field name="name">ifn.zone.search</field>
+            <field name="model">ifn.zone</field>
+            <field name="arch" type="xml">
+                <search string="Recherche Zones">
+                    <field name="name" string="Nom de la zone"/>
+                    <field name="code" string="Code"/>
+                    <field name="zone_type" string="Type de zone"/>
+                    <field name="parent_id" string="Zone parente"/>
+
+                    <filter string="Actives" name="active" domain="[('active', '=', True)]"/>
+                    <filter string="Inactives" name="inactive" domain="[('active', '=', False)]"/>
+                    <separator/>
+                    <filter string="Zones administratives" name="admin" domain="[('zone_type', '=', 'administrative')]"/>
+                    <filter string="Zones logistiques" name="logistical" domain="[('zone_type', '=', 'logistical')]"/>
+                    <filter string="Zones de marché" name="market" domain="[('zone_type', '=', 'market')]"/>
+                    <filter string="Zones de collecte" name="collection" domain="[('zone_type', '=', 'collection')]"/>
+                    <separator/>
+                    <filter string="Zones racines" name="root" domain="[('parent_id', '=', False)]"/>
+                    <filter string="Zones avec collecte" name="with_collection" domain="[('has_collection_point', '=', True)]"/>
+
+                    <group expand="0" string="Grouper par">
+                        <filter string="Type de zone" name="group_type" context="{'group_by': 'zone_type'}"/>
+                        <filter string="Zone parente" name="group_parent" context="{'group_by': 'parent_id'}"/>
+                        <filter string="Niveau" name="group_level" context="{'group_by': 'level'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Vue Formulaire des Zones -->
+        <record id="view_ifn_zone_form" model="ir.ui.view">
+            <field name="name">ifn.zone.form</field>
+            <field name="model">ifn.zone</field>
+            <field name="arch" type="xml">
+                <form string="Zone IFN">
+                    <header>
+                        <button name="action_view_markets" type="object" string="Voir Marchés"
+                                class="btn-primary" attrs="{'invisible': [('market_count', '=', 0)]}"/>
+                        <button name="action_view_coops" type="object" string="Voir Coopératives"
+                                class="btn-secondary" attrs="{'invisible': [('coop_count', '=', 0)]}"/>
+                        <field name="active" widget="boolean_toggle"/>
+                    </header>
+
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_markets" type="object" class="oe_stat_button" icon="fa-building"
+                                    attrs="{'invisible': [('market_count', '=', 0)]}">
+                                <field name="market_count" widget="statinfo" string="Marchés"/>
+                            </button>
+                            <button name="action_view_coops" type="object" class="oe_stat_button" icon="fa-users"
+                                    attrs="{'invisible': [('coop_count', '=', 0)]}">
+                                <field name="coop_count" widget="statinfo" string="Coopératives"/>
+                            </button>
+                            <button class="oe_stat_button" icon="fa-user">
+                                <field name="partner_count" widget="statinfo" string="Partenaires"/>
+                            </button>
+                        </div>
+
+                        <group>
+                            <group name="general_info">
+                                <field name="code" placeholder="Ex: ZONE"/>
+                                <field name="name" placeholder="Nom de la zone"/>
+                                <field name="zone_type"/>
+                                <field name="parent_id" options="{'no_create': True}"/>
+                                <field name="level" readonly="1"/>
+                            </group>
+                            <group name="collection_info">
+                                <field name="collection_days" placeholder="Ex: Lundi, Mercredi, Samedi"/>
+                                <field name="collection_schedule" placeholder="Ex: 6h-10h"/>
+                                <field name="has_collection_point" widget="boolean_toggle"/>
+                            </group>
+                        </group>
+
+                        <group name="location_info">
+                            <group string="Coordonnées Centrales">
+                                <field name="partner_latitude" widget="float" digits="(10,6)"/>
+                                <field name="partner_longitude" widget="float" digits="(10,6)"/>
+                                <field name="geo_point" widget="geo_edit_map"/>
+                            </group>
+                            <group string="Contact Local">
+                                <field name="contact_name" placeholder="Nom du contact local"/>
+                                <field name="contact_phone" widget="phone"/>
+                                <field name="contact_email" widget="email"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Marchés et Coopératives" name="entities">
+                                <group string="Marchés Couverts">
+                                    <field name="market_ids" widget="many2many_tags">
+                                        <tree>
+                                            <field name="display_name"/>
+                                            <field name="region"/>
+                                            <field name="commune"/>
+                                            <field name="coop_count"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                                <group string="Coopératives Couvertes">
+                                    <field name="coop_ids" widget="many2many_tags">
+                                        <tree>
+                                            <field name="display_name"/>
+                                            <field name="market_id"/>
+                                            <field name="manager_name"/>
+                                            <field name="member_count"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+
+                            <page string="Description" name="description">
+                                <group>
+                                    <field name="description" nolabel="1" placeholder="Description détaillée de la zone"/>
+                                </group>
+                                <group>
+                                    <field name="notes" nolabel="1" placeholder="Notes internes sur la zone"/>
+                                </group>
+                            </page>
+
+                            <page string="Sous-zones" name="subzones">
+                                <field name="child_ids">
+                                    <tree editable="bottom">
+                                        <field name="code"/>
+                                        <field name="name"/>
+                                        <field name="zone_type"/>
+                                        <field name="collection_days"/>
+                                        <field name="active"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Actions des Zones -->
+        <record id="action_ifn_zone" model="ir.actions.act_window">
+            <field name="name">Zones IFN</field>
+            <field name="res_model">ifn.zone</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Créer votre première zone IFN
+                </p>
+                <p>
+                    Les zones permettent d'organiser géographiquement les marchés,
+                    coopératives et points de collecte pour une meilleure logistique.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

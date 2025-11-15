@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Options de personnalisation pour les couleurs IFN -->
+    <template id="ifn_customize_colors" inherit_id="ifn_portal_common.ifn_homepage" customize_show="True" active="False">
+        <xpath expr="//header[hasclass('ifn-header')]" position="attributes">
+            <attribute name="style" add="background: var(--ifn-green, #009739); color: white;"/>
+        </xpath>
+        <xpath expr="//section[contains(@class, 'ifn-hero-section')]" position="attributes">
+            <attribute name="style" add="background: var(--ifn-gradient-green, linear-gradient(135deg, #009739 0%, #008030 100%));"/>
+        </xpath>
+    </template>
+
+    <!-- Options de personnalisation pour la mise en page -->
+    <template id="ifn_customize_layout" inherit_id="ifn_portal_common.ifn_homepage" customize_show="True" active="False">
+        <xpath expr="//div[contains(@class, 'ifn-features-section')]/div[2]/div[1]" position="attributes">
+            <attribute name="class">col-md-6 mb-4</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@class, 'ifn-features-section')]/div[2]/div[2]" position="attributes">
+            <attribute name="class">col-md-6 mb-4</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@class, 'ifn-features-section')]/div[2]/div[3]" position="attributes">
+            <attribute name="class">col-md-6 mb-4</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@class, 'ifn-features-section')]/div[2]" position="inside">
+            <div class="col-md-6 mb-4">
+                <div class="ifn-feature-card card h-100 text-center" style="border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <div class="card-body p-4">
+                        <i class="fa fa-globe fa-4x mb-3" style="color: var(--ifn-orange, #F77F00);"/>
+                        <h4>Support Multilingue</h4>
+                        <p class="text-muted">
+                            Français, Baoulé et Dioula
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="ifn-feature-card card h-100 text-center" style="border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <div class="card-body p-4">
+                        <i class="fa fa-mobile fa-4x mb-3" style="color: var(--ifn-green, #009739);"/>
+                        <h4>Application Mobile</h4>
+                        <p class="text-muted">
+                            Accès partout, tout le temps
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- Options de personnalisation pour les fonctionnalités -->
+    <template id="ifn_customize_features" inherit_id="ifn_portal_common.ifn_homepage" customize_show="True" active="False">
+        <xpath expr="//section[contains(@class, 'ifn-testimonials-section')]" position="replace">
+            <section class="py-5" style="background: var(--ifn-light-gray, #F8F9FA);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center mb-5">
+                            <h2 class="display-5">Pourquoi choisir IFN ?</h2>
+                            <p class="lead text-muted">
+                                La plateforme made in Côte d'Ivoire pour les acteurs économiques ivoiriens
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="text-center">
+                                <i class="fa fa-shield-alt fa-4x mb-3" style="color: var(--ifn-orange, #F77F00);"/>
+                                <h4>Sécurisé</h4>
+                                <p class="text-muted">
+                                    Vos données sont protégées avec les meilleurs standards de sécurité
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="text-center">
+                                <i class="fa fa-clock fa-4x mb-3" style="color: var(--ifn-green, #009739);"/>
+                                <h4>Rapide</h4>
+                                <p class="text-muted">
+                                    Interface optimisée pour une utilisation rapide et intuitive
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="text-center">
+                                <i class="fa fa-headset fa-4x mb-3" style="color: var(--ifn-orange, #F77F00);"/>
+                                <h4>Support Local</h4>
+                                <p class="text-muted">
+                                    Équipe de support basée en Côte d'Ivoire, disponible en 3 langues
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+</odoo>

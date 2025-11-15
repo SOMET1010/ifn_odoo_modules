@@ -1,0 +1,132 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* ifn_portal_common
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 12:00+0000\n"
+"PO-Revision-Date: 2024-01-01 12:00+0000\n"
+"Last-Translator: IFN Team <support@ifn.ci>\n"
+"Language-Team: Dioula <di@ifn.ci>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: di\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.portal_menu_root
+msgid "IFN Portal"
+msgstr "Porita IFN"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.portal_menu_home
+msgid "Accueil"
+msgstr "Wôrô"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.portal_menu_settings
+msgid "Paramètres"
+msgstr "Sɛrɛw"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.portal_menu_notifications
+msgid "Notifications"
+msgstr "Kàdɛbɔ"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.portal_menu_documents
+msgid "Documents"
+msgstr "Kariblan"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.portal_menu_help
+msgid "Aide"
+msgstr "Anfɛn"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_accessibility.js:20
+#, python-format
+msgid "Contraste élevé activé"
+msgstr "Kɔrɔn dɔ wulen"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_accessibility.js:25
+#, python-format
+msgid "Contraste élevé désactivé"
+msgstr "Kɔrɔn dɔ bôla"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_language_selector.js:15
+#, python-format
+msgid "Langue changée en"
+msgstr "Kan sɔrɔ kɛnɛ"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_notifications.js:30
+#, python-format
+msgid "Nouveau message"
+msgstr "Kunbɛ fɔlɔ"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/pwa_register.js:10
+#, python-format
+msgid "Application IFN installée"
+msgstr "Aplikasiɔn IFN kɛɖɛ"
+
+#. module: ifn_portal_common
+#: model:ir.model,name:ifn_portal_common.model_ifn_portal_preferences
+msgid "IFN Portal Preferences"
+msgstr "Sɛrɛw Porita IFN"
+
+#. module: ifn_portal_common
+#: model:ir.model,name:ifn_portal_common.model_ifn_portal_notifications
+msgid "IFN Portal Notifications"
+msgstr "Kàdɛbɔ Porita IFN"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__user_id
+msgid "Utilisateur"
+msgstr "Mɔgɔ"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__language
+msgid "Langue"
+msgstr "Kan"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__high_contrast
+msgid "Contraste élevé"
+msgstr "Kɔrɔn dɔ"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__font_size
+msgid "Taille du texte"
+msgstr "Kunbɔ laban"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_notifications__title
+msgid "Titre"
+msgstr "Tiɲɛ"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_notifications__message
+msgid "Message"
+msgstr "Kunbɔ"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_notifications__type
+msgid "Type"
+msgstr "Sɛrɛ"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_notifications__read_date
+msgid "Date de lecture"
+msgstr "Kunbɔ dɛsɛ"

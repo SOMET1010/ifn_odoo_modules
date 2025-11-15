@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Menus du portail producteur -->
+        <record id="portal_producer_menu" model="website.menu">
+            <field name="name">Portail Producteur</field>
+            <field name="url">/portal/producer</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence">20</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <record id="portal_producer_dashboard_menu" model="website.menu">
+            <field name="name">Tableau de bord</field>
+            <field name="url">/portal/producer</field>
+            <field name="parent_id" ref="portal_producer_menu"/>
+            <field name="sequence">1</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <record id="portal_producer_harvest_menu" model="website.menu">
+            <field name="name">Récoltes</field>
+            <field name="url">/portal/producer/harvest</field>
+            <field name="parent_id" ref="portal_producer_menu"/>
+            <field name="sequence">2</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <record id="portal_producer_sell_menu" model="website.menu">
+            <field name="name">Vendre</field>
+            <field name="url">/portal/producer/sell</field>
+            <field name="parent_id" ref="portal_producer_menu"/>
+            <field name="sequence">3</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <record id="portal_producer_orders_menu" model="website.menu">
+            <field name="name">Commandes</field>
+            <field name="url">/portal/producer/orders</field>
+            <field name="parent_id" ref="portal_producer_menu"/>
+            <field name="sequence">4</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <record id="portal_producer_payments_menu" model="website.menu">
+            <field name="name">Paiements</field>
+            <field name="url">/portal/producer/payments</field>
+            <field name="parent_id" ref="portal_producer_menu"/>
+            <field name="sequence">5</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <record id="portal_producer_social_menu" model="website.menu">
+            <field name="name">Protection sociale</field>
+            <field name="url">/portal/producer/social</field>
+            <field name="parent_id" ref="portal_producer_menu"/>
+            <field name="sequence">6</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <record id="portal_producer_training_menu" model="website.menu">
+            <field name="name">Formation</field>
+            <field name="url">/portal/producer/training</field>
+            <field name="parent_id" ref="portal_producer_menu"/>
+            <field name="sequence">7</field>
+            <field name="is_published">True</field>
+        </record>
+
+        <record id="portal_producer_profile_menu" model="website.menu">
+            <field name="name">Profil</field>
+            <field name="url">/portal/producer/profile</field>
+            <field name="parent_id" ref="portal_producer_menu"/>
+            <field name="sequence">8</field>
+            <field name="is_published">True</field>
+        </record>
+
+    </data>
+</odoo>

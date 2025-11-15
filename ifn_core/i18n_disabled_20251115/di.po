@@ -1,0 +1,223 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* ifn_core
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: IFN Team <info@ifn.org>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: di\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_role
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_role
+msgid "Rôle IFN"
+msgstr "Wati IFN"
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_role:0
+msgid "Marchand"
+msgstr "Jula"
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_role:0
+msgid "Producteur"
+msgstr "Forba"
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_role:0
+msgid "Gestionnaire Coop"
+msgstr "Dôkɔrɔ kofila"
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_role:0
+msgid "Agent"
+msgstr "Kaŋ"
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_role:0
+msgid "Administrateur"
+msgstr "Kuntigi"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_uid
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_uid
+msgid "UID IFN"
+msgstr "UID IFN"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_qr
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_qr
+msgid "QR IFN"
+msgstr "QR IFN"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_market_id
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_market_id
+msgid "Marché d'attache"
+msgstr "Sɔrɔ kɔrɔ"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_coop_id
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_coop_id
+msgid "Coopérative"
+msgstr "Kofila"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_lang_pref
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_lang_pref
+msgid "Langue préférée"
+msgstr "Kan kɛrɛ"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_geo_lat
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_geo_lat
+msgid "Latitude IFN"
+msgstr "Latitude IFN"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_geo_lng
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_geo_lng
+msgid "Longitude IFN"
+msgstr "Longitude IFN"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_voice_consent
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_voice_consent
+msgid "Consentement voix"
+msgstr "N'fɛran kan"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_data_processing_consent
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_data_processing_consent
+msgid "Consentement traitement données"
+msgstr "N'fɛran sigi sɛbɛn"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_res_partner__x_ifn_profile_status
+#: model:ir.model.fields,field_description:ifn_core.field_res_users__x_ifn_profile_status
+msgid "Statut du profil"
+msgstr "Ihala n'kalan"
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_profile_status:0
+msgid "Brouillon"
+msgstr "Bɔrɔn"
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_profile_status:0
+msgid "En attente de validation"
+msgstr "A ka sigi ka sɛbɛ"
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_profile_status:0
+msgid "Validé"
+msgstr "Sɛbɛ"
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_profile_status:0
+msgid "Suspendu"
+msgstr "Kɔnɔ"
+
+#. module: ifn_core
+#: selection:res.partner,x_ifn_profile_status:0
+msgid "Archivé"
+msgstr "Furu"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_market__name
+msgid "Nom du marché"
+msgstr "Tɔgɛ sɔrɔ"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_market__code
+msgid "Code marché"
+msgstr "Kɔdɛ sɔrɔ"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_coop__name
+msgid "Nom de la coopérative"
+msgstr "Tɔgɛ kofila"
+
+#. module: ifn_core
+#: model:ir.model.fields,field_description:ifn_core.field_ifn_coop__code
+msgid "Code coopérative"
+msgstr "Kɔdɛ kofila"
+
+#. module: ifn_core
+#: model:ir.ui.menu,name:ifn_core.menu_ifn_root
+msgid "IFN"
+msgstr "IFN"
+
+#. module: ifn_core
+#: model:ir.ui.menu,name:ifn_core.menu_ifn_administration
+msgid "Administration"
+msgstr "Kuntigiya"
+
+#. module: ifn_core
+#: model:ir.ui.menu,name:ifn_core.menu_ifn_references
+msgid "Référentiels"
+msgstr "N'kalan sigi sɛbɛn"
+
+#. module: ifn_core
+#: model:ir.ui.menu,name:ifn_core.menu_ifn_actors
+msgid "Gestion des Acteurs"
+msgstr "Kuntigi n'watiyaw"
+
+#. module: ifn_core
+#: model:ir.ui.menu,name:ifn_core.menu_ifn_monitoring
+msgid "Monitoring et KPIs"
+msgstr "N'kalan ni KPIs"
+
+#. module: ifn_core
+#: model:ir.actions.act_window,name:ifn_core.action_ifn_market
+msgid "Marchés IFN"
+msgstr "Sɔrɔw IFN"
+
+#. module: ifn_core
+#: model:ir.actions.act_window,name:ifn_core.action_ifn_coop
+msgid "Coopératives IFN"
+msgstr "Kofilaw IFN"
+
+#. module: ifn_core
+#: model:ir.actions.act_window,name:ifn_core.action_res_partner_ifn
+msgid "Partenaires IFN"
+msgstr "N'dôkan IFN"
+
+#. module: ifn_core
+#: model:res.groups,name:ifn_core.group_ifn_user
+msgid "Utilisateur IFN"
+msgstr "N'dôkan IFN"
+
+#. module: ifn_core
+#: model:res.groups,name:ifn_core.group_ifn_merchant
+msgid "Marchand IFN"
+msgstr "Jula IFN"
+
+#. module: ifn_core
+#: model:res.groups,name:ifn_core.group_ifn_producer
+msgid "Producteur IFN"
+msgstr "Forba IFN"
+
+#. module: ifn_core
+#: model:res.groups,name:ifn_core.group_ifn_coop_manager
+msgid "Gestionnaire Coopérative IFN"
+msgstr "Dôkɔrɔ kofila IFN"
+
+#. module: ifn_core
+#: model:res.groups,name:ifn_core.group_ifn_agent
+msgid "Agent IFN"
+msgstr "Kaŋ IFN"
+
+#. module: ifn_core
+#: model:res.groups,name:ifn_core.group_ifn_admin
+msgid "Administrateur IFN"
+msgstr "Kuntigi IFN"

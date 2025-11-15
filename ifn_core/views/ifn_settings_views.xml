@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Vue Formulaire des Paramètres IFN -->
+        <record id="view_ifn_settings_form" model="ir.ui.view">
+            <field name="name">ifn.settings.form</field>
+            <field name="model">ifn.settings</field>
+            <field name="arch" type="xml">
+                <form string="Paramètres IFN" class="oe_configuration">
+                    <header>
+                        <button name="action_save_settings" type="object" string="Appliquer" class="btn-primary"/>
+                        <button name="action_cancel" type="object" string="Annuler" class="btn-secondary"/>
+                    </header>
+
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>Configuration IFN Core</h1>
+                            <p class="text-muted">Paramètres généraux et configuration du module IFN</p>
+                        </div>
+
+                        <notebook>
+                            <!-- Configuration Générale -->
+                            <page string="Configuration Générale" name="general">
+                                <group>
+                                    <group string="Fonctionnalités Principales">
+                                        <field name="ifn_module_enabled" widget="boolean_toggle"/>
+                                        <field name="ifn_debug_mode" widget="boolean_toggle"/>
+                                        <field name="ifn_portal_enabled" widget="boolean_toggle"/>
+                                    </group>
+                                    <group string="Portails Spécifiques">
+                                        <field name="ifn_merchant_portal_enabled" widget="boolean_toggle"
+                                               attrs="{'invisible': [('ifn_portal_enabled', '=', False)]}"/>
+                                        <field name="ifn_producer_portal_enabled" widget="boolean_toggle"
+                                               attrs="{'invisible': [('ifn_portal_enabled', '=', False)]}"/>
+                                        <field name="ifn_coop_portal_enabled" widget="boolean_toggle"
+                                               attrs="{'invisible': [('ifn_portal_enabled', '=', False)]}"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <!-- QR et UID -->
+                            <page string="QR et Identifiants" name="qr_uid">
+                                <group>
+                                    <group string="Configuration QR">
+                                        <field name="ifn_qr_enabled" widget="boolean_toggle"/>
+                                        <field name="ifn_qr_auto_generate" widget="boolean_toggle"
+                                               attrs="{'invisible': [('ifn_qr_enabled', '=', False)]}"/>
+                                        <field name="ifn_qr_ttl_days"
+                                               attrs="{'invisible': [('ifn_qr_enabled', '=', False)]}"/>
+                                    </group>
+                                    <group string="Séquence UID">
+                                        <field name="ifn_uid_sequence_id" options="{'no_create': True}"/>
+                                        <button name="action_regenerate_all_qr" type="object" string="Régénérer tous les QR"
+                                                class="btn-warning" confirm="Êtes-vous sûr de vouloir régénérer tous les codes QR ?"/>
+                                    </group>
+                                </group>
+
+                                <div class="alert alert-info">
+                                    <strong>Note:</strong> La génération de QR codes nécessite l'installation des bibliothèques Python 'qrcode' et 'Pillow'.
+                                </div>
+                            </page>
+
+                            <!-- Internationalisation -->
+                            <page string="Internationalisation" name="i18n">
+                                <group>
+                                    <group string="Configuration i18n">
+                                        <field name="ifn_i18n_enabled" widget="boolean_toggle"/>
+                                        <field name="ifn_available_languages"
+                                               attrs="{'invisible': [('ifn_i18n_enabled', '=', False)]}"/>
+                                    </group>
+                                    <group string="Langues Supportées">
+                                        <div class="text-muted">
+                                            Langues actuellement configurées:<br/>
+                                            • Français (fr)<br/>
+                                            • Baoulé (ba)<br/>
+                                            • Dioula (di)<br/>
+                                            • Anglais (en)
+                                        </div>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <!-- Sécurité -->
+                            <page string="Sécurité" name="security">
+                                <group>
+                                    <group string="Authentification">
+                                        <field name="ifn_mfa_required" widget="boolean_toggle"/>
+                                        <field name="ifn_session_timeout_minutes"/>
+                                        <field name="ifn_password_policy_enabled" widget="boolean_toggle"/>
+                                    </group>
+                                    <group string="Audit et Traçabilité">
+                                        <field name="ifn_audit_enabled" widget="boolean_toggle"/>
+                                        <field name="ifn_audit_retention_days"
+                                               attrs="{'invisible': [('ifn_audit_enabled', '=', False)]}"/>
+                                        <field name="ifn_log_sensitive_operations" widget="boolean_toggle"
+                                               attrs="{'invisible': [('ifn_audit_enabled', '=', False)]}"/>
+                                        <button name="action_cleanup_audit_logs" type="object" string="Nettoyer anciens logs"
+                                                class="btn-warning"
+                                                attrs="{'invisible': [('ifn_audit_enabled', '=', False)]}"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <!-- SMS et Communications -->
+                            <page string="SMS et Communications" name="sms">
+                                <group>
+                                    <group string="Configuration SMS">
+                                        <field name="ifn_external_api_enabled" widget="boolean_toggle"/>
+                                        <field name="ifn_sms_provider"
+                                               attrs="{'invisible': [('ifn_external_api_enabled', '=', False)]}"/>
+                                    </group>
+                                    <group string="Tests SMS">
+                                        <button name="action_test_sms_connection" type="object" string="Tester connexion SMS"
+                                                class="btn-primary"
+                                                attrs="{'invisible': [('ifn_sms_provider', '=', False)]}"/>
+                                    </group>
+                                </group>
+
+                                <notebook attrs="{'invisible': [('ifn_sms_provider', '=', False)]}">
+                                    <!-- Configuration Twilio -->
+                                    <page string="Twilio" name="twilio"
+                                           attrs="{'invisible': [('ifn_sms_provider', '!=', 'twilio')]}">
+                                        <group>
+                                            <field name="ifn_twilio_account_sid" password="True"/>
+                                            <field name="ifn_twilio_auth_token" password="True"/>
+                                            <field name="ifn_twilio_phone_number"/>
+                                        </group>
+                                    </page>
+
+                                    <!-- Configuration Orange -->
+                                    <page string="Orange" name="orange"
+                                           attrs="{'invisible': [('ifn_sms_provider', '!=', 'orange')]}">
+                                        <group>
+                                            <field name="ifn_orange_api_key" password="True"/>
+                                            <field name="ifn_orange_api_secret" password="True"/>
+                                        </group>
+                                    </page>
+                                </notebook>
+                            </page>
+
+                            <!-- Services Vocaux -->
+                            <page string="Services Vocaux" name="voice">
+                                <group>
+                                    <group string="Configuration Vocale">
+                                        <field name="ifn_voice_services_enabled" widget="boolean_toggle"/>
+                                        <field name="ifn_stt_provider"
+                                               attrs="{'invisible': [('ifn_voice_services_enabled', '=', False)]}"/>
+                                        <field name="ifn_tts_provider"
+                                               attrs="{'invisible': [('ifn_voice_services_enabled', '=', False)]}"/>
+                                    </group>
+                                    <group string="Fournisseurs">
+                                        <div class="text-muted">
+                                            Fournisseurs Speech-to-Text:<br/>
+                                            • Google Speech-to-Text<br/>
+                                            • Azure Speech Services<br/>
+                                            • AWS Transcribe<br/>
+                                            • Local (hors ligne)
+                                        </div>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <!-- Géolocalisation -->
+                            <page string="Géolocalisation" name="geolocation">
+                                <group>
+                                    <group string="Configuration Cartes">
+                                        <field name="ifn_geolocation_enabled" widget="boolean_toggle"/>
+                                        <field name="ifn_map_provider"
+                                               attrs="{'invisible': [('ifn_geolocation_enabled', '=', False)]}"/>
+                                        <field name="ifn_map_api_key"
+                                               attrs="{'invisible': [('ifn_geolocation_enabled', '=', False)]}"/>
+                                    </group>
+                                    <group string="Tests">
+                                        <button name="action_test_geolocation" type="object" string="Tester géolocalisation"
+                                                class="btn-primary"
+                                                attrs="{'invisible': [('ifn_geolocation_enabled', '=', False)]}"/>
+                                    </group>
+                                </group>
+
+                                <div class="alert alert-warning" attrs="{'invisible': [('ifn_map_provider', '=', False)]}">
+                                    <strong>Important:</strong> L'utilisation de services de géolocalisation externes peut nécessiter des abonnements payants selon le fournisseur choisi.
+                                </div>
+                            </page>
+
+                            <!-- KPIs et Reporting -->
+                            <page string="KPIs et Reporting" name="kpi">
+                                <group>
+                                    <group string="Configuration KPIs">
+                                        <field name="ifn_kpi_enabled" widget="boolean_toggle"/>
+                                        <field name="ifn_kpi_cron_schedule"
+                                               attrs="{'invisible': [('ifn_kpi_enabled', '=', False)]}"/>
+                                    </group>
+                                    <group string="Automatisation">
+                                        <div class="text-muted">
+                                            Schedule CRON pour KPIs:<br/>
+                                            <field name="ifn_kpi_cron_schedule" readonly="1"/>
+                                            <br/>
+                                            Format: minute heure jour mois jour_semaine<br/>
+                                            Par défaut: 0 2 * * * (tous les jours à 2h)
+                                        </div>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <!-- Imports/Exports -->
+                            <page string="Imports/Exports" name="import_export">
+                                <group>
+                                    <group string="Configuration Imports">
+                                        <field name="ifn_import_enabled" widget="boolean_toggle"/>
+                                        <field name="ifn_max_import_size_mb"
+                                               attrs="{'invisible': [('ifn_import_enabled', '=', False)]}"/>
+                                    </group>
+                                    <group string="Configuration Exports">
+                                        <field name="ifn_export_enabled" widget="boolean_toggle"/>
+                                    </group>
+                                </group>
+
+                                <button name="action_export_configuration" type="object" string="Exporter configuration IFN"
+                                        class="btn-info"/>
+                            </page>
+
+                            <!-- PWA et Mode Hors Ligne -->
+                            <page string="PWA et Hors Ligne" name="pwa">
+                                <group>
+                                    <group string="Configuration PWA">
+                                        <field name="ifn_pwa_enabled" widget="boolean_toggle"/>
+                                        <field name="ifn_offline_mode_enabled" widget="boolean_toggle"
+                                               attrs="{'invisible': [('ifn_pwa_enabled', '=', False)]}"/>
+                                        <field name="ifn_sync_interval_minutes"
+                                               attrs="{'invisible': [('ifn_offline_mode_enabled', '=', False)]}"/>
+                                    </group>
+                                    <group string="Informations">
+                                        <div class="text-muted">
+                                            Le mode PWA (Progressive Web App) permet:<br/>
+                                            • Installation sur mobile/desktop<br/>
+                                            • Fonctionnement hors ligne<br/>
+                                            • Synchronisation automatique<br/>
+                                            • Notifications push
+                                        </div>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action Paramètres IFN -->
+        <record id="action_ifn_settings" model="ir.actions.act_window">
+            <field name="name">Paramètres IFN</field>
+            <field name="res_model">ifn.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'action': 'action_ifn_settings'}</field>
+        </record>
+
+        <!-- Item de menu Paramètres IFN -->
+        <menuitem id="menu_ifn_settings"
+                  name="Paramètres IFN"
+                  parent="ifn_menu_config"
+                  action="action_ifn_settings"
+                  sequence="100"
+                  groups="group_ifn_admin"/>
+
+    </data>
+</odoo>

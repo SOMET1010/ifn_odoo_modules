@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Vue Formulaire Assistant Attestation -->
+        <record id="view_ifn_partner_attestation_wizard_form" model="ir.ui.view">
+            <field name="name">ifn.partner.attestation.wizard.form</field>
+            <field name="model">ifn.partner.attestation.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Génération d'Attestations IFN">
+                    <header>
+                        <button name="action_preview_attestation" type="object" string="Prévisualiser"
+                                class="btn-secondary" attrs="{'invisible': [('partner_ids', '=', False)]}"/>
+                        <button name="action_generate_attestations" type="object" string="Générer"
+                                class="btn-primary" attrs="{'invisible': [('partner_ids', '=', False)]}"/>
+                        <button name="action_download_all_attestations" type="object" string="Télécharger tout"
+                                class="btn-info" attrs="{'invisible': [('generated_count', '=', 0)]}"/>
+                    </header>
+
+                    <sheet>
+                        <div class="oe_title">
+                            <h2>Génération d'Attestations IFN</h2>
+                            <p class="text-muted">Créez des attestations officielles pour les partenaires IFN.</p>
+                        </div>
+
+                        <group>
+                            <group string="Partenaires">
+                                <field name="partner_ids" widget="many2many_tags"
+                                       domain="[('x_ifn_role', '!=', False), ('x_ifn_profile_status', '=', 'validated'), ('x_ifn_uid', '!=', False)]"/>
+                                <div class="text-muted mt8">
+                                    Seuls les partenaires avec profil validé et UID peuvent être sélectionnés.
+                                </div>
+                            </group>
+                            <group string="Type d'Attestation">
+                                <field name="attestation_type"/>
+                                <field name="layout_template"/>
+                                <field name="report_format"/>
+                            </group>
+                        </group>
+
+                        <group string="Options d'Inclusion">
+                            <group>
+                                <field name="include_photo"/>
+                                <field name="include_qr"/>
+                            </group>
+                            <group>
+                                <field name="include_geo"/>
+                                <field name="include_validation"/>
+                            </group>
+                        </group>
+
+                        <group string="Mise en Page">
+                            <group>
+                                <field name="watermark"/>
+                                <field name="background_color"/>
+                            </group>
+                            <group>
+                                <field name="footer_text" nolabel="1" widget="text"/>
+                            </group>
+                        </group>
+
+                        <group string="Résultats" attrs="{'invisible': [('generated_count', '=', 0)]}">
+                            <group>
+                                <field name="generated_count"/>
+                                <field name="error_count"/>
+                            </group>
+                        </group>
+
+                        <notebook attrs="{'invisible': [('errors', '=', False)]}">
+                            <page string="Erreurs de Génération" name="errors">
+                                <field name="errors" nolabel="1" widget="text" readonly="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                    <footer>
+                        <div class="alert alert-info" role="alert" attrs="{'invisible': [('partner_ids', '=', False)]}">
+                            <strong>Information:</strong> <field name="partner_ids" string=""/> partenaire(s) sélectionné(s) pour la génération.
+                        </div>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action Assistant Attestation -->
+        <record id="action_ifn_partner_attestation_wizard" model="ir.actions.act_window">
+            <field name="name">Générer Attestations IFN</field>
+            <field name="res_model">ifn.partner.attestation.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Générez des attestations IFN officielles
+                </p>
+                <p>
+                    Les attestations IFN certifie l'identité numérique et l'authenticité
+                    des informations des partenaires dans l'écosystème IFN.
+                </p>
+                <p>
+                    <strong>Formats disponibles:</strong><br/>
+                    • Standard: Attestation complète<br/>
+                    • Carte de membre: Format compact<br/>
+                    • Certificat QR: Focus sur l'authentification<br/>
+                    • Profil complet: Toutes les informations
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Template pour les pages de portail (utilise le layout principal IFN) -->
+    <template id="portal_page" name="IFN Portal Page">
+        <t t-set="title" t-value="title or 'Portail IFN'"/>
+        <t t-call="website.layout">
+            <div class="ifn-page">
+                <div class="ifn-page-header">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h1 class="ifn-page-title mb-2">
+                                    <t t-if="icon">
+                                        <i t-att-class="icon me-3"/>
+                                    </t>
+                                    <t t-if="not icon">
+                                        <i class="fas fa-tachometer-alt me-3 text-primary"/>
+                                    </t>
+                                    <t t-esc="title"/>
+                                </h1>
+                                <p class="ifn-page-subtitle text-muted mb-0" t-if="subtitle">
+                                    <t t-esc="subtitle"/>
+                                </p>
+                            </div>
+                            <div class="col-md-4">
+                                <t t-if="actions">
+                                    <div class="ifn-page-actions">
+                                        <t t-foreach="actions" t-as="action">
+                                            <a t-att-href="action.get('url')" 
+                                               t-att-class="action.get('class', 'btn btn-primary me-2')">
+                                                <t t-if="action.get('icon')">
+                                                    <i t-att-class="action['icon'] me-2"/>
+                                                </t>
+                                                <t t-esc="action.get('label')"/>
+                                            </a>
+                                        </t>
+                                    </div>
+                                </t>
+                                
+                                <!-- Raccourcis par défaut -->
+                                <div class="ifn-quick-actions" t-if="not actions">
+                                    <a href="/my/products" class="ifn-quick-action">
+                                        <i class="fas fa-plus"/> Nouveau Produit
+                                    </a>
+                                    <a href="/my/orders" class="ifn-quick-action">
+                                        <i class="fas fa-eye"/> Voir Commandes
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ifn-page-content">
+                    <t t-raw="0"/>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

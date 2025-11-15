@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Producteur de démonstration -->
+        <record id="demo_producer_kouadio" model="res.partner">
+            <field name="name">Kouadio Jean-Baptiste</field>
+            <field name="email">kouadio.jb@ifn.ci</field>
+            <field name="phone">+2250712345678</field>
+            <field name="street">Route de Dabou</field>
+            <field name="city">Abidjan</field>
+            <field name="country_id" ref="base.ci"/>
+            <field name="is_company">False</field>
+            <field name="customer">True</field>
+            <field name="supplier">False</field>
+            <field name="company_type">person</field>
+            <field name="function">Producteur Agricole</field>
+            <field name="ref">PROD001</field>
+            <field name="comment">Producteur de manioc et tomates, membre depuis 2024</field>
+        </record>
+
+        <!-- Utilisateur associé au producteur -->
+        <record id="demo_user_producer_kouadio" model="res.users">
+            <field name="partner_id" ref="demo_producer_kouadio"/>
+            <field name="login">kouadio@ifn.ci</field>
+            <field name="password">kouadio123</field>
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="company_ids" eval="[(6, 0, [ref('base.main_company')])]"/>
+            <field name="active">True</field>
+            <field name="notification_type">email</field>
+            <field name="odoobot_state">disabled</field>
+        </record>
+
+        <!-- Second producteur pour tests -->
+        <record id="demo_producer_aminata" model="res.partner">
+            <field name="name">Aminata Touré</field>
+            <field name="email">aminata.toure@ifn.ci</field>
+            <field name="phone">+2250798765432</field>
+            <field name="street">Quartier Sokora</field>
+            <field name="city">Korhogo</field>
+            <field name="country_id" ref="base.ci"/>
+            <field name="is_company">False</field>
+            <field name="customer">True</field>
+            <field name="supplier">False</field>
+            <field name="company_type">person</field>
+            <field name="function">Productrice Agricole</field>
+            <field name="ref">PROD002</field>
+            <field name="comment">Productrice d'igname et gombo, spécialisée en agriculture biologique</field>
+        </record>
+
+        <record id="demo_user_producer_aminata" model="res.users">
+            <field name="partner_id" ref="demo_producer_aminata"/>
+            <field name="login">aminata@ifn.ci</field>
+            <field name="password">aminata123</field>
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="company_ids" eval="[(6, 0, [ref('base.main_company')])]"/>
+            <field name="active">True</field>
+            <field name="notification_type">email</field>
+            <field name="odoobot_state">disabled</field>
+        </record>
+
+    </data>
+</odoo>

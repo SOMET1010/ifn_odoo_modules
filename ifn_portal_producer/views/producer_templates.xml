@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Template principal du portail producteur -->
+        <template id="portal_producer_layout" name="IFN Producer Portal Layout">
+            <t t-call="portal.portal_layout">
+                <t t-set="title">Portail Producteur IFN</t>
+                <div class="o_portal_producer">
+                    <t t-raw="0"/>
+                </div>
+            </t>
+        </template>
+
+        <!-- Tableau de bord producteur -->
+        <template id="portal_producer_dashboard" name="Producer Dashboard">
+            <t t-call="ifn_portal_producer.portal_producer_layout">
+                <div class="container-fluid">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h2 class="text-center mb-4">
+                                <i class="fas fa-seedling ifn-color-primary"></i>
+                                Portail Producteur IFN
+                            </h2>
+                        </div>
+                    </div>
+
+                    <!-- Cartes statistiques -->
+                    <div class="row mb-4">
+                        <div class="col-md-3 col-6 mb-3">
+                            <div class="card ifn-card-primary">
+                                <div class="card-body text-center">
+                                    <h3 class="text-primary" t-esc="harvest_count or '0'"/>
+                                    <p class="mb-0">Recoltes</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mb-3">
+                            <div class="card ifn-card-success">
+                                <div class="card-body text-center">
+                                    <h3 class="text-success" t-esc="sales_count or '0'"/>
+                                    <p class="mb-0">Ventes</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mb-3">
+                            <div class="card ifn-card-warning">
+                                <div class="card-body text-center">
+                                    <h3 class="text-warning" t-esc="revenue_total or '0'"/>XOF
+                                    <p class="mb-0">Revenus</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mb-3">
+                            <div class="card ifn-card-info">
+                                <div class="card-body text-center">
+                                    <h3 class="text-info" t-esc="orders_pending or '0'"/>
+                                    <p class="mb-0">Commandes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions rapides -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-4">Actions rapides</h5>
+                                    <div class="row">
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <a href="/portal/producer/harvest" class="btn btn-outline-primary btn-lg d-block action-btn">
+                                                <i class="fa fa-seedling fa-2x mb-2"></i><br/>
+                                                Recolte
+                                            </a>
+                                        </div>
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <a href="/portal/producer/sell" class="btn btn-outline-success btn-lg d-block action-btn">
+                                                <i class="fa fa-tag fa-2x mb-2"></i><br/>
+                                                Vendre
+                                            </a>
+                                        </div>
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <a href="/portal/producer/orders" class="btn btn-outline-info btn-lg d-block action-btn">
+                                                <i class="fa fa-shopping-basket fa-2x mb-2"></i><br/>
+                                                Commandes
+                                            </a>
+                                        </div>
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <a href="/portal/producer/payments" class="btn btn-outline-warning btn-lg d-block action-btn">
+                                                <i class="fa fa-credit-card fa-2x mb-2"></i><br/>
+                                                Paiements
+                                            </a>
+                                        </div>
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <a href="/portal/producer/social" class="btn btn-outline-danger btn-lg d-block action-btn">
+                                                <i class="fa fa-heart fa-2x mb-2"></i><br/>
+                                                Social
+                                            </a>
+                                        </div>
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <a href="/portal/producer/training" class="btn btn-outline-secondary btn-lg d-block action-btn">
+                                                <i class="fa fa-graduation-cap fa-2x mb-2"></i><br/>
+                                                Formation
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Page des recoltes -->
+        <template id="portal_producer_harvest" name="Producer Harvest">
+            <t t-call="ifn_portal_producer.portal_producer_layout">
+                <div class="container-fluid">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h2 class="text-center mb-4">
+                                <i class="fas fa-seedling ifn-color-primary"></i>
+                                Gestion des Recoltes
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Mes Recoltes</h5>
+                                    <button class="btn btn-primary" onclick="$('#addHarvestModal').modal('show')">
+                                        <i class="fas fa-plus"></i> Ajouter une recolte
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Produit</th>
+                                                    <th>Quantite (kg)</th>
+                                                    <th>Qualite</th>
+                                                    <th>Statut</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr t-foreach="harvests" t-as="harvest">
+                                                    <td t-esc="harvest.date"/>
+                                                    <td t-esc="harvest.product"/>
+                                                    <td t-esc="harvest.quantity"/>
+                                                    <td t-esc="harvest.quality"/>
+                                                    <td>
+                                                        <span t-att-class="'badge bg-' + harvest.status_color" t-esc="harvest.status"/>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-info">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-warning">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Ajout Recolte -->
+                <div class="modal fade" id="addHarvestModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Ajouter une recolte</h5>
+                                <button type="button" class="btn-close" onclick="$('#addHarvestModal').modal('hide')"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="addHarvestForm">
+                                    <div class="mb-3">
+                                        <label class="form-label">Produit</label>
+                                        <select class="form-select" name="product_id" required="required">
+                                            <option value="">Choisir un produit...</option>
+                                            <t t-foreach="products" t-as="product">
+                                                <option t-att-value="product.id" t-esc="product.name"/>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Quantite (kg)</label>
+                                        <input type="number" class="form-control" name="quantity" required="required" step="0.1"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Qualite</label>
+                                        <select class="form-select" name="quality" required="required">
+                                            <option value="premium">Premium</option>
+                                            <option value="standard">Standard</option>
+                                            <option value="economic">Economique</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" onclick="$('#addHarvestModal').modal('hide')">Annuler</button>
+                                <button type="button" class="btn btn-primary" id="saveHarvestBtn">Enregistrer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Page de vente -->
+        <template id="portal_producer_sell" name="Producer Sell">
+            <t t-call="ifn_portal_producer.portal_producer_layout">
+                <div class="container-fluid">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h2 class="text-center mb-4">
+                                <i class="fas fa-tag ifn-color-success"></i>
+                                Vendre mes Produits
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Publier une offre</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="publishOfferForm">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Produit</label>
+                                                <select class="form-select" name="product_id" required="required">
+                                                    <option value="">Selectionner...</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Quantite disponible (kg)</label>
+                                                <input type="number" class="form-control" name="quantity" required="required" step="0.1"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Prix au kg (XOF)</label>
+                                                <input type="number" class="form-control" name="price" required="required" step="1"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Date de disponibilite</label>
+                                                <input type="date" class="form-control" name="available_date" required="required"/>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <label class="form-label">Description</label>
+                                                <textarea class="form-control" name="description" rows="3" placeholder="Decrivez la qualite de vos produits..."></textarea>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-plus"></i> Publier l'offre
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Mes offres actives</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Produit</th>
+                                                    <th>Quantite</th>
+                                                    <th>Prix</th>
+                                                    <th>Date</th>
+                                                    <th>Statut</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="6" class="text-center text-muted">
+                                                        Aucune offre active pour le moment
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Page commandes -->
+        <template id="portal_producer_orders" name="Producer Orders">
+            <t t-call="ifn_portal_producer.portal_producer_layout">
+                <div class="container-fluid">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h2 class="text-center mb-4">
+                                <i class="fas fa-shopping-basket ifn-color-info"></i>
+                                Mes Commandes
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>N Commande</th>
+                                                    <th>Client</th>
+                                                    <th>Produit</th>
+                                                    <th>Quantite</th>
+                                                    <th>Total</th>
+                                                    <th>Date</th>
+                                                    <th>Statut</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="8" class="text-center text-muted">
+                                                        Aucune commande recue
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Page paiements -->
+        <template id="portal_producer_payments" name="Producer Payments">
+            <t t-call="ifn_portal_producer.portal_producer_layout">
+                <div class="container-fluid">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h2 class="text-center mb-4">
+                                <i class="fas fa-credit-card ifn-color-warning"></i>
+                                Historique des Paiements
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Resume</h5>
+                                    <div class="row text-center">
+                                        <div class="col-md-3">
+                                            <h4 class="text-success">0 XOF</h4>
+                                            <p class="text-muted">Recu ce mois</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4 class="text-info">0 XOF</h4>
+                                            <p class="text-muted">En attente</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4 class="text-warning">0</h4>
+                                            <p class="text-muted">Transactions</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4 class="text-primary">0%</h4>
+                                            <p class="text-muted">Commission</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Historique</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Type</th>
+                                                    <th>Moyen</th>
+                                                    <th>Montant</th>
+                                                    <th>Statut</th>
+                                                    <th>Reference</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="6" class="text-center text-muted">
+                                                        Aucune transaction
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Page social -->
+        <template id="portal_producer_social" name="Producer Social">
+            <t t-call="ifn_portal_producer.portal_producer_layout">
+                <div class="container-fluid">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h2 class="text-center mb-4">
+                                <i class="fas fa-heart ifn-color-danger"></i>
+                                Protection Sociale
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card border-primary">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                                    <h5>CNPS</h5>
+                                    <p>Caisse Nationale de Prevoyance Sociale</p>
+                                    <button class="btn btn-primary">Attestation</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-success">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-user-md fa-3x text-success mb-3"></i>
+                                    <h5>CNAM</h5>
+                                    <p>Caisse Nationale d'Assurance Maladie</p>
+                                    <button class="btn btn-success">Carte Vitale</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-warning">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-hands-helping fa-3x text-warning mb-3"></i>
+                                    <h5>CMU</h5>
+                                    <p>Couverture Maladie Universelle</p>
+                                    <button class="btn btn-warning">Attestation</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Historique des cotisations</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Type</th>
+                                                    <th>Montant</th>
+                                                    <th>Periode</th>
+                                                    <th>Statut</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="6" class="text-center text-muted">
+                                                        Aucune cotisation enregistree
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Page formation -->
+        <template id="portal_producer_training" name="Producer Training">
+            <t t-call="ifn_portal_producer.portal_producer_layout">
+                <div class="container-fluid">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h2 class="text-center mb-4">
+                                <i class="fas fa-graduation-cap ifn-color-secondary"></i>
+                                Formation et Certification
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Formations disponibles</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body">
+                                                    <h6>Techniques agricoles modernes</h6>
+                                                    <p class="text-muted small">Apprenez les meilleures pratiques</p>
+                                                    <button class="btn btn-sm btn-primary">Commencer</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body">
+                                                    <h6>Gestion financiere</h6>
+                                                    <p class="text-muted small">Optimisez vos revenus</p>
+                                                    <button class="btn btn-sm btn-primary">Commencer</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body">
+                                                    <h6>Commercialisation</h6>
+                                                    <p class="text-muted small">Vendez mieux vos produits</p>
+                                                    <button class="btn btn-sm btn-primary">Commencer</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Mes certifications</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center text-muted">
+                                        <i class="fas fa-award fa-3x mb-3"></i>
+                                        <p>Aucune certification obtenue pour le moment</p>
+                                        <p class="small">Commencez une formation pour obtenir votre premier certificat</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Page profil -->
+        <template id="portal_producer_profile" name="Producer Profile">
+            <t t-call="ifn_portal_producer.portal_producer_layout">
+                <div class="container-fluid">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h2 class="text-center mb-4">
+                                <i class="fas fa-user ifn-color-primary"></i>
+                                Mon Profil Producteur
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-user-circle fa-5x text-muted mb-3"></i>
+                                    <h5 t-esc="producer.name or 'Producteur'"/>
+                                    <p class="text-muted" t-esc="producer.function or 'Agriculteur'"/>
+                                    <button class="btn btn-primary">Modifier le profil</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Informations</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p><strong>Email:</strong> <span t-esc="producer.email"/></p>
+                                            <p><strong>Telephone:</strong> <span t-esc="producer.phone"/></p>
+                                            <p><strong>Adresse:</strong> <span t-esc="producer.street"/></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><strong>Ville:</strong> <span t-esc="producer.city"/></p>
+                                            <p><strong>Pays:</strong> <span t-esc="producer.country_id.name"/></p>
+                                            <p><strong>Reference:</strong> <span t-esc="producer.ref"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <p><strong>Biographie:</strong></p>
+                                            <p t-esc="producer.comment or 'Aucune biographie disponible'"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Statistiques</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row text-center">
+                                        <div class="col-6">
+                                            <h4 class="text-primary">0</h4>
+                                            <p class="text-muted">Recoltes</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <h4 class="text-success">0</h4>
+                                            <p class="text-muted">Ventes</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Preferences</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Langue</label>
+                                        <select class="form-select">
+                                            <option value="fr_FR">Francais</option>
+                                            <option value="ba_CI">Baoule</option>
+                                            <option value="di_CI">Dioula</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Notifications</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" checked="checked"/>
+                                            <label class="form-check-label">Email</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" checked="checked"/>
+                                            <label class="form-check-label">SMS</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+    </data>
+</odoo>

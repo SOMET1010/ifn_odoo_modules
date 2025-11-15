@@ -1,0 +1,132 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* ifn_portal_common
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 12:00+0000\n"
+"PO-Revision-Date: 2024-01-01 12:00+0000\n"
+"Last-Translator: IFN Team <support@ifn.ci>\n"
+"Language-Team: Baoulé <ba@ifn.ci>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ba\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.portal_menu_root
+msgid "IFN Portal"
+msgstr "Portail IFN"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.portal_menu_home
+msgid "Accueil"
+msgstr "Anian"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.portal_menu_settings
+msgid "Paramètres"
+msgstr "Lɛlɛma"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.portal_menu_notifications
+msgid "Notifications"
+msgstr "Klɛsɛn"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.portal_menu_documents
+msgid "Documents"
+msgstr "Ankanw"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.portal_menu_help
+msgid "Aide"
+msgstr "Anngan"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_accessibility.js:20
+#, python-format
+msgid "Contraste élevé activé"
+msgstr "Klɛ klɛ kɛrɛ"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_accessibility.js:25
+#, python-format
+msgid "Contraste élevé désactivé"
+msgstr "Klɛ klɛ bɔra"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_language_selector.js:15
+#, python-format
+msgid "Langue changée en"
+msgstr "Kan yɛlɛma"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_notifications.js:30
+#, python-format
+msgid "Nouveau message"
+msgstr "Ankan fɛlɛ"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/pwa_register.js:10
+#, python-format
+msgid "Application IFN installée"
+msgstr "Application IFN fɔlɔ"
+
+#. module: ifn_portal_common
+#: model:ir.model,name:ifn_portal_common.model_ifn_portal_preferences
+msgid "IFN Portal Preferences"
+msgstr "Lɛlɛma Portail IFN"
+
+#. module: ifn_portal_common
+#: model:ir.model,name:ifn_portal_common.model_ifn_portal_notifications
+msgid "IFN Portal Notifications"
+msgstr "Klɛsɛn Portail IFN"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__user_id
+msgid "Utilisateur"
+msgstr "Sere"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__language
+msgid "Langue"
+msgstr "Kan"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__high_contrast
+msgid "Contraste élevé"
+msgstr "Klɛ klɛ"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__font_size
+msgid "Taille du texte"
+msgstr "Akan sɛka"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_notifications__title
+msgid "Titre"
+msgstr "Tiɲrɛ"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_notifications__message
+msgid "Message"
+msgstr "Kuma"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_notifications__type
+msgid "Type"
+msgstr "Sɛrɛ"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_notifications__read_date
+msgid "Date de lecture"
+msgstr "Lisɛn dɛsɛ"

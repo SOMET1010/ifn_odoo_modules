@@ -1,0 +1,678 @@
+/* =============================================================================
+   IFN Icons System - Système Centralisé d'Icônes Modernes
+   Version 2.0 - 2025
+   Intègre les 18 pictogrammes IFN avec variables CSS
+   ============================================================================= */
+
+/* Variables d'icônes CSS */
+:root {
+  /* Chemins des icônes */
+  --ifn-icon-path: "/workspace/imgs/icons/";
+  --ifn-sprite-path: "/workspace/ifn_portal_common/static/src/img/icons/ifn-icons.svg";
+  
+  /* Taille des icônes */
+  --ifn-icon-xs: 16px;
+  --ifn-icon-sm: 20px;
+  --ifn-icon-md: 24px;
+  --ifn-icon-lg: 32px;
+  --ifn-icon-xl: 48px;
+  --ifn-icon-xxl: 64px;
+  
+  /* Couleurs des icônes */
+  --ifn-icon-color-primary: var(--ifn-orange);
+  --ifn-icon-color-secondary: var(--ifn-green);
+  --ifn-icon-color-light: var(--ifn-white);
+  --ifn-icon-color-dark: var(--ifn-black);
+  --ifn-icon-color-muted: var(--ifn-gray);
+  
+  /* Variantes d'icônes */
+  --ifn-icon-bg-primary: linear-gradient(135deg, var(--ifn-orange), var(--ifn-orange-dark));
+  --ifn-icon-bg-secondary: linear-gradient(135deg, var(--ifn-green), var(--ifn-green-dark));
+  --ifn-icon-bg-light: linear-gradient(135deg, #ffffff, #f8f9fa);
+  --ifn-icon-bg-dark: linear-gradient(135deg, #343a40, #212529);
+}
+
+/* Base des icônes */
+.ifn-icon {
+  display: inline-block;
+  width: var(--ifn-icon-md);
+  height: var(--ifn-icon-md);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+/* Icônes avec bordure circulaire */
+.ifn-icon-circle {
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ifn-icon-bg-primary);
+  color: var(--ifn-icon-color-light);
+  border: 2px solid transparent;
+}
+
+.ifn-icon-circle--secondary {
+  background: var(--ifn-icon-bg-secondary);
+}
+
+.ifn-icon-circle--light {
+  background: var(--ifn-icon-bg-light);
+  color: var(--ifn-icon-color-dark);
+  border: 1px solid #dee2e6;
+}
+
+.ifn-icon-circle--dark {
+  background: var(--ifn-icon-bg-dark);
+}
+
+/* Icônes avec fond carré arrondi */
+.ifn-icon-rounded {
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.ifn-icon-rounded--primary {
+  background: var(--ifn-orange-light);
+  color: var(--ifn-orange);
+}
+
+.ifn-icon-rounded--secondary {
+  background: var(--ifn-green-light);
+  color: var(--ifn-green);
+}
+
+/* Tailles des icônes */
+.ifn-icon--xs {
+  width: var(--ifn-icon-xs);
+  height: var(--ifn-icon-xs);
+  font-size: 12px;
+}
+
+.ifn-icon--sm {
+  width: var(--ifn-icon-sm);
+  height: var(--ifn-icon-sm);
+  font-size: 14px;
+}
+
+.ifn-icon--md {
+  width: var(--ifn-icon-md);
+  height: var(--ifn-icon-md);
+  font-size: 16px;
+}
+
+.ifn-icon--lg {
+  width: var(--ifn-icon-lg);
+  height: var(--ifn-icon-lg);
+  font-size: 20px;
+}
+
+.ifn-icon--xl {
+  width: var(--ifn-icon-xl);
+  height: var(--ifn-icon-xl);
+  font-size: 28px;
+}
+
+.ifn-icon--xxl {
+  width: var(--ifn-icon-xxl);
+  height: var(--ifn-icon-xxl);
+  font-size: 36px;
+}
+
+/* États hover des icônes */
+.ifn-icon:hover {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+.ifn-icon-circle:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 4px 12px rgba(247, 127, 0, 0.3);
+}
+
+.ifn-icon-rounded:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* =============================================================================
+   PICTOGRAMMES IFN - 18 icônes métier
+   ============================================================================= */
+
+/* Icône Coopérative */
+.ifn-icon-cooperative {
+  background-image: url("../../../imgs/icons/cooperative_icon.png");
+}
+
+.ifn-icon-circle-cooperative {
+  background-image: url("../../../imgs/icons/cooperative_icon.png");
+}
+
+/* Icône Livraison */
+.ifn-icon-delivery {
+  background-image: url("../../../imgs/icons/delivery_icon.png");
+}
+
+.ifn-icon-circle-delivery {
+  background-image: url("../../../imgs/icons/delivery_icon.png");
+}
+
+/* Icône Aide */
+.ifn-icon-help {
+  background-image: url("../../../imgs/icons/help_icon.png");
+}
+
+.ifn-icon-circle-help {
+  background-image: url("../../../imgs/icons/help_icon.png");
+}
+
+/* Icône Igname */
+.ifn-icon-igname {
+  background-image: url("../../../imgs/icons/igname_icon.png");
+}
+
+.ifn-icon-circle-igname {
+  background-image: url("../../../imgs/icons/igname_icon.png");
+}
+
+/* Icône Manioc */
+.ifn-icon-manioc {
+  background-image: url("../../../imgs/icons/manioc_icon.png");
+}
+
+.ifn-icon-circle-manioc {
+  background-image: url("../../../imgs/icons/manioc_icon.png");
+}
+
+/* Icône Marchand */
+.ifn-icon-marchand {
+  background-image: url("../../../imgs/icons/marchand_icon.png");
+}
+
+.ifn-icon-circle-marchand {
+  background-image: url("../../../imgs/icons/marchand_icon.png");
+}
+
+/* Icône Marché */
+.ifn-icon-marche {
+  background-image: url("../../../imgs/icons/marche_icon.png");
+}
+
+.ifn-icon-circle-marche {
+  background-image: url("../../../imgs/icons/marche_icon.png");
+}
+
+/* Icône Mobile Money */
+.ifn-icon-mobile-money {
+  background-image: url("../../../imgs/icons/mobile_money_icon.png");
+}
+
+.ifn-icon-circle-mobile-money {
+  background-image: url("../../../imgs/icons/mobile_money_icon.png");
+}
+
+/* Icône Notification */
+.ifn-icon-notification {
+  background-image: url("../../../imgs/icons/notification_icon.png");
+}
+
+.ifn-icon-circle-notification {
+  background-image: url("../../../imgs/icons/notification_icon.png");
+}
+
+/* Icône Oignon */
+.ifn-icon-oignon {
+  background-image: url("../../../imgs/icons/oignon_icon.png");
+}
+
+.ifn-icon-circle-oignon {
+  background-image: url("../../../imgs/icons/oignon_icon.png");
+}
+
+/* Icône Piment */
+.ifn-icon-piment {
+  background-image: url("../../../imgs/icons/piment_icon.png");
+}
+
+.ifn-icon-circle-piment {
+  background-image: url("../../../imgs/icons/piment_icon.png");
+}
+
+/* Icône Plantain */
+.ifn-icon-plantain {
+  background-image: url("../../../imgs/icons/plantain_icon.png");
+}
+
+.ifn-icon-circle-plantain {
+  background-image: url("../../../imgs/icons/plantain_icon.png");
+}
+
+/* Icône Producteur */
+.ifn-icon-producteur {
+  background-image: url("../../../imgs/icons/producteur_icon.png");
+}
+
+.ifn-icon-circle-producteur {
+  background-image: url("../../../imgs/icons/producteur_icon.png");
+}
+
+/* Icône Qualité */
+.ifn-icon-qualite {
+  background-image: url("../../../imgs/icons/qualite_icon.png");
+}
+
+.ifn-icon-circle-qualite {
+  background-image: url("../../../imgs/icons/qualite_icon.png");
+}
+
+/* Icône Rapport */
+.ifn-icon-rapport {
+  background-image: url("../../../imgs/icons/rapport_icon.png");
+}
+
+.ifn-icon-circle-rapport {
+  background-image: url("../../../imgs/icons/rapport_icon.png");
+}
+
+/* Icône Réglage */
+.ifn-icon-reglage {
+  background-image: url("../../../imgs/icons/reglage_icon.png");
+}
+
+.ifn-icon-circle-reglage {
+  background-image: url("../../../imgs/icons/reglage_icon.png");
+}
+
+/* Icône Sunshine */
+.ifn-icon-sunshine {
+  background-image: url("../../../imgs/icons/sunshine_icon.png");
+}
+
+.ifn-icon-circle-sunshine {
+  background-image: url("../../../imgs/icons/sunshine_icon.png");
+}
+
+/* Icône Tomate */
+.ifn-icon-tomate {
+  background-image: url("../../../imgs/icons/tomate_icon.png");
+}
+
+.ifn-icon-circle-tomate {
+  background-image: url("../../../imgs/icons/tomate_icon.png");
+}
+
+/* =============================================================================
+   UTILITAIRES D'ICÔNES
+   ============================================================================= */
+
+/* Grille d'icônes */
+.ifn-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.ifn-icon-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background: var(--ifn-white);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.ifn-icon-grid-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.ifn-icon-grid-item .ifn-icon {
+  margin-bottom: 1rem;
+}
+
+.ifn-icon-grid-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ifn-black);
+  margin-top: 0.5rem;
+}
+
+/* Icônes dans les cartes */
+.ifn-card-icon {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--ifn-white);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-left: 4px solid var(--ifn-orange);
+}
+
+.ifn-card-icon:hover {
+  transform: translateX(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.ifn-card-icon .ifn-icon-circle {
+  flex-shrink: 0;
+}
+
+.ifn-card-icon-content h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ifn-black);
+}
+
+.ifn-card-icon-content p {
+  margin: 0;
+  color: var(--ifn-gray);
+  font-size: 0.9rem;
+}
+
+/* Icônes dans les boutons */
+.btn .ifn-icon {
+  margin-right: 0.5rem;
+}
+
+.btn .ifn-icon:last-child {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+/* Icônes de navigation */
+.ifn-nav-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: var(--ifn-black);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.ifn-nav-icon:hover {
+  background: var(--ifn-orange-light);
+  color: var(--ifn-orange);
+  transform: translateX(4px);
+}
+
+.ifn-nav-icon.active {
+  background: var(--ifn-orange);
+  color: var(--ifn-white);
+}
+
+.ifn-nav-icon.active .ifn-icon-circle {
+  background: var(--ifn-white);
+  color: var(--ifn-orange);
+}
+
+/* Badges avec icônes */
+.ifn-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--ifn-orange);
+  color: var(--ifn-white);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.ifn-badge--secondary {
+  background: var(--ifn-green);
+}
+
+.ifn-badge--light {
+  background: var(--ifn-gray-light);
+  color: var(--ifn-black);
+  border: 1px solid var(--ifn-gray);
+}
+
+.ifn-badge .ifn-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Icônes de statut */
+.ifn-status-icon {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.ifn-status-icon--success {
+  background: var(--ifn-green);
+  box-shadow: 0 0 0 2px rgba(0, 151, 57, 0.2);
+  animation: pulse-success 2s infinite;
+}
+
+.ifn-status-icon--warning {
+  background: var(--ifn-yellow);
+  box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.2);
+  animation: pulse-warning 2s infinite;
+}
+
+.ifn-status-icon--error {
+  background: var(--ifn-red);
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+  animation: pulse-error 2s infinite;
+}
+
+.ifn-status-icon--info {
+  background: var(--ifn-blue);
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+  animation: pulse-info 2s infinite;
+}
+
+/* Animations des statuts */
+@keyframes pulse-success {
+  0% { box-shadow: 0 0 0 0 rgba(0, 151, 57, 0.7); }
+  70% { box-shadow: 0 0 0 6px rgba(0, 151, 57, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 151, 57, 0); }
+}
+
+@keyframes pulse-warning {
+  0% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7); }
+  70% { box-shadow: 0 0 0 6px rgba(255, 193, 7, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); }
+}
+
+@keyframes pulse-error {
+  0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
+  70% { box-shadow: 0 0 0 6px rgba(220, 53, 69, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+}
+
+@keyframes pulse-info {
+  0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); }
+  70% { box-shadow: 0 0 0 6px rgba(0, 123, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+}
+
+/* Icônes avec compteurs */
+.ifn-counter {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--ifn-red);
+  color: var(--ifn-white);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border: 2px solid var(--ifn-white);
+  animation: bounce-counter 0.6s ease;
+}
+
+@keyframes bounce-counter {
+  0% { transform: scale(0.8); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Icônes dans les formulaires */
+.ifn-form-icon {
+  position: relative;
+}
+
+.ifn-form-icon .ifn-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  color: var(--ifn-gray);
+}
+
+.ifn-form-icon .form-control {
+  padding-left: 44px;
+}
+
+.ifn-form-icon .form-control:focus + .ifn-icon {
+  color: var(--ifn-orange);
+}
+
+/* Icônes d'action */
+.ifn-action-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--ifn-gray-light);
+  color: var(--ifn-gray);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ifn-action-icon:hover {
+  background: var(--ifn-orange);
+  color: var(--ifn-white);
+  transform: scale(1.1);
+}
+
+.ifn-action-icon--primary {
+  background: var(--ifn-orange);
+  color: var(--ifn-white);
+}
+
+.ifn-action-icon--secondary {
+  background: var(--ifn-green);
+  color: var(--ifn-white);
+}
+
+.ifn-action-icon--danger {
+  background: var(--ifn-red);
+  color: var(--ifn-white);
+}
+
+/* Responsive pour les icônes */
+@media (max-width: 768px) {
+  .ifn-icon--xl {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+  
+  .ifn-icon--xxl {
+    width: 48px;
+    height: 48px;
+    font-size: 28px;
+  }
+  
+  .ifn-icon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .ifn-icon-grid-item {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .ifn-icon--lg {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+  }
+  
+  .ifn-icon--xl {
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+  }
+  
+  .ifn-card-icon {
+    padding: 1rem;
+  }
+  
+  .ifn-card-icon .ifn-icon-circle {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Accessibility - Support des lecteurs d'écran */
+.sr-only + .ifn-icon {
+  position: absolute;
+  left: -9999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ifn-icon,
+  .ifn-icon-circle,
+  .ifn-icon-rounded {
+    transition: none;
+  }
+  
+  .ifn-status-icon {
+    animation: none;
+  }
+  
+  .ifn-counter {
+    animation: none;
+  }
+}
+
+/* Mode sombre pour les icônes */
+@media (prefers-color-scheme: dark) {
+  .ifn-icon-circle--light {
+    background: var(--ifn-gray-dark);
+    color: var(--ifn-white);
+    border-color: var(--ifn-gray);
+  }
+  
+  .ifn-card-icon {
+    background: var(--ifn-gray-dark);
+    color: var(--ifn-white);
+  }
+}

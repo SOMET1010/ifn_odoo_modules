@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Settings View -->
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.ifn.merchant</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+                    <div class="app_settings_block" data-string="Merchant Portal" string="Merchant Portal" data-key="ifn_portal_merchant">
+                        <h2>Portail Marchand IFN</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="merchant_portal_enabled" widget="boolean_preference"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="merchant_portal_enabled"/>
+                                    <div class="text-muted">
+                                        Activer le portail pour les marchands IFN
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="merchant_voice_enabled" widget="boolean_preference"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="merchant_voice_enabled"/>
+                                    <div class="text-muted">
+                                        Activer les commandes vocales dans le portail
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="merchant_offline_enabled" widget="boolean_preference"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="merchant_offline_enabled"/>
+                                    <div class="text-muted">
+                                        Activer le mode hors ligne avec synchronisation automatique
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="stock_alert_enabled" widget="boolean_preference"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="stock_alert_enabled"/>
+                                    <div class="text-muted">
+                                        Activer les alertes de stock automatiques
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3>Mobile Money</h3>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="mobile_money_providers"/>
+                                    <field name="mobile_money_providers" placeholder='["Orange Money", "MTN Mobile Money", "Moov Money"]'/>
+                                    <div class="text-muted">
+                                        Liste des fournisseurs Mobile Money disponibles (format JSON)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="mobile_money_timeout"/>
+                                    <field name="mobile_money_timeout"/>
+                                    <div class="text-muted">
+                                        Délai d'attente pour les paiements Mobile Money (secondes)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3>Gestion des Stocks</h3>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="stock_alert_threshold_default"/>
+                                    <field name="stock_alert_threshold_default"/>
+                                    <div class="text-muted">
+                                        Seuil d'alerte de stock par défaut
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2>Notifications</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12">
+                                <div class="alert alert-info">
+                                    <i class="fa fa-info-circle me-2"></i>
+                                    Les notifications seront envoyées aux marchands pour les événements importants (paiements, alertes de stock, livraisons, etc.)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Configuration Actions -->
+        <record id="action_merchant_config" model="ir.actions.act_window">
+            <field name="name">Merchant Portal Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_id" ref="res_config_settings_view_form"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'ifn_portal_merchant', 'bin_size': False}</field>
+        </record>
+
+        <menuitem id="menu_merchant_config"
+                  name="Merchant Portal"
+                  parent="base.menu_config"
+                  sequence="50"
+                  action="action_merchant_config"
+                  groups="base.group_system"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,252 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* ifn_portal_merchant
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-04 23:00+0000\n"
+"PO-Revision-Date: 2024-01-04 23:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: di_CI\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Tableau de Bord"
+msgstr "Boɲi"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Chiffre d'Affaires (Aujourd'hui)"
+msgstr "Wari lab�nnenɛ (hɔrɔya)"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Alertes Stock"
+msgstr "Jɛnsɛn kaɲi"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Actions Rapides"
+msgstr "Igo ka ɔgɔn"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Vendre"
+msgstr "Wari"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Stock"
+msgstr "Jɛnsɛn"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Formation"
+msgstr "Mɛtɛrɛ"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Nouvelle Vente"
+msgstr "Wari furu"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Scanner code-barres / QR code"
+msgstr "Scanner bar kɔdi / QR kɔdi"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Parler"
+msgstr "Ka kan"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Total Panier"
+msgstr "Panier dɔɔnin"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Panier"
+msgstr "Panier"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Votre panier est vide"
+msgstr "Panier ma ka tɛmɛ"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Paiement"
+msgstr "Fasojɛn"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Espèces"
+msgstr "Wari la"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Mobile Money"
+msgstr "Mobile Money"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Encaisser"
+msgstr "Bɔn ka wari"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_stock
+msgid "Gestion des Stocks"
+msgstr "Jɛnsɛn sigiyɔrɔ"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_stock
+msgid "Produit"
+msgstr "Dɔn"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_stock
+msgid "Quantité"
+msgstr "Hadamadenya"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_stock
+msgid "Statut"
+msgstr "Sariya"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_purchase
+msgid "Approvisionnement"
+msgstr "Jɛnsɛn sigi"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_purchase
+msgid "Fournisseur"
+msgstr "Jɛnsɛn sigilan"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_purchase
+msgid "Commande"
+msgstr "Commande"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_payments
+msgid "Encaissements"
+msgstr "Fasojɛn"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_payments
+msgid "Historique"
+msgstr "Nafa laban"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_payments
+msgid "Montant"
+msgstr "Dɔɔnin"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_social
+msgid "Protection Sociale"
+msgstr "Dugu la jabɔ"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_social
+msgid "Payer"
+msgstr "Fasojɛn"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_training
+msgid "Formation"
+msgstr "Mɛtɛrɛ"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_training
+msgid "Modules"
+msgstr "Mɛtɛrɛw"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_training
+msgid "Continuer"
+msgstr "Ka taa"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Profil"
+msgstr "I yɔrɔ"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Nom"
+msgstr "Tɔgɔ"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Téléphone"
+msgstr "Telifɔni"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Email"
+msgstr "Email"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Langue"
+msgstr "Kan"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Français"
+msgstr "Faransikan"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Baoulé"
+msgstr "Bawulakan"
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Dioula"
+msgstr "Julakan"
+
+#. module: ifn_portal_merchant
+#: model:ir.model.fields,field_description:ifn_portal_merchant.field_res_partner__merchant_portal_enabled
+msgid "Portal Access Enabled"
+msgstr "Portal bɛ damadɛ"
+
+#. module: ifn_portal_merchant
+#: model:ir.model.fields,field_description:ifn_portal_merchant.field_res_partner__voice_enabled
+msgid "Voice Commands Enabled"
+msgstr "Kan sigi bɛ damadɛ"
+
+#. module: ifn_portal_merchant
+#: model:ir.model.fields,field_description:ifn_portal_merchant.field_res_partner__stock_alerts_enabled
+msgid "Stock Alerts"
+msgstr "Jɛnsɛn kaɲi"
+
+#. module: ifn_portal_merchant
+#: model:ir.model.fields,field_description:ifn_portal_merchant.field_res_partner__payment_notifications_enabled
+msgid "Payment Notifications"
+msgstr "Fasojɛn kaɲi"
+
+#. module: ifn_portal_merchant
+#: model_terms:ir.ui.view,arch_db:ifn_portal_merchant.res_config_settings_view_form
+msgid "Portail Marchand IFN"
+msgstr "IFN Marchand portal"
+
+#. module: ifn_portal_merchant
+#: model_terms:ir.ui.view,arch_db:ifn_portal_merchant.res_config_settings_view_form
+msgid "Activer le portail pour les marchands IFN"
+msgstr "IFN marchanw portal bɛ damadɛ"
+
+#. module: ifn_portal_merchant
+#: model_terms:ir.ui.view,arch_db:ifn_portal_merchant.res_config_settings_view_form
+msgid "Activer les commandes vocales dans le portail"
+msgstr "Portal ka kan sigi bɛ damadɛ"

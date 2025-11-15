@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Vue Liste des Catégories Produits -->
+        <record id="view_ifn_product_category_ref_tree" model="ir.ui.view">
+            <field name="name">ifn.product.category.ref.tree</field>
+            <field name="model">ifn.product.category.ref</field>
+            <field name="arch" type="xml">
+                <tree string="Catégories Produits IFN">
+                    <field name="display_name"/>
+                    <field name="category_type"/>
+                    <field name="hs_code"/>
+                    <field name="is_commodity"/>
+                    <field name="perishable"/>
+                    <field name="child_count" widget="badge"/>
+                    <field name="product_count" widget="badge"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vue Recherche des Catégories Produits -->
+        <record id="view_ifn_product_category_ref_search" model="ir.ui.view">
+            <field name="name">ifn.product.category.ref.search</field>
+            <field name="model">ifn.product.category.ref</field>
+            <field name="arch" type="xml">
+                <search string="Recherche Catégories">
+                    <field name="name" string="Nom de la catégorie"/>
+                    <field name="code" string="Code"/>
+                    <field name="category_type" string="Type de catégorie"/>
+                    <field name="hs_code" string="Code HS"/>
+
+                    <filter string="Actives" name="active" domain="[('active', '=', True)]"/>
+                    <filter string="Inactives" name="inactive" domain="[('active', '=', False)]"/>
+                    <separator/>
+                    <filter string="Produits agricoles" name="agricultural" domain="[('category_type', '=', 'agricultural')]"/>
+                    <filter string="Élevage" name="livestock" domain="[('category_type', '=', 'livestock')]"/>
+                    <filter string="Produits transformés" name="processed" domain="[('category_type', '=', 'processed')]"/>
+                    <filter string="Pêche/Aquaculture" name="fishery" domain="[('category_type', '=', 'fishery')]"/>
+                    <filter string="Intrants" name="input" domain="[('category_type', '=', 'input')]"/>
+                    <separator/>
+                    <filter string="Matières premières" name="commodities" domain="[('is_commodity', '=', True)]"/>
+                    <filter string="Produits périssables" name="perishable" domain="[('perishable', '=', True)]"/>
+                    <filter string="Produits saisonniers" name="seasonal" domain="[('seasonal', '=', True)]"/>
+                    <filter string="Certification requise" name="certification" domain="[('certification_required', '=', True)]"/>
+                    <separator/>
+                    <filter string="Catégories racines" name="root" domain="[('parent_id', '=', False)]"/>
+                    <filter string="Avec sous-catégories" name="with_children" domain="[('child_count', '>', 0)]"/>
+
+                    <group expand="0" string="Grouper par">
+                        <filter string="Type de catégorie" name="group_type" context="{'group_by': 'category_type'}"/>
+                        <filter string="Catégorie parente" name="group_parent" context="{'group_by': 'parent_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Vue Formulaire des Catégories Produits -->
+        <record id="view_ifn_product_category_ref_form" model="ir.ui.view">
+            <field name="name">ifn.product.category.ref.form</field>
+            <field name="model">ifn.product.category.ref</field>
+            <field name="arch" type="xml">
+                <form string="Catégorie Produit IFN">
+                    <header>
+                        <button name="action_view_children" type="object" string="Voir Sous-catégories"
+                                class="btn-primary" attrs="{'invisible': [('child_count', '=', 0)]}"/>
+                        <button name="action_view_products" type="object" string="Voir Produits"
+                                class="btn-secondary" attrs="{'invisible': [('product_count', '=', 0)]}"/>
+                        <field name="active" widget="boolean_toggle"/>
+                    </header>
+
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_children" type="object" class="oe_stat_button" icon="fa-sitemap"
+                                    attrs="{'invisible': [('child_count', '=', 0)]}">
+                                <field name="child_count" widget="statinfo" string="Sous-catégories"/>
+                            </button>
+                            <button name="action_view_products" type="object" class="oe_stat_button" icon="fa-cube"
+                                    attrs="{'invisible': [('product_count', '=', 0)]}">
+                                <field name="product_count" widget="statinfo" string="Produits"/>
+                            </button>
+                        </div>
+
+                        <group>
+                            <group name="general_info">
+                                <field name="code" placeholder="Ex: CAT001"/>
+                                <field name="name" placeholder="Nom de la catégorie"/>
+                                <field name="parent_id" options="{'no_create': True}"/>
+                                <field name="category_type"/>
+                            </group>
+                            <group name="characteristics">
+                                <field name="is_commodity" widget="boolean_toggle"/>
+                                <field name="perishable" widget="boolean_toggle"/>
+                                <field name="seasonal" widget="boolean_toggle"/>
+                                <field name="certification_required" widget="boolean_toggle"/>
+                            </group>
+                        </group>
+
+                        <group name="codes_info">
+                            <group string="Codes et Normes">
+                                <field name="hs_code" placeholder="Code système harmonisé"/>
+                                <field name="cpc_code" placeholder="Code classification centrale"/>
+                                <field name="local_code" placeholder="Code local/national"/>
+                            </group>
+                            <group string="Catégorie Odoo">
+                                <field name="product_category_id" options="{'no_create': True}"/>
+                            </group>
+                        </group>
+
+                        <group name="pricing_info">
+                            <group string="Prix de Référence">
+                                <field name="min_price" widget="monetary" options="{'currency_field': 'price_currency_id'}"/>
+                                <field name="max_price" widget="monetary" options="{'currency_field': 'price_currency_id'}"/>
+                                <field name="price_currency_id" options="{'no_create': True}"/>
+                            </group>
+                            <group string="Taxes">
+                                <field name="vat_rate"/>
+                                <field name="excise_tax"/>
+                                <field name="import_duty"/>
+                            </group>
+                        </group>
+
+                        <group name="units_info">
+                            <group string="Unités de Mesure">
+                                <field name="uom_id" options="{'no_create': True}"/>
+                                <field name="allowed_uom_ids" widget="many2many_tags">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="category_id"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <group string="Configuration">
+                                <field name="is_final_product" widget="boolean_toggle"/>
+                                <field name="can_be_exported" widget="boolean_toggle"/>
+                            </group>
+                        </group>
+
+                        <group name="storage_info" attrs="{'invisible': [('perishable', '=', False)]}">
+                            <group string="Stockage">
+                                <field name="storage_requirements" nolabel="1" placeholder="Exigences spécifiques de stockage"/>
+                                <field name="shelf_life_days"/>
+                            </group>
+                            <group string="Température">
+                                <field name="storage_temperature_min"/>
+                                <field name="storage_temperature_max"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Description" name="description">
+                                <group>
+                                    <field name="description" nolabel="1" placeholder="Description détaillée de la catégorie de produit"/>
+                                </group>
+                            </page>
+
+                            <page string="Sous-catégories" name="subcategories">
+                                <field name="child_ids">
+                                    <tree editable="bottom">
+                                        <field name="code"/>
+                                        <field name="name"/>
+                                        <field name="category_type"/>
+                                        <field name="is_commodity"/>
+                                        <field name="active"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page string="Produits Liés" name="products">
+                                <field name="product_template_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="default_code"/>
+                                        <field name="list_price"/>
+                                        <field name="qty_available"/>
+                                        <field name="active"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Actions des Catégories Produits -->
+        <record id="action_ifn_product_category_ref" model="ir.actions.act_window">
+            <field name="name">Catégories Produits IFN</field>
+            <field name="res_model">ifn.product.category.ref</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Créer votre première catégorie de produit IFN
+                </p>
+                <p>
+                    Les catégories de produits servent de référentiel pour classer
+                    et organiser tous les produits dans l'écosystème IFN.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

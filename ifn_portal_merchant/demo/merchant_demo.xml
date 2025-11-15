@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Demo Merchant Partner -->
+        <record id="demo_merchant_partner" model="res.partner">
+            <field name="name">Marie Konan</field>
+            <field name="is_company">False</field>
+            <field name="email">marie.konan@ifn.ci</field>
+            <field name="phone">+225 07 89 12 34 56</field>
+            <field name="mobile">+225 07 89 12 34 56</field>
+            <field name="street">Marché de Treichville</field>
+            <field name="city">Abidjan</field>
+            <field name="country_id" ref="base.ci"/>
+            <field name="ifn_role">merchant</field>
+            <field name="x_ifn_qr_ref">IFN789123</field>
+            <field name="merchant_portal_enabled">True</field>
+            <field name="voice_enabled">True</field>
+            <field name="voice_language">fr_FR</field>
+            <field name="stock_alerts_enabled">True</field>
+            <field name="payment_notifications_enabled">True</field>
+            <field name="social_reminders_enabled">True</field>
+            <field name="merchant_preferences">{"theme": "light", "dashboard_layout": "grid"}</field>
+        </record>
+
+        <!-- Demo User -->
+        <record id="demo_merchant_user" model="res.users">
+            <field name="name">Marie Konan</field>
+            <field name="login">marie.konan@ifn.ci</field>
+            <field name="password">demo123</field>
+            <field name="partner_id" ref="demo_merchant_partner"/>
+            <field name="groups_id" eval="[(4, ref('ifn_portal_merchant.ifn_group_merchant'))]"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="company_ids" eval="[(4, ref('base.main_company'))]"/>
+        </record>
+
+        <!-- Demo KPIs -->
+        <record id="demo_kpi_revenue_today" model="ifn.merchant.portal.kpi">
+            <field name="name">marie_konan_revenue_today_20240104</field>
+            <field name="partner_id" ref="demo_merchant_partner"/>
+            <field name="kpi_type">revenue</field>
+            <field name="value_numeric">15000.0</field>
+            <field name="metadata">{"date": "2024-01-04", "currency": "XOF"}</field>
+        </record>
+
+        <record id="demo_kpi_sales_count" model="ifn.merchant.portal.kpi">
+            <field name="name">marie_konan_sales_count_20240104</field>
+            <field name="partner_id" ref="demo_merchant_partner"/>
+            <field name="kpi_type">sales_count</field>
+            <field name="value_numeric">8</field>
+            <field name="metadata">{"date": "2024-01-04"}</field>
+        </record>
+
+        <record id="demo_kpi_voice_usage" model="ifn.merchant.portal.kpi">
+            <field name="name">marie_konan_voice_usage_20240104</field>
+            <field name="partner_id" ref="demo_merchant_partner"/>
+            <field name="kpi_type">voice_usage</field>
+            <field name="value_numeric">15.3</field>
+            <field name="metadata">{"date": "2024-01-04", "total_operations": 100, "voice_operations": 15}</field>
+        </record>
+
+        <!-- Demo Training Progress -->
+        <record id="demo_training_gestion_stock" model="ifn.merchant.training.progress">
+            <field name="partner_id" ref="demo_merchant_partner"/>
+            <field name="training_course_name">Gestion des Stocks</field>
+            <field name="start_date">2024-01-01 10:00:00</field>
+            <field name="completion_date">2024-01-03 15:00:00</field>
+            <field name="status">completed</field>
+            <field name="progress_percentage">100.0</field>
+            <field name="time_spent">135.0</field>
+        </record>
+
+        <record id="demo_training_vente_clientele" model="ifn.merchant.training.progress">
+            <field name="partner_id" ref="demo_merchant_partner"/>
+            <field name="training_course_name">Vente et Clientèle</field>
+            <field name="start_date">2024-01-02 09:00:00</field>
+            <field name="status">in_progress</field>
+            <field name="progress_percentage">45.0</field>
+            <field name="time_spent">60.0</field>
+            <field name="last_access_date">2024-01-04 14:00:00</field>
+        </record>
+
+        <!-- Demo Notifications -->
+        <record id="demo_notification_stock_alert" model="ifn.merchant.notification">
+            <field name="partner_id" ref="demo_merchant_partner"/>
+            <field name="notification_type">stock_alert</field>
+            <field name="title">Alerte de stock bas</field>
+            <field name="message">Votre stock de Tomates est bas. Quantité actuelle: 3kg (Seuil: 10kg)</field>
+            <field name="priority">high</field>
+            <field name="status">sent</field>
+            <field name="sent_date" eval="(DateTime.now() - timedelta(hours=2)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="email_sent">True</field>
+            <field name="push_sent">True</field>
+        </record>
+
+        <record id="demo_notification_payment_received" model="ifn.merchant.notification">
+            <field name="partner_id" ref="demo_merchant_partner"/>
+            <field name="notification_type">payment_received</field>
+            <field name="title">Paiement reçu</field>
+            <field name="message">Paiement Mobile Money reçu: 5,000 F de la part de Client Alpha</field>
+            <field name="priority">medium</field>
+            <field name="status">read</field>
+            <field name="sent_date" eval="(DateTime.now() - timedelta(hours=4)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="read_date" eval="(DateTime.now() - timedelta(hours=3)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="email_sent">True</field>
+            <field name="push_sent">True</field>
+        </record>
+
+        <!-- Demo Offline Queue Items -->
+        <record id="demo_offline_sale_1" model="ifn.merchant.offline.queue">
+            <field name="partner_id" ref="demo_merchant_partner"/>
+            <field name="operation_type">sale</field>
+            <field name="operation_data">{"customer_id": 1234, "lines": [{"product_id": 1, "quantity": 2, "price": 1500.0}], "payment_method": "cash"}</field>
+            <field name="status">pending</field>
+            <field name="idempotency_key">demo_sale_op_123456</field>
+        </record>
+
+        <record id="demo_offline_stock_adjust" model="ifn.merchant.offline.queue">
+            <field name="partner_id" ref="demo_merchant_partner"/>
+            <field name="operation_type">stock_adjust</field>
+            <field name="operation_data">{"product_id": 3, "adjustment": -5, "new_quantity": 15, "reason": "Inventaire rapide"}</field>
+            <field name="status">completed</field>
+            <field name="idempotency_key">demo_stock_adj_789012</field>
+        </record>
+
+    </data>
+</odoo>

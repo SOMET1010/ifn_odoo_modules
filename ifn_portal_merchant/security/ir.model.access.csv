@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_merchant_portal_kpi_user,ifn.merchant.portal.kpi.user,model_ifn_merchant_portal_kpi,ifn_portal_merchant.ifn_group_merchant,1,0,0,0
+access_merchant_portal_kpi_manager,ifn.merchant.portal.kpi.manager,model_ifn_merchant_portal_kpi,ifn_portal_merchant.ifn_group_manager,1,1,1,1
+access_merchant_offline_queue_user,ifn.merchant.offline.queue.user,model_ifn_merchant_offline_queue,ifn_portal_merchant.ifn_group_merchant,1,1,1,0
+access_merchant_offline_queue_manager,ifn.merchant.offline.queue.manager,model_ifn_merchant_offline_queue,ifn_portal_merchant.ifn_group_manager,1,1,1,1
+access_merchant_notification_user,ifn.merchant.notification.user,model_ifn_merchant_notification,ifn_portal_merchant.ifn_group_merchant,1,0,0,0
+access_merchant_notification_manager,ifn.merchant.notification.manager,model_ifn_merchant_notification,ifn_portal_merchant.ifn_group_manager,1,1,1,1
+access_merchant_training_progress_user,ifn.merchant.training.progress.user,model_ifn_merchant_training_progress,ifn_portal_merchant.ifn_group_merchant,1,1,1,0
+access_merchant_training_progress_manager,ifn.merchant.training.progress.manager,model_ifn_merchant_training_progress,ifn_portal_merchant.ifn_group_manager,1,1,1,1
+access_merchant_config_user,ifn.merchant.config.user,model_res_config_settings,ifn_portal_merchant.ifn_group_merchant,1,0,0,0
+access_merchant_config_manager,ifn.merchant.config.manager,model_res_config_settings,ifn_portal_merchant.ifn_group_manager,1,1,1,1

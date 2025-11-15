@@ -1,0 +1,4 @@
+/* CSS minimal pour éviter l'erreur d'assets */
+.o_ifn_merchant_placeholder {
+    display: none;
+}

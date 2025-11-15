@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Vue Liste des Coopératives -->
+        <record id="view_ifn_coop_tree" model="ir.ui.view">
+            <field name="name">ifn.coop.tree</field>
+            <field name="model">ifn.coop</field>
+            <field name="arch" type="xml">
+                <tree string="Coopératives IFN">
+                    <field name="display_name"/>
+                    <field name="market_id"/>
+                    <field name="manager_name"/>
+                    <field name="phone"/>
+                    <field name="capacity_storage"/>
+                    <field name="member_count" widget="badge"/>
+                    <field name="active_member_count" widget="badge"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vue Recherche des Coopératives -->
+        <record id="view_ifn_coop_search" model="ir.ui.view">
+            <field name="name">ifn.coop.search</field>
+            <field name="model">ifn.coop</field>
+            <field name="arch" type="xml">
+                <search string="Recherche Coopératives">
+                    <field name="name" string="Nom de la coopérative"/>
+                    <field name="code" string="Code"/>
+                    <field name="market_id" string="Marché"/>
+                    <field name="manager_name" string="Gestionnaire"/>
+                    <field name="city" string="Ville"/>
+
+                    <filter string="Actives" name="active" domain="[('active', '=', True)]"/>
+                    <filter string="Inactives" name="inactive" domain="[('active', '=', False)]"/>
+                    <separator/>
+                    <filter string="Avec stockage frigorifique" name="cold_storage" domain="[('has_cold_storage', '=', True)]"/>
+                    <filter string="Avec transformation" name="processing" domain="[('has_processing', '=', True)]"/>
+                    <separator/>
+                    <filter string="Plus de 50 membres" name="big_coops" domain="[('member_count', '>=', 50)]"/>
+                    <filter string="Moins de 10 membres" name="small_coops" domain="[('member_count', '&lt;', 10)]"/>
+                    <separator/>
+                    <filter string="Marché Abidjan" name="abidjan_market" domain="[('market_id.code', '=', 'ABJ')]"/>
+                    <filter string="Marché Bouaké" name="bouake_market" domain="[('market_id.code', '=', 'BKE')]"/>
+                    <filter string="Marché Korhogo" name="korhogo_market" domain="[('market_id.code', '=', 'KHO')]"/>
+
+                    <group expand="0" string="Grouper par">
+                        <filter string="Marché" name="group_market" context="{'group_by': 'market_id'}"/>
+                        <filter string="Ville" name="group_city" context="{'group_by': 'city'}"/>
+                        <filter string="Type de services" name="group_services" context="{'group_by': 'has_cold_storage,has_processing'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Vue Formulaire des Coopératives -->
+        <record id="view_ifn_coop_form" model="ir.ui.view">
+            <field name="name">ifn.coop.form</field>
+            <field name="model">ifn.coop</field>
+            <field name="arch" type="xml">
+                <form string="Coopérative IFN">
+                    <header>
+                        <button name="action_view_members" type="object" string="Voir Membres"
+                                class="btn-primary" attrs="{'invisible': [('member_count', '=', 0)]}"/>
+                        <button name="action_add_member" type="object" string="Ajouter Membre"
+                                class="btn-secondary"/>
+                        <field name="active" widget="boolean_toggle"/>
+                    </header>
+
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_members" type="object" class="oe_stat_button" icon="fa-users"
+                                    attrs="{'invisible': [('member_count', '=', 0)]}">
+                                <field name="member_count" widget="statinfo" string="Membres"/>
+                            </button>
+                            <button name="action_view_members" type="object" class="oe_stat_button" icon="fa-check-circle"
+                                    attrs="{'invisible': [('active_member_count', '=', 0)]}">
+                                <field name="active_member_count" widget="statinfo" string="Membres Actifs"/>
+                            </button>
+                            <button class="oe_stat_button" icon="fa-archive">
+                                <field name="capacity_storage" widget="statinfo"
+                                       string="Capacité (t)" help="Capacité de stockage en tonnes"/>
+                            </button>
+                        </div>
+
+                        <group>
+                            <group name="general_info">
+                                <field name="code" placeholder="Ex: CCS"/>
+                                <field name="name" placeholder="Nom de la coopérative"/>
+                                <field name="market_id" options="{'no_create': True}"/>
+                                <field name="legal_form" placeholder="Ex: Coopérative Agricole"/>
+                            </group>
+                            <group name="contact_info">
+                                <field name="manager_partner_id" options="{'no_create': True}"/>
+                                <field name="manager_name"/>
+                                <field name="manager_phone" widget="phone"/>
+                                <field name="manager_email" widget="email"/>
+                            </group>
+                        </group>
+
+                        <group name="address_info">
+                            <group string="Adresse et Contact">
+                                <field name="address" placeholder="Adresse complète"/>
+                                <field name="city" placeholder="Ville"/>
+                                <field name="country_id"/>
+                                <field name="phone" widget="phone"/>
+                                <field name="email" widget="email"/>
+                                <field name="website" widget="url"/>
+                            </group>
+                            <group string="Localisation">
+                                <field name="partner_latitude" widget="float" digits="(10,6)"/>
+                                <field name="partner_longitude" widget="float" digits="(10,6)"/>
+                                <field name="geo_point" widget="geo_edit_map"/>
+                            </group>
+                        </group>
+
+                        <group name="legal_info">
+                            <group string="Informations Légales">
+                                <field name="registration_number" placeholder="Numéro d'enregistrement"/>
+                                <field name="tax_id" placeholder="Identifiant fiscal"/>
+                            </group>
+                            <group string="Informations Bancaires">
+                                <!-- TODO: Ajouter champs bancaires si nécessaire -->
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Capacités et Services" name="capacities">
+                                <group>
+                                    <group string="Capacités">
+                                        <field name="capacity_storage"/>
+                                        <field name="has_cold_storage"/>
+                                        <field name="has_processing"/>
+                                    </group>
+                                    <group string="Services">
+                                        <field name="services_offered" nolabel="1" placeholder="Services proposés par la coopérative"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <page string="Zones Couvertes" name="zones">
+                                <field name="zone_ids" widget="many2many_tags">
+                                    <tree>
+                                        <field name="display_name"/>
+                                        <field name="zone_type"/>
+                                        <field name="collection_days"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page string="Membres" name="members">
+                                <field name="partner_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="x_ifn_role"/>
+                                        <field name="phone"/>
+                                        <field name="email"/>
+                                        <field name="x_ifn_profile_status"/>
+                                        <field name="active"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page string="Description" name="description">
+                                <group>
+                                    <field name="description" nolabel="1" placeholder="Description détaillée de la coopérative"/>
+                                </group>
+                                <group>
+                                    <field name="notes" nolabel="1" placeholder="Notes internes sur la coopérative"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Vue Kanban des Coopératives -->
+        <record id="view_ifn_coop_kanban" model="ir.ui.view">
+            <field name="name">ifn.coop.kanban</field>
+            <field name="model">ifn.coop</field>
+            <field name="arch" type="xml">
+                <kanban string="Coopératives IFN" class="o_kanban_small_column">
+                    <field name="display_name"/>
+                    <field name="market_id"/>
+                    <field name="manager_name"/>
+                    <field name="member_count"/>
+                    <field name="active_member_count"/>
+                    <field name="capacity_storage"/>
+                    <field name="has_cold_storage"/>
+                    <field name="has_processing"/>
+                    <field name="active"/>
+                    <field name="color"/>
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click #{record.active.raw_value === false ? 'o_kanban_disabled' : ''}">
+                                <div class="o_kanban_manage_view_section">
+                                    <div class="o_kanban_manage_toggle_section">
+                                        <i class="fa fa-ellipsis-v" role="img" aria-label="Manage View" title="Manage View"/>
+                                    </div>
+                                </div>
+
+                                <div class="o_kanban_card_content">
+                                    <div class="o_kanban_primary">
+                                        <div class="o_kanban_record_top">
+                                            <div class="o_kanban_record_headings">
+                                                <strong class="o_kanban_record_title">
+                                                    <field name="display_name"/>
+                                                </strong>
+                                                <div class="o_kanban_record_subtitle text-muted">
+                                                    <i class="fa fa-map-marker"/> <field name="market_id"/> |
+                                                    <i class="fa fa-user"/> <field name="manager_name"/>
+                                                </div>
+                                            </div>
+                                            <div class="o_kanban_manage_button_section">
+                                                <span t-if="record.has_cold_storage.raw_value" class="badge badge-info" title="Stockage frigorifique">
+                                                    <i class="fa fa-snowflake-o"/>
+                                                </span>
+                                                <span t-if="record.has_processing.raw_value" class="badge badge-warning" title="Unité de transformation">
+                                                    <i class="fa fa-industry"/>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="o_kanban_manage_button_section oe_kanban_color_picker">
+                                        <div class="o_kanban_manage_button_section">
+                                            <a role="button" name="action_view_members" type="object" class="btn btn-primary btn-sm"
+                                               t-if="record.member_count.raw_value > 0">
+                                                <i class="fa fa-users"/> Voir Membres
+                                            </a>
+                                            <a role="button" name="action_add_member" type="object" class="btn btn-secondary btn-sm">
+                                                <i class="fa fa-plus"/> Ajouter Membre
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <span class="text-muted">Membres:</span>
+                                                    <strong><field name="member_count"/></strong>
+                                                </div>
+                                                <div class="col-4">
+                                                    <span class="text-muted">Actifs:</span>
+                                                    <strong><field name="active_member_count"/></strong>
+                                                </div>
+                                                <div class="col-4">
+                                                    <span class="text-muted">Capacité:</span>
+                                                    <strong><field name="capacity_storage"/>t</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Vue Carte des Coopératives -->
+        <record id="view_ifn_coop_map" model="ir.ui.view">
+            <field name="name">ifn.coop.map</field>
+            <field name="model">ifn.coop</field>
+            <field name="arch" type="xml">
+                <map string="Carte des Coopératives IFN">
+                    <field name="geo_point"/>
+                    <field name="display_name"/>
+                    <field name="address"/>
+                    <field name="manager_name"/>
+                    <field name="member_count"/>
+                    <field name="capacity_storage"/>
+
+                    <templates>
+                        <div t-name="map-popup">
+                            <b><t t-esc="record.display_name.value"/></b><br/>
+                            <i class="fa fa-user"/> <t t-esc="record.manager_name.value or 'Non spécifié'"/><br/>
+                            <i class="fa fa-map-marker"/> <t t-esc="record.address.value or 'Non spécifiée'"/><br/>
+                            <i class="fa fa-users"/> <t t-esc="record.member_count.value"/> membre(s)<br/>
+                            <i class="fa fa-archive"/> <t t-esc="record.capacity_storage.value"/>t capacité
+                        </div>
+                    </templates>
+                </map>
+            </field>
+        </record>
+
+        <!-- Vue Graphique des Coopératives -->
+        <record id="view_ifn_coop_graph" model="ir.ui.view">
+            <field name="name">ifn.coop.graph</field>
+            <field name="model">ifn.coop</field>
+            <field name="arch" type="xml">
+                <graph string="Statistiques des Coopératives">
+                    <field name="market_id"/>
+                    <field name="member_count" type="measure"/>
+                    <field name="active_member_count" type="measure"/>
+                    <field name="capacity_storage" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Actions des Coopératives -->
+        <record id="action_ifn_coop" model="ir.actions.act_window">
+            <field name="name">Coopératives IFN</field>
+            <field name="res_model">ifn.coop</field>
+            <field name="view_mode">tree,kanban,map,form,graph</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Créer votre première coopérative IFN
+                </p>
+                <p>
+                    Les coopératives regroupent les producteurs et permettent une meilleure
+                    organisation de la collecte, transformation et commercialisation
+                    des produits agricoles.
+                </p>
+            </field>
+        </record>
+
+        <record id="action_ifn_coop_view_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_ifn_coop_tree"/>
+            <field name="act_window_id" ref="action_ifn_coop"/>
+        </record>
+
+        <record id="action_ifn_coop_view_kanban" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="view_ifn_coop_kanban"/>
+            <field name="act_window_id" ref="action_ifn_coop"/>
+        </record>
+
+        <record id="action_ifn_coop_view_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="3"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_ifn_coop_form"/>
+            <field name="act_window_id" ref="action_ifn_coop"/>
+        </record>
+
+    </data>
+</odoo>

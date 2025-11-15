@@ -1,0 +1,227 @@
+/* ================================================== */
+/*           IFN PORTAL - CSS CRITIQUE                */
+/* ================================================== */
+/* Styles essentiels pour above-the-fold - 4KB gzippé */
+
+/* Reset minimal et variables essentielles */
+:root {
+  /* Couleurs critiques */
+  --ifn-orange: #F77F00;
+  --ifn-orange-dark: #E67300;
+  --ifn-green: #28a745;
+  --ifn-blue: #17a2b8;
+  --ifn-white: #fff;
+  --ifn-gray: #f8f9fa;
+  --ifn-gray-dark: #6c757d;
+  
+  /* Espacements critiques */
+  --ifn-space-xs: 0.25rem;
+  --ifn-space-sm: 0.5rem;
+  --ifn-space-md: 1rem;
+  --ifn-space-lg: 1.5rem;
+  
+  /* Bordures et ombres */
+  --ifn-radius: 0.5rem;
+  --ifn-shadow-sm: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+  --ifn-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+}
+
+/* Box-sizing universel */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Styles de base optimisés */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: var(--ifn-white);
+}
+
+/* Container principal */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--ifn-space-md);
+}
+
+/* Header critique */
+.ifn-dashboard-header {
+  background: var(--ifn-white);
+  box-shadow: var(--ifn-shadow-sm);
+  padding: var(--ifn-space-md) 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Cards critiques */
+.card {
+  background: var(--ifn-white);
+  border-radius: var(--ifn-radius);
+  box-shadow: var(--ifn-shadow-sm);
+  border: 1px solid #dee2e6;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Boutons critiques */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--ifn-radius);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--ifn-orange);
+  border-color: var(--ifn-orange);
+  color: var(--ifn-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--ifn-orange-dark);
+  border-color: var(--ifn-orange-dark);
+}
+
+/* Widgets métriques critiques */
+.ifn-metric-widget {
+  padding: var(--ifn-space-lg);
+  text-align: center;
+  background: var(--ifn-gray);
+  border-radius: var(--ifn-radius);
+}
+
+.ifn-metric-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ifn-orange);
+  display: block;
+}
+
+.ifn-metric-label {
+  font-size: 0.875rem;
+  color: var(--ifn-gray-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Navigation critique */
+.nav {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin-right: var(--ifn-space-md);
+}
+
+.nav-link {
+  color: var(--ifn-gray-dark);
+  text-decoration: none;
+  padding: var(--ifn-space-sm) var(--ifn-space-md);
+  border-radius: var(--ifn-radius);
+  transition: background-color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: var(--ifn-orange);
+  color: var(--ifn-white);
+}
+
+/* Accessibilité critique */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus states pour accessibilité */
+.btn:focus,
+.nav-link:focus {
+  outline: 2px solid var(--ifn-orange);
+  outline-offset: 2px;
+}
+
+/* Mobile first - responsive critique */
+@media (max-width: 767.98px) {
+  .container {
+    padding: 0 var(--ifn-space-sm);
+  }
+  
+  .ifn-dashboard-header h1 {
+    font-size: 1.25rem;
+  }
+  
+  .ifn-metric-value {
+    font-size: 1.5rem;
+  }
+  
+  .btn {
+    width: 100%;
+    margin-bottom: var(--ifn-space-xs);
+  }
+}
+
+/* Print styles */
+@media print {
+  .ifn-dashboard-header,
+  .btn,
+  .nav {
+    display: none !important;
+  }
+  
+  .card {
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+}
+
+/* Utilitaires critiques */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.d-none { display: none; }
+.d-block { display: block; }
+.d-flex { display: flex; }
+
+.justify-content-center { justify-content: center; }
+.align-items-center { align-items: center; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }

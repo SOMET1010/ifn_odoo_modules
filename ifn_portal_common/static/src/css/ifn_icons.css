@@ -1,0 +1,627 @@
+/* 
+ * Styles complémentaires pour le système d'icônes IFN
+ * Gère l'affichage, l'accessibilité et l'intégration visuelle
+ * avec la charte graphique IFN
+ */
+
+/* ==========================================================================
+   Variables CSS pour les icônes
+   ========================================================================== */
+
+:root {
+    /* Tailles des icônes */
+    --ifn-icon-size-xs: 12px;
+    --ifn-icon-size-sm: 16px;
+    --ifn-icon-size-md: 24px;
+    --ifn-icon-size-lg: 32px;
+    --ifn-icon-size-xl: 48px;
+    --ifn-icon-size-xxl: 64px;
+    
+    /* Couleurs IFN */
+    --ifn-color-primary: #F77F00;
+    --ifn-color-success: #009739;
+    --ifn-color-info: #17a2b8;
+    --ifn-color-warning: #ffc107;
+    --ifn-color-danger: #dc3545;
+    --ifn-color-light: #f8f9fa;
+    --ifn-color-dark: #343a40;
+    
+    /* Couleurs neutres */
+    --ifn-color-white: #ffffff;
+    --ifn-color-black: #000000;
+    --ifn-color-gray-100: #f8f9fa;
+    --ifn-color-gray-200: #e9ecef;
+    --ifn-color-gray-300: #dee2e6;
+    --ifn-color-gray-400: #ced4da;
+    --ifn-color-gray-500: #adb5bd;
+    --ifn-color-gray-600: #6c757d;
+    --ifn-color-gray-700: #495057;
+    --ifn-color-gray-800: #343a40;
+    --ifn-color-gray-900: #212529;
+    
+    /* Animations et transitions */
+    --ifn-transition-fast: 0.15s ease-in-out;
+    --ifn-transition-normal: 0.3s ease-in-out;
+    --ifn-transition-slow: 0.5s ease-in-out;
+    
+    /* Ombres */
+    --ifn-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --ifn-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    --ifn-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+/* ==========================================================================
+   Classes de base pour les icônes
+   ========================================================================== */
+
+.ifn-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    flex-shrink: 0;
+    vertical-align: middle;
+    text-align: center;
+    transition: all var(--ifn-transition-fast);
+}
+
+.ifn-icon-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1em;
+    min-height: 1em;
+}
+
+/* ==========================================================================
+   Tailles des icônes
+   ========================================================================== */
+
+.ifn-icon--xs { width: var(--ifn-icon-size-xs); height: var(--ifn-icon-size-xs); }
+.ifn-icon--sm { width: var(--ifn-icon-size-sm); height: var(--ifn-icon-size-sm); }
+.ifn-icon--md { width: var(--ifn-icon-size-md); height: var(--ifn-icon-size-md); }
+.ifn-icon--lg { width: var(--ifn-icon-size-lg); height: var(--ifn-icon-size-lg); }
+.ifn-icon--xl { width: var(--ifn-icon-size-xl); height: var(--ifn-icon-size-xl); }
+.ifn-icon--xxl { width: var(--ifn-icon-size-xxl); height: var(--ifn-icon-size-xxl); }
+
+/* Classes utilitaires pour conteneurs */
+.ifn-icon--container-xs { width: var(--ifn-icon-size-xs); height: var(--ifn-icon-size-xs); }
+.ifn-icon--container-sm { width: var(--ifn-icon-size-sm); height: var(--ifn-icon-size-sm); }
+.ifn-icon--container-md { width: var(--ifn-icon-size-md); height: var(--ifn-icon-size-md); }
+.ifn-icon--container-lg { width: var(--ifn-icon-size-lg); height: var(--ifn-icon-size-lg); }
+.ifn-icon--container-xl { width: var(--ifn-icon-size-xl); height: var(--ifn-icon-size-xl); }
+.ifn-icon--container-xxl { width: var(--ifn-icon-size-xxl); height: var(--ifn-icon-size-xxl); }
+
+/* ==========================================================================
+   Couleurs des icônes
+   ========================================================================== */
+
+.ifn-icon--primary { color: var(--ifn-color-primary); }
+.ifn-icon--success { color: var(--ifn-color-success); }
+.ifn-icon--info { color: var(--ifn-color-info); }
+.ifn-icon--warning { color: var(--ifn-color-warning); }
+.ifn-icon--danger { color: var(--ifn-color-danger); }
+.ifn-icon--light { color: var(--ifn-color-light); }
+.ifn-icon--dark { color: var(--ifn-color-dark); }
+.ifn-icon--white { color: var(--ifn-color-white); }
+.ifn-icon--black { color: var(--ifn-color-black); }
+.ifn-icon--gray { color: var(--ifn-color-gray-600); }
+.ifn-icon--muted { color: var(--ifn-color-gray-500); }
+
+/* Couleurs avec backgrounds */
+.ifn-icon--primary-bg { 
+    color: var(--ifn-color-white); 
+    background-color: var(--ifn-color-primary); 
+    border-radius: 50%;
+    padding: 0.25em;
+}
+
+.ifn-icon--success-bg { 
+    color: var(--ifn-color-white); 
+    background-color: var(--ifn-color-success); 
+    border-radius: 50%;
+    padding: 0.25em;
+}
+
+.ifn-icon--info-bg { 
+    color: var(--ifn-color-white); 
+    background-color: var(--ifn-color-info); 
+    border-radius: 50%;
+    padding: 0.25em;
+}
+
+/* ==========================================================================
+   États et animations
+   ========================================================================== */
+
+.ifn-icon--loading {
+    opacity: 0.6;
+    animation: ifn-icon-pulse 1.5s ease-in-out infinite;
+}
+
+.ifn-icon--error {
+    opacity: 0.4;
+    filter: grayscale(100%);
+}
+
+.ifn-icon--hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.ifn-icon--hoverable {
+    cursor: pointer;
+    transition: all var(--ifn-transition-fast);
+}
+
+.ifn-icon--hoverable:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.ifn-icon--clickable:active {
+    transform: scale(0.95);
+}
+
+/* Animations */
+@keyframes ifn-icon-pulse {
+    0%, 100% { 
+        opacity: 0.6; 
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1.05);
+    }
+}
+
+@keyframes ifn-icon-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.ifn-icon--spinning {
+    animation: ifn-icon-spin 1s linear infinite;
+}
+
+@keyframes ifn-icon-bounce {
+    0%, 20%, 53%, 80%, 100% { transform: translate3d(0, 0, 0); }
+    40%, 43% { transform: translate3d(0, -8px, 0); }
+    70% { transform: translate3d(0, -4px, 0); }
+    90% { transform: translate3d(0, -2px, 0); }
+}
+
+.ifn-icon--bounce {
+    animation: ifn-icon-bounce 1s ease-in-out;
+}
+
+/* ==========================================================================
+   Utilitaires de layout
+   ========================================================================== */
+
+.ifn-icon-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ifn-icon-inline .ifn-icon {
+    margin: 0;
+}
+
+.ifn-icon-stack {
+    position: relative;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+}
+
+.ifn-icon-stack .ifn-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.ifn-icon-stack .ifn-icon--back {
+    z-index: 1;
+}
+
+.ifn-icon-stack .ifn-icon--front {
+    z-index: 2;
+}
+
+/* ==========================================================================
+   Intégration avec la navigation
+   ========================================================================== */
+
+.ifn-nav-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--ifn-icon-size-md);
+    height: var(--ifn-icon-size-md);
+    margin-right: 0.5rem;
+}
+
+.navbar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    transition: all var(--ifn-transition-fast);
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: var(--ifn-color-gray-100);
+    border-radius: 0.375rem;
+}
+
+.navbar-nav .nav-link:hover .ifn-icon {
+    color: var(--ifn-color-primary);
+    transform: scale(1.1);
+}
+
+/* ==========================================================================
+   Intégration avec les boutons
+   ========================================================================== */
+
+.btn .ifn-icon {
+    margin-right: 0.5rem;
+    margin-left: -0.25rem;
+}
+
+.btn:not(.btn-icon-only) .ifn-icon:first-child {
+    margin-right: 0.5rem;
+}
+
+.btn:not(.btn-icon-only) .ifn-icon:last-child {
+    margin-left: 0.5rem;
+    margin-right: -0.25rem;
+}
+
+/* Boutons icon-only */
+.btn-icon-only {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon-only .ifn-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin: 0;
+}
+
+/* ==========================================================================
+   Cartes et composants
+   ========================================================================== */
+
+.card .ifn-icon {
+    color: var(--ifn-color-primary);
+}
+
+.card-stats {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.card-stats .ifn-icon-container {
+    margin-bottom: 1rem;
+}
+
+.card-stats .ifn-icon {
+    width: var(--ifn-icon-size-xl);
+    height: var(--ifn-icon-size-xl);
+}
+
+/* ==========================================================================
+   États et feedback
+   ========================================================================== */
+
+.ifn-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+}
+
+.ifn-status--success {
+    background-color: rgba(0, 151, 57, 0.1);
+    color: var(--ifn-color-success);
+    border: 1px solid rgba(0, 151, 57, 0.2);
+}
+
+.ifn-status--error {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--ifn-color-danger);
+    border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.ifn-status--warning {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: var(--ifn-color-warning);
+    border: 1px solid rgba(255, 193, 7, 0.2);
+}
+
+.ifn-status--info {
+    background-color: rgba(23, 162, 184, 0.1);
+    color: var(--ifn-color-info);
+    border: 1px solid rgba(23, 162, 184, 0.2);
+}
+
+/* ==========================================================================
+   Badges et indicateurs
+   ========================================================================== */
+
+.ifn-badge {
+    position: relative;
+    display: inline-block;
+}
+
+.ifn-badge-notification {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding: 0 0.25rem;
+    background-color: var(--ifn-color-danger);
+    color: var(--ifn-color-white);
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    text-align: center;
+}
+
+/* ==========================================================================
+   Grilles et layouts
+   ========================================================================== */
+
+.ifn-icons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.ifn-icons-grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--ifn-color-white);
+    border: 1px solid var(--ifn-color-gray-200);
+    border-radius: 0.5rem;
+    transition: all var(--ifn-transition-fast);
+}
+
+.ifn-icons-grid-item:hover {
+    box-shadow: var(--ifn-shadow);
+    transform: translateY(-2px);
+}
+
+.ifn-icons-grid-item .ifn-icon {
+    width: var(--ifn-icon-size-lg);
+    height: var(--ifn-icon-size-lg);
+    margin-bottom: 0.5rem;
+}
+
+.ifn-icons-grid-item-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ifn-color-gray-700);
+    text-align: center;
+}
+
+/* ==========================================================================
+   Responsive design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .ifn-nav-icon {
+        width: var(--ifn-icon-size-sm);
+        height: var(--ifn-icon-size-sm);
+        margin-right: 0.25rem;
+    }
+    
+    .ifn-icon--lg { 
+        width: var(--ifn-icon-size-md); 
+        height: var(--ifn-icon-size-md); 
+    }
+    
+    .ifn-icon--xl { 
+        width: var(--ifn-icon-size-lg); 
+        height: var(--ifn-icon-size-lg); 
+    }
+    
+    .ifn-icons-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 0.75rem;
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ifn-icon--xl { 
+        width: var(--ifn-icon-size-md); 
+        height: var(--ifn-icon-size-md); 
+    }
+    
+    .ifn-icon--xxl { 
+        width: var(--ifn-icon-size-lg); 
+        height: var(--ifn-icon-size-lg); 
+    }
+    
+    .ifn-icons-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
+}
+
+/* ==========================================================================
+   Mode sombre
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    .ifn-icon--light {
+        color: var(--ifn-color-gray-400);
+    }
+    
+    .ifn-icons-grid-item {
+        background-color: var(--ifn-color-gray-800);
+        border-color: var(--ifn-color-gray-700);
+    }
+    
+    .ifn-icons-grid-item-name {
+        color: var(--ifn-color-gray-300);
+    }
+}
+
+/* ==========================================================================
+   Réduction des animations
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .ifn-icon,
+    .ifn-icon-container,
+    .ifn-icon--loading,
+    .ifn-icon--hoverable,
+    .ifn-icon--clickable,
+    .navbar-nav .nav-link {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .ifn-icon--hoverable:hover {
+        transform: none !important;
+    }
+    
+    .ifn-icon--clickable:active {
+        transform: none !important;
+    }
+}
+
+/* ==========================================================================
+   Contraste élevé
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+    .ifn-icon {
+        filter: contrast(2);
+    }
+    
+    .ifn-icon--primary,
+    .ifn-icon--success,
+    .ifn-icon--info,
+    .ifn-icon--warning,
+    .ifn-icon--danger {
+        filter: contrast(2) brightness(1.2);
+    }
+    
+    .ifn-icons-grid-item {
+        border-width: 2px;
+    }
+}
+
+/* ==========================================================================
+   États spéciaux (offline, loading, etc.)
+   ========================================================================== */
+
+.ifn-offline .ifn-icon {
+    opacity: 0.6;
+    filter: grayscale(50%);
+}
+
+.ifn-offline-mode .ifn-icon-container:not(.ifn-fallback-active) {
+    display: none;
+}
+
+.ifn-fallback-active .ifn-icon:not(.ifn-icon-fallback) {
+    display: none;
+}
+
+/* ==========================================================================
+   Impression
+   ========================================================================== */
+
+@media print {
+    .ifn-icon {
+        color: var(--ifn-color-black) !important;
+    }
+    
+    .ifn-icon--primary {
+        color: #000000 !important;
+    }
+    
+    .ifn-icon--success {
+        color: #000000 !important;
+    }
+    
+    .ifn-icon-bg {
+        background-color: transparent !important;
+        color: #000000 !important;
+    }
+}
+
+/* ==========================================================================
+   Utilitaires de debugging
+   ========================================================================== */
+
+.ifn-icon-debug {
+    border: 1px dashed red !important;
+    background-color: rgba(255, 0, 0, 0.1) !important;
+}
+
+.ifn-icon-debug::before {
+    content: "DEBUG: " attr(data-icon);
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 10px;
+    color: red;
+    background: white;
+    padding: 2px 4px;
+    border: 1px solid red;
+}
+
+/* ==========================================================================
+   Reset et normalisation
+   ========================================================================== */
+
+.ifn-icon,
+.ifn-icon-container {
+    box-sizing: border-box;
+}
+
+.ifn-icon svg,
+.ifn-icon-container svg {
+    box-sizing: border-box;
+}
+
+/* Force l'héritage des couleurs */
+.ifn-icon,
+.ifn-icon * {
+    color: inherit;
+    fill: currentColor;
+}
+
+/* Suppression des styles par défaut des navigateurs */
+.ifn-icon-container button,
+.ifn-icon-container input,
+.ifn-icon-container select,
+.ifn-icon-container textarea {
+    font: inherit;
+    color: inherit;
+}

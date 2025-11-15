@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Template de succès d'inscription IFN -->
+        <template id="ifn_signup_success_simple" name="IFN Inscription Réussie">
+            <t t-call="website.layout">
+                <div id="wrap" class="oe_structure">
+                    <!-- Header Section -->
+                    <section style="background: linear-gradient(135deg, #009739 0%, #F77F00 100%); color: white; padding: 80px 0;">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-8 text-center">
+                                    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 50px 40px; border: 1px solid rgba(255,255,255,0.2);">
+                                        <i class="fa fa-check-circle fa-5x mb-4" style="color: #ffffff; text-shadow: 0 0 20px rgba(255,255,255,0.5);"></i>
+                                        <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 20px;">
+                                            Inscription réussie !
+                                        </h1>
+                                        <p style="font-size: 1.2rem; opacity: 0.95; margin-bottom: 30px;">
+                                            Bienvenue sur IFN. Votre compte a été créé avec succès.
+                                        </p>
+                                        <div style="background: rgba(255,255,255,0.2); border-radius: 15px; padding: 25px; margin-bottom: 30px;">
+                                            <h4 style="margin-bottom: 15px;">Vos informations de connexion :</h4>
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <strong>Email :</strong><br/>
+                                                    <span t-esc="email"/>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <strong>Identifiant IFN :</strong><br/>
+                                                    <span style="font-size: 1.2rem; font-weight: bold;" t-esc="ifn_uid"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <strong>Type de compte :</strong><br/>
+                                                    <span t-esc="member_type"/>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <strong>Statut :</strong><br/>
+                                                    <span style="color: #FFD700;">En attente de validation</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-wrap gap-3 justify-content-center">
+                                            <a href="/web/login" class="btn btn-light btn-lg" style="padding: 15px 35px; font-weight: 600; border-radius: 50px;">
+                                                <i class="fa fa-sign-in me-2"></i>
+                                                Se connecter
+                                            </a>
+                                            <a href="/" class="btn btn-outline-light btn-lg" style="padding: 15px 35px; font-weight: 600; border-radius: 50px;">
+                                                <i class="fa fa-home me-2"></i>
+                                                Accueil
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Instructions Section -->
+                    <section style="padding: 60px 0; background: #f8f9fa;">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-10">
+                                    <div class="card border-0 shadow-lg" style="border-radius: 20px;">
+                                        <div class="card-body p-5">
+                                            <h3 style="font-size: 1.8rem; font-weight: 700; color: #212121; margin-bottom: 25px; text-align: center;">
+                                                Prochaines étapes
+                                            </h3>
+
+                                            <div class="row g-4">
+                                                <div class="col-md-4 text-center">
+                                                    <div style="background: #FFF4E6; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                                                        <i class="fa fa-envelope" style="font-size: 2rem; color: #F77F00;"></i>
+                                                    </div>
+                                                    <h5 style="font-weight: 700; color: #F77F00; margin-bottom: 15px;">1. Vérifiez votre email</h5>
+                                                    <p style="color: #6c757d; line-height: 1.6;">
+                                                        Cliquez sur le lien de confirmation que nous avons envoyé à votre adresse email
+                                                    </p>
+                                                </div>
+
+                                                <div class="col-md-4 text-center">
+                                                    <div style="background: #E8F5E8; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                                                        <i class="fa fa-phone" style="font-size: 2rem; color: #009739;"></i>
+                                                    </div>
+                                                    <h5 style="font-weight: 700; color: #009739; margin-bottom: 15px;">2. Vérifiez votre téléphone</h5>
+                                                    <p style="color: #6c757d; line-height: 1.6;">
+                                                        Un SMS de confirmation sera envoyé pour valider votre numéro
+                                                    </p>
+                                                </div>
+
+                                                <div class="col-md-4 text-center">
+                                                    <div style="background: #FFF4E6; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                                                        <i class="fa fa-rocket" style="font-size: 2rem; color: #F77F00;"></i>
+                                                    </div>
+                                                    <h5 style="font-weight: 700; color: #F77F00; margin-bottom: 15px;">3. Commencez !</h5>
+                                                    <p style="color: #6c757d; line-height: 1.6;">
+                                                        Connectez-vous et commencez à utiliser les fonctionnalités IFN
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="text-center mt-5">
+                                                <div style="background: #e8f5e8; border-left: 4px solid #009739; padding: 20px; border-radius: 8px; text-align: left;">
+                                                    <h5 style="color: #009739; margin-bottom: 10px;">
+                                                        <i class="fa fa-info-circle me-2"></i>
+                                                        Note importante
+                                                    </h5>
+                                                    <p style="margin: 0; color: #6c757d;">
+                                                        Le processus de validation peut prendre jusqu'à 24h. Vous recevrez une notification
+                                                        par email dès que votre compte sera activé.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </t>
+        </template>
+
+        <!-- Template d'erreur d'inscription IFN -->
+        <template id="ifn_signup_error_simple" name="IFN Erreur d'Inscription">
+            <t t-call="website.layout">
+                <div id="wrap" class="oe_structure">
+                    <!-- Header Section -->
+                    <section style="background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%); color: white; padding: 80px 0;">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-8 text-center">
+                                    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 50px 40px; border: 1px solid rgba(255,255,255,0.2);">
+                                        <i class="fa fa-exclamation-triangle fa-5x mb-4" style="color: #ffffff; text-shadow: 0 0 20px rgba(255,255,255,0.5);"></i>
+                                        <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 20px;">
+                                            Erreur d'inscription
+                                        </h1>
+                                        <p style="font-size: 1.2rem; opacity: 0.95; margin-bottom: 30px;">
+                                            Une erreur s'est produite lors de la création de votre compte.
+                                        </p>
+                                        <div class="d-flex flex-wrap gap-3 justify-content-center">
+                                            <a href="/ifn/signup" class="btn btn-light btn-lg" style="padding: 15px 35px; font-weight: 600; border-radius: 50px;">
+                                                <i class="fa fa-redo me-2"></i>
+                                                Réessayer
+                                            </a>
+                                            <a href="/" class="btn btn-outline-light btn-lg" style="padding: 15px 35px; font-weight: 600; border-radius: 50px;">
+                                                <i class="fa fa-home me-2"></i>
+                                                Accueil
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Help Section -->
+                    <section style="padding: 60px 0; background: #f8f9fa;">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-8">
+                                    <div class="card border-0 shadow-lg" style="border-radius: 20px;">
+                                        <div class="card-body p-5">
+                                            <h3 style="font-size: 1.8rem; font-weight: 700; color: #212121; margin-bottom: 25px; text-align: center;">
+                                                Solutions possibles
+                                            </h3>
+
+                                            <div class="row g-4 mb-4">
+                                                <div class="col-md-6">
+                                                    <div class="d-flex">
+                                                        <div style="background: #FFF4E6; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">
+                                                            <i class="fa fa-envelope" style="font-size: 1.2rem; color: #F77F00;"></i>
+                                                        </div>
+                                                        <div>
+                                                            <h5 style="font-weight: 700; color: #212121; margin-bottom: 10px;">Email déjà utilisé</h5>
+                                                            <p style="color: #6c757d; margin: 0;">
+                                                                Essayez de vous connecter ou utilisez "mot de passe oublié"
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="d-flex">
+                                                        <div style="background: #E8F5E8; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">
+                                                            <i class="fa fa-lock" style="font-size: 1.2rem; color: #009739;"></i>
+                                                        </div>
+                                                        <div>
+                                                            <h5 style="font-weight: 700; color: #212121; margin-bottom: 10px;">Mot de passe faible</h5>
+                                                            <p style="color: #6c757d; margin: 0;">
+                                                                Utilisez 8+ caractères avec majuscules, chiffres et symboles
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="d-flex">
+                                                        <div style="background: #FFF4E6; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">
+                                                            <i class="fa fa-phone" style="font-size: 1.2rem; color: #F77F00;"></i>
+                                                        </div>
+                                                        <div>
+                                                            <h5 style="font-weight: 700; color: #212121; margin-bottom: 10px;">Format téléphone incorrect</h5>
+                                                            <p style="color: #6c757d; margin: 0;">
+                                                                Utilisez le format : +225 XX XX XX XX XX
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="d-flex">
+                                                        <div style="background: #e8f5e8; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">
+                                                            <i class="fa fa-wifi" style="font-size: 1.2rem; color: #dc3545;"></i>
+                                                        </div>
+                                                        <div>
+                                                            <h5 style="font-weight: 700; color: #212121; margin-bottom: 10px;">Problème technique</h5>
+                                                            <p style="color: #6c757d; margin: 0;">
+                                                                Vérifiez votre connexion et réessayez
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="text-center mt-4">
+                                                <h5 style="color: #F77F00; margin-bottom: 15px;">
+                                                    <i class="fa fa-headset me-2"></i>
+                                                    Besoin d'aide ?
+                                                </h5>
+                                                <p style="color: #6c757d; margin-bottom: 25px;">
+                                                    Notre équipe de support est disponible pour vous aider
+                                                </p>
+                                                <div class="d-flex flex-wrap gap-3 justify-content-center">
+                                                    <a href="tel:+225XXXXXXXXXX" class="btn btn-outline-primary">
+                                                        <i class="fa fa-phone me-2"></i>
+                                                        +225 XX XX XX XX XX
+                                                    </a>
+                                                    <a href="mailto:contact@ifn.ci" class="btn btn-outline-success">
+                                                        <i class="fa fa-envelope me-2"></i>
+                                                        contact@ifn.ci
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

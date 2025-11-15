@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Produits typiques pour les producteurs agricoles -->
+        <record id="product_manioc" model="product.template">
+            <field name="name">Manioc</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+            <field name="default_code">MAN001</field>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">True</field>
+            <field name="description">Manioc frais de qualité</field>
+        </record>
+
+        <record id="product_tomates" model="product.template">
+            <field name="name">Tomates fraîches</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+            <field name="default_code">TOM001</field>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">True</field>
+            <field name="description">Tomates fraîches locales</field>
+        </record>
+
+        <record id="product_igname" model="product.template">
+            <field name="name">Igname</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+            <field name="default_code">IGN001</field>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">True</field>
+            <field name="description">Igname de première qualité</field>
+        </record>
+
+        <record id="product_piment" model="product.template">
+            <field name="name">Piment</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+            <field name="default_code">PIP001</field>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">True</field>
+            <field name="description">Piment frais</field>
+        </record>
+
+        <record id="product_banane_plantain" model="product.template">
+            <field name="name">Banane plantain</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+            <field name="default_code">BAP001</field>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">True</field>
+            <field name="description">Banane plantain mûre</field>
+        </record>
+
+    </data>
+</odoo>

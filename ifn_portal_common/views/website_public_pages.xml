@@ -1,0 +1,2205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Page Solutions -->
+        <template id="solutions_page" name="IFN Solutions">
+            <t t-call="website.layout">
+                <div id="wrap" class="oe_structure oe_empty">
+                    <!-- Hero Section Solutions -->
+                    <section class="ifn-hero ifn-hero-solutions">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-7">
+                                    <h1 class="ifn-hero-title">
+                                        Solutions IFN
+                                    </h1>
+                                    <p class="ifn-hero-subtitle">
+                                        Des solutions adaptées pour chaque acteur de l'écosystème informel ivoirien
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Solutions Detail -->
+                    <section class="ifn-solutions-detail py-5">
+                        <div class="container">
+                            <!-- Marchands -->
+                            <div class="row mb-5">
+                                <div class="col-lg-4 mb-4">
+                                    <div class="ifn-solution-card">
+                                        <div class="ifn-solution-icon">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </div>
+                                        <h3>Espace Marchands</h3>
+                                        <p>
+                                            Gérez votre boutique, vos ventes, vos stocks et vos clients
+                                            depuis une plateforme mobile intuitive.
+                                        </p>
+                                        <ul class="ifn-solution-features">
+                                            <li>Gestion des stocks en temps réel</li>
+                                            <li>Suivi des ventes et chiffre d'affaires</li>
+                                            <li>Fidélisation client</li>
+                                            <li>Livraison à domicile</li>
+                                            <li>Accès au microcrédit</li>
+                                        </ul>
+                                        <div class="ifn-solution-actions">
+                                            <a href="/ifn/signup?member_type=merchant" class="btn btn-ifn">
+                                                S'inscrire comme Marchand
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Producteurs -->
+                                <div class="col-lg-4 mb-4">
+                                    <div class="ifn-solution-card ifn-solution-producer">
+                                        <div class="ifn-solution-icon">
+                                            <i class="fa fa-seedling"></i>
+                                        </div>
+                                        <h3>Espace Producteurs</h3>
+                                        <p>
+                                            Optimisez votre production, accédez aux marchés et suivez
+                                            vos cultures grâce aux outils numériques.
+                                        </p>
+                                        <ul class="ifn-solution-features">
+                                            <li>Suivi des cultures et récoltes</li>
+                                            <li>Accès direct aux marchés</li>
+                                            <li>Prévisions météo</li>
+                                            <li>Gestion des intrants</li>
+                                            <li>Vente groupée</li>
+                                        </ul>
+                                        <div class="ifn-solution-actions">
+                                            <a href="/ifn/signup?member_type=producer" class="btn btn-ifn">
+                                                S'inscrire comme Producteur
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Coopératives -->
+                                <div class="col-lg-4 mb-4">
+                                    <div class="ifn-solution-card ifn-solution-coop">
+                                        <div class="ifn-solution-icon">
+                                            <i class="fa fa-users"></i>
+                                        </div>
+                                        <h3>Espace Coopératives</h3>
+                                        <p>
+                                            Gérez vos membres, vos projets et votre impact collectif
+                                            avec des outils collaboratifs puissants.
+                                        </p>
+                                        <ul class="ifn-solution-features">
+                                            <li>Gestion des membres</li>
+                                            <li>Projets collaboratifs</li>
+                                            <li>Partage d'équipements</li>
+                                            <li>Formation collective</li>
+                                            <li>Financement de projets</li>
+                                        </ul>
+                                        <div class="ifn-solution-actions">
+                                            <a href="/ifn/signup?member_type=coop_manager" class="btn btn-ifn">
+                                                S'inscrire comme Coopérative
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Features Comparison -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="ifn-features-comparison">
+                                        <h2 class="text-center mb-5">Comparaison des Fonctionnalités</h2>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead class="ifn-table-header">
+                                                    <tr>
+                                                        <th>Fonctionnalités</th>
+                                                        <th>Marchands</th>
+                                                        <th>Producteurs</th>
+                                                        <th>Coopératives</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Gestion des stocks</td>
+                                                        <td><i class="fa fa-check text-success"></i></td>
+                                                        <td><i class="fa fa-check text-success"></i></td>
+                                                        <td><i class="fa fa-check text-success"></i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Suivi des ventes</td>
+                                                        <td><i class="fa fa-check text-success"></i></td>
+                                                        <td><i class="fa fa-times text-danger"></i></td>
+                                                        <td><i class="fa fa-check text-success"></i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Accès aux marchés</td>
+                                                        <td><i class="fa fa-check text-success"></i></td>
+                                                        <td><i class="fa fa-check text-success"></i></td>
+                                                        <td><i class="fa fa-check text-success"></i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Formation en ligne</td>
+                                                        <td><i class="fa fa-check text-success"></i></td>
+                                                        <td><i class="fa fa-check text-success"></i></td>
+                                                        <td><i class="fa fa-check text-success"></i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Protection sociale</td>
+                                                        <td><i class="fa fa-check text-success"></i></td>
+                                                        <td><i class="fa fa-check text-success"></i></td>
+                                                        <td><i class="fa fa-check text-success"></i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CTA Section -->
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <div class="ifn-cta-section">
+                                        <h2 class="ifn-cta-title">Prêt à commencer ?</h2>
+                                        <p class="ifn-cta-subtitle">
+                                            Choisissez la solution qui correspond à votre activité
+                                        </p>
+                                        <div class="ifn-cta-buttons">
+                                            <a href="/ifn/signup" class="btn btn-lg btn-ifn">
+                                                <i class="fa fa-user-plus me-2"></i>
+                                                Commencer Gratuitement
+                                            </a>
+                                            <a href="/contact" class="btn btn-lg btn-outline-ifn">
+                                                <i class="fa fa-phone me-2"></i>
+                                                Nous Contacter
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </t>
+        </template>
+
+        <!-- Page À Propos -->
+        <template id="about_page" name="IFN À Propos">
+            <t t-call="website.layout">
+                <div id="wrap" class="oe_structure oe_empty">
+                    <!-- Hero Section À Propos -->
+                    <section class="ifn-hero ifn-hero-about">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-8">
+                                    <h1 class="ifn-hero-title">
+                                        À Propos de IFN
+                                    </h1>
+                                    <p class="ifn-hero-subtitle">
+                                        Inclusivité Financière Numérique pour la transformation
+                                        du secteur informel ivoirien
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Mission et Vision -->
+                    <section class="ifn-mission-vision py-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="ifn-mission-card">
+                                        <h3><i class="fa fa-bullseye me-3"></i>Notre Mission</h3>
+                                        <p>
+                                            Transformer le secteur informel, notamment le commerce vivrier,
+                                            en un secteur formalisé, digitalisé et protégé socialement
+                                            grâce à une plateforme numérique intégrée.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="ifn-vision-card">
+                                        <h3><i class="fa fa-eye me-3"></i>Notre Vision</h3>
+                                        <p>
+                                            Devenir la plateforme de référence pour l'inclusion
+                                            financière en Afrique de l'Ouest, en offrant des solutions
+                                            adaptées aux réalités locales.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Nos Valeurs -->
+                    <section class="ifn-values py-5">
+                        <div class="container">
+                            <h2 class="text-center mb-5">Nos Valeurs</h2>
+                            <div class="row">
+                                <div class="col-md-3 mb-4">
+                                    <div class="ifn-value-card">
+                                        <div class="ifn-value-icon">
+                                            <i class="fa fa-heart"></i>
+                                        </div>
+                                        <h4>Inclusion</h4>
+                                        <p>Donner accès à tous aux services financiers numériques</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-4">
+                                    <div class="ifn-value-card">
+                                        <div class="ifn-value-icon">
+                                            <i class="fa fa-shield-alt"></i>
+                                        </div>
+                                        <h4>Confiance</h4>
+                                        <p>Bâtir un écosystème basé sur la transparence</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-4">
+                                    <div class="ifn-value-card">
+                                        <div class="ifn-value-icon">
+                                            <i class="fa fa-lightbulb"></i>
+                                        </div>
+                                        <h4>Innovation</h4>
+                                        <p>Utiliser la technologie pour simplifier la vie quotidienne</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-4">
+                                    <div class="ifn-value-card">
+                                        <div class="ifn-value-icon">
+                                            <i class="fa fa-handshake"></i>
+                                        </div>
+                                        <h4>Partenariat</h4>
+                                        <strong>Collaborer pour un impact collectif durable</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Notre Équipe -->
+                    <section class="ifn-team py-5">
+                        <div class="container">
+                            <h2 class="text-center mb-5">Notre Équipe</h2>
+                            <div class="row">
+                                <div class="col-md-4 mb-4">
+                                    <div class="ifn-team-member">
+                                        <div class="ifn-team-avatar">
+                                            <img src="/ifn_portal_common/static/src/img/team-placeholder.jpg"
+                                                 alt="Membre équipe" class="img-fluid rounded-circle"/>
+                                        </div>
+                                        <h5>Koffi Yao</h5>
+                                        <p class="text-muted">Directeur Général</p>
+                                        <div class="ifn-team-social">
+                                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                                            <a href="#"><i class="fa fa-twitter"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="ifn-team-member">
+                                        <div class="ifn-team-avatar">
+                                            <img src="/ifn_portal_common/static/src/img/team-placeholder.jpg"
+                                                 alt="Membre équipe" class="img-fluid rounded-circle"/>
+                                        </div>
+                                        <h5>Awa Koné</h5>
+                                        <p class="text-muted">Directrice Opérationnelle</p>
+                                        <div class="ifn-team-social">
+                                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                                            <a href="#"><i class="fa fa-twitter"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="ifn-team-member">
+                                        <div class="ifn-team-avatar">
+                                            <img src="/ifn_portal_common/src/img/team-placeholder.jpg"
+                                                 alt="Membre équipe" class="img-fluid rounded-circle"/>
+                                        </div>
+                                        <h5>Mamadou Touré</h5>
+                                        <p class="text-muted">Directeur Technique</p>
+                                        <div class="ifn-team-social">
+                                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                                            <a href="#"><i class="fa fa-github"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </t>
+        </template>
+
+        <!-- Page Contact -->
+        <template id="contact_page" name="IFN Contact">
+            <t t-call="website.layout">
+                <div id="wrap" class="oe_structure oe_empty">
+                    <!-- Hero Section Contact -->
+                    <section class="ifn-hero ifn-hero-contact">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6">
+                                    <h1 class="ifn-hero-title">
+                                        Contactez-nous
+                                    </h1>
+                                    <p class="ifn-hero-subtitle">
+                                        Nous sommes là pour vous répondre à toutes vos questions
+                                        sur les solutions IFN.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Contact Form -->
+                    <section class="ifn-contact-form py-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-8 mx-auto">
+                                    <div class="ifn-contact-card">
+                                        <h3 class="text-center mb-4">Envoyez-nous un message</h3>
+                                        <form class="ifn-contact-form-inner" method="post" action="/contact/submit">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="contact_name" class="form-label">Nom complet *</label>
+                                                    <input type="text" class="form-control" id="contact_name"
+                                                           placeholder="Votre nom" required="required"/>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="contact_email" class="form-label">Email *</label>
+                                                    <input type="email" class="form-control" id="contact_email"
+                                                           placeholder="votre.email@exemple.com" required="required"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="contact_phone" class="form-label">Téléphone</label>
+                                                    <input type="tel" class="form-control" id="contact_phone"
+                                                           placeholder="+225 XX XX XX XX XX"/>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="contact_subject" class="form-label">Sujet *</label>
+                                                    <select class="form-control" id="contact_subject" required="required">
+                                                        <option value="">Choisissez un sujet</option>
+                                                        <option value="general">Question générale</option>
+                                                        <option value="marchand">Solution Marchands</option>
+                                                        <option value="producteur">Solution Producteurs</option>
+                                                        <option value="cooperative">Solution Coopératives</option>
+                                                        <option value="support">Support technique</option>
+                                                        <option value="partnership">Partenariat</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 mb-3">
+                                                    <label for="contact_message" class="form-label">Message *</label>
+                                                    <textarea class="form-control" id="contact_message" rows="5"
+                                                              placeholder="Décrivez votre demande..." required="required"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 text-center">
+                                                    <button type="submit" class="btn btn-ifn btn-lg">
+                                                        <i class="fa fa-paper-plane me-2"></i>
+                                                        Envoyer le message
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Contact Info -->
+                    <section class="ifn-contact-info py-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 mb-4">
+                                    <div class="ifn-info-card">
+                                        <div class="ifn-info-icon">
+                                            <i class="fa fa-map-marker-alt"></i>
+                                        </div>
+                                        <h4>Adresse</h4>
+                                        <p>
+                                            Abidjan, Côte d'Ivoire<br/>
+                                            Plateforme IFN
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="ifn-info-card">
+                                        <div class="ifn-info-icon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <h4>Téléphone</h4>
+                                        <p>
+                                            +225 XX XX XX XX XX<br/>
+                                            Disponible 7j/7
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="ifn-info-card">
+                                        <div class="ifn-info-icon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div>
+                                        <h4>Email</h4>
+                                        <p>
+                                            contact@ifn.ci<br/>
+                                            support@ifn.ci
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Social Links -->
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <div class="ifn-social-section">
+                                        <h4>Suivez-nous</h4>
+                                        <div class="ifn-social-links">
+                                            <a href="#" class="ifn-social-link">
+                                                <i class="fa fa-facebook fa-2x"></i>
+                                            </a>
+                                            <a href="#" class="ifn-social-link">
+                                                <i class="fa fa-twitter fa-2x"></i>
+                                            </a>
+                                            <a href="#" class="ifn-social-link">
+                                                <i class="fa fa-linkedin fa-2x"></i>
+                                            </a>
+                                            <a href="#" class="ifn-social-link">
+                                                <i class="fa fa-instagram fa-2x"></i>
+                                            </a>
+                                            <a href="#" class="ifn-social-link">
+                                                <i class="fa fa-youtube fa-2x"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </t>
+        </template>
+
+        <!-- Routes -->
+        <record id="website_solutions_page" model="website.page">
+            <field name="name">IFN - Solutions</field>
+            <field name="url">/solutions</field>
+            <field name="view_id" ref="solutions_page"/>
+            <field name="website_published">True</field>
+        </record>
+
+        <record id="website_about_page" model="website.page">
+            <field name="name">IFN - À Propos</field>
+            <field name="url">/a-propos</field>
+            <field name="view_id" ref="about_page"/>
+            <field name="website_published">True</field>
+        </record>
+
+        <record id="website_contact_page" model="website.page">
+            <field name="name">IFN - Contact</field>
+            <field name="url">/contact</field>
+            <field name="view_id" ref="contact_page"/>
+            <field name="website_published">True</field>
+        </record>
+
+        <!-- Page Aide -->
+        <template id="help_page" name="IFN Aide">
+            <t t-call="website.layout">
+                <style>
+                    /* Styles pour la page d'aide */
+                    .ifn-hero-help {
+                        background: linear-gradient(135deg, #009739 0%, #008030 100%);
+                        color: white;
+                        padding: 5rem 0;
+                        text-align: center;
+                    }
+
+                    .ifn-hero-help .ifn-hero-title {
+                        font-size: 2.5rem;
+                        font-weight: 700;
+                        margin-bottom: 1rem;
+                    }
+
+                    .ifn-hero-help .ifn-hero-subtitle {
+                        font-size: 1.2rem;
+                        opacity: 0.9;
+                        margin-bottom: 2rem;
+                    }
+
+                    .ifn-search-box {
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        background: white;
+                        border-radius: 50px;
+                        overflow: hidden;
+                        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+                        max-width: 600px;
+                        margin: 0 auto;
+                    }
+
+                    .ifn-search-box .form-control {
+                        border: none;
+                        padding: 1rem 3rem 1rem 1.5rem;
+                        font-size: 1.1rem;
+                        background: transparent;
+                    }
+
+                    .ifn-search-btn {
+                        position: absolute;
+                        right: 5px;
+                        background: #F77F00;
+                        color: white;
+                        border: none;
+                        border-radius: 50%;
+                        width: 45px;
+                        height: 45px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    .ifn-category-card {
+                        background: white;
+                        border-radius: 1rem;
+                        padding: 2rem;
+                        text-align: center;
+                        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+                        height: 100%;
+                        border-top: 4px solid #009739;
+                        transition: all 0.3s ease;
+                    }
+
+                    .ifn-category-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+                    }
+
+                    .ifn-category-icon {
+                        width: 70px;
+                        height: 70px;
+                        background: linear-gradient(135deg, #00B847, #009739);
+                        color: white;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 0 auto 1.5rem;
+                        font-size: 1.8rem;
+                    }
+
+                    .ifn-category-links {
+                        list-style: none;
+                        padding: 0;
+                        text-align: left;
+                    }
+
+                    .ifn-category-links a {
+                        color: #009739;
+                        text-decoration: none;
+                        font-size: 0.9rem;
+                    }
+
+                    .ifn-category-links a:hover {
+                        color: #008030;
+                        text-decoration: underline;
+                    }
+
+                    .ifn-section-title {
+                        color: #212121;
+                        font-weight: 700;
+                        font-size: 2rem;
+                        text-align: center;
+                        margin-bottom: 3rem;
+                    }
+
+                    .ifn-article-item {
+                        background: white;
+                        padding: 1.5rem;
+                        border-radius: 1rem;
+                        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+                        margin-bottom: 1.5rem;
+                        display: flex;
+                        align-items: flex-start;
+                        transition: all 0.3s ease;
+                    }
+
+                    .ifn-article-item:hover {
+                        transform: translateX(10px);
+                        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+                    }
+
+                    .ifn-article-icon {
+                        width: 50px;
+                        height: 50px;
+                        background: #FFF4E6;
+                        color: #F77F00;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-right: 1.5rem;
+                        font-size: 1.2rem;
+                        flex-shrink: 0;
+                    }
+
+                    .ifn-help-card {
+                        background: white;
+                        border-radius: 1rem;
+                        padding: 1.5rem;
+                        margin-bottom: 1.5rem;
+                        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+                        border-left: 4px solid #F77F00;
+                    }
+
+                    .ifn-topic-card {
+                        background: white;
+                        border-radius: 1rem;
+                        padding: 2rem;
+                        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+                        height: 100%;
+                        border-top: 3px solid #007BFF;
+                        transition: all 0.3s ease;
+                    }
+
+                    .ifn-topic-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+                    }
+
+                    .ifn-topic-list {
+                        list-style: none;
+                        padding: 0;
+                    }
+
+                    .ifn-topic-list li {
+                        padding: 0.5rem 0;
+                        border-bottom: 1px solid #F5F5F5;
+                        position: relative;
+                        padding-left: 1.5rem;
+                    }
+
+                    .ifn-topic-list li::before {
+                        content: "→";
+                        position: absolute;
+                        left: 0;
+                        color: #007BFF;
+                        font-weight: bold;
+                    }
+
+                    .ifn-support-card {
+                        background: white;
+                        border-radius: 1rem;
+                        padding: 2rem;
+                        text-align: center;
+                        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+                        height: 100%;
+                        transition: all 0.3s ease;
+                    }
+
+                    .ifn-support-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+                    }
+
+                    .ifn-support-icon {
+                        width: 70px;
+                        height: 70px;
+                        background: linear-gradient(135deg, #F77F00, #E67300);
+                        color: white;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 0 auto 1.5rem;
+                        font-size: 1.8rem;
+                    }
+
+                    .ifn-faq-item {
+                        background: white;
+                        border-radius: 1rem;
+                        margin-bottom: 1rem;
+                        overflow: hidden;
+                        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+                    }
+
+                    .ifn-faq-question {
+                        padding: 1.5rem;
+                        cursor: pointer;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        transition: all 0.3s ease;
+                    }
+
+                    .ifn-faq-question:hover {
+                        background: #F5F5F5;
+                    }
+
+                    .ifn-faq-answer {
+                        padding: 0 1.5rem 1.5rem;
+                        display: none;
+                    }
+
+                    .btn-ifn {
+                        background: linear-gradient(135deg, #F77F00 0%, #E67300 100%);
+                        color: white;
+                        border: none;
+                        padding: 0.75rem 1.5rem;
+                        border-radius: 2rem;
+                        font-weight: 600;
+                        transition: all 0.3s ease;
+                    }
+
+                    .btn-ifn:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+                    }
+
+                    @media (max-width: 768px) {
+                        .ifn-hero-help .ifn-hero-title {
+                            font-size: 2rem;
+                        }
+
+                        .ifn-hero-help .ifn-hero-subtitle {
+                            font-size: 1rem;
+                        }
+
+                        .ifn-article-item {
+                            flex-direction: column;
+                            text-align: center;
+                        }
+
+                        .ifn-article-icon {
+                            margin: 0 auto 1rem;
+                        }
+                    }
+
+                    /* Styles pour les cartes modernes de catégories */
+                    .modern-card {
+                        background: white;
+                        border-radius: 1rem;
+                        overflow: hidden;
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                        border: 1px solid #e9ecef;
+                        position: relative;
+                        height: 100%;
+                    }
+
+                    .modern-card:hover {
+                        transform: translateY(-8px);
+                        box-shadow: 0 1rem 2rem rgba(0,0,0,0.15);
+                    }
+
+                    .ifn-category-header {
+                        padding: 1.5rem 1.5rem 0;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        margin-bottom: 1rem;
+                    }
+
+                    .ifn-category-start .ifn-category-icon,
+                    .ifn-category-merchant .ifn-category-icon,
+                    .ifn-category-producer .ifn-category-icon,
+                    .ifn-category-cooperative .ifn-category-icon {
+                        width: 60px;
+                        height: 60px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 1rem;
+                        font-size: 1.5rem;
+                        color: white;
+                        position: relative;
+                    }
+
+                    .ifn-category-start .ifn-category-icon {
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    }
+
+                    .ifn-category-merchant .ifn-category-icon {
+                        background: linear-gradient(135deg, #009739 0%, #008030 100%);
+                    }
+
+                    .ifn-category-producer .ifn-category-icon {
+                        background: linear-gradient(135deg, #F77F00 0%, #D62828 100%);
+                    }
+
+                    .ifn-category-cooperative .ifn-category-icon {
+                        background: linear-gradient(135deg, #003049 0%, #669BBC 100%);
+                    }
+
+                    .ifn-category-badge {
+                        position: absolute;
+                        top: -8px;
+                        right: -8px;
+                        padding: 0.25rem 0.75rem;
+                        border-radius: 2rem;
+                        font-size: 0.7rem;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                    }
+
+                    .new-badge {
+                        background: linear-gradient(135deg, #667eea, #764ba2);
+                        color: white;
+                    }
+
+                    .popular-badge {
+                        background: linear-gradient(135deg, #009739, #008030);
+                        color: white;
+                    }
+
+                    .trending-badge {
+                        background: linear-gradient(135deg, #F77F00, #D62828);
+                        color: white;
+                    }
+
+                    .advanced-badge {
+                        background: linear-gradient(135deg, #003049, #669BBC);
+                        color: white;
+                    }
+
+                    .ifn-category-level {
+                        text-align: right;
+                    }
+
+                    .level-label {
+                        font-size: 0.75rem;
+                        color: #6c757d;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                        display: block;
+                        margin-bottom: 0.25rem;
+                    }
+
+                    .level-dots {
+                        display: flex;
+                        justify-content: flex-end;
+                        gap: 0.25rem;
+                    }
+
+                    .level-dots i {
+                        font-size: 0.5rem;
+                        color: #dee2e6;
+                    }
+
+                    .level-dots i.fa-circle {
+                        color: #009739;
+                    }
+
+                    .ifn-category-content {
+                        padding: 0 1.5rem 1.5rem;
+                        text-align: left;
+                    }
+
+                    .ifn-category-title {
+                        font-size: 1.25rem;
+                        font-weight: 700;
+                        margin-bottom: 0.5rem;
+                        color: #2c3e50;
+                    }
+
+                    .ifn-category-description {
+                        color: #6c757d;
+                        font-size: 0.9rem;
+                        margin-bottom: 1rem;
+                    }
+
+                    .ifn-category-stats {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 1rem;
+                        padding: 0.75rem;
+                        background: #f8f9fa;
+                        border-radius: 0.5rem;
+                    }
+
+                    .stat-item {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        text-align: center;
+                    }
+
+                    .stat-item i {
+                        color: #009739;
+                        margin-bottom: 0.25rem;
+                        font-size: 0.9rem;
+                    }
+
+                    .stat-item span {
+                        font-size: 0.75rem;
+                        font-weight: 600;
+                        color: #495057;
+                    }
+
+                    .ifn-category-links {
+                        list-style: none;
+                        padding: 0;
+                        margin-bottom: 1rem;
+                    }
+
+                    .ifn-category-links li {
+                        margin-bottom: 0.5rem;
+                    }
+
+                    .ifn-category-links a {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        color: #495057;
+                        text-decoration: none;
+                        font-size: 0.85rem;
+                        padding: 0.5rem;
+                        border-radius: 0.375rem;
+                        transition: all 0.2s ease;
+                    }
+
+                    .ifn-category-links a:hover {
+                        background: #e9ecef;
+                        color: #009739;
+                        transform: translateX(5px);
+                    }
+
+                    .ifn-category-links i {
+                        width: 16px;
+                        text-align: center;
+                        color: #009739;
+                    }
+
+                    .ifn-category-cta {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        padding: 0.75rem 1.5rem;
+                        background: linear-gradient(135deg, #009739, #008030);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 2rem;
+                        font-weight: 600;
+                        font-size: 0.9rem;
+                        transition: all 0.3s ease;
+                        width: 100%;
+                        justify-content: center;
+                    }
+
+                    .ifn-category-cta:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 0.5rem 1rem rgba(0,151,57,0.3);
+                        color: white;
+                    }
+
+                    .ifn-category-progress {
+                        padding: 1rem 1.5rem;
+                        background: #f8f9fa;
+                        border-top: 1px solid #e9ecef;
+                    }
+
+                    .progress-info {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    .progress-info span {
+                        font-size: 0.75rem;
+                        font-weight: 600;
+                    }
+
+                    .progress-percentage {
+                        color: #009739;
+                    }
+
+                    .progress-text {
+                        color: #6c757d;
+                        font-size: 0.7rem;
+                        margin-top: 0.25rem;
+                        display: block;
+                    }
+
+                    /* Styles pour les articles modernes */
+                    .modern-articles {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1.5rem;
+                    }
+
+                    .modern-article {
+                        background: white;
+                        border-radius: 1rem;
+                        overflow: hidden;
+                        border: 1px solid #e9ecef;
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+                    }
+
+                    .modern-article:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.1);
+                        border-color: #009739;
+                    }
+
+                    .article-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 1rem 1.5rem 0;
+                        margin-bottom: 1rem;
+                    }
+
+                    .article-category {
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+                    }
+
+                    .category-badge {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        padding: 0.5rem 1rem;
+                        border-radius: 2rem;
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                    }
+
+                    .category-badge.beginner {
+                        background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+                        color: #1565c0;
+                    }
+
+                    .category-badge.intermediate {
+                        background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+                        color: #ef6c00;
+                    }
+
+                    .category-badge.advanced {
+                        background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+                        color: #c2185b;
+                    }
+
+                    .reading-time {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        color: #6c757d;
+                        font-size: 0.85rem;
+                        font-weight: 500;
+                    }
+
+                    .article-trending {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                    }
+
+                    .article-body {
+                        padding: 0 1.5rem 1rem;
+                        display: flex;
+                        gap: 1.5rem;
+                    }
+
+                    .article-icon-wrapper {
+                        flex-shrink: 0;
+                    }
+
+                    .modern-icon {
+                        width: 80px;
+                        height: 80px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 1rem;
+                        font-size: 2rem;
+                        color: white;
+                        position: relative;
+                        overflow: hidden;
+                    }
+
+                    .user-plus-icon {
+                        background: linear-gradient(135deg, #667eea, #764ba2);
+                    }
+
+                    .user-check-icon {
+                        background: linear-gradient(135deg, #009739, #008030);
+                    }
+
+                    .mobile-icon {
+                        background: linear-gradient(135deg, #F77F00, #D62828);
+                    }
+
+                    .security-icon {
+                        background: linear-gradient(135deg, #003049, #669BBC);
+                    }
+
+                    .article-content {
+                        flex: 1;
+                    }
+
+                    .article-title {
+                        margin-bottom: 0.75rem;
+                    }
+
+                    .article-title a {
+                        color: #2c3e50;
+                        text-decoration: none;
+                        font-weight: 700;
+                        font-size: 1.25rem;
+                        transition: color 0.2s ease;
+                        display: inline-flex;
+                        align-items: center;
+                    }
+
+                    .article-title a:hover {
+                        color: #009739;
+                    }
+
+                    .article-title i {
+                        font-size: 0.9rem;
+                        opacity: 0;
+                        transform: translateX(-10px);
+                        transition: all 0.3s ease;
+                    }
+
+                    .article-title a:hover i {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+
+                    .article-description {
+                        color: #6c757d;
+                        line-height: 1.6;
+                        margin-bottom: 1rem;
+                    }
+
+                    .article-stats {
+                        display: flex;
+                        gap: 1.5rem;
+                        margin-bottom: 1rem;
+                    }
+
+                    .stat {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        font-size: 0.85rem;
+                        color: #6c757d;
+                    }
+
+                    .stat i {
+                        color: #009739;
+                    }
+
+                    .article-progress {
+                        margin-bottom: 1rem;
+                    }
+
+                    .article-footer {
+                        padding: 1rem 1.5rem;
+                        background: #f8f9fa;
+                        border-top: 1px solid #e9ecef;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+
+                    .article-tags {
+                        display: flex;
+                        gap: 0.5rem;
+                        flex-wrap: wrap;
+                    }
+
+                    .tag {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.25rem;
+                        padding: 0.25rem 0.75rem;
+                        background: white;
+                        border: 1px solid #dee2e6;
+                        border-radius: 1rem;
+                        font-size: 0.75rem;
+                        color: #6c757d;
+                        transition: all 0.2s ease;
+                    }
+
+                    .tag:hover {
+                        background: #009739;
+                        color: white;
+                        border-color: #009739;
+                    }
+
+                    .tag i {
+                        font-size: 0.7rem;
+                    }
+
+                    .start-reading {
+                        border-radius: 2rem;
+                        font-weight: 600;
+                        transition: all 0.3s ease;
+                    }
+
+                    .start-reading:hover {
+                        background: #009739;
+                        border-color: #009739;
+                        transform: translateY(-2px);
+                    }
+
+                    /* Animations pour les articles */
+                    @keyframes articleSlideIn {
+                        from {
+                            opacity: 0;
+                            transform: translateY(30px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+
+                    .modern-article {
+                        animation: articleSlideIn 0.6s ease forwards;
+                    }
+
+                    .modern-article:nth-child(1) { animation-delay: 0.1s; }
+                    .modern-article:nth-child(2) { animation-delay: 0.2s; }
+                    .modern-article:nth-child(3) { animation-delay: 0.3s; }
+                    .modern-article:nth-child(4) { animation-delay: 0.4s; }
+                </style>
+
+                <script>
+                    // Script pour rendre la FAQ interactive
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // FAQ Accordion
+                        const faqItems = document.querySelectorAll('.ifn-faq-item');
+                        faqItems.forEach(item => {
+                            const question = item.querySelector('.ifn-faq-question');
+                            const answer = item.querySelector('.ifn-faq-answer');
+                            const icon = question.querySelector('i');
+
+                            question.addEventListener('click', function() {
+                                // Toggle current item
+                                item.classList.toggle('active');
+                                if (answer.style.display === 'block') {
+                                    answer.style.display = 'none';
+                                    icon.style.transform = 'rotate(0deg)';
+                                } else {
+                                    answer.style.display = 'block';
+                                    icon.style.transform = 'rotate(180deg)';
+                                }
+                            });
+                        });
+
+                        // Smooth scroll pour les ancres
+                        const links = document.querySelectorAll('a[href^=\"#"]');
+                        links.forEach(link => {
+                            link.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                const targetId = this.getAttribute('href').substring(1);
+                                const targetElement = document.getElementById(targetId);
+                                if (targetElement) {
+                                    targetElement.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'start'
+                                    });
+                                }
+                            });
+                        });
+
+                        // Animation de recherche (placeholder)
+                        const searchInput = document.getElementById('helpSearch');
+                        if (searchInput) {
+                            const placeholders = [
+                                'Rechercher une réponse...',
+                                'Comment créer mon compte ?',
+                                'Gérer mes stocks...',
+                                'Suivre mes ventes...',
+                                'Devenir producteur...'
+                            ];
+                            let index = 0;
+
+                            setInterval(function() {
+                                searchInput.placeholder = placeholders[index];
+                                index = (index + 1) % placeholders.length;
+                            }, 3000);
+                        }
+
+                        // Animation d'apparition au scroll
+                        const observerOptions = {
+                            threshold: 0.1,
+                            rootMargin: '0px 0px -50px 0px'
+                        };
+
+                        const observer = new IntersectionObserver(function(entries) {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting) {
+                                    entry.target.style.opacity = '1';
+                                    entry.target.style.transform = 'translateY(0)';
+                                }
+                            });
+                        }, observerOptions);
+
+                        // Observer les cartes
+                        document.querySelectorAll('.ifn-category-card, .ifn-topic-card, .ifn-article-item').forEach(el => {
+                            el.style.opacity = '0';
+                            el.style.transform = 'translateY(20px)';
+                            el.style.transition = 'all 0.6s ease';
+                            observer.observe(el);
+                        });
+                    });
+                </script>
+
+                <div id="wrap" class="oe_structure oe_empty">
+                    <!-- Hero Section Améliorée -->
+                    <section class="ifn-hero-help">
+                        <div class="container">
+                            <div class="row justify-content-center text-center">
+                                <div class="col-lg-10">
+                                    <div class="ifn-hero-content">
+                                        <div class="ifn-hero-icon mb-4">
+                                            <i class="fa fa-question-circle fa-4x"></i>
+                                        </div>
+                                        <h1 class="ifn-hero-title">
+                                            Centre d'Aide IFN
+                                        </h1>
+                                        <p class="ifn-hero-subtitle mb-4">
+                                            Bienvenue sur notre centre d'aide.<br/>
+                                            Nous sommes là pour vous accompagner dans votre parcours IFN.
+                                        </p>
+                                        <div class="ifn-hero-stats mb-4">
+                                            <div class="row justify-content-center">
+                                                <div class="col-4">
+                                                    <div class="ifn-stat-item">
+                                                        <div class="ifn-stat-number">150+</div>
+                                                        <div class="ifn-stat-label">Articles</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="ifn-stat-item">
+                                                        <div class="ifn-stat-number">4</div>
+                                                        <div class="ifn-stat-label">Catégories</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="ifn-stat-item">
+                                                        <div class="ifn-stat-number">24/7</div>
+                                                        <div class="ifn-stat-label">Support</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ifn-hero-search">
+                                            <div class="ifn-search-box">
+                                                <div class="ifn-search-icon">
+                                                    <i class="fa fa-search"></i>
+                                                </div>
+                                                <input type="text" class="form-control form-control-lg"
+                                                       placeholder="Rechercher une réponse..." id="helpSearch"/>
+                                                <button class="ifn-search-btn" type="button">
+                                                    <i class="fa fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Navigation par catégories avec cartes modernes -->
+                    <section class="ifn-help-categories py-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2 class="text-center mb-3">Explorez nos guides par catégorie</h2>
+                                    <p class="text-center text-muted mb-5">Des solutions adaptées à votre activité avec suivi de progression</p>
+                                </div>
+                            </div>
+                            <div class="row g-4">
+                                <!-- Catégorie Démarrage -->
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="ifn-category-card ifn-category-start modern-card">
+                                        <div class="ifn-category-header">
+                                            <div class="ifn-category-icon">
+                                                <i class="fas fa-rocket"></i>
+                                                <div class="ifn-category-badge new-badge">Nouveau</div>
+                                            </div>
+                                            <div class="ifn-category-level">
+                                                <span class="level-label">Débutant</span>
+                                                <div class="level-dots">
+                                                    <i class="fas fa-circle"></i>
+                                                    <i class="far fa-circle"></i>
+                                                    <i class="far fa-circle"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ifn-category-content">
+                                            <h3 class="ifn-category-title">Démarrage</h3>
+                                            <p class="ifn-category-description">Premiers pas avec IFN</p>
+                                            <div class="ifn-category-stats">
+                                                <div class="stat-item">
+                                                    <i class="fas fa-book"></i>
+                                                    <span>12 guides</span>
+                                                </div>
+                                                <div class="stat-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>15 min</span>
+                                                </div>
+                                                <div class="stat-item">
+                                                    <i class="fas fa-users"></i>
+                                                    <span>2.3k utilisateurs</span>
+                                                </div>
+                                            </div>
+                                            <ul class="ifn-category-links">
+                                                <li><a href="#getting-started"><i class="fas fa-user-plus"></i>Créer mon compte</a></li>
+                                                <li><a href="#getting-started"><i class="fas fa-user-cog"></i>Choisir mon profil</a></li>
+                                                <li><a href="#getting-started"><i class="fas fa-mobile-alt"></i>Première connexion</a></li>
+                                            </ul>
+                                            <a href="#getting-started" class="ifn-category-cta">
+                                                <span>Commencer</span>
+                                                <i class="fas fa-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                        <div class="ifn-category-progress">
+                                            <div class="progress-info">
+                                                <span>Progression</span>
+                                                <span class="progress-percentage">0%</span>
+                                            </div>
+                                            <div class="progress" style="height: 6px;">
+                                                <div class="progress-bar bg-info" style="width: 0%"></div>
+                                            </div>
+                                            <small class="progress-text">À commencer</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Catégorie Marchands -->
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="ifn-category-card ifn-category-merchant modern-card">
+                                        <div class="ifn-category-header">
+                                            <div class="ifn-category-icon">
+                                                <i class="fas fa-store"></i>
+                                                <div class="ifn-category-badge popular-badge">Populaire</div>
+                                            </div>
+                                            <div class="ifn-category-level">
+                                                <span class="level-label">Intermédiaire</span>
+                                                <div class="level-dots">
+                                                    <i class="fas fa-circle"></i>
+                                                    <i class="fas fa-circle"></i>
+                                                    <i class="far fa-circle"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ifn-category-content">
+                                            <h3 class="ifn-category-title">Marchands</h3>
+                                            <p class="ifn-category-description">Gestion de boutique</p>
+                                            <div class="ifn-category-stats">
+                                                <div class="stat-item">
+                                                    <i class="fas fa-book"></i>
+                                                    <span>28 guides</span>
+                                                </div>
+                                                <div class="stat-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>2h lecture</span>
+                                                </div>
+                                                <div class="stat-item">
+                                                    <i class="fas fa-users"></i>
+                                                    <span>5.7k utilisateurs</span>
+                                                </div>
+                                            </div>
+                                            <ul class="ifn-category-links">
+                                                <li><a href="#merchants"><i class="fas fa-boxes"></i>Gérer mes stocks</a></li>
+                                                <li><a href="#merchants"><i class="fas fa-chart-line"></i>Suivre mes ventes</a></li>
+                                                <li><a href="#merchants"><i class="fas fa-heart"></i>Fidéliser clients</a></li>
+                                            </ul>
+                                            <a href="#merchants" class="ifn-category-cta">
+                                                <span>Explorer</span>
+                                                <i class="fas fa-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                        <div class="ifn-category-progress">
+                                            <div class="progress-info">
+                                                <span>Progression</span>
+                                                <span class="progress-percentage">65%</span>
+                                            </div>
+                                            <div class="progress" style="height: 6px;">
+                                                <div class="progress-bar bg-success" style="width: 65%"></div>
+                                            </div>
+                                            <small class="progress-text">18 guides complétés</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Catégorie Producteurs -->
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="ifn-category-card ifn-category-producer modern-card">
+                                        <div class="ifn-category-header">
+                                            <div class="ifn-category-icon">
+                                                <i class="fas fa-seedling"></i>
+                                                <div class="ifn-category-badge trending-badge">Tendance</div>
+                                            </div>
+                                            <div class="ifn-category-level">
+                                                <span class="level-label">Intermédiaire</span>
+                                                <div class="level-dots">
+                                                    <i class="fas fa-circle"></i>
+                                                    <i class="fas fa-circle"></i>
+                                                    <i class="far fa-circle"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ifn-category-content">
+                                            <h3 class="ifn-category-title">Producteurs</h3>
+                                            <p class="ifn-category-description">Gestion agricole</p>
+                                            <div class="ifn-category-stats">
+                                                <div class="stat-item">
+                                                    <i class="fas fa-book"></i>
+                                                    <span>22 guides</span>
+                                                </div>
+                                                <div class="stat-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>1.5h lecture</span>
+                                                </div>
+                                                <div class="stat-item">
+                                                    <i class="fas fa-users"></i>
+                                                    <span>3.1k utilisateurs</span>
+                                                </div>
+                                            </div>
+                                            <ul class="ifn-category-links">
+                                                <li><a href="#producers"><i class="fas fa-leaf"></i>Suivre cultures</a></li>
+                                                <li><a href="#producers"><i class="fas fa-shopping-basket"></i>Vendre récoltes</a></li>
+                                                <li><a href="#producers"><i class="fas fa-cloud-sun"></i>Prévisions météo</a></li>
+                                            </ul>
+                                            <a href="#producers" class="ifn-category-cta">
+                                                <span>Découvrir</span>
+                                                <i class="fas fa-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                        <div class="ifn-category-progress">
+                                            <div class="progress-info">
+                                                <span>Progression</span>
+                                                <span class="progress-percentage">40%</span>
+                                            </div>
+                                            <div class="progress" style="height: 6px;">
+                                                <div class="progress-bar bg-warning" style="width: 40%"></div>
+                                            </div>
+                                            <small class="progress-text">9 guides complétés</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Catégorie Coopératives -->
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="ifn-category-card ifn-category-cooperative modern-card">
+                                        <div class="ifn-category-header">
+                                            <div class="ifn-category-icon">
+                                                <i class="fas fa-users"></i>
+                                                <div class="ifn-category-badge advanced-badge">Avancé</div>
+                                            </div>
+                                            <div class="ifn-category-level">
+                                                <span class="level-label">Avancé</span>
+                                                <div class="level-dots">
+                                                    <i class="fas fa-circle"></i>
+                                                    <i class="fas fa-circle"></i>
+                                                    <i class="fas fa-circle"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ifn-category-content">
+                                            <h3 class="ifn-category-title">Coopératives</h3>
+                                            <p class="ifn-category-description">Gestion d'équipe</p>
+                                            <div class="ifn-category-stats">
+                                                <div class="stat-item">
+                                                    <i class="fas fa-book"></i>
+                                                    <span>35 guides</span>
+                                                </div>
+                                                <div class="stat-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>3h lecture</span>
+                                                </div>
+                                                <div class="stat-item">
+                                                    <i class="fas fa-users"></i>
+                                                    <span>1.8k utilisateurs</span>
+                                                </div>
+                                            </div>
+                                            <ul class="ifn-category-links">
+                                                <li><a href="#cooperatives"><i class="fas fa-user-friends"></i>Gérer membres</a></li>
+                                                <li><a href="#cooperatives"><i class="fas fa-project-diagram"></i>Projets collectifs</a></li>
+                                                <li><a href="#cooperatives"><i class="fas fa-coins"></i>Financement</a></li>
+                                            </ul>
+                                            <a href="#cooperatives" class="ifn-category-cta">
+                                                <span>Accéder</span>
+                                                <i class="fas fa-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                        <div class="ifn-category-progress">
+                                            <div class="progress-info">
+                                                <span>Progression</span>
+                                                <span class="progress-percentage">25%</span>
+                                            </div>
+                                            <div class="progress" style="height: 6px;">
+                                                <div class="progress-bar bg-danger" style="width: 25%"></div>
+                                            </div>
+                                            <small class="progress-text">8 guides complétés</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Section Démarrage -->
+                    <section id="getting-started" class="ifn-help-section py-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2 class="ifn-section-title mb-5">
+                                        <i class="fa fa-rocket me-3"></i>Commencer avec IFN
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!-- Articles populaires -->
+                                <div class="col-lg-8">
+                                    <h3 class="mb-4">
+                                        <i class="fas fa-star text-warning me-2"></i>
+                                        Articles Populaires
+                                        <span class="badge bg-warning text-dark ms-2">Nouveau</span>
+                                    </h3>
+                                    <div class="ifn-help-articles modern-articles">
+                                        <!-- Article 1 : Compte IFN -->
+                                        <div class="ifn-article-card modern-article">
+                                            <div class="article-header">
+                                                <div class="article-category">
+                                                    <span class="category-badge beginner">
+                                                        <i class="fas fa-graduation-cap"></i>
+                                                        Débutant
+                                                    </span>
+                                                    <span class="reading-time">
+                                                        <i class="fas fa-clock"></i>
+                                                        5 min
+                                                    </span>
+                                                </div>
+                                                <div class="article-trending">
+                                                    <i class="fas fa-fire text-danger"></i>
+                                                    <span>Populaire</span>
+                                                </div>
+                                            </div>
+                                            <div class="article-body">
+                                                <div class="article-icon-wrapper">
+                                                    <div class="article-icon modern-icon user-plus-icon">
+                                                        <i class="fas fa-user-plus"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="article-content">
+                                                    <h4 class="article-title">
+                                                        <a href="#create-account">
+                                                            Comment créer mon compte IFN ?
+                                                            <i class="fas fa-arrow-right ms-2"></i>
+                                                        </a>
+                                                    </h4>
+                                                    <p class="article-description">
+                                                        Apprenez étape par étape comment créer votre compte et choisir le bon profil pour votre activité. Guide complet avec captures d'écran.
+                                                    </p>
+                                                    <div class="article-stats">
+                                                        <div class="stat">
+                                                            <i class="fas fa-eye"></i>
+                                                            <span>12.5k vues</span>
+                                                        </div>
+                                                        <div class="stat">
+                                                            <i class="fas fa-thumbs-up"></i>
+                                                            <span>98% utile</span>
+                                                        </div>
+                                                        <div class="stat">
+                                                            <i class="fas fa-comments"></i>
+                                                            <span>34 commentaires</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="article-progress">
+                                                        <div class="progress" style="height: 4px;">
+                                                            <div class="progress-bar bg-success" style="width: 0%"></div>
+                                                        </div>
+                                                        <small class="progress-text">Non commencé</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="article-footer">
+                                                <div class="article-tags">
+                                                    <span class="tag"><i class="fas fa-tag"></i> inscription</span>
+                                                    <span class="tag"><i class="fas fa-tag"></i> compte</span>
+                                                    <span class="tag"><i class="fas fa-tag"></i> démarrage</span>
+                                                </div>
+                                                <button class="btn btn-sm btn-outline-success start-reading">
+                                                    <i class="fas fa-play me-1"></i>
+                                                    Commencer
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                            <!-- Article 2 : Choix du profil -->
+                                        <div class="ifn-article-card modern-article">
+                                            <div class="article-header">
+                                                <div class="article-category">
+                                                    <span class="category-badge beginner">
+                                                        <i class="fas fa-graduation-cap"></i>
+                                                        Débutant
+                                                    </span>
+                                                    <span class="reading-time">
+                                                        <i class="fas fa-clock"></i>
+                                                        3 min
+                                                    </span>
+                                                </div>
+                                                <div class="article-trending">
+                                                    <i class="fas fa-chart-line text-success"></i>
+                                                    <span>Tendance</span>
+                                                </div>
+                                            </div>
+                                            <div class="article-body">
+                                                <div class="article-icon-wrapper">
+                                                    <div class="article-icon modern-icon user-check-icon">
+                                                        <i class="fas fa-user-check"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="article-content">
+                                                    <h4 class="article-title">
+                                                        <a href="#choose-profile">
+                                                            Quel profil choisir ?
+                                                            <i class="fas fa-arrow-right ms-2"></i>
+                                                        </a>
+                                                    </h4>
+                                                    <p class="article-description">
+                                                        Découvrez les différences entre Marchand, Producteur et Coopérative pour faire le bon choix. Tableau comparatif inclus.
+                                                    </p>
+                                                    <div class="article-stats">
+                                                        <div class="stat">
+                                                            <i class="fas fa-eye"></i>
+                                                            <span>8.2k vues</span>
+                                                        </div>
+                                                        <div class="stat">
+                                                            <i class="fas fa-thumbs-up"></i>
+                                                            <span>95% utile</span>
+                                                        </div>
+                                                        <div class="stat">
+                                                            <i class="fas fa-comments"></i>
+                                                            <span>28 commentaires</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="article-progress">
+                                                        <div class="progress" style="height: 4px;">
+                                                            <div class="progress-bar bg-success" style="width: 0%"></div>
+                                                        </div>
+                                                        <small class="progress-text">Non commencé</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="article-footer">
+                                                <div class="article-tags">
+                                                    <span class="tag"><i class="fas fa-tag"></i> profil</span>
+                                                    <span class="tag"><i class="fas fa-tag"></i> choix</span>
+                                                    <span class="tag"><i class="fas fa-tag"></i> comparatif</span>
+                                                </div>
+                                                <button class="btn btn-sm btn-outline-success start-reading">
+                                                    <i class="fas fa-play me-1"></i>
+                                                    Commencer
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="ifn-article-item">
+                                            <div class="ifn-article-icon">
+                                                <i class="fa fa-mobile-alt"></i>
+                                            </div>
+                                            <div class="ifn-article-content">
+                                                <h4><a href="#mobile-app">Installer l'application mobile</a></h4>
+                                                <p>Téléchargez et installez l'application IFN sur votre smartphone pour gérer votre activité partout.</p>
+                                                <div class="ifn-article-meta">
+                                                    <span class="badge badge-info">Mobile</span>
+                                                    <span class="text-muted">4 min de lecture</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="ifn-article-item">
+                                            <div class="ifn-article-icon">
+                                                <i class="fa fa-shield-alt"></i>
+                                            </div>
+                                            <div class="ifn-article-content">
+                                                <h4><a href="#security">Sécuriser mon compte</a></h4>
+                                                <p>Conseils pour protéger votre compte et vos données personnelles.</p>
+                                                <div class="ifn-article-meta">
+                                                    <span class="badge badge-warning">Sécurité</span>
+                                                    <span class="text-muted">6 min de lecture</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Articles détaillés -->
+                                <div class="col-lg-4">
+                                    <div class="ifn-detailed-help">
+                                        <div class="ifn-help-card" id="create-account">
+                                            <h5>Créer mon compte</h5>
+                                            <ol>
+                                                <li>Allez sur <a href="/ifn/signup">ifn.ci/signup</a></li>
+                                                <li>Remplissez vos informations personnelles</li>
+                                                <li>Choisissez votre type de profil</li>
+                                                <li>Vérifiez votre email et téléphone</li>
+                                                <li>Configurez votre mot de passe</li>
+                                            </ol>
+                                            <div class="alert alert-info mt-3">
+                                                <i class="fa fa-info-circle me-2"></i>
+                                                L'inscription est gratuite et ne prend que 5 minutes !
+                                            </div>
+                                        </div>
+
+                                        <div class="ifn-help-card" id="choose-profile">
+                                            <h5>Choisir son profil</h5>
+                                            <div class="ifn-profile-comparison">
+                                                <div class="ifn-profile-item">
+                                                    <strong>🛒 Marchand</strong>
+                                                    <p>Vendez des produits, gérez stocks et clients</p>
+                                                </div>
+                                                <div class="ifn-profile-item">
+                                                    <strong>🌱 Producteur</strong>
+                                                    <p>Cultivez et vendez vos récoltes directement</p>
+                                                </div>
+                                                <div class="ifn-profile-item">
+                                                    <strong>👥 Coopérative</strong>
+                                                    <p>Gérez un groupe de producteurs ou marchands</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Section Marchands -->
+                    <section id="merchants" class="ifn-help-section py-5 bg-light">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2 class="ifn-section-title mb-5">
+                                        <i class="fa fa-shopping-cart me-3"></i>Aide pour les Marchands
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="ifn-topic-card">
+                                        <h4><i class="fa fa-boxes me-2"></i>Gestion des stocks</h4>
+                                        <ul class="ifn-topic-list">
+                                            <li>Ajouter un nouveau produit</li>
+                                            <li>Suivre les quantités disponibles</li>
+                                            <li>Alertes de stock bas</li>
+                                            <li>Gestion des lots et dates d'expiration</li>
+                                            <li>Importer/exporter des stocks</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="ifn-topic-card">
+                                        <h4><i class="fa fa-chart-line me-2"></i>Suivi des ventes</h4>
+                                        <ul class="ifn-topic-list">
+                                            <li>Enregistrer une vente</li>
+                                            <li>Voir l'historique des ventes</li>
+                                            <li>Calculer le chiffre d'affaires</li>
+                                            <li>Identifier les produits les plus vendus</li>
+                                            <li>Exporter les rapports de ventes</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="ifn-topic-card">
+                                        <h4><i class="fa fa-users me-2"></i>Gestion des clients</h4>
+                                        <ul class="ifn-topic-list">
+                                            <li>Ajouter un nouveau client</li>
+                                            <li>Voir l'historique d'achats</li>
+                                            <li>Programmes de fidélité</li>
+                                            <li>Envoyer des promotions</li>
+                                            <li>Gérer les créances</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="ifn-topic-card">
+                                        <h4><i class="fa fa-truck me-2"></i>Livraison</h4>
+                                        <ul class="ifn-topic-list">
+                                            <li>Configurer les zones de livraison</li>
+                                            <li>Suivre les livraisons en cours</li>
+                                            <li>Gérer les livreurs</li>
+                                            <li>Calculer les frais de livraison</li>
+                                            <li>Notifier les clients</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Section Producteurs -->
+                    <section id="producers" class="ifn-help-section py-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2 class="ifn-section-title mb-5">
+                                        <i class="fa fa-seedling me-3"></i>Aide pour les Producteurs
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="ifn-topic-card">
+                                        <h4><i class="fa fa-leaf me-2"></i>Suivi des cultures</h4>
+                                        <ul class="ifn-topic-list">
+                                            <li>Créer une nouvelle parcelle</li>
+                                            <li>Enregistrer les semis</li>
+                                            <li>Suivre la croissance</li>
+                                            <li>Planifier les récoltes</li>
+                                            <li>Calculer les rendements</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="ifn-topic-card">
+                                        <h4><i class="fa fa-sun me-2"></i>Météo et climat</h4>
+                                        <ul class="ifn-topic-list">
+                                            <li>Consulter les prévisions météo</li>
+                                            <li>Alertes météo personnalisées</li>
+                                            <li>Historique des précipitations</li>
+                                            <li>Conseils agricoles selon saison</li>
+                                            <li>Planifier selon la météo</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="ifn-topic-card">
+                                        <h4><i class="fa fa-shopping-basket me-2"></i>Vente des récoltes</h4>
+                                        <ul class="ifn-topic-list">
+                                            <li>Mettre en vente mes produits</li>
+                                            <li>Fixer les prix</li>
+                                            <li>Trouver des acheteurs</li>
+                                            <li>Négocier les contrats</li>
+                                            <li>Livrer les commandes</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="ifn-topic-card">
+                                        <h4><i class="fa fa-flask me-2"></i>Gestion des intrants</h4>
+                                        <ul class="ifn-topic-list">
+                                            <li>Acheter des semences</li>
+                                            <li>Gérer les engrais et pesticides</li>
+                                            <li>Planifier les traitements</li>
+                                            <li>Calculer les coûts de production</li>
+                                            <li>Optimiser les rendements</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Section Coopératives -->
+                    <section id="cooperatives" class="ifn-help-section py-5 bg-light">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2 class="ifn-section-title mb-5">
+                                        <i class="fa fa-users me-3"></i>Aide pour les Coopératives
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="ifn-topic-card">
+                                        <h4><i class="fa fa-user-friends me-2"></i>Gestion des membres</h4>
+                                        <ul class="ifn-topic-list">
+                                            <li>Ajouter un nouveau membre</li>
+                                            <li>Gérer les adhésions</li>
+                                            <li>Suivre les contributions</li>
+                                            <li>Organiser les réunions</li>
+                                            <li>Communiquer avec les membres</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="ifn-topic-card">
+                                        <h4><i class="fa fa-project-diagram me-2"></i>Projets collectifs</h4>
+                                        <ul class="ifn-topic-list">
+                                            <li>Créer un nouveau projet</li>
+                                            <li>Assigner des membres aux projets</li>
+                                            <li>Suivre l'avancement</li>
+                                            <li>Gérer le budget</li>
+                                            <li>Rapports de projets</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="ifn-topic-card">
+                                        <h4><i class="fa fa-handshake me-2"></i>Financement</h4>
+                                        <ul class="ifn-topic-list">
+                                            <li>Déposer une demande de financement</li>
+                                            <li>Suivre les dossiers</li>
+                                            <li>Gérer les remboursements</li>
+                                            <li>Accéder au microcrédit</li>
+                                            <li>Garanties collectives</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="ifn-topic-card">
+                                        <h4><i class="fa fa-warehouse me-2"></i>Équipements partagés</h4>
+                                        <ul class="ifn-topic-list">
+                                            <li>Ajouter des équipements</li>
+                                            <li>Gérer les réservations</li>
+                                            <li>Suivre l'utilisation</li>
+                                            <li>Coûts de maintenance</li>
+                                            <li>Planning d'utilisation</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Section Support -->
+                    <section class="ifn-support-section py-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2 class="text-center mb-5">Besoin d'aide supplémentaire ?</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-4">
+                                    <div class="ifn-support-card">
+                                        <div class="ifn-support-icon">
+                                            <i class="fa fa-comments"></i>
+                                        </div>
+                                        <h4>Chat en direct</h4>
+                                        <p>Discutez avec notre équipe du lundi au vendredi, 8h-18h</p>
+                                        <button class="btn btn-ifn">
+                                            <i class="fa fa-comment me-2"></i>Démarrer le chat
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="ifn-support-card">
+                                        <div class="ifn-support-icon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <h4>Appel téléphonique</h4>
+                                        <p>Contactez-nous au +225 XX XX XX XX pour une assistance immédiate</p>
+                                        <a href="tel:+225XXXXXXXXXX" class="btn btn-ifn">
+                                            <i class="fa fa-phone me-2"></i>Appeler
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="ifn-support-card">
+                                        <div class="ifn-support-icon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div>
+                                        <h4>Email</h4>
+                                        <p>Envoyez-nous votre question et nous répondrons sous 24h</p>
+                                        <a href="mailto:support@ifn.ci" class="btn btn-ifn">
+                                            <i class="fa fa-envelope me-2"></i>Envoyer un email
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Section -->
+                            <div class="row mt-5">
+                                <div class="col-12">
+                                    <h3 class="text-center mb-4">Questions Fréquemment Posées</h3>
+                                    <div class="ifn-faq">
+                                        <div class="ifn-faq-item">
+                                            <div class="ifn-faq-question">
+                                                <h5>IFN est-il vraiment gratuit ?</h5>
+                                                <i class="fa fa-chevron-down"></i>
+                                            </div>
+                                            <div class="ifn-faq-answer">
+                                                <p>Oui, l'inscription et l'utilisation de base sont complètement gratuites.
+                                                Certaines fonctionnalités avancées peuvent nécessiter un abonnement.</p>
+                                            </div>
+                                        </div>
+                                        <div class="ifn-faq-item">
+                                            <div class="ifn-faq-question">
+                                                <h5>Mes données sont-elles sécurisées ?</h5>
+                                                <i class="fa fa-chevron-down"></i>
+                                            </div>
+                                            <div class="ifn-faq-answer">
+                                                <p>Absolument. Nous utilisons le chiffrement de bout en bout et suivons
+                                                les normes internationales de protection des données.</p>
+                                            </div>
+                                        </div>
+                                        <div class="ifn-faq-item">
+                                            <div class="ifn-faq-question">
+                                                <h5>Puis-je changer de profil plus tard ?</h5>
+                                                <i class="fa fa-chevron-down"></i>
+                                            </div>
+                                            <div class="ifn-faq-answer">
+                                                <p>Oui, vous pouvez changer de profil en contactant notre support.
+                                                Nous vous aiderons à migrer vos données.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </t>
+        </template>
+
+        <!-- Routes -->
+        <record id="website_help_page" model="website.page">
+            <field name="name">IFN - Aide</field>
+            <field name="url">/help</field>
+            <field name="view_id" ref="help_page"/>
+            <field name="website_published">True</field>
+        </record>
+
+        <record id="website_marchands_page" model="website.page">
+            <field name="name">IFN - Marchands</field>
+            <field name="url">/marchands</field>
+            <field name="view_id" ref="solutions_page"/>
+            <field name="website_published">True</field>
+        </record>
+
+        <record id="website_producteurs_page" model="website.page">
+            <field name="name">IFN - Producteurs</field>
+            <field name="url">/producteurs</field>
+            <field name="view_id" ref="solutions_page"/>
+            <field name="website_published">True</field>
+        </record>
+
+        <record id="website_cooperatives_page" model="website.page">
+            <field name="name">IFN - Coopératives</field>
+            <field name="url">/cooperatives</field>
+            <field name="view_id" ref="solutions_page"/>
+            <field name="website_published">True</field>
+        </record>
+    </data>
+</odoo>

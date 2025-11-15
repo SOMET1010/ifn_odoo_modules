@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Surcharger le header et footer du website sans remplacer le layout complet -->
+    <template id="ifn_portal_layout_override" inherit_id="website.layout">
+        <!-- Header IFN moderne et élégant -->
+        <xpath expr="//header" position="replace">
+            <header class="ifn-header-wrapper">
+                <div class="ifn-top-bar">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <div class="ifn-contact-info d-none d-md-flex">
+                                    <span class="me-3">
+                                        <i class="fa fa-envelope me-1" style="color: #F77F00;"></i>
+                                        <span>contact@ifn.ci</span>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-phone me-1" style="color: #009739;"></i>
+                                        <span>+225 XX XX XX XX</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <div class="ifn-social-links">
+                                    <a href="#" class="me-2" title="Facebook">
+                                        <i class="fa fa-facebook" style="color: #1877F2;"></i>
+                                    </a>
+                                    <a href="#" class="me-2" title="Twitter">
+                                        <i class="fa fa-twitter" style="color: #1DA1F2;"></i>
+                                    </a>
+                                    <a href="#" class="me-2" title="LinkedIn">
+                                        <i class="fa fa-linkedin" style="color: #0077B5;"></i>
+                                    </a>
+                                    <a href="#" title="WhatsApp">
+                                        <i class="fa fa-whatsapp" style="color: #25D366;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="navbar navbar-expand-lg ifn-main-nav">
+                    <div class="container">
+                        <!-- Logo IFN premium -->
+                        <a class="navbar-brand ifn-brand" href="/">
+                            <div class="ifn-logo-modern">
+                                <span class="ifn-logo-text">IFN</span>
+                                <span class="ifn-logo-tagline">CI</span>
+                            </div>
+                        </a>
+
+                        <!-- Menu hamburger stylé -->
+                        <button class="navbar-toggler ifn-menu-toggle" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#ifnMainNav" aria-controls="ifnMainNav" aria-expanded="false">
+                            <span class="ifn-hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </button>
+
+                        <!-- Navigation principale -->
+                        <div class="collapse navbar-collapse" id="ifnMainNav">
+                            <ul class="navbar-nav ifn-nav-menu mx-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link ifn-nav-link active" href="/">
+                                        <div class="nav-icon-wrapper">
+                                            <i class="fa fa-home me-1"></i>
+                                        </div>
+                                        <span>Accueil</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link ifn-nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
+                                        <div class="nav-icon-wrapper">
+                                            <i class="fa fa-cogs me-1"></i>
+                                        </div>
+                                        <span>Services</span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="/ifn/marchands">
+                                            <i class="fa fa-store me-2" style="color: #F77F00;"></i>Marchands
+                                        </a></li>
+                                        <li><a class="dropdown-item" href="/ifn/producteurs">
+                                            <i class="fa fa-seedling me-2" style="color: #009739;"></i>Producteurs
+                                        </a></li>
+                                        <li><a class="dropdown-item" href="/ifn/cooperatives">
+                                            <i class="fa fa-building me-2" style="color: #F77F00;"></i>Coopératives
+                                        </a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link ifn-nav-link" href="/help">
+                                        <div class="nav-icon-wrapper">
+                                            <i class="fa fa-question-circle me-1"></i>
+                                        </div>
+                                        <span>Aide</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <!-- Zone utilisateur -->
+                            <div class="ifn-user-zone">
+                                <t t-if="user and user.has_group('base.group_user')">
+                                    <!-- Menu utilisateur connecté -->
+                                    <div class="dropdown ifn-user-dropdown">
+                                        <button class="btn ifn-user-btn dropdown-toggle" type="button"
+                                                id="ifnUserMenu" data-bs-toggle="dropdown">
+                                            <div class="ifn-user-avatar">
+                                                <i class="fa fa-user"/>
+                                            </div>
+                                            <span class="ifn-user-name d-none d-lg-inline">
+                                                <t t-esc="user.name"/>
+                                            </span>
+                                        </button>
+                                        <ul class="dropdown-menu ifn-dropdown-menu">
+                                            <li><a class="dropdown-item ifn-dropdown-item" href="/portal">
+                                                <i class="fa fa-tachometer-alt me-2"/> Tableau de bord
+                                            </a></li>
+                                            <li><a class="dropdown-item ifn-dropdown-item" href="/my/account">
+                                                <i class="fa fa-user-cog me-2"/> Mon profil
+                                            </a></li>
+                                            <li><hr class="dropdown-divider"/></li>
+                                            <li><a class="dropdown-item ifn-dropdown-item" href="/web/session/logout">
+                                                <i class="fa fa-sign-out me-2"/> Déconnexion
+                                            </a></li>
+                                        </ul>
+                                    </div>
+                                </t>
+                                <t t-else="">
+                                    <!-- Boutons connexion -->
+                                    <div class="ifn-auth-buttons">
+                                        <a href="/web/login" class="btn ifn-btn-outline">
+                                            <i class="fa fa-sign-in me-1"/> Connexion
+                                        </a>
+                                        <a href="/ifn/signup" class="btn ifn-btn-primary">
+                                            <i class="fa fa-user-plus me-1"/> S'inscrire
+                                        </a>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <!-- Styles premium IFN -->
+            <style>
+                :root {
+                    --ifn-primary: #F77F00;
+                    --ifn-primary-dark: #E67300;
+                    --ifn-primary-light: #FFF4E6;
+                    --ifn-secondary: #009739;
+                    --ifn-secondary-dark: #008030;
+                    --ifn-white: #FFFFFF;
+                    --ifn-black: #1a1a1a;
+                    --ifn-gray: #6c757d;
+                    --ifn-light-gray: #f8f9fa;
+                    --ifn-border: #dee2e6;
+                    --ifn-shadow: 0 2px 15px rgba(0,0,0,0.08);
+                    --ifn-shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+                    --ifn-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+
+                /* Barre supérieure */
+                .ifn-header-wrapper {
+                    background: var(--ifn-white);
+                    box-shadow: var(--ifn-shadow);
+                    position: sticky;
+                    top: 0;
+                    z-index: 1050;
+                }
+
+                .ifn-top-bar {
+                    background: var(--ifn-black);
+                    color: var(--ifn-white);
+                    padding: 0.5rem 0;
+                    font-size: 0.875rem;
+                }
+
+                .ifn-contact-info {
+                    color: rgba(255,255,255,0.9);
+                }
+
+                .ifn-social-links a {
+                    color: rgba(255,255,255,0.8);
+                    font-size: 0.875rem;
+                    transition: var(--ifn-transition);
+                }
+
+                .ifn-social-links a:hover {
+                    color: var(--ifn-primary);
+                    transform: translateY(-2px);
+                }
+
+                /* Navigation principale */
+                .ifn-main-nav {
+                    background: var(--ifn-white);
+                    padding: 1rem 0;
+                    border-bottom: 3px solid var(--ifn-primary);
+                }
+
+                /* Logo moderne IFN */
+                .ifn-brand {
+                    padding: 0;
+                }
+
+                .ifn-logo-modern {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.25rem;
+                }
+
+                .ifn-logo-text {
+                    background: linear-gradient(135deg, var(--ifn-primary) 0%, var(--ifn-primary-dark) 100%);
+                    color: var(--ifn-white);
+                    font-weight: 800;
+                    font-size: 1.75rem;
+                    padding: 0.5rem 1rem;
+                    border-radius: 8px;
+                    letter-spacing: -0.5px;
+                    display: inline-block;
+                }
+
+                .ifn-logo-tagline {
+                    background: var(--ifn-secondary);
+                    color: var(--ifn-white);
+                    font-weight: 700;
+                    font-size: 0.75rem;
+                    padding: 0.25rem 0.5rem;
+                    border-radius: 4px;
+                    align-self: flex-end;
+                    margin-bottom: 0.25rem;
+                }
+
+                /* Menu hamburger animé */
+                .ifn-menu-toggle {
+                    border: none;
+                    padding: 0.5rem;
+                    background: var(--ifn-primary-light);
+                    border-radius: 6px;
+                }
+
+                .ifn-hamburger {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 3px;
+                    width: 20px;
+                }
+
+                .ifn-hamburger span {
+                    width: 100%;
+                    height: 2px;
+                    background: var(--ifn-primary);
+                    border-radius: 2px;
+                    transition: var(--ifn-transition);
+                }
+
+                /* Navigation */
+                .ifn-nav-menu {
+                    margin: 0 2rem;
+                }
+
+                .ifn-nav-link {
+                    color: var(--ifn-black) !important;
+                    font-weight: 600;
+                    padding: 0.75rem 1.25rem !important;
+                    border-radius: 25px;
+                    margin: 0 0.25rem;
+                    transition: var(--ifn-transition);
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .ifn-nav-link::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, var(--ifn-primary-light), transparent);
+                    transition: left 0.5s;
+                }
+
+                .ifn-nav-link:hover::before {
+                    left: 100%;
+                }
+
+                .ifn-nav-link:hover {
+                    background: var(--ifn-primary-light) !important;
+                    color: var(--ifn-primary-dark) !important;
+                    transform: translateY(-2px);
+                }
+
+                .ifn-nav-link.active {
+                    background: var(--ifn-primary) !important;
+                    color: var(--ifn-white) !important;
+                }
+
+                /* Zone utilisateur */
+                .ifn-user-zone {
+                    display: flex;
+                    align-items: center;
+                }
+
+                .ifn-user-btn {
+                    background: var(--ifn-light-gray);
+                    border: 1px solid var(--ifn-border);
+                    color: var(--ifn-black);
+                    padding: 0.5rem 1rem;
+                    border-radius: 25px;
+                    font-weight: 500;
+                    transition: var(--ifn-transition);
+                }
+
+                .ifn-user-btn:hover {
+                    background: var(--ifn-primary-light);
+                    border-color: var(--ifn-primary);
+                }
+
+                .ifn-user-avatar {
+                    width: 32px;
+                    height: 32px;
+                    background: var(--ifn-primary);
+                    color: var(--ifn-white);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-right: 0.5rem;
+                }
+
+                .ifn-dropdown-menu {
+                    border: none;
+                    box-shadow: var(--ifn-shadow);
+                    border-radius: 12px;
+                    padding: 0.5rem 0;
+                    margin-top: 0.5rem;
+                }
+
+                .ifn-dropdown-item {
+                    padding: 0.75rem 1.25rem;
+                    color: var(--ifn-black);
+                    transition: var(--ifn-transition);
+                }
+
+                .ifn-dropdown-item:hover {
+                    background: var(--ifn-primary-light);
+                    color: var(--ifn-primary-dark);
+                }
+
+                /* Boutons */
+                .ifn-auth-buttons {
+                    display: flex;
+                    gap: 0.75rem;
+                }
+
+                .ifn-btn-outline {
+                    background: transparent;
+                    border: 2px solid var(--ifn-primary);
+                    color: var(--ifn-primary);
+                    padding: 0.5rem 1.25rem;
+                    border-radius: 25px;
+                    font-weight: 600;
+                    transition: var(--ifn-transition);
+                }
+
+                .ifn-btn-outline:hover {
+                    background: var(--ifn-primary);
+                    color: var(--ifn-white);
+                    transform: translateY(-2px);
+                    box-shadow: var(--ifn-shadow-sm);
+                }
+
+                .ifn-btn-primary {
+                    background: linear-gradient(135deg, var(--ifn-primary) 0%, var(--ifn-primary-dark) 100%);
+                    border: none;
+                    color: var(--ifn-white);
+                    padding: 0.5rem 1.25rem;
+                    border-radius: 25px;
+                    font-weight: 600;
+                    transition: var(--ifn-transition);
+                }
+
+                .ifn-btn-primary:hover {
+                    transform: translateY(-2px);
+                    box-shadow: var(--ifn-shadow);
+                }
+
+                /* Navigation avec icônes améliorées */
+                .nav-icon-wrapper {
+                    background: rgba(247, 127, 0, 0.1);
+                    border-radius: 6px;
+                    padding: 0.25rem 0.5rem;
+                    display: inline-flex;
+                    align-items: center;
+                    transition: var(--ifn-transition);
+                }
+
+                .nav-link:hover .nav-icon-wrapper {
+                    background: var(--ifn-primary);
+                    transform: scale(1.1);
+                }
+
+                .nav-link:hover .nav-icon-wrapper i {
+                    color: var(--ifn-white) !important;
+                }
+
+                /* Dropdown services */
+                .dropdown-menu {
+                    border: none;
+                    box-shadow: var(--ifn-shadow);
+                    border-radius: 12px;
+                    padding: 0.5rem 0;
+                    margin-top: 0.5rem;
+                    border: 1px solid rgba(0,0,0,0.05);
+                }
+
+                .dropdown-item {
+                    padding: 0.75rem 1.25rem;
+                    color: var(--ifn-black);
+                    transition: var(--ifn-transition);
+                    display: flex;
+                    align-items: center;
+                }
+
+                .dropdown-item:hover {
+                    background: var(--ifn-primary-light);
+                    color: var(--ifn-primary-dark);
+                    transform: translateX(5px);
+                }
+
+                /* Footer amélioré */
+                .ifn-footer {
+                    background: linear-gradient(135deg, var(--ifn-light-gray) 0%, #f0f0f0 100%);
+                    border-top: 3px solid var(--ifn-primary);
+                    padding: 3rem 0 1rem 0;
+                    margin-top: 3rem;
+                    position: relative;
+                }
+
+                .ifn-footer::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    height: 1px;
+                    background: linear-gradient(90deg, transparent, var(--ifn-primary), transparent);
+                }
+
+                .ifn-footer .badge {
+                    border: none;
+                    font-weight: 500;
+                    transition: var(--ifn-transition);
+                }
+
+                .ifn-footer .badge:hover {
+                    transform: translateY(-2px);
+                    box-shadow: var(--ifn-shadow-sm);
+                }
+
+                .ifn-footer .list-unstyled li a {
+                    transition: var(--ifn-transition);
+                    padding: 0.25rem 0;
+                    border-radius: 4px;
+                }
+
+                .ifn-footer .list-unstyled li a:hover {
+                    background: rgba(247, 127, 0, 0.1);
+                    padding-left: 1rem;
+                    color: var(--ifn-primary) !important;
+                }
+
+                /* Responsive */
+                @media (max-width: 991.98px) {
+                    .ifn-top-bar {
+                        display: none;
+                    }
+
+                    .ifn-nav-menu {
+                        margin: 1rem 0;
+                        text-align: center;
+                    }
+
+                    .ifn-nav-link {
+                        margin: 0.25rem 0;
+                        display: inline-block;
+                    }
+
+                    .ifn-user-zone {
+                        justify-content: center;
+                        margin-top: 1rem;
+                        padding-top: 1rem;
+                        border-top: 1px solid var(--ifn-border);
+                    }
+
+                    .ifn-auth-buttons {
+                        justify-content: center;
+                    }
+                }
+
+                @media (max-width: 576px) {
+                    .ifn-logo-text {
+                        font-size: 1.5rem;
+                        padding: 0.375rem 0.75rem;
+                    }
+
+                    .ifn-logo-tagline {
+                        font-size: 0.625rem;
+                        padding: 0.125rem 0.375rem;
+                    }
+
+                    .ifn-auth-buttons {
+                        flex-direction: column;
+                        width: 100%;
+                    }
+
+                    .ifn-btn-outline, .ifn-btn-primary {
+                        text-align: center;
+                    }
+
+                    .nav-icon-wrapper {
+                        margin-bottom: 0.25rem;
+                    }
+                }
+            </style>
+        </xpath>
+
+        <!-- Masquer le footer par défaut et ajouter le footer IFN -->
+        <xpath expr="//footer" position="replace">
+            <footer class="ifn-footer">
+                <div class="container py-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5 class="text-dark">
+                                <i class="fa fa-shield-alt me-2" style="color: #009739;"></i>
+                                Plateforme IFN
+                            </h5>
+                            <p class="text-muted">
+                                La plateforme numérique inclusive pour les marchands,
+                                producteurs et coopératives de Côte d'Ivoire.
+                            </p>
+                            <div class="mt-3">
+                                <span class="badge badge-secondary me-2" style="background: linear-gradient(135deg, #F77F00, #E67300);">
+                                    <i class="fa fa-globe me-1"></i>🇫🇷 Français
+                                </span>
+                                <span class="badge badge-secondary me-2" style="background: linear-gradient(135deg, #009739, #008030);">
+                                    <i class="fa fa-language me-1"></i>🇨🇮 Baoulé
+                                </span>
+                                <span class="badge badge-secondary" style="background: linear-gradient(135deg, #8D6E63, #6D4C41);">
+                                    <i class="fa fa-microphone me-1"></i>🇨🇮 Dioula
+                                </span>
+                            </div>
+                            <div class="mt-3">
+                                <a href="#" class="btn btn-sm btn-outline-primary me-2" style="border-color: #1877F2; color: #1877F2;">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-outline-primary me-2" style="border-color: #1DA1F2; color: #1DA1F2;">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-outline-primary me-2" style="border-color: #0077B5; color: #0077B5;">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-outline-primary" style="border-color: #25D366; color: #25D366;">
+                                    <i class="fa fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h5 class="text-dark">
+                                <i class="fa fa-cogs me-2" style="color: #F77F00;"></i>
+                                Services
+                            </h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <a href="/portal" class="text-muted">
+                                        <i class="fa fa-tachometer-alt me-2" style="color: #009739;"></i>Espace Portail
+                                    </a>
+                                </li>
+                                <li class="mb-2">
+                                    <a href="#" class="text-muted">
+                                        <i class="fa fa-store me-2" style="color: #F77F00;"></i>Pour les Marchands
+                                    </a>
+                                </li>
+                                <li class="mb-2">
+                                    <a href="#" class="text-muted">
+                                        <i class="fa fa-seedling me-2" style="color: #009739;"></i>Pour les Producteurs
+                                    </a>
+                                </li>
+                                <li class="mb-2">
+                                    <a href="#" class="text-muted">
+                                        <i class="fa fa-building me-2" style="color: #F77F00;"></i>Pour les Coopératives
+                                    </a>
+                                </li>
+                                <li class="mb-2">
+                                    <a href="/help" class="text-muted">
+                                        <i class="fa fa-headset me-2" style="color: #FF9800;"></i>Support Technique
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h5 class="text-dark">
+                                <i class="fa fa-address-card me-2" style="color: #009739;"></i>
+                                Contact
+                            </h5>
+                            <p class="text-muted mb-2">
+                                <i class="fa fa-envelope me-2" style="color: #F77F00;"></i>
+                                <span>support@ifn.ci</span>
+                            </p>
+                            <p class="text-muted mb-2">
+                                <i class="fa fa-phone me-2" style="color: #009739;"></i>
+                                <span>+225 XX XX XX XX</span>
+                            </p>
+                            <p class="text-muted mb-0">
+                                <i class="fa fa-map-marker me-2" style="color: #FF9800;"></i>
+                                <span>Abidjan, Côte d'Ivoire</span>
+                            </p>
+                            <div class="mt-3">
+                                <div class="d-flex align-items-center">
+                                    <i class="fa fa-clock me-2" style="color: #009739;"></i>
+                                    <small class="text-muted">Support 24h/7j</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4"/>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <small class="text-muted">
+                                © 2024 IFN - Plateforme Numérique Ivoirienne.
+                                <a href="#" class="text-muted">Mentions légales</a> |
+                                <a href="#" class="text-muted">Politique de confidentialité</a> |
+                                <a href="#" class="text-muted">CGU</a>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <style>
+                    /* Footer IFN */
+                    .ifn-footer {
+                        background: var(--ifn-light-gray);
+                        border-top: 3px solid var(--ifn-orange);
+                        padding: 2rem 0;
+                        margin-top: 3rem;
+                    }
+                </style>
+            </footer>
+        </xpath>
+    </template>
+</odoo>

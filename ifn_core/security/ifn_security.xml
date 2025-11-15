@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Groupes IFN -->
+
+        <!-- Groupe Marchands -->
+        <record id="group_ifn_merchant" model="res.groups">
+            <field name="name">Marchand IFN</field>
+            <field name="category_id" ref="base.module_category_operations"/>
+            <field name="comment">Utilisateurs avec rôle marchand dans l'écosystème IFN</field>
+        </record>
+
+        <!-- Groupe Producteurs -->
+        <record id="group_ifn_producer" model="res.groups">
+            <field name="name">Producteur IFN</field>
+            <field name="category_id" ref="base.module_category_operations"/>
+            <field name="comment">Utilisateurs avec rôle producteur dans l'écosystème IFN</field>
+        </record>
+
+        <!-- Groupe Gestionnaires Coopérative -->
+        <record id="group_ifn_coop_manager" model="res.groups">
+            <field name="name">Gestionnaire Coopérative IFN</field>
+            <field name="category_id" ref="base.module_category_operations"/>
+            <field name="comment">Gestionnaires de coopératives dans l'écosystème IFN</field>
+        </record>
+
+        <!-- Groupe Agents -->
+        <record id="group_ifn_agent" model="res.groups">
+            <field name="name">Agent IFN</field>
+            <field name="category_id" ref="base.module_category_operations"/>
+            <field name="comment">Agents IFN avec droits de lecture et actions limitées</field>
+            <field name="implied_ids" eval="[(4, ref('group_ifn_user'))]"/>
+        </record>
+
+        <!-- Groupe Utilisateurs IFN (base) -->
+        <record id="group_ifn_user" model="res.groups">
+            <field name="name">Utilisateur IFN</field>
+            <field name="category_id" ref="base.module_category_operations"/>
+            <field name="comment">Utilisateurs de base dans l'écosystème IFN</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- Groupe Administrateurs IFN -->
+        <record id="group_ifn_admin" model="res.groups">
+            <field name="name">Administrateur IFN</field>
+            <field name="category_id" ref="base.module_category_administration"/>
+            <field name="comment">Administrateurs avec tous les droits sur le module IFN</field>
+            <field name="implied_ids" eval="[(4, ref('group_ifn_agent'))]"/>
+        </record>
+
+        <!-- Groupe Utilisateurs Portail IFN -->
+        <record id="group_ifn_portal" model="res.groups">
+            <field name="name">Portail IFN</field>
+            <field name="category_id" ref="base.module_category_website"/>
+            <field name="comment">Accès portail pour les utilisateurs IFN</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_portal'))]"/>
+        </record>
+
+        <!-- Droits étendus pour les groupes -->
+
+        <!-- Configuration des droits de menu -->
+        <record id="menu_ifn_config_access" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0, [ref('group_ifn_admin')])]"/>
+        </record>
+
+        <!-- Configuration des accès aux rapports -->
+        <record id="group_ifn_reporting" model="res.groups">
+            <field name="name">Reporting IFN</field>
+            <field name="category_id" ref="base.module_category_reporting"/>
+            <field name="comment">Accès aux rapports et KPIs IFN</field>
+            <field name="implied_ids" eval="[(4, ref('group_ifn_agent'))]"/>
+        </record>
+
+        <!-- Configuration des accès audit -->
+        <record id="group_ifn_audit" model="res.groups">
+            <field name="name">Audit IFN</field>
+            <field name="category_id" ref="base.module_category_administration"/>
+            <field name="comment">Accès aux logs d'audit IFN</field>
+            <field name="implied_ids" eval="[(4, ref('group_ifn_admin'))]"/>
+        </record>
+
+    </data>
+</odoo>

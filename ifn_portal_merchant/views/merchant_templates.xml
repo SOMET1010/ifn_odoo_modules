@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Stock Management Page -->
+        <template id="page_stock" name="Merchant Stock">
+            <t t-call="ifn_portal_common.portal_layout">
+                <t t-set="title">Gestion des Stocks</t>
+
+                <div class="container-fluid ifn-merchant-stock">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h1 class="h3">
+                                <i class="fa fa-boxes me-2"></i>
+                                Gestion des Stocks
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- Stock Alerts -->
+                    <div class="row mb-4" t-if="stock_data.alerts_count > 0">
+                        <div class="col-12">
+                            <div class="alert alert-warning">
+                                <i class="fa fa-exclamation-triangle me-2"></i>
+                                <strong><t t-esc="stock_data.alerts_count"/></strong> produits en rupture ou sous le seuil d'alerte
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stock Table -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-0">État des Stocks</h6>
+                                    <button class="btn btn-sm btn-outline-primary" id="quick-inventory-btn">
+                                        <i class="fa fa-clipboard-check me-1"></i>
+                                        Inventaire Rapide
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Produit</th>
+                                                    <th>Quantité Actuelle</th>
+                                                    <th>Seuil d'Alerte</th>
+                                                    <th>Statut</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="stock_data.products" t-as="product">
+                                                    <tr>
+                                                        <td><strong><t t-esc="product.name"/></strong></td>
+                                                        <td>
+                                                            <span t-attf-class="badge #{product.status == 'critical' ? 'bg-danger' : product.status == 'low' ? 'bg-warning' : 'bg-success'}">
+                                                                <t t-esc="product.quantity"/> <t t-esc="product.unit"/>
+                                                            </span>
+                                                        </td>
+                                                        <td><t t-esc="product.threshold"/> <t t-esc="product.unit"/></td>
+                                                        <td>
+                                                            <span t-if="product.status == 'ok'" class="badge bg-success">
+                                                                <i class="fa fa-check-circle me-1"></i>OK
+                                                            </span>
+                                                            <span t-elif="product.status == 'low'" class="badge bg-warning">
+                                                                <i class="fa fa-exclamation-circle me-1"></i>Bas
+                                                            </span>
+                                                            <span t-else="" class="badge bg-danger">
+                                                                <i class="fa fa-times-circle me-1"></i>Critique
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="btn-group btn-group-sm">
+                                                                <button class="btn btn-outline-primary btn-adjust-stock" t-att-data-product-id="product.id">
+                                                                    <i class="fa fa-edit"></i>
+                                                                </button>
+                                                                <button class="btn btn-outline-success btn-reorder" t-att-data-product-id="product.id" t-if="product.status != 'ok'">
+                                                                    <i class="fa fa-redo"></i>
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stock Movements -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Derniers Mouvements</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="timeline">
+                                        <!-- Stock movements will be loaded here -->
+                                        <div class="text-center text-muted py-4">
+                                            <i class="fa fa-history fa-2x mb-3"></i>
+                                            <p>Aucun mouvement récent</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Purchase/Supply Page -->
+        <template id="page_purchase" name="Merchant Purchase">
+            <t t-call="ifn_portal_common.portal_layout">
+                <t t-set="title">Approvisionnement</t>
+
+                <div class="container-fluid ifn-merchant-purchase">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h1 class="h3">
+                                <i class="fa fa-truck me-2"></i>
+                                Approvisionnement
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- Supplier Selection -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Sélection du Fournisseur</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="supplier-type" id="supplier-coop" checked="checked"/>
+                                                <label class="form-check-label" for="supplier-coop">
+                                                    <i class="fa fa-users me-2"></i>
+                                                    Ma Coopérative
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="supplier-type" id="supplier-other"/>
+                                                <label class="form-check-label" for="supplier-other">
+                                                    <i class="fa fa-store me-2"></i>
+                                                    Autre Fournisseur
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h6 class="text-muted mb-2">Commande Actuelle</h6>
+                                    <h3 class="text-primary mb-0" id="order-total">0 F</h3>
+                                    <small class="text-muted"><span id="order-items">0</span> articles</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Catalog -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Catalogue des Produits</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row" id="product-catalog">
+                                        <!-- Products will be loaded here -->
+                                        <div class="col-md-3 mb-3">
+                                            <div class="card product-card">
+                                                <div class="card-body text-center">
+                                                    <i class="fa fa-box fa-2x text-muted mb-2"></i>
+                                                    <h6 class="card-title">Riz Importé</h6>
+                                                    <p class="text-success mb-1">450 F/kg</p>
+                                                    <p class="text-muted small mb-2">Livraison 2-3 jours</p>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="number" class="form-control" placeholder="Qté" value="1" min="1"/>
+                                                        <button class="btn btn-primary btn-add-to-order">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- More products would be loaded dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Récapitulatif de la Commande</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Produit</th>
+                                                    <th>Quantité</th>
+                                                    <th>Prix Unitaire</th>
+                                                    <th>Total</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="order-items-table">
+                                                <!-- Order items will be added here -->
+                                            </tbody>
+                                        </table>
+                                        <div id="empty-order" class="text-center text-muted py-4">
+                                            <i class="fa fa-shopping-cart fa-2x mb-3"></i>
+                                            <p>Aucun produit dans votre commande</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Place Order -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <button class="btn btn-success btn-lg" id="place-order-btn" disabled="disabled">
+                                        <i class="fa fa-check-circle me-2"></i>
+                                        Passer la Commande
+                                    </button>
+                                    <div class="mt-3">
+                                        <small class="text-muted">
+                                            <i class="fa fa-info-circle me-1"></i>
+                                            La livraison sera effectuée dans 2-3 jours ouvrables
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Payments Page -->
+        <template id="page_payments" name="Merchant Payments">
+            <t t-call="ifn_portal_common.portal_layout">
+                <t t-set="title">Encaissements</t>
+
+                <div class="container-fluid ifn-merchant-payments">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h1 class="h3">
+                                <i class="fa fa-money-bill-wave me-2"></i>
+                                Encaissements
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- Payment Methods -->
+                    <div class="row mb-4">
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-success">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-mobile-alt fa-2x text-success mb-2"></i>
+                                    <h6>Mobile Money</h6>
+                                    <button class="btn btn-success btn-sm" id="init-momo-payment">
+                                        <i class="fa fa-plus-circle me-1"></i>
+                                        Nouveau Paiement
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-info">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-money-bill fa-2x text-info mb-2"></i>
+                                    <h6>Espèces</h6>
+                                    <button class="btn btn-info btn-sm" id="record-cash-payment">
+                                        <i class="fa fa-plus-circle me-1"></i>
+                                        Enregistrer
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-warning">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-credit-card fa-2x text-warning mb-2"></i>
+                                    <h6>Crédit</h6>
+                                    <button class="btn btn-warning btn-sm" id="record-credit-payment">
+                                        <i class="fa fa-plus-circle me-1"></i>
+                                        Enregistrer
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment History -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-0">Historique des Paiements</h6>
+                                    <div class="btn-group btn-group-sm">
+                                        <button class="btn btn-outline-secondary active">Aujourd'hui</button>
+                                        <button class="btn btn-outline-secondary">Cette semaine</button>
+                                        <button class="btn btn-outline-secondary">Ce mois</button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Type</th>
+                                                    <th>Montant</th>
+                                                    <th>Client</th>
+                                                    <th>Statut</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>04/01/2024 15:30</td>
+                                                    <td><span class="badge bg-success">Mobile Money</span></td>
+                                                    <td class="fw-bold">5,000 F</td>
+                                                    <td>Client Alpha</td>
+                                                    <td><span class="badge bg-success">Confirmé</span></td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-primary">
+                                                            <i class="fa fa-receipt"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>04/01/2024 14:20</td>
+                                                    <td><span class="badge bg-info">Espèces</span></td>
+                                                    <td class="fw-bold">2,500 F</td>
+                                                    <td>Client Beta</td>
+                                                    <td><span class="badge bg-success">Confirmé</span></td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-primary">
+                                                            <i class="fa fa-receipt"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+    </data>
+</odoo>

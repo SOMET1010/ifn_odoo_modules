@@ -1,0 +1,343 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+      <h2 class="oe_slogan" style="color:#875A7B;"><b>IFN Core - Socle Écosystème Financier Numérique</b></h2>
+      <h3 class="oe_slogan mb-0 mt8">Plateforme complète pour l'inclusion financière avec gestion des rôles, QR codes, géolocalisation et audit. Solution idéale pour les écosystèmes financiers décentralisés en Afrique.</h3>
+    </div>
+    <div class="oe_centered">
+      <h3 class="oe_mb16 text-center">Compatible avec Odoo 17 Enterprise et Community</h3>
+      <h4 class="oe_mb16 text-center">Déployé sur Odoo.sh et On-Premise</h4>
+    </div>
+  </section>
+
+  <section class="oe_container mt-4">
+    <div class="row">
+      <div class="offset-lg-0 offset-md-1 col-lg-6 col-md-11">
+        <img class="oe_demo oe_picture oe_screenshot" src="dashboard.png" alt="Tableau de bord IFN Core">
+      </div>
+      <div class="offset-lg-0 offset-md-1 col-lg-6 col-md-11">
+        <img class="oe_demo oe_picture oe_screenshot" src="roles.png" alt="Gestion des rôles IFN">
+      </div>
+    </div>
+  </section>
+
+  <section class="oe_container mt-4">
+    <h2 class="oe_slogan" style="color:#875A7B;">Fonctionnalités Principales</h2>
+    <table class="table table-bordered">
+      <colgroup>
+         <col span="1" style="width: 35%;">
+         <col span="1" style="width: 65%;">
+      </colgroup>
+      <thead>
+        <tr style="background-color: #875A7B; color: #fff;">
+          <th>Module</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Gestion des Rôles RBAC</strong></td>
+          <td>
+            - 5 rôles IFN : Marchand, Producteur, Gestionnaire Coop, Agent, Administrateur<br/>
+            - Contrôle d'accès granulaire avec isolation des données<br/>
+            - Multi-entreprise et multi-tenant support<br/>
+            - Workflow de validation des profils
+          </td>
+        </tr>
+        <tr>
+          <td><strong>QR Codes & UID</strong></td>
+          <td>
+            - Génération automatique d'identifiants uniques IFN (UID)<br/>
+            - Codes QR personnalisables avec signatures numériques<br/>
+            - Templates d'attestation officielle<br/>
+            - Régénération en lot avec historique
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Géolocalisation</strong></td>
+          <td>
+            - Coordonnées GPS pour partenaires, marchés et coopératives<br/>
+            - Cartographie interactive avec zones de couverture<br/>
+            - Calcul automatique des distances<br/>
+            - Support multi-formats de coordonnées
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Audit & Sécurité</strong></td>
+          <td>
+            - Journalisation complète avec détection d'anomalies<br/>
+            - Logs d'audit avec horodatage et traçabilité<br/>
+            - Consentements RGPD-like avec validation<br/>
+            - Alertes de sécurité en temps réel
+          </td>
+        </tr>
+        <tr>
+          <td><strong>KPIs & Monitoring</strong></td>
+          <td>
+            - Snapshots quotidiens automatisés des indicateurs<br/>
+            - Tableaux de bord par rôle et organisation<br/>
+            - Tendances temporelles et statistiques<br/>
+            - Rapports mensuels personnalisables
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Internationalisation</strong></td>
+          <td>
+            - 4 langues : Français, Baoulé, Dioula, Anglais<br/>
+            - Interface adaptative avec pictogrammes<br/>
+            - Support vocal (STT/TTS) pour accessibilité<br/>
+            - Préférences utilisateur personnalisables
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Import/Export</strong></td>
+          <td>
+            - Import CSV/Excel guidé avec validation<br/>
+            - Création automatique des entités manquantes<br/>
+            - Géolocalisation depuis adresses<br/>
+            - Rapports d'import détaillés avec gestion d'erreurs
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Bus d'Événements</strong></td>
+          <td>
+            - Architecture découplée avec événements temps réel<br/>
+            - Webhooks pour intégrations externes<br/>
+            - Notifications multi-canaux (Email, SMS, Push)<br/>
+            - API REST pour connectivité externe
+          </td>
+        </tr>
+        <tr>
+          <td><strong>CRON & Automatisation</strong></td>
+          <td>
+            - Tâches automatisées configurables<br/>
+            - Snapshots KPIs quotidiens<br/>
+            - Nettoyage automatique des logs<br/>
+            - Rapports périodiques personnalisés
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Développement</strong></td>
+          <td>
+            - Architecture modulaire extensible<br/>
+            - Mixins réutilisables pour fonctionnalités communes<br/>
+            - Tests unitaires et documentation complète<br/>
+            - Code qualité enterprise ready
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="oe_container oe_dark mt-4">
+    <div class="oe_row oe_spaced">
+      <h2 class="oe_slogan" style="color:#875A7B;">Architecture Technique</h2>
+      <div class="oe_row_img oe_centered">
+        <h4 class="oe_mb16 text-center">Structure Modulaire</h4>
+        <img class="oe_demo oe_picture oe_screenshot" src="architecture.png" alt="Architecture IFN Core">
+      </div>
+    </div>
+    <div class="oe_row oe_spaced">
+      <div class="col-md-6">
+        <h4 class="oe_mb16">🏗️ Structure</h4>
+        <ul class="list-unstyled">
+          <li>✅ 9 modèles de données métiers</li>
+          <li>✅ 3 wizards pour traitement de masse</li>
+          <li>✅ 2 rapports avec templates multiples</li>
+          <li>✅ Sécurité RBAC complète</li>
+          <li>✅ 4 langues supportées</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h4 class="oe_mb16">🔧 Technologies</h4>
+        <ul class="list-unstyled">
+          <li>✅ Python 3.8+ & Odoo 17</li>
+          <li>✅ qrcode & Pillow pour QR codes</li>
+          <li>✅ Base géolocalisation intégrée</li>
+          <li>✅ Bus événements temps réel</li>
+          <li>✅ API REST & Webhooks</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="oe_container mt-4">
+    <h2 class="oe_slogan" style="color:#875A7B;">Cas d'Usage</h2>
+    <div class="oe_row">
+      <div class="col-md-4">
+        <div class="oe_demo_card">
+          <h3>🏪 Institutions Financières</h3>
+          <p>Gestion complète des agents, marchands et clients avec identification biométrique et géolocalisation.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="oe_demo_card">
+          <h3>🌾 Coopératives Agricoles</h3>
+          <p>Suivi des producteurs, gestion des collectes et traçabilité complète des produits avec certification IFN.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="oe_demo_card">
+          <h3>📊 Projets de Développement</h3>
+          <p>Monitoring d'impact, suivi des bénéficiaires et reporting pour partenaires internationaux et ONG.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="oe_container oe_dark mt-4">
+    <div class="oe_row oe_spaced">
+      <h2 class="oe_slogan" style="color:#875A7B;">Processus d'Installation</h2>
+      <div class="oe_row">
+        <div class="col-md-6">
+          <h4 class="oe_mb16">📦 Prérequis</h4>
+          <ul>
+            <li>Odoo 17.0+ (Community ou Enterprise)</li>
+            <li>Python 3.8+</li>
+            <li>Dépendances : qrcode, Pillow</li>
+            <li>Base de données PostgreSQL 12+</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h4 class="oe_mb16">🚀 Installation</h4>
+          <ul>
+            <li>Copier dans /addons/</li>
+            <li>Installer dépendances Python</li>
+            <li>Activer le module dans Apps</li>
+            <li>Configurer les rôles et permissions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="oe_container mt-4">
+    <div class="oe_row oe_centeralign mb32">
+      <h2 class="oe_slogan" style="color:#875A7B;">Support Technique</h2>
+      <h5>
+        <i class="fa fa-life-ring"/> Support IFN dédié<br/><br/>
+        <code>support@ifn.org</code> | <code>https://docs.ifn.org</code>
+      </h5>
+    </div>
+    <div class="oe_row oe_centeralign mb32">
+      <h2 class="oe_slogan" style="color:#875A7B;">Documentation Complète</h2>
+      <h5><i class="fa fa-book"/> Guide d'administration, documentation développeur et API reference disponibles</h5>
+      <h6 class="mt32">Accès documentation :</h6>
+      <p class="mt8">📖 Guide Admin : <code>https://docs.ifn.org/admin</code></p>
+      <p class="mt8">👨‍💻 Guide Dev : <code>https://docs.ifn.org/developer</code></p>
+      <p class="mt8">🔌 API Reference : <code>https://docs.ifn.org/api</code></p>
+    </div>
+    <div class="oe_row oe_centeralign mb16">
+      <h2 class="oe_slogan" style="color:#875A7B;">Communauté & Contributions</h2>
+      <h5>
+        <i class="fa fa-github"/> Projet open source sous licence LGPL-3<br/><br/>
+        <code>https://github.com/ifn/ifn-core</code>
+      </h5>
+      <h5 class="mt32">
+        <i class="fa fa-users"/> Rejoignez la communauté IFN<br/><br/>
+        <code>https://community.ifn.org</code>
+      </h5>
+    </div>
+  </section>
+
+  <section class="oe_container oe_dark mt-4">
+    <div class="oe_row oe_centeralign">
+      <h2 class="oe_slogan" style="color:#875A7B;">Roadmap 2024-2025</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <h4>Version 1.1 - Q1 2024</h4>
+          <ul>
+            <li>📱 Portail mobile PWA</li>
+            <li>💳 Intégration paiements mobiles</li>
+            <li>📈 Analytics avancés</li>
+            <li>🤖 ML pour détection fraudes</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h4>Version 1.2 - Q2 2024</h4>
+          <ul>
+            <li>⛓️ Blockchain traçabilité</li>
+            <li>📊 Reporting avancé</li>
+            <li>💱 Multi-devise</li>
+            <li>🔐 Signature numérique avancée</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h4>Version 2.0 - Q4 2024</h4>
+          <ul>
+            <li>☁️ Architecture microservices</li>
+            <li>🌍 Multi-pays support</li>
+            <li>🤖 Chatbot intégré</li>
+            <li>📱 Application mobile native</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="oe_container mt-4">
+    <div class="oe_row oe_centeralign mb16">
+      <h2 class="oe_slogan" style="color:#875A7B;">Certifications & Standards</h2>
+      <div class="row">
+        <div class="col-md-3">
+          <h4>🔒 Sécurité</h4>
+          <ul>
+            <li>ISO 27001</li>
+            <li>RGPD Compliant</li>
+            <li>OWASP Top 10</li>
+            <li>Audit de sécurité</li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h4>🏆 Qualité</h4>
+          <ul>
+            <li>Tests unitaires 95%+</li>
+            <li>Code coverage</li>
+            <li>CI/CD intégré</li>
+            <li>Revue code pair</li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h4>📋 Performance</h4>
+          <ul>
+            <li>10k+ utilisateurs</li>
+            <li>&lt;1s response time</li>
+            <li>99.9% uptime SLA</li>
+            <li>Scalabilité horizontale</li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h4>🌍 Accessibilité</h4>
+          <ul>
+            <li>WCAG 2.1 AA</li>
+            <li>Support vocal</li>
+            <li>Mode offline</li>
+            <li>Multi-langues</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="oe_container oe_dark mt-4 mb-4">
+    <div class="oe_row oe_centeralign">
+      <h2 class="oe_slogan" style="color:#875A7B;">IFN Core - L'Avenir de l'Inclusion Financière</h2>
+      <h5 class="oe_mb32">
+        <i class="fa fa-rocket"/> Platforme complète, sécurisée et scalable pour transformer l'écosystème financier numérique en Afrique<br/><br/>
+        <strong>Licence LGPL-3 | Support Enterprise | Communauté Active</strong>
+      </h5>
+      <div class="oe_row">
+        <div class="col-md-4">
+          <h4>🚀 Ready for Production</h4>
+          <p>Testé et validé sur des projets réels avec milliers d'utilisateurs</p>
+        </div>
+        <div class="col-md-4">
+          <h4>🛡️ Enterprise Security</h4>
+          <p>Sécurité de niveau bancaire avec audit et conformité</p>
+        </div>
+        <div class="col-md-4">
+          <h4>🌍 African Context</h4>
+          <p>Conçu pour les réalités et besoins du marché africain</p>
+        </div>
+      </div>
+    </div>
+  </section>

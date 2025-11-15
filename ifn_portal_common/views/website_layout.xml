@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Layout principal IFN qui remplace le website par défaut -->
+        <template id="layout" name="IFN Website Layout">
+            <t t-call="web.layout">
+                <!-- Variables CSS IFN -->
+                <style>
+                    :root {
+                        --ifn-orange: #F77F00;
+                        --ifn-green: #009739;
+                        --ifn-white: #FFFFFF;
+                        --ifn-black: #212121;
+                        --ifn-gray: #6C757D;
+                        --ifn-light-gray: #F8F9FA;
+                        --ifn-orange-light: #FFF4E6;
+                        --ifn-green-light: #E8F5E8;
+                        --ifn-orange-dark: #E67300;
+                        --ifn-green-dark: #008030;
+                        --ifn-gradient: linear-gradient(135deg, var(--ifn-orange) 0%, var(--ifn-orange-dark) 100%);
+                        --ifn-gradient-green: linear-gradient(135deg, var(--ifn-green) 0%, var(--ifn-green-dark) 100%);
+                        --ifn-shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+                        --ifn-shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+                        --ifn-shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+                        --ifn-shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
+                        --ifn-border-radius: 8px;
+                        --ifn-border-radius-lg: 12px;
+                        --ifn-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    }
+
+                    /* Masquer le header et footer par défaut d'Odoo */
+                    .o_main_header,
+                    .o_main_footer,
+                    .o_footer,
+                    .o_website_header,
+                    .o_website_footer {
+                        display: none !important;
+                    }
+
+                    /* Header IFN */
+                    .ifn-header {
+                        background: var(--ifn-white);
+                        border-bottom: 3px solid var(--ifn-orange);
+                        box-shadow: var(--ifn-shadow-sm);
+                        padding: 1rem 0;
+                        position: sticky;
+                        top: 0;
+                        z-index: 1000;
+                    }
+
+                    .ifn-nav .nav-link {
+                        color: var(--ifn-black) !important;
+                        font-weight: 500;
+                        padding: 0.5rem 1rem;
+                        border-radius: var(--ifn-border-radius);
+                        transition: var(--ifn-transition);
+                    }
+
+                    .ifn-nav .nav-link:hover {
+                        background: var(--ifn-orange-light);
+                        color: var(--ifn-orange-dark) !important;
+                    }
+
+                    .ifn-user-tools {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                    }
+
+                    /* Footer IFN */
+                    .ifn-footer {
+                        background: var(--ifn-light-gray);
+                        border-top: 3px solid var(--ifn-orange);
+                        padding: 2rem 0;
+                        margin-top: 3rem;
+                    }
+
+                    /* Bannière offline */
+                    .ifn-offline-banner {
+                        position: fixed;
+                        top: 70px;
+                        left: 0;
+                        right: 0;
+                        z-index: 999;
+                        border-radius: 0;
+                        margin: 0;
+                    }
+
+                    /* Styles pour pages publiques */
+                    .ifn-public-header {
+                        background: var(--ifn-gradient);
+                        color: var(--ifn-white);
+                        padding: 2rem 0;
+                        text-align: center;
+                    }
+
+                    .ifn-form-section {
+                        background: var(--ifn-white);
+                        border-radius: var(--ifn-border-radius-lg);
+                        padding: 2rem;
+                        box-shadow: var(--ifn-shadow-md);
+                        margin-bottom: 2rem;
+                    }
+
+                    .ifn-btn-primary {
+                        background: var(--ifn-gradient);
+                        border: none;
+                        color: var(--ifn-white);
+                        padding: 0.75rem 2rem;
+                        border-radius: var(--ifn-border-radius);
+                        font-weight: 600;
+                        transition: var(--ifn-transition);
+                    }
+
+                    .ifn-btn-primary:hover {
+                        background: var(--ifn-gradient-green);
+                        transform: translateY(-2px);
+                        box-shadow: var(--ifn-shadow-lg);
+                    }
+
+                    /* Bottom Navigation Mobile */
+                    .ifn-bottom-nav {
+                        position: fixed;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        background: var(--ifn-white);
+                        border-top: 2px solid var(--ifn-orange);
+                        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+                        z-index: 1000;
+                        padding: 0.5rem 0;
+                        display: none;
+                    }
+
+                    .ifn-bottom-nav .nav-item {
+                        flex: 1;
+                        text-align: center;
+                    }
+
+                    .ifn-bottom-nav .nav-link {
+                        color: var(--ifn-gray);
+                        text-decoration: none;
+                        padding: 0.5rem 0;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 0.25rem;
+                        border-radius: var(--ifn-border-radius);
+                        transition: var(--ifn-transition);
+                    }
+
+                    .ifn-bottom-nav .nav-link:hover,
+                    .ifn-bottom-nav .nav-link.active {
+                        color: var(--ifn-orange);
+                        background: var(--ifn-orange-light);
+                    }
+
+                    .ifn-bottom-nav .nav-link i {
+                        font-size: 1.2rem;
+                    }
+
+                    .ifn-bottom-nav .nav-link span {
+                        font-size: 0.75rem;
+                        font-weight: 500;
+                    }
+
+                    /* Breadcrumbs améliorés */
+                    .ifn-breadcrumb .breadcrumb {
+                        background: transparent;
+                        padding: 0;
+                        margin: 0;
+                    }
+
+                    .ifn-breadcrumb .breadcrumb-item {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                    }
+
+                    .ifn-breadcrumb .breadcrumb-item i {
+                        color: var(--ifn-orange);
+                        font-size: 0.9rem;
+                    }
+
+                    .ifn-breadcrumb .breadcrumb-item a {
+                        color: var(--ifn-gray);
+                        text-decoration: none;
+                        transition: var(--ifn-transition);
+                    }
+
+                    .ifn-breadcrumb .breadcrumb-item a:hover {
+                        color: var(--ifn-orange);
+                    }
+
+                    /* Menu utilisateur amélioré */
+                    .ifn-user-menu {
+                        position: relative;
+                    }
+
+                    .ifn-user-avatar {
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 50%;
+                        background: var(--ifn-gradient);
+                        color: white;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: 600;
+                        font-size: 0.9rem;
+                        border: 2px solid var(--ifn-orange-light);
+                        transition: var(--ifn-transition);
+                    }
+
+                    .ifn-user-avatar:hover {
+                        transform: scale(1.05);
+                        box-shadow: var(--ifn-shadow-md);
+                    }
+
+                    .ifn-user-dropdown {
+                        min-width: 280px;
+                        border: none;
+                        box-shadow: var(--ifn-shadow-lg);
+                        border-radius: var(--ifn-border-radius-lg);
+                        padding: 1rem 0;
+                    }
+
+                    .ifn-user-dropdown .dropdown-item {
+                        padding: 0.75rem 1.5rem;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.75rem;
+                        transition: var(--ifn-transition);
+                        border: none;
+                    }
+
+                    .ifn-user-dropdown .dropdown-item:hover {
+                        background: var(--ifn-orange-light);
+                        color: var(--ifn-orange-dark);
+                    }
+
+                    .ifn-user-dropdown .dropdown-item i {
+                        width: 20px;
+                        text-align: center;
+                        color: var(--ifn-orange);
+                    }
+
+                    /* Raccourcis visuels */
+                    .ifn-quick-actions {
+                        display: flex;
+                        gap: 0.5rem;
+                        flex-wrap: wrap;
+                    }
+
+                    .ifn-quick-action {
+                        background: var(--ifn-orange-light);
+                        border: 1px solid var(--ifn-orange);
+                        color: var(--ifn-orange-dark);
+                        padding: 0.5rem 1rem;
+                        border-radius: var(--ifn-border-radius);
+                        text-decoration: none;
+                        font-size: 0.875rem;
+                        font-weight: 500;
+                        transition: var(--ifn-transition);
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                    }
+
+                    .ifn-quick-action:hover {
+                        background: var(--ifn-orange);
+                        color: white;
+                        text-decoration: none;
+                        transform: translateY(-1px);
+                        box-shadow: var(--ifn-shadow-sm);
+                    }
+
+                    /* Responsive */
+                    @media (max-width: 768px) {
+                        .ifn-bottom-nav {
+                            display: block;
+                        }
+                        .ifn-main {
+                            padding-bottom: 80px; /* Espace pour bottom nav */
+                        }
+                        .ifn-user-tools .d-none.d-md-flex {
+                            display: none !important;
+                        }
+                    }
+                </style>
+
+                <!-- Header IFN principal -->
+                <header id="ifn-header" class="ifn-header">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-md-3">
+                                <a href="/" class="ifn-logo">
+                                    <div style="background: var(--ifn-orange); color: white; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 1.5rem; display: inline-block;">
+                                        IFN
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Navigation principale -->
+                            <div class="col-md-6">
+                                <nav class="ifn-nav d-none d-md-block">
+                                    <ul class="nav justify-content-center">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/">
+                                                <i class="fas fa-home"/> Accueil
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/portal">
+                                                <i class="fas fa-tachometer-alt"/> Tableau de Bord
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/my/products">
+                                                <i class="fas fa-boxes"/> Produits
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/my/orders">
+                                                <i class="fas fa-shopping-cart"/> Commandes
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/ifn/signup">
+                                                <i class="fas fa-user-plus"/> S'inscrire
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/help">
+                                                <i class="fas fa-question-circle"/> Aide
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+
+                            <!-- Outils utilisateur -->
+                            <div class="col-md-3">
+                                <div class="ifn-user-tools">
+                                    <!-- Sélecteur de langue -->
+                                    <div class="ifn-language-selector dropdown">
+                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                                type="button" id="languageDropdown"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-globe"/>
+                                            <span class="current-lang">FR</span>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="languageDropdown">
+                                            <a class="dropdown-item" href="#" data-lang="fr_FR">
+                                                🇫🇷 Français
+                                            </a>
+                                            <a class="dropdown-item" href="#" data-lang="ba_BA">
+                                                🇨🇮 Baoulé
+                                            </a>
+                                            <a class="dropdown-item" href="#" data-lang="di_DJ">
+                                                🇨🇮 Dioula
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Accessibilité -->
+                                    <div class="ifn-accessibility-tools">
+                                        <button class="btn btn-sm btn-outline-secondary ifn-contrast-toggle"
+                                                title="Activer/Désactiver contraste élevé">
+                                            <i class="fas fa-adjust"/>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary ifn-font-size-toggle"
+                                                title="Agrandir la police">
+                                            <i class="fas fa-text-height"/>
+                                        </button>
+                                    </div>
+
+                                    <!-- Sélecteur de langue -->
+                                    <div class="ifn-language-selector dropdown d-none d-md-block">
+                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                                type="button" id="languageDropdown"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-globe"/>
+                                            <span class="current-lang">FR</span>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="languageDropdown">
+                                            <a class="dropdown-item" href="#" data-lang="fr_FR">
+                                                🇫🇷 Français
+                                            </a>
+                                            <a class="dropdown-item" href="#" data-lang="ba_BA">
+                                                🇨🇮 Baoulé
+                                            </a>
+                                            <a class="dropdown-item" href="#" data-lang="di_DJ">
+                                                🇨🇮 Dioula
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Connexion/Déconnexion -->
+                                    <t t-if="user and user.has_group('base.group_user')">
+                                        <!-- Menu utilisateur connecté -->
+                                        <div class="ifn-user-menu dropdown">
+                                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle ifn-user-avatar-toggle"
+                                                    type="button" id="userDropdown"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <div class="ifn-user-avatar">
+                                                    <t t-esc="user.name[:1].upper()"/>
+                                                </div>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right ifn-user-dropdown" aria-labelledby="userDropdown">
+                                                <div class="dropdown-header">
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="ifn-user-avatar">
+                                                            <t t-esc="user.name[:1].upper()"/>
+                                                        </div>
+                                                        <div>
+                                                            <div class="font-weight-bold" t-esc="user.name"/>
+                                                            <small class="text-muted" t-esc="user.email"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="dropdown-divider"/>
+                                                <a class="dropdown-item" href="/portal">
+                                                    <i class="fas fa-tachometer-alt"/> Mon Tableau de Bord
+                                                </a>
+                                                <a class="dropdown-item" href="/my/profile">
+                                                    <i class="fas fa-user-edit"/> Mon Profil
+                                                </a>
+                                                <a class="dropdown-item" href="/my/products">
+                                                    <i class="fas fa-boxes"/> Mes Produits
+                                                </a>
+                                                <a class="dropdown-item" href="/my/orders">
+                                                    <i class="fas fa-shopping-cart"/> Mes Commandes
+                                                </a>
+                                                <a class="dropdown-item" href="/my/settings">
+                                                    <i class="fas fa-cog"/> Paramètres
+                                                </a>
+                                                <div class="dropdown-divider"/>
+                                                <a class="dropdown-item" href="/help">
+                                                    <i class="fas fa-question-circle"/> Centre d'Aide
+                                                </a>
+                                                <a class="dropdown-item" href="/contact">
+                                                    <i class="fas fa-envelope"/> Contact
+                                                </a>
+                                                <div class="dropdown-divider"/>
+                                                <a class="dropdown-item text-danger" href="/web/session/logout">
+                                                    <i class="fas fa-sign-out-alt"/> Déconnexion
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <!-- Boutons connexion/inscription -->
+                                        <div class="d-flex align-items-center gap-2">
+                                            <a href="/web/login" class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-sign-in-alt"/> Connexion
+                                            </a>
+                                            <a href="/ifn/signup" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-user-plus"/> S'inscrire
+                                            </a>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+
+                            <!-- Menu mobile -->
+                            <div class="col-12 d-md-none">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="navbar-toggler ifn-mobile-menu-toggle"
+                                            type="button" data-toggle="collapse"
+                                            data-target="#ifnMobileMenu">
+                                        <i class="fas fa-bars"/>
+                                    </button>
+                                    
+                                    <!-- Raccourcis mobile -->
+                                    <div class="ifn-mobile-shortcuts">
+                                        <a href="/portal" class="btn btn-sm btn-outline-primary me-1" title="Tableau de Bord">
+                                            <i class="fas fa-tachometer-alt"/>
+                                        </a>
+                                        <a href="/my/products" class="btn btn-sm btn-outline-primary me-1" title="Produits">
+                                            <i class="fas fa-boxes"/>
+                                        </a>
+                                        <t t-if="user and user.has_group('base.group_user')">
+                                            <a href="/my/orders" class="btn btn-sm btn-outline-primary" title="Commandes">
+                                                <i class="fas fa-shopping-cart"/>
+                                            </a>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Menu mobile (collapsé) -->
+                    <div class="collapse" id="ifnMobileMenu">
+                        <div class="ifn-mobile-menu bg-light p-3">
+                            <ul class="list-unstyled mb-3">
+                                <li class="mb-2"><a href="/" class="d-flex align-items-center gap-2 text-dark"><i class="fas fa-home"/> Accueil</a></li>
+                                <li class="mb-2"><a href="/portal" class="d-flex align-items-center gap-2 text-dark"><i class="fas fa-tachometer-alt"/> Tableau de Bord</a></li>
+                                <li class="mb-2"><a href="/my/products" class="d-flex align-items-center gap-2 text-dark"><i class="fas fa-boxes"/> Produits</a></li>
+                                <li class="mb-2"><a href="/my/orders" class="d-flex align-items-center gap-2 text-dark"><i class="fas fa-shopping-cart"/> Commandes</a></li>
+                                <li class="mb-2"><a href="/ifn/signup" class="d-flex align-items-center gap-2 text-dark"><i class="fas fa-user-plus"/> S'inscrire</a></li>
+                                <li class="mb-2"><a href="/help" class="d-flex align-items-center gap-2 text-dark"><i class="fas fa-question-circle"/> Aide</a></li>
+                            </ul>
+                            
+                            <!-- Raccourcis visuels mobile -->
+                            <div class="ifn-quick-actions">
+                                <a href="/portal" class="ifn-quick-action">
+                                    <i class="fas fa-tachometer-alt"/> Dashboard
+                                </a>
+                                <a href="/my/products" class="ifn-quick-action">
+                                    <i class="fas fa-plus"/> Nouveau Produit
+                                </a>
+                                <a href="/contact" class="ifn-quick-action">
+                                    <i class="fas fa-headset"/> Support
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Bottom Navigation Mobile -->
+                <nav class="ifn-bottom-nav d-md-none">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">
+                                <i class="fas fa-home"/>
+                                <span>Accueil</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/portal">
+                                <i class="fas fa-tachometer-alt"/>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/my/products">
+                                <i class="fas fa-boxes"/>
+                                <span>Produits</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/my/orders">
+                                <i class="fas fa-shopping-cart"/>
+                                <span>Commandes</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/help">
+                                <i class="fas fa-question-circle"/>
+                                <span>Aide</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Contenu principal -->
+                <main>
+                    <t t-raw="0"/>
+                </main>
+
+                <!-- Footer IFN principal -->
+                <footer class="ifn-footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5 class="text-dark">Plateforme IFN</h5>
+                                <p class="text-muted">
+                                    La plateforme numérique inclusive pour les marchands,
+                                    producteurs et coopératives de Côte d'Ivoire.
+                                </p>
+                                <div class="mt-3">
+                                    <span class="badge badge-secondary me-2">🇫🇷 Français</span>
+                                    <span class="badge badge-secondary me-2">🇨🇮 Baoulé</span>
+                                    <span class="badge badge-secondary">🇨🇮 Dioula</span>
+                                </div>
+                                <div class="mt-3">
+                                    <a href="#" class="btn btn-sm btn-outline-primary me-2">
+                                        <i class="fa fa-facebook"/>
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-outline-primary me-2">
+                                        <i class="fa fa-twitter"/>
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-outline-primary me-2">
+                                        <i class="fa fa-linkedin"/>
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                        <i class="fa fa-whatsapp"/>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h5 class="text-dark">Services</h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><a href="/portal" class="text-muted">Espace Portail</a></li>
+                                    <li class="mb-2"><a href="#" class="text-muted">Pour les Marchands</a></li>
+                                    <li class="mb-2"><a href="#" class="text-muted">Pour les Producteurs</a></li>
+                                    <li class="mb-2"><a href="#" class="text-muted">Pour les Coopératives</a></li>
+                                    <li class="mb-2"><a href="/help" class="text-muted">Support Technique</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h5 class="text-dark">Contact</h5>
+                                <p class="text-muted mb-2">
+                                    <i class="fa fa-envelope me-2"/>support@ifn.ci
+                                </p>
+                                <p class="text-muted mb-2">
+                                    <i class="fa fa-phone me-2"/>+225 XX XX XX XX
+                                </p>
+                                <p class="text-muted mb-0">
+                                    <i class="fa fa-map-marker me-2"/>Abidjan, Côte d'Ivoire
+                                </p>
+                            </div>
+                        </div>
+                        <hr class="my-4"/>
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <small class="text-muted">
+                                    © 2024 IFN - Plateforme Numérique Ivoirienne.
+                                    <a href="#" class="text-muted">Mentions légales</a> |
+                                    <a href="#" class="text-muted">Politique de confidentialité</a> |
+                                    <a href="#" class="text-muted">CGU</a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+                <!-- Toast container -->
+                <div id="ifn-toast-container" class="ifn-toast-container" aria-live="polite"/>
+
+                <!-- Scripts et styles complémentaires -->
+                <script>
+                    // Font Awesome icons
+                    document.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">');
+                    
+                    // Navigation mobile enhancement
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Highlight active menu item
+                        const currentPath = window.location.pathname;
+                        const navLinks = document.querySelectorAll('.ifn-bottom-nav .nav-link, .ifn-nav .nav-link, .ifn-mobile-menu a');
+                        
+                        navLinks.forEach(link => {
+                            if (link.getAttribute('href') === currentPath) {
+                                link.classList.add('active');
+                            }
+                        });
+
+                        // Mobile menu collapse on link click
+                        const mobileMenuLinks = document.querySelectorAll('#ifnMobileMenu a');
+                        const mobileMenu = document.getElementById('ifnMobileMenu');
+                        mobileMenuLinks.forEach(link => {
+                            link.addEventListener('click', function() {
+                                if (mobileMenu.classList.contains('show')) {
+                                    mobileMenu.classList.remove('show');
+                                }
+                            });
+                        });
+                    });
+                </script>
+            </t>
+        </template>
+
+        <!-- Layout pour les pages publiques (inscription, etc.) -->
+        <template id="ifn_public_layout" name="IFN Public Layout">
+            <t t-call="ifn_portal_common.layout">
+                <!-- Header spécial pour pages publiques -->
+                <header class="ifn-public-header">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-md-4">
+                                <a href="/" class="ifn-logo">
+                                    <div style="background: var(--ifn-white); color: var(--ifn-orange); padding: 15px 25px; border-radius: 10px; font-weight: 700; font-size: 1.8rem; display: inline-block;">
+                                        IFN
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-8">
+                                <h1 class="mb-0">
+                                    <t t-value="title or 'Plateforme Numérique IFN'"/>
+                                </h1>
+                                <p class="lead mb-0">
+                                    Pour les marchands, producteurs et coopératives de Côte d'Ivoire
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Contenu principal -->
+                <main class="container py-5">
+                    <t t-raw="0"/>
+                </main>
+            </t>
+        </template>
+
+        <!-- Layout pour le portail -->
+        <template id="ifn_portal_layout" name="IFN Portal Layout">
+            <t t-call="ifn_portal_common.layout">
+                <!-- Fil d'Ariane amélioré -->
+                <div class="ifn-breadcrumb container mt-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/">
+                                    <i class="fas fa-home"/> Accueil
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="/portal">
+                                    <i class="fas fa-tachometer-alt"/> Portail
+                                </a>
+                            </li>
+                            <t t-if="page_name">
+                                <li class="breadcrumb-item active" t-esc="page_name"/>
+                            </t>
+                        </ol>
+                    </nav>
+                </div>
+
+                <!-- Bannière de synchronisation offline -->
+                <div id="ifn-offline-banner" class="ifn-offline-banner alert alert-warning d-none">
+                    <div class="container">
+                        <i class="fa fa-wifi"/>
+                        <span id="offline-message">Vous êtes hors ligne — les actions seront synchronisées</span>
+                        <button class="btn btn-sm btn-primary ml-2" id="sync-now">
+                            <i class="fa fa-sync"/> Synchroniser
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Contenu principal -->
+                <main class="ifn-main container py-4">
+                    <t t-raw="0"/>
+                </main>
+            </t>
+        </template>
+    </data>
+</odoo>

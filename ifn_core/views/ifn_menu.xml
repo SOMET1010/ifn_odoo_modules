@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Menu Principal IFN -->
+        <menuitem id="menu_ifn_root"
+                  name="IFN"
+                  sequence="50"
+                  groups="group_ifn_user"
+                  web_icon="ifn_core,static/description/icon.png"/>
+
+        <!-- Sous-menu Administration -->
+        <menuitem id="ifn_menu_administration"
+                  name="Administration"
+                  parent="menu_ifn_root"
+                  sequence="10"
+                  groups="group_ifn_agent"/>
+
+        <!-- Sous-menu Référentiels -->
+        <menuitem id="ifn_menu_references"
+                  name="Référentiels"
+                  parent="ifn_menu_administration"
+                  sequence="10"
+                  groups="group_ifn_agent"/>
+
+        <!-- Menu Marchés -->
+        <menuitem id="menu_ifn_market"
+                  name="Marchés"
+                  parent="ifn_menu_references"
+                  action="action_ifn_market"
+                  sequence="10"
+                  groups="group_ifn_user"/>
+
+        <!-- Menu Coopératives -->
+        <menuitem id="menu_ifn_coop"
+                  name="Coopératives"
+                  parent="ifn_menu_references"
+                  action="action_ifn_coop"
+                  sequence="20"
+                  groups="group_ifn_user"/>
+
+        <!-- Menu Zones -->
+        <menuitem id="menu_ifn_zone"
+                  name="Zones"
+                  parent="ifn_menu_references"
+                  sequence="30"
+                  groups="group_ifn_user"/>
+
+        <!-- Menu Catégories Produits -->
+        <menuitem id="menu_ifn_product_category_ref"
+                  name="Catégories Produits"
+                  parent="ifn_menu_references"
+                  sequence="40"
+                  groups="group_ifn_user"/>
+
+        <!-- Sous-menu Gestion des Acteurs -->
+        <menuitem id="ifn_menu_actors"
+                  name="Gestion des Acteurs"
+                  parent="ifn_menu_administration"
+                  sequence="20"
+                  groups="group_ifn_agent"/>
+
+        <!-- Menu Partenaires IFN -->
+        <menuitem id="menu_ifn_partners"
+                  name="Partenaires IFN"
+                  parent="ifn_menu_actors"
+                  action="action_res_partner_ifn"
+                  sequence="10"
+                  groups="group_ifn_agent"/>
+
+        <!-- Sous-menu Actions Rapides -->
+        <menuitem id="ifn_menu_quick_actions"
+                  name="Actions Rapides"
+                  parent="ifn_menu_actors"
+                  sequence="20"
+                  groups="group_ifn_agent"/>
+
+        <!-- Menu Nouveau Marchand -->
+        <menuitem id="menu_ifn_new_merchant"
+                  name="Nouveau Marchand"
+                  parent="ifn_menu_quick_actions"
+                  action="action_res_partner_merchant"
+                  sequence="10"
+                  groups="group_ifn_agent"/>
+
+        <!-- Menu Nouveau Producteur -->
+        <menuitem id="menu_ifn_new_producer"
+                  name="Nouveau Producteur"
+                  parent="ifn_menu_quick_actions"
+                  action="action_res_partner_producer"
+                  sequence="20"
+                  groups="group_ifn_agent"/>
+
+        <!-- Menu Nouveau Gestionnaire Coop -->
+        <menuitem id="menu_ifn_new_coop_manager"
+                  name="Nouveau Gestionnaire Coop"
+                  parent="ifn_menu_quick_actions"
+                  action="action_res_partner_coop_manager"
+                  sequence="30"
+                  groups="group_ifn_agent"/>
+
+        <!-- Sous-menu Monitoring et KPIs -->
+        <menuitem id="ifn_menu_monitoring"
+                  name="Monitoring et KPIs"
+                  parent="menu_ifn_root"
+                  sequence="30"
+                  groups="group_ifn_agent"/>
+
+        <!-- Menu KPIs -->
+        <menuitem id="menu_ifn_kpi_snapshots"
+                  name="Snapshots KPIs"
+                  parent="ifn_menu_monitoring"
+                  action="action_ifn_kpi_snapshot"
+                  sequence="10"
+                  groups="group_ifn_agent"/>
+
+        <!-- Menu Audit et Sécurité -->
+        <menuitem id="ifn_menu_audit_security"
+                  name="Audit et Sécurité"
+                  parent="ifn_menu_monitoring"
+                  sequence="20"
+                  groups="group_ifn_agent"/>
+
+        <!-- Menu Logs Audit -->
+        <menuitem id="menu_ifn_audit_logs"
+                  name="Logs d'Audit"
+                  parent="ifn_menu_audit_security"
+                  action="action_ifn_audit_log"
+                  sequence="10"
+                  groups="group_ifn_agent"/>
+
+        <!-- Sous-menu Configuration -->
+        <menuitem id="ifn_menu_config"
+                  name="Configuration"
+                  parent="menu_ifn_root"
+                  sequence="90"
+                  groups="group_ifn_admin"/>
+
+        <!-- Menu Paramètres -->
+        <menuitem id="menu_ifn_settings_general"
+                  name="Paramètres Généraux"
+                  parent="ifn_menu_config"
+                  sequence="10"
+                  groups="group_ifn_admin"/>
+
+        <!-- Sous-menu Reporting (pour les groupes avec accès reporting) -->
+        <menuitem id="ifn_menu_reporting"
+                  name="Reporting"
+                  parent="menu_ifn_root"
+                  sequence="40"
+                  groups="group_ifn_reporting"/>
+
+        <!-- Menu Rapports IFN -->
+        <menuitem id="menu_ifn_reports"
+                  name="Rapports IFN"
+                  parent="ifn_menu_reporting"
+                  sequence="10"
+                  groups="group_ifn_reporting"/>
+
+        <!-- Menu Portails (visible selon configuration) -->
+        <menuitem id="ifn_menu_portals"
+                  name="Portails IFN"
+                  parent="menu_ifn_root"
+                  sequence="80"
+                  groups="group_ifn_portal"
+                  attrs="{'invisible': [('ifn_portal_enabled', '=', False)]}"/>
+
+        <!-- Menu Portail Marchand -->
+        <menuitem id="menu_ifn_merchant_portal"
+                  name="Portail Marchand"
+                  parent="ifn_menu_portals"
+                  sequence="10"
+                  groups="group_ifn_merchant"
+                  action="portal_action_ifn_merchant"
+                  attrs="{'invisible': [('ifn_merchant_portal_enabled', '=', False)]}"/>
+
+        <!-- Menu Portail Producteur -->
+        <menuitem id="menu_ifn_producer_portal"
+                  name="Portail Producteur"
+                  parent="ifn_menu_portals"
+                  sequence="20"
+                  groups="group_ifn_producer"
+                  action="portal_action_ifn_producer"
+                  attrs="{'invisible': [('ifn_producer_portal_enabled', '=', False)]}"/>
+
+        <!-- Menu Portail Coopérative -->
+        <menuitem id="menu_ifn_coop_portal"
+                  name="Portail Coopérative"
+                  parent="ifn_menu_portals"
+                  sequence="30"
+                  groups="group_ifn_coop_manager"
+                  action="portal_action_ifn_coop"
+                  attrs="{'invisible': [('ifn_coop_portal_enabled', '=', False)]}"/>
+
+        <!-- Menu Dashboard (vue principale pour utilisateurs) -->
+        <menuitem id="ifn_menu_dashboard"
+                  name="Tableau de Bord"
+                  parent="menu_ifn_root"
+                  sequence="5"
+                  groups="group_ifn_user"
+                  action="action_ifn_dashboard"/>
+
+        <!-- Actions de dashboard par rôle -->
+        <record id="action_ifn_dashboard" model="ir.actions.client">
+            <field name="name">Tableau de Bord IFN</field>
+            <field name="tag">ifn.dashboard</field>
+            <field name="context">{
+                'active_id': active_id,
+                'active_ids': active_ids,
+                'active_model': active_model,
+                'ifn_role': user.partner_id.x_ifn_role or 'user'
+            }</field>
+        </record>
+
+        <!-- Actions de portail (placeholders pour modules futurs) -->
+        <record id="portal_action_ifn_merchant" model="ir.actions.client">
+            <field name="name">Portail Marchand IFN</field>
+            <field name="tag">ifn_portal.merchant</field>
+        </record>
+
+        <record id="portal_action_ifn_producer" model="ir.actions.client">
+            <field name="name">Portail Producteur IFN</field>
+            <field name="tag">ifn_portal.producer</field>
+        </record>
+
+        <record id="portal_action_ifn_coop" model="ir.actions.client">
+            <field name="name">Portail Coopérative IFN</field>
+            <field name="tag">ifn_portal.coop</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ifn_portal_preferences_user,access_ifn_portal_preferences_user,model_ifn_portal_preferences,base.group_portal,1,1,1,0
+access_ifn_portal_preferences_public,access_ifn_portal_preferences_public,model_ifn_portal_preferences,base.group_public,1,0,0,0
+access_ifn_portal_notifications_user,access_ifn_portal_notifications_user,model_ifn_portal_notifications,base.group_portal,1,1,1,0
+access_ifn_portal_notifications_public,access_ifn_portal_notifications_public,model_ifn_portal_notifications,base.group_public,1,0,0,0

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Toast notification component -->
+    <template id="ifn_toast" name="IFN Toast">
+        <div class="ifn-toast" t-att-class="'ifn-toast-' + (type or 'info')">
+            <div class="ifn-toast-icon">
+                <i t-att-class="toast_icon_classes.get(type, 'fa fa-info-circle')"/>
+            </div>
+            <div class="ifn-toast-content">
+                <div class="ifn-toast-title" t-if="title">
+                    <t t-esc="title"/>
+                </div>
+                <div class="ifn-toast-message">
+                    <t t-esc="message"/>
+                </div>
+            </div>
+            <button type="button" class="ifn-toast-close" aria-label="Fermer">
+                <i class="fa fa-times"/>
+            </button>
+        </div>
+    </template>
+
+    <!-- Empty state component -->
+    <template id="ifn_empty_state" name="IFN Empty State">
+        <div class="ifn-empty-state text-center py-5">
+            <div class="ifn-empty-icon">
+                <i t-att-class="icon or 'fa fa-inbox'"/>
+            </div>
+            <h4 class="ifn-empty-title">
+                <t t-esc="title or 'Aucune donnée'"/>
+            </h4>
+            <p class="ifn-empty-description text-muted">
+                <t t-esc="description or 'Il n\'y a rien à afficher pour le moment.'"/>
+            </p>
+            <t t-if="action_text">
+                <button t-att-class="action_class or 'btn btn-primary'" t-att-on-click="action">
+                    <t t-esc="action_text"/>
+                </button>
+            </t>
+        </div>
+    </template>
+
+    <!-- Loading spinner component -->
+    <template id="ifn_loading" name="IFN Loading">
+        <div class="ifn-loading text-center py-4">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Chargement...</span>
+            </div>
+            <p class="mt-2 text-muted">
+                <t t-esc="message or 'Chargement en cours...'"/>
+            </p>
+        </div>
+    </template>
+
+    <!-- IFN Card component -->
+    <template id="ifn_card" name="IFN Card">
+        <div class="ifn-card" t-att-class="'ifn-card-' + (variant or 'default')">
+            <div class="card-body">
+                <t t-if="icon">
+                    <div class="ifn-card-icon text-center mb-3">
+                        <i t-att-class="icon"/>
+                    </div>
+                </t>
+                <t t-if="title">
+                    <h5 class="ifn-card-title text-center">
+                        <t t-esc="title"/>
+                    </h5>
+                </t>
+                <t t-if="description">
+                    <p class="ifn-card-description text-center">
+                        <t t-esc="description"/>
+                    </p>
+                </t>
+                <t t-if="content">
+                    <div class="ifn-card-content">
+                        <t t-raw="content"/>
+                    </div>
+                </t>
+                <t t-if="actions">
+                    <div class="ifn-card-actions text-center mt-3">
+                        <t t-raw="actions"/>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </template>
+
+    <!-- KPI component -->
+    <template id="ifn_kpi" name="IFN KPI">
+        <div class="ifn-kpi" t-att-class="'ifn-kpi-' + (variant or 'default')">
+            <div class="ifn-kpi-value">
+                <t t-esc="value"/>
+            </div>
+            <div class="ifn-kpi-label">
+                <t t-esc="label"/>
+            </div>
+            <t t-if="trend">
+                <div class="ifn-kpi-trend" t-att-class="'trend-' + trend.direction">
+                    <i t-att-class="trend.icon"/>
+                    <span t-esc="trend.value"/>
+                </div>
+            </t>
+        </div>
+    </template>
+
+    <!-- Modal component -->
+    <template id="ifn_modal" name="IFN Modal">
+        <div class="modal fade" t-att-id="modal_id or 'ifnModal'" tabindex="-1" role="dialog">
+            <div class="modal-dialog" t-att-class="'modal-' + (size or 'md')" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <t t-esc="title or 'Modal'"/>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <t t-raw="content"/>
+                    </div>
+                    <t t-if="footer">
+                        <div class="modal-footer">
+                            <t t-raw="footer"/>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Alert component -->
+    <template id="ifn_alert" name="IFN Alert">
+        <div class="alert" t-att-class="'alert-' + (variant or 'info')" role="alert">
+            <t t-if="dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Fermer">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </t>
+            <t t-if="icon">
+                <i t-att-class="icon" class="mr-2"/>
+            </t>
+            <t t-esc="message"/>
+        </div>
+    </template>
+
+    <!-- Progress bar component -->
+    <template id="ifn_progress" name="IFN Progress">
+        <div class="ifn-progress">
+            <t t-if="label">
+                <div class="ifn-progress-label d-flex justify-content-between">
+                    <span><t t-esc="label"/></span>
+                    <span><t t-esc="value"/>%</span>
+                </div>
+            </t>
+            <div class="progress">
+                <div class="progress-bar" t-att-class="'bg-' + (variant or 'primary')"
+                     role="progressbar" t-att-style="'width: ' + value + '%'"
+                     t-att-aria-valuenow="value" aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Badge component -->
+    <template id="ifn_badge" name="IFN Badge">
+        <span class="badge" t-att-class="'badge-' + (variant or 'secondary')">
+            <t t-if="icon">
+                <i t-att-class="icon" class="mr-1"/>
+            </t>
+            <t t-esc="text"/>
+        </span>
+    </template>
+
+    <!-- Button component -->
+    <template id="ifn_button" name="IFN Button">
+        <button type="button" t-att-class="'btn btn-' + (variant or 'primary') + ' ' + (extra_class or '')"
+                t-att-disabled="disabled">
+            <t t-if="icon">
+                <i t-att-class="icon" class="mr-1"/>
+            </t>
+            <t t-esc="text"/>
+        </button>
+    </template>
+
+    <!-- Icon component -->
+    <template id="ifn_icon" name="IFN Icon">
+        <i t-att-class="'ifn-icon ifn-icon-' + (name or 'default')"
+           t-att-title="title"/>
+    </template>
+
+    <!-- Language selector component -->
+    <template id="ifn_language_selector" name="IFN Language Selector">
+        <div class="ifn-language-selector dropdown">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                    type="button" t-att-id="dropdown_id or 'languageDropdown'"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-globe"/>
+                <span class="current-lang" t-esc="current_lang or 'FR'"/>
+            </button>
+            <div class="dropdown-menu" t-att-aria-labelledby="dropdown_id or 'languageDropdown'">
+                <t t-foreach="languages" t-as="lang">
+                    <a class="dropdown-item" href="#" t-att-data-lang="lang.code"
+                       t-att-selected="lang.code == current_lang">
+                        <t t-esc="lang.flag"/> <t t-esc="lang.name"/>
+                    </a>
+                </t>
+            </div>
+        </div>
+    </template>
+
+    <!-- User menu component -->
+    <template id="ifn_user_menu" name="IFN User Menu">
+        <div class="dropdown">
+            <button class="btn btn-sm btn-primary dropdown-toggle"
+                    type="button" t-att-id="menu_id or 'userDropdown'"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user"/>
+                <t t-esc="user_name"/>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" t-att-aria-labelledby="menu_id or 'userDropdown'">
+                <t t-foreach="menu_items" t-as="item">
+                    <t t-if="item.divider">
+                        <div class="dropdown-divider"/>
+                    </t>
+                    <t t-else="">
+                        <a class="dropdown-item" t-att-href="item.href">
+                            <t t-if="item.icon">
+                                <i t-att-class="item.icon"/>
+                            </t>
+                            <t t-esc="item.label"/>
+                        </a>
+                    </t>
+                </t>
+            </div>
+        </div>
+    </template>
+</odoo>

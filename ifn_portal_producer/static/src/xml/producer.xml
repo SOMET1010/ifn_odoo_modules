@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+    <!-- Templates XML pour les composants du portail producteur IFN -->
+
+    <!-- Template pour le widget de notification -->
+    <t t-name="ifn_portal_producer.notification">
+        <div class="ifn-notification alert fade show position-fixed" t-attf-class="alert-#{type}" style="top: 70px; right: 20px; z-index: 1050; min-width: 300px;">
+            <div class="d-flex align-items-center">
+                <i class="fa me-2" t-attf-class="fa-#{icon}"/>
+                <div class="flex-grow-1">
+                    <strong t-if="title"><t t-esc="title"/></strong>
+                    <p class="mb-0" t-if="message"><t t-esc="message"/></p>
+                </div>
+                <button type="button" class="btn-close ms-2" data-bs-dismiss="alert"/>
+            </div>
+        </div>
+    </t>
+
+    <!-- Template pour l'indicateur de progression -->
+    <t t-name="ifn_portal_producer.progress_indicator">
+        <div class="progress-wrapper mb-3">
+            <div class="d-flex justify-content-between mb-1">
+                <span class="small text-muted" t-if="label"><t t-esc="label"/></span>
+                <span class="small fw-bold" t-esc="percentage + '%'"/>
+            </div>
+            <div class="progress" style="height: 8px;">
+                <div class="progress-bar" t-attf-class="bg-#{color}" role="progressbar" t-attf-style="width: #{percentage}%"/>
+            </div>
+        </div>
+    </t>
+
+    <!-- Template pour la carte de statistique -->
+    <t t-name="ifn_portal_producer.stat_card">
+        <div class="card stat-card h-100" t-attf-class="border-0 bg-#{color} text-white">
+            <div class="card-body text-center">
+                <i class="fa fa-3x mb-3 opacity-75" t-attf-class="fa-#{icon}"/>
+                <h3 class="card-title mb-1">
+                    <span class="stat-number" t-att-data-target="value">0</span>
+                    <t t-if="suffix"><t t-esc="suffix"/></t>
+                </h3>
+                <p class="card-text small mb-0" t-esc="label"/>
+            </div>
+        </div>
+    </t>
+
+    <!-- Template pour le badge de statut -->
+    <t t-name="ifn_portal_producer.status_badge">
+        <span class="badge" t-attf-class="bg-#{color}">
+            <i class="fa me-1" t-attf-class="fa-#{icon}"/>
+            <t t-esc="text"/>
+        </span>
+    </t>
+
+    <!-- Template pour la carte de récolte -->
+    <t t-name="ifn_portal_producer.harvest_card">
+        <div class="card harvest-card h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h6 class="card-title mb-0" t-esc="harvest.product_id.name"/>
+                    <span class="badge bg-primary" t-esc="harvest.quality"/>
+                </div>
+                <div class="harvest-details">
+                    <p class="card-text small text-muted mb-2">
+                        <strong>Quantité:</strong> <t t-esc="harvest.quantity"/> kg<br/>
+                        <strong>Date:</strong> <t t-esc="harvest.date_harvest"/><br/>
+                        <strong>Disponible:</strong> <t t-esc="harvest.quantity_available"/> kg
+                    </p>
+                    <div class="harvest-actions">
+                        <button class="btn btn-sm btn-outline-primary me-1" t-if="harvest.state == 'available'">
+                            <i class="fa fa-edit me-1"/>Modifier
+                        </button>
+                        <button class="btn btn-sm btn-success" t-if="harvest.state == 'available'">
+                            <i class="fa fa-tag me-1"/>Vendre
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!-- Template pour la carte d'offre -->
+    <t t-name="ifn_portal_producer.offer_card">
+        <div class="card offer-card h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h6 class="card-title mb-0" t-esc="offer.harvest_id.product_id.name"/>
+                    <span class="badge" t-attf-class="bg-#{offer.state == 'published' ? 'success' : 'warning'}">
+                        <t t-esc="offer.state"/>
+                    </span>
+                </div>
+                <div class="offer-details">
+                    <p class="card-text">
+                        <strong>Quantité:</strong> <t t-esc="offer.quantity"/> kg<br/>
+                        <strong>Prix:</strong> <t t-esc="offer.price"/> FCFA/kg<br/>
+                        <strong>Total:</strong> <t t-esc="offer.total_price"/> FCFA
+                    </p>
+                    <div class="offer-actions">
+                        <button class="btn btn-sm btn-outline-warning me-1" t-if="offer.state == 'published'">
+                            <i class="fa fa-pause me-1"/>Mettre en pause
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger">
+                            <i class="fa fa-trash me-1"/>Supprimer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!-- Template pour la carte de cours -->
+    <t t-name="ifn_portal_producer.course_card">
+        <div class="card course-card h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h6 class="card-title mb-0" t-esc="course.name"/>
+                    <span class="badge bg-info" t-esc="course.level"/>
+                </div>
+                <p class="card-text small text-muted" t-esc="course.description"/>
+                <div class="course-meta mb-3">
+                    <div class="d-flex justify-content-between text-muted small">
+                        <span><i class="fa fa-clock me-1"/><t t-esc="course.duration"/> min</span>
+                        <span><i class="fa fa-signal me-1"/><t t-esc="course.level"/></span>
+                    </div>
+                </div>
+                <div class="course-progress mb-2" t-if="progress">
+                    <div class="progress" style="height: 6px;">
+                        <div class="progress-bar bg-primary" role="progressbar" t-attf-style="width: #{progress.percentage}%"/>
+                    </div>
+                    <small class="text-muted"><t t-esc="progress.percentage"/>% complété</small>
+                </div>
+                <div class="course-actions">
+                    <button class="btn btn-sm btn-primary w-100" t-if="!progress or progress.percentage == 0">
+                        <i class="fa fa-play me-1"/>Commencer
+                    </button>
+                    <button class="btn btn-sm btn-primary w-100" t-if="progress and progress.percentage > 0 and progress.percentage < 100">
+                        <i class="fa fa-play me-1"/>Continuer
+                    </button>
+                    <button class="btn btn-sm btn-success w-100" disabled t-if="progress and progress.percentage == 100">
+                        <i class="fa fa-check me-1"/>Terminé
+                    </button>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!-- Template pour le modal de confirmation -->
+    <t t-name="ifn_portal_producer.confirmation_modal">
+        <div class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="fa me-2" t-attf-class="fa-#{icon}"/>
+                            <t t-esc="title"/>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"/>
+                    </div>
+                    <div class="modal-body">
+                        <p t-esc="message"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn" t-attf-class="btn-#{confirm_color}" t-att-data-confirm-action="confirm_action">
+                            <i class="fa me-1" t-attf-class="fa-#{confirm_icon}"/>
+                            <t t-esc="confirm_text"/>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!-- Template pour le modal de chargement -->
+    <t t-name="ifn_portal_producer.loading_modal">
+        <div class="modal fade" tabindex="-1" data-bs-backdrop="static">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-body text-center py-4">
+                        <div class="spinner-border text-primary mb-3" role="status">
+                            <span class="visually-hidden">Chargement...</span>
+                        </div>
+                        <p class="mb-0" t-esc="message"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!-- Template pour le message vide -->
+    <t t-name="ifn_portal_producer.empty_state">
+        <div class="text-center py-5">
+            <i class="fa fa-4x text-muted mb-3" t-attf-class="fa-#{icon}"/>
+            <h5 t-esc="title"/>
+            <p class="text-muted" t-esc="description"/>
+            <button class="btn btn-primary mt-3" t-if="action_text" t-att-data-action="action">
+                <i class="fa me-1" t-attf-class="fa-#{action_icon}"/>
+                <t t-esc="action_text"/>
+            </button>
+        </div>
+    </t>
+
+    <!-- Template pour l'indicateur hors ligne -->
+    <t t-name="ifn_portal_producer.offline_indicator">
+        <div class="offline-indicator position-fixed top-0 start-50 translate-middle-x bg-warning text-dark px-3 py-2" style="z-index: 1060; display: none;">
+            <i class="fa fa-wifi-slash me-2"/>
+            <span>Mode hors ligne</span>
+        </div>
+    </t>
+
+    <!-- Template pour l'indicateur de synchronisation -->
+    <t t-name="ifn_portal_producer.sync_indicator">
+        <div class="sync-indicator position-fixed top-0 start-50 translate-middle-x bg-info text-white px-3 py-2" style="z-index: 1060; display: none;">
+            <i class="fa fa-sync fa-spin me-2"/>
+            <span>Synchronisation...</span>
+        </div>
+    </t>
+
+    <!-- Template pour le sélecteur de langue -->
+    <t t-name="ifn_portal_producer.language_selector">
+        <div class="language-selector dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                <i class="fa fa-globe me-1"/>
+                <span t-esc="current_language.label"/>
+            </button>
+            <ul class="dropdown-menu">
+                <t t-foreach="languages" t-as="lang">
+                    <li>
+                        <a class="dropdown-item" href="#" t-att-data-lang="lang.code" t-att-class="{'active': lang.code == current_language.code}">
+                            <i class="flag-icon me-2" t-attf-class="flag-icon-#{lang.flag}"/>
+                            <t t-esc="lang.label"/>
+                        </a>
+                    </li>
+                </t>
+            </ul>
+        </div>
+    </t>
+
+    <!-- Template pour le bouton d'action rapide -->
+    <t t-name="ifn_portal_producer.quick_action">
+        <button class="btn btn-outline-primary quick-action-btn" t-att-data-action="action">
+            <i class="fa fa-2x mb-2 d-block" t-attf-class="fa-#{icon}"/>
+            <span t-esc="label"/>
+        </button>
+    </t>
+
+    <!-- Template pour le widget météo -->
+    <t t-name="ifn_portal_producer.weather_widget">
+        <div class="weather-widget card bg-light">
+            <div class="card-body text-center">
+                <i class="fa fa-3x mb-2" t-attf-class="fa-#{weather.icon}"/>
+                <h5 class="card-title"><t t-esc="weather.temperature"/>°C</h5>
+                <p class="card-text small">
+                    <t t-esc="weather.description"/><br/>
+                    <t t-esc="weather.location"/>
+                </p>
+            </div>
+        </div>
+    </t>
+
+    <!-- Template pour le sélecteur de période -->
+    <t t-name="ifn_portal_producer.period_selector">
+        <div class="period-selector btn-group" role="group">
+            <t t-foreach="periods" t-as="period">
+                <input type="radio" class="btn-check" name="period" t-att-id="period.value" t-att-value="period.value" t-att-checked="period.selected"/>
+                <label class="btn btn-outline-primary" t-att-for="period.value">
+                    <t t-esc="period.label"/>
+                </label>
+            </t>
+        </div>
+    </t>
+
+    <!-- Template pour la liste d'activités récentes -->
+    <t t-name="ifn_portal_producer.recent_activities">
+        <div class="recent-activities">
+            <h6 class="mb-3">Activités récentes</h6>
+            <div class="list-group list-group-flush">
+                <t t-foreach="activities" t-as="activity">
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="d-flex align-items-center">
+                                <i class="fa me-2" t-attf-class="fa-#{activity.icon} text-#{activity.color}"/>
+                                <strong t-esc="activity.title"/>
+                            </div>
+                            <small class="text-muted">
+                                <t t-esc="activity.description"/>
+                            </small>
+                        </div>
+                        <small class="text-muted" t-esc="activity.time"/>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+
+    <!-- Template pour l'indicateur de progression d'étape -->
+    <t t-name="ifn_portal_producer.step_progress">
+        <div class="step-progress">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <t t-foreach="steps" t-as="step">
+                    <div class="step-item" t-attf-class="#{step.completed ? 'completed' : ''} #{step.active ? 'active' : ''}">
+                        <div class="step-icon">
+                            <i class="fa" t-attf-class="fa-#{step.completed ? 'check' : step.icon}"/>
+                        </div>
+                        <div class="step-label small" t-esc="step.label"/>
+                    </div>
+                </t>
+            </div>
+            <div class="progress" style="height: 4px;">
+                <div class="progress-bar" role="progressbar" t-attf-style="width: #{progress_percentage}%"/>
+            </div>
+        </div>
+    </t>
+
+</templates>

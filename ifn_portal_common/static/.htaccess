@@ -1,0 +1,357 @@
+# ==================================================
+#           IFN PORTAL - OPTIMISATIONS SERVEUR
+# ==================================================
+# Configuration Apache pour performances optimales
+
+# Activer le module de réécriture
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Redirection HTTPS (production)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Redirection www vers non-www (optionnel)
+    # RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    # RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+    
+    # Optimisation des images - WebP
+    RewriteCond %{HTTP_ACCEPT} image/webp
+    RewriteCond %{DOCUMENT_ROOT}/$1.webp -f
+    RewriteRule (.+)\.(jpe?g|png)$ $1.webp [T=image/webp,E=accept:1]
+    
+    # Optimisation des images - AVIF
+    RewriteCond %{HTTP_ACCEPT} image/avif
+    RewriteCond %{DOCUMENT_ROOT}/$1.avif -f
+    RewriteRule (.+)\.(jpe?g|png|webp)$ $1.avif [T=image/avif,E=accept:1]
+    
+    # URLs propres pour les API
+    RewriteRule ^api/dashboard/stats$ /web/dashboard/stats [L]
+    RewriteRule ^api/notifications$ /web/notifications [L]
+    RewriteRule ^api/user/profile$ /web/profile [L]
+    
+    # Optimisation du cache pour les assets
+    RewriteRule ^static/css/critical\.css$ /static/dist/css/critical.min.css [L]
+    RewriteRule ^static/css/lazy\.css$ /static/dist/css/lazy.min.css [L]
+    RewriteRule ^static/js/core\.js$ /static/dist/js/core.min.js [L]
+    RewriteRule ^static/js/sw\.js$ /static/dist/js/sw.min.js [L]
+</IfModule>
+
+# ==================================================
+#                COMPRESSION GZIP
+# ==================================================
+
+<IfModule mod_deflate.c>
+    # Compression pour tous les types de fichiers textuels
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/ld+json
+    AddOutputFilterByType DEFLATE image/svg+xml
+    
+    # Exclusion de certains types qui ne doivent pas être compressés
+    SetEnvIfNoCase Request_URI \
+        \.(?:gif|jpe?g|png|webp|avif|ico|zip|tar|gz)$ no-gzip dont-vary
+    SetEnvIfNoCase Request_URI \
+        \.(?:exe|ttf|ttc|otf|eot|woff|woff2|font.css|css.otf|css.woff2)$ no-gzip dont-vary
+</IfModule>
+
+# ==================================================
+#                 HEADERS CACHE
+# ==================================================
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Cache des assets statiques (1 an)
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType application/x-javascript "access plus 1 year"
+    
+    # Cache des images (1 an)
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType image/vnd.microsoft.icon "access plus 1 year"
+    
+    # Cache des polices (1 an)
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/otf "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    
+    # Cache des fichiers audio/vidéo (1 mois)
+    ExpiresByType audio/mp3 "access plus 1 month"
+    ExpiresByType audio/ogg "access plus 1 month"
+    ExpiresByType video/mp4 "access plus 1 month"
+    ExpiresByType video/webm "access plus 1 month"
+    
+    # Cache des documents (1 semaine)
+    ExpiresByType application/pdf "access plus 1 week"
+    ExpiresByType text/xml "access plus 1 week"
+    ExpiresByType application/xml "access plus 1 week"
+    
+    # HTML et API (quelques minutes)
+    ExpiresByType text/html "access plus 5 minutes"
+    ExpiresByType application/json "access plus 2 minutes"
+    
+    # Manifest et service worker
+    ExpiresByType application/manifest+json "access plus 1 week"
+    ExpiresByType text/cache-manifest "access plus 1 week"
+</IfModule>
+
+# ==================================================
+#            HEADERS SÉCURITÉ & PERFORMANCE
+# ==================================================
+
+<IfModule mod_headers.c>
+    # Headers de sécurité
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    
+    # Headers de performance
+    Header set Connection keep-alive
+    
+    # Cache-Control pour les assets
+    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|webp|avif|ico|svg|woff|woff2|ttf|otf)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    
+    # Cache-Control pour le HTML
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "public, max-age=300, stale-while-revalidate=600"
+    </FilesMatch>
+    
+    # Cache-Control pour les APIs
+    <FilesMatch "\.(json|api)$">
+        Header set Cache-Control "public, max-age=120, stale-while-revalidate=300"
+    </FilesMatch>
+    
+    # Headers CORS pour les ressources optimisées
+    <FilesMatch "\.(webp|avif|js|css)$">
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Methods "GET, OPTIONS"
+        Header set Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range"
+    </FilesMatch>
+    
+    # Éviter le sniffing des types MIME
+    <FilesMatch "\.(js|css)$">
+        Header set X-Content-Type-Options nosniff
+    </FilesMatch>
+    
+    # Compression dynamique
+    <FilesMatch "\.(js|css)$">
+        Header set Vary "Accept-Encoding"
+    </FilesMatch>
+</IfModule>
+
+# ==================================================
+#            OPTIMISATIONS SPÉCIFIQUES
+# ==================================================
+
+# Optimisation des requêtes DNS (pour les ressources externes)
+<IfModule mod_headers.c>
+    # DNS Prefetch pour les domaines externes courants
+    Header add Link "<https://fonts.googleapis.com>; rel=preconnect; crossorigin"
+    Header add Link "<https://cdn.jsdelivr.net>; rel=preconnect; crossorigin"
+</IfModule>
+
+# Optimisation des ETags
+<IfModule mod_expires.c>
+    # Désactivation des ETags pour les fichiers statiques
+    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|webp|avif|ico|svg|woff|woff2|ttf|otf)$">
+        FileETag None
+        Header unset ETag
+    </FilesMatch>
+    
+    # ETags pour le contenu dynamique
+    <FilesMatch "\.(html|json|api)$">
+        FileETag MTime Size
+    </FilesMatch>
+</IfModule>
+
+# ==================================================
+#              LAZY LOADING & OPTIMISATIONS
+# ==================================================
+
+# Support des Preload et Prefetch
+<IfModule mod_headers.c>
+    # Preload des ressources critiques
+    <FilesMatch "critical\.min\.css$">
+        Header add Link "</static/dist/css/critical.min.css>; rel=preload; as=style"
+    </FilesMatch>
+    
+    <FilesMatch "core\.min\.js$">
+        Header add Link "</static/dist/js/core.min.js>; rel=preload; as=script"
+    </FilesMatch>
+    
+    # Prefetch des pages probables
+    <FilesMatch "index\.html$">
+        Header add Link "</dashboard>; rel=prefetch"
+        Header add Link "</profile>; rel=prefetch"
+    </FilesMatch>
+</IfModule>
+
+# ==================================================
+#               ERROR PAGES OPTIMISÉES
+# ==================================================
+
+# Page d'erreur 404 optimisée
+ErrorDocument 404 /error-pages/404.html
+
+# Page d'erreur 500 optimisée
+ErrorDocument 500 /error-pages/500.html
+
+# Page de maintenance
+# ErrorDocument 503 /error-pages/maintenance.html
+
+# ==================================================
+#            DIRECTORY BROWSING
+# ==================================================
+
+# Désactivation de l'exploration des répertoires
+Options -Indexes
+
+# ==================================================
+#            PROTECTION FICHIERS SENSIBLES
+# ==================================================
+
+# Protection des fichiers de configuration
+<FilesMatch "(\.(env|config|json|log)$|^(package\.json|composer\.json|web\.config)$)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protection des fichiers de build
+<FilesMatch "(build\.report\.json|optimization-report\.json|assets-config\.json)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protection du fichier .htaccess
+<Files ".htaccess">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# ==================================================
+#           OPTIMISATIONS PHP (si applicable)
+# ==================================================
+
+<IfModule mod_php.c>
+    # Optimisation de la mémoire
+    php_value memory_limit 256M
+    
+    # Optimisation des sessions
+    php_value session.gc_maxlifetime 3600
+    php_value session.cookie_lifetime 3600
+    
+    # Désactivation des fonctionnalités inutiles en production
+    php_flag expose_php Off
+    
+    # Cache opcode si APCu disponible
+    # php_value opcache.enable 1
+    # php_value opcache.memory_consumption 128
+    # php_value opcache.max_accelerated_files 4000
+</IfModule>
+
+# ==================================================
+#             ROBOTS ET SITEMAP
+# ==================================================
+
+# Optimisation du robots.txt
+User-agent: *
+Disallow: /admin/
+Disallow: /api/private/
+Disallow: /static/dist/ # Éviter l'indexation des assets optimisés
+Allow: /static/images/
+Allow: /static/icons/
+
+# Optimisation des sitemaps
+<Files "sitemap.xml">
+    Header set Content-Type "application/xml; charset=utf-8"
+</Files>
+
+<Files "robots.txt">
+    Header set Content-Type "text/plain; charset=utf-8"
+</Files>
+
+# ==================================================
+#            CONFIGURATION FINALE
+# ==================================================
+
+# Configuration des MIME types modernes
+<IfModule mod_mime.c>
+    AddType application/manifest+json .webmanifest
+    AddType application/manifest+json .json
+    AddType image/avif .avif
+    AddType image/webp .webp
+    
+    # Police formats
+    AddType font/woff .woff
+    AddType font/woff2 .woff2
+    AddType font/otf .otf
+    AddType font/ttf .ttf
+    
+    # Scripts et styles
+    AddType application/javascript .js
+    AddType text/css .css
+    
+    # Compression Brotli si disponible
+    <IfModule mod_brotli.c>
+        BrotliCompressionQuality 6
+        AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml
+        AddOutputFilterByType BROTLI_COMPRESS text/css
+        AddOutputFilterByType BROTLI_COMPRESS application/javascript
+        AddOutputFilterByType BROTLI_COMPRESS application/json
+    </IfModule>
+</IfModule>
+
+# Optimisation finale du serveur
+ServerTokens Prod
+ServerSignature Off
+
+# Log des performances
+<IfModule mod_log_config.c>
+    # Format personnalisé pour les logs de performance
+    LogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\" %D" combined_with_time
+    CustomLog logs/access_log combined_with_time
+</IfModule>
+
+# ==================================================
+#                    NOTES
+# ==================================================
+# 
+# Ce fichier .htaccess optimise automatiquement :
+# - La compression Gzip/Brotli
+# - Le cache des ressources statiques
+# - La redirection vers les formats modernes (WebP, AVIF)
+# - Les headers de sécurité et performance
+# - La protection des fichiers sensibles
+# - L'optimisation DNS et Preload
+#
+# Pour vérifier les optimisations :
+# 1. Tester sur https://gtmetrix.com/
+# 2. Valider sur https://web.dev/measure/
+# 3. Vérifier les headers sur https://www.webpagetest.org/
+# 4. Tester l'accessibilité sur https://wave.webaim.org/
+#
+# ==================================================

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Vue Formulaire Assistant Import Partenaires -->
+        <record id="view_ifn_import_partner_wizard_form" model="ir.ui.view">
+            <field name="name">ifn.import.partner.wizard.form</field>
+            <field name="model">ifn.import.partner.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Partenaires IFN">
+                    <header>
+                        <button name="action_preview_import" type="object" string="Prévisualiser"
+                                class="btn-secondary"/>
+                        <button name="action_import_partners" type="object" string="Importer"
+                                class="btn-primary"/>
+                        <button name="action_download_template" type="object" string="Télécharger Template"
+                                class="btn-link"/>
+                    </header>
+
+                    <sheet>
+                        <div class="oe_title">
+                            <h2>Import des Partenaires IFN</h2>
+                            <p class="text-muted">Importez des partenaires depuis un fichier CSV.</p>
+                        </div>
+
+                        <group>
+                            <group string="Fichier d'Import">
+                                <field name="import_file"/>
+                                <field name="import_filename" invisible="1"/>
+                            </group>
+                            <group string="Configuration CSV">
+                                <field name="has_header"/>
+                                <field name="delimiter"/>
+                                <field name="encoding"/>
+                            </group>
+                        </group>
+
+                        <group string="Options d'Import">
+                            <group>
+                                <field name="create_missing_markets"/>
+                                <field name="create_missing_coops"/>
+                                <field name="generate_uid_qr"/>
+                            </group>
+                            <group>
+                                <field name="validate_profiles"/>
+                                <field name="send_welcome_email"/>
+                                <field name="default_data_consent"/>
+                            </group>
+                        </group>
+
+                        <group string="Valeurs par Défaut">
+                            <group>
+                                <field name="default_role"/>
+                                <field name="default_language"/>
+                            </group>
+                            <group>
+                                <field name="default_market_id" options="{'no_create': True}"/>
+                            </group>
+                        </group>
+
+                        <group string="Format Attendu">
+                            <field name="expected_columns" nolabel="1" widget="text" readonly="1"/>
+                        </group>
+
+                        <group string="Résultats" attrs="{'invisible': [('imported_count', '=', 0)]}">
+                            <group>
+                                <field name="total_rows"/>
+                                <field name="imported_count"/>
+                            </group>
+                            <group>
+                                <field name="skipped_count"/>
+                                <field name="error_count"/>
+                            </group>
+                        </group>
+
+                        <notebook attrs="{'invisible': [('errors', '=', False)]}">
+                            <page string="Erreurs d'Import" name="errors">
+                                <field name="errors" nolabel="1" widget="text" readonly="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                    <footer>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Important:</strong>
+                            <ul>
+                                <li>Le nom est obligatoire</li>
+                                <li>Les doublons (même nom/email/téléphone) seront ignorés</li>
+                                <li>Les rôles valides: merchant, producer, coop_manager, agent, admin</li>
+                                <li>Langues valides: fr, ba, di, en</li>
+                            </ul>
+                        </div>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Vue Formulaire Prévisualisation Import -->
+        <record id="view_ifn_import_partner_preview_form" model="ir.ui.view">
+            <field name="name">ifn.import.partner.preview.form</field>
+            <field name="model">ifn.import.partner.preview</field>
+            <field name="arch" type="xml">
+                <form string="Prévisualisation Import">
+                    <sheet>
+                        <div class="oe_title">
+                            <h3>Prévisualisation des Données</h3>
+                            <p class="text-muted">
+                                Affichage des <field name="total_rows"/> premières lignes sur
+                                <t t-esc="total_rows"/> lignes totales détectées.
+                            </p>
+                        </div>
+
+                        <field name="preview_data" widget="text" readonly="1" nolabel="1"/>
+
+                        <div class="alert alert-info" role="alert">
+                            <strong>Recommandation:</strong> Vérifiez que les données sont correctement formatées avant de lancer l'import.
+                        </div>
+                    </sheet>
+
+                    <footer>
+                        <button special="cancel" string="Fermer" class="btn-secondary"/>
+                        <button name="action_continue_import" type="object" string="Continuer l'Import" class="btn-primary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action Assistant Import Partenaires -->
+        <record id="action_ifn_import_partner_wizard" model="ir.actions.act_window">
+            <field name="name">Importer Partenaires IFN</field>
+            <field name="res_model">ifn.import.partner.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Importez des partenaires IFN depuis un fichier CSV
+                </p>
+                <p>
+                    Utilisez cette fonction pour importer en masse des partenaires
+                    (marchands, producteurs, etc.) dans le système IFN.
+                </p>
+                <p>
+                    <strong>Format requis:</strong><br/>
+                    • Nom (obligatoire)<br/>
+                    • Email<br/>
+                    • Téléphone<br/>
+                    • Rôle (merchant/producer/etc.)<br/>
+                    • Marché, Coopérative, etc.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

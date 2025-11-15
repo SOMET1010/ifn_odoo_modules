@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Portal Menu Items -->
+        <record id="portal_merchant_menu" model="website.menu">
+            <field name="name">Espace Marchand</field>
+            <field name="url">/portal/merchant</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence">20</field>
+        </record>
+
+        <record id="portal_merchant_dashboard_menu" model="website.menu">
+            <field name="name">Tableau de Bord</field>
+            <field name="url">/portal/merchant</field>
+            <field name="parent_id" ref="portal_merchant_menu"/>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="portal_merchant_sell_menu" model="website.menu">
+            <field name="name">Vendre</field>
+            <field name="url">/portal/merchant/sell</field>
+            <field name="parent_id" ref="portal_merchant_menu"/>
+            <field name="sequence">2</field>
+        </record>
+
+        <record id="portal_merchant_stock_menu" model="website.menu">
+            <field name="name">Stock</field>
+            <field name="url">/portal/merchant/stock</field>
+            <field name="parent_id" ref="portal_merchant_menu"/>
+            <field name="sequence">3</field>
+        </record>
+
+        <record id="portal_merchant_purchase_menu" model="website.menu">
+            <field name="name">Approvisionnement</field>
+            <field name="url">/portal/merchant/purchase</field>
+            <field name="parent_id" ref="portal_merchant_menu"/>
+            <field name="sequence">4</field>
+        </record>
+
+        <record id="portal_merchant_payments_menu" model="website.menu">
+            <field name="name">Encaissements</field>
+            <field name="url">/portal/merchant/payments</field>
+            <field name="parent_id" ref="portal_merchant_menu"/>
+            <field name="sequence">5</field>
+        </record>
+
+        <record id="portal_merchant_social_menu" model="website.menu">
+            <field name="name">Social</field>
+            <field name="url">/portal/merchant/social</field>
+            <field name="parent_id" ref="portal_merchant_menu"/>
+            <field name="sequence">6</field>
+        </record>
+
+        <record id="portal_merchant_training_menu" model="website.menu">
+            <field name="name">Formation</field>
+            <field name="url">/portal/merchant/training</field>
+            <field name="parent_id" ref="portal_merchant_menu"/>
+            <field name="sequence">7</field>
+        </record>
+
+        <record id="portal_merchant_profile_menu" model="website.menu">
+            <field name="name">Profil</field>
+            <field name="url">/portal/merchant/profile</field>
+            <field name="parent_id" ref="portal_merchant_menu"/>
+            <field name="sequence">8</field>
+        </record>
+
+    </data>
+</odoo>

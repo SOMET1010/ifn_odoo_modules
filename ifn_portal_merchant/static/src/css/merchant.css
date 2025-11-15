@@ -1,0 +1,449 @@
+/* IFN Portal Merchant Styles */
+/* ========================= */
+
+/* Variables */
+:root {
+    --ifn-primary: #28a745;
+    --ifn-secondary: #6c757d;
+    --ifn-success: #28a745;
+    --ifn-info: #17a2b8;
+    --ifn-warning: #ffc107;
+    --ifn-danger: #dc3545;
+    --ifn-light: #f8f9fa;
+    --ifn-dark: #343a40;
+    --ifn-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --ifn-border-radius: 0.375rem;
+    --ifn-box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --ifn-transition: all 0.15s ease-in-out;
+}
+
+/* Base Styles */
+body {
+    font-family: var(--ifn-font-family);
+    line-height: 1.6;
+    color: var(--ifn-dark);
+}
+
+/* Merchant Dashboard */
+.ifn-merchant-dashboard {
+    padding: 1rem;
+}
+
+.ifn-merchant-dashboard .kpi-card {
+    transition: var(--ifn-transition);
+    border: none;
+    box-shadow: var(--ifn-box-shadow);
+}
+
+.ifn-merchant-dashboard .kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.ifn-merchant-dashboard .quick-actions .btn {
+    min-height: 60px;
+    font-weight: 500;
+    border-radius: var(--ifn-border-radius);
+    transition: var(--ifn-transition);
+}
+
+.ifn-merchant-dashboard .quick-actions .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* Merchant Sell Page */
+.ifn-merchant-sell .product-card {
+    transition: var(--ifn-transition);
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.ifn-merchant-sell .product-card:hover {
+    border-color: var(--ifn-primary);
+    transform: translateY(-2px);
+}
+
+.ifn-merchant-sell .product-card.selected {
+    border-color: var(--ifn-primary);
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+.ifn-merchant-sell #cart-table tr {
+    transition: var(--ifn-transition);
+}
+
+.ifn-merchant-sell #cart-table tr:hover {
+    background-color: var(--ifn-light);
+}
+
+.ifn-merchant-sell .voice-recording {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+}
+
+/* Merchant Stock Page */
+.ifn-merchant-stock .stock-status-ok {
+    color: var(--ifn-success);
+}
+
+.ifn-merchant-stock .stock-status-low {
+    color: var(--ifn-warning);
+}
+
+.ifn-merchant-stock .stock-status-critical {
+    color: var(--ifn-danger);
+}
+
+.ifn-merchant-stock .stock-timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.ifn-merchant-stock .stock-timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--ifn-secondary);
+}
+
+.ifn-merchant-stock .stock-timeline-item {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.ifn-merchant-stock .stock-timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -23px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--ifn-primary);
+    border: 2px solid white;
+}
+
+/* Merchant Purchase Page */
+.ifn-merchant-purchase .supplier-card {
+    transition: var(--ifn-transition);
+    cursor: pointer;
+}
+
+.ifn-merchant-purchase .supplier-card:hover {
+    border-color: var(--ifn-primary);
+}
+
+.ifn-merchant-purchase .supplier-card.selected {
+    border-color: var(--ifn-primary);
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+.ifn-merchant-purchase .product-catalog .product-card {
+    transition: var(--ifn-transition);
+    height: 100%;
+}
+
+.ifn-merchant-purchase .product-catalog .product-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* Merchant Payments Page */
+.ifn-merchant-payments .payment-method-card {
+    transition: var(--ifn-transition);
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.ifn-merchant-payments .payment-method-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.ifn-merchant-payments .payment-method-card.selected {
+    border-color: var(--ifn-primary);
+}
+
+.ifn-merchant-payments .payment-status-pending {
+    color: var(--ifn-warning);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0.5; }
+}
+
+/* Merchant Social Page */
+.ifn-merchant-social .social-card {
+    transition: var(--ifn-transition);
+}
+
+.ifn-merchant-social .social-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.ifn-merchant-social .social-status-paid {
+    background-color: rgba(40, 167, 69, 0.1);
+    border-color: var(--ifn-success);
+}
+
+.ifn-merchant-social .social-status-pending {
+    background-color: rgba(255, 193, 7, 0.1);
+    border-color: var(--ifn-warning);
+}
+
+/* Merchant Training Page */
+.ifn-merchant-training .course-card {
+    transition: var(--ifn-transition);
+    height: 100%;
+}
+
+.ifn-merchant-training .course-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.ifn-merchant-training .course-completed {
+    border-color: var(--ifn-success);
+    background-color: rgba(40, 167, 69, 0.05);
+}
+
+.ifn-merchant-training .course-in-progress {
+    border-color: var(--ifn-primary);
+    background-color: rgba(23, 162, 184, 0.05);
+}
+
+.ifn-merchant-training .audio-player {
+    background-color: var(--ifn-light);
+    border-radius: var(--ifn-border-radius);
+    padding: 1rem;
+}
+
+/* Merchant Profile Page */
+.ifn-merchant-profile .profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid var(--ifn-primary);
+    object-fit: cover;
+}
+
+.ifn-merchant-profile .qr-code {
+    max-width: 150px;
+    height: auto;
+}
+
+.ifn-merchant-profile .preference-card {
+    transition: var(--ifn-transition);
+}
+
+.ifn-merchant-profile .preference-card:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--ifn-box-shadow);
+}
+
+/* Mobile Money Integration */
+.mobile-money-payment {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: var(--ifn-border-radius);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.mobile-money-payment .provider-logo {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+/* Voice Command Interface */
+.voice-command-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.voice-command-overlay.active {
+    display: flex;
+}
+
+.voice-command-modal {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+}
+
+.voice-wave {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    margin: 1rem 0;
+}
+
+.voice-wave .bar {
+    width: 4px;
+    height: 100%;
+    margin: 0 2px;
+    background-color: var(--ifn-primary);
+    border-radius: 2px;
+    animation: wave 1s ease-in-out infinite;
+}
+
+.voice-wave .bar:nth-child(1) { animation-delay: 0s; }
+.voice-wave .bar:nth-child(2) { animation-delay: 0.1s; }
+.voice-wave .bar:nth-child(3) { animation-delay: 0.2s; }
+.voice-wave .bar:nth-child(4) { animation-delay: 0.3s; }
+.voice-wave .bar:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes wave {
+    0%, 100% { transform: scaleY(0.3); }
+    50% { transform: scaleY(1); }
+}
+
+/* Offline Mode */
+.offline-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--ifn-warning);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: var(--ifn-border-radius);
+    z-index: 1000;
+    display: none;
+}
+
+.offline-indicator.active {
+    display: block;
+}
+
+.offline-queue {
+    background-color: var(--ifn-light);
+    border-left: 4px solid var(--ifn-warning);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Loading States */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: var(--ifn-primary);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.skeleton-loader {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .ifn-merchant-dashboard .quick-actions .btn {
+        min-height: 50px;
+        font-size: 0.9rem;
+    }
+
+    .ifn-merchant-dashboard .kpi-card {
+        margin-bottom: 1rem;
+    }
+
+    .ifn-merchant-sell .voice-command-modal {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .ifn-merchant-purchase .product-catalog .col-md-3 {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --ifn-primary: #0066cc;
+        --ifn-success: #008000;
+        --ifn-warning: #ff8c00;
+        --ifn-danger: #cc0000;
+    }
+
+    .btn {
+        border-width: 2px;
+    }
+
+    .card {
+        border-width: 2px;
+    }
+}
+
+/* Focus Styles */
+.btn:focus,
+.form-control:focus,
+.form-select:focus {
+    outline: 2px solid var(--ifn-primary);
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .ifn-merchant-dashboard .quick-actions,
+    .ifn-merchant-sell .voice-btn,
+    .ifn-merchant-stock .btn-adjust-stock,
+    .ifn-merchant-purchase .btn-add-to-order {
+        display: none !important;
+    }
+
+    .card {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+    }
+}

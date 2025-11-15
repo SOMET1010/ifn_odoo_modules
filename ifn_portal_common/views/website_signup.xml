@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Page d'inscription IFN modernisée avec pictogrammes -->
+        <template id="ifn_signup_modern" name="IFN Inscription Moderne">
+            <t t-call="website.layout">
+                <div id="wrap" class="oe_structure">
+                    <!-- CSS moderne avec animations et transitions -->
+                    <style>
+                        .fade-in {
+                            animation: fadeIn 0.6s ease-out;
+                        }
+                        
+                        .slide-up {
+                            animation: slideUp 0.5s ease-out;
+                        }
+                        
+                        .bounce-hover {
+                            transition: transform 0.3s ease, box-shadow 0.3s ease;
+                        }
+                        
+                        .bounce-hover:hover {
+                            transform: translateY(-8px);
+                            box-shadow: 0 15px 35px rgba(247, 127, 0, 0.3);
+                        }
+                        
+                        .type-card {
+                            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                            border: 3px solid transparent;
+                            position: relative;
+                            overflow: hidden;
+                        }
+                        
+                        .type-card::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: -100%;
+                            width: 100%;
+                            height: 100%;
+                            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+                            transition: left 0.5s;
+                        }
+                        
+                        .type-card:hover::before {
+                            left: 100%;
+                        }
+                        
+                        .type-card.active {
+                            border-color: #F77F00;
+                            background: linear-gradient(135deg, #FFF4E6 0%, #FFF8F0 100%);
+                            transform: scale(1.05);
+                        }
+                        
+                        .type-card:hover {
+                            border-color: #F77F00;
+                            transform: translateY(-8px);
+                            box-shadow: 0 15px 35px rgba(247, 127, 0, 0.2);
+                        }
+                        
+                        .form-field {
+                            position: relative;
+                            margin-bottom: 1.5rem;
+                        }
+                        
+                        .form-field .form-icon {
+                            position: absolute;
+                            left: 15px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: #6c757d;
+                            font-size: 1.1rem;
+                            z-index: 5;
+                            transition: color 0.3s ease;
+                        }
+                        
+                        .form-field:focus-within .form-icon {
+                            color: #F77F00;
+                            transform: translateY(-50%) scale(1.1);
+                        }
+                        
+                        .form-field input,
+                        .form-field select {
+                            padding-left: 50px;
+                            transition: all 0.3s ease;
+                            border: 2px solid #e9ecef;
+                            background: rgba(255, 255, 255, 0.9);
+                        }
+                        
+                        .form-field input:focus,
+                        .form-field select:focus {
+                            border-color: #F77F00;
+                            box-shadow: 0 0 0 0.2rem rgba(247, 127, 0, 0.25);
+                            background: white;
+                        }
+                        
+                        .gradient-bg {
+                            background: linear-gradient(135deg, #F77F00 0%, #009739 100%);
+                            background-size: 400% 400%;
+                            animation: gradientShift 8s ease infinite;
+                        }
+                        
+                        .submit-btn {
+                            position: relative;
+                            overflow: hidden;
+                            background: linear-gradient(135deg, #F77F00 0%, #009739 100%);
+                            border: none;
+                            transition: all 0.3s ease;
+                            box-shadow: 0 8px 25px rgba(247, 127, 0, 0.3);
+                        }
+                        
+                        .submit-btn:hover {
+                            transform: translateY(-3px);
+                            box-shadow: 0 12px 35px rgba(247, 127, 0, 0.4);
+                        }
+                        
+                        .submit-btn:active {
+                            transform: translateY(-1px);
+                        }
+                        
+                        @keyframes fadeIn {
+                            from { opacity: 0; transform: translateY(30px); }
+                            to { opacity: 1; transform: translateY(0); }
+                        }
+                        
+                        @keyframes slideUp {
+                            from { transform: translateY(50px); opacity: 0; }
+                            to { transform: translateY(0); opacity: 1; }
+                        }
+                        
+                        @keyframes gradientShift {
+                            0% { background-position: 0% 50%; }
+                            50% { background-position: 100% 50%; }
+                            100% { background-position: 0% 50%; }
+                        }
+                        
+                        /* Responsive design amélioré */
+                        @media (max-width: 768px) {
+                            .hero-title {
+                                font-size: 2rem !important;
+                            }
+                            
+                            .hero-subtitle {
+                                font-size: 1rem !important;
+                            }
+                            
+                            .type-card {
+                                margin-bottom: 1rem;
+                            }
+                            
+                            .form-field input,
+                            .form-field select {
+                                font-size: 16px; /* Évite le zoom sur iOS */
+                            }
+                        }
+                        
+                        /* Accessibilité améliorée */
+                        .sr-only {
+                            position: absolute;
+                            width: 1px;
+                            height: 1px;
+                            padding: 0;
+                            margin: -1px;
+                            overflow: hidden;
+                            clip: rect(0, 0, 0, 0);
+                            white-space: nowrap;
+                            border: 0;
+                        }
+                        
+                        .skip-link {
+                            position: absolute;
+                            top: -40px;
+                            left: 6px;
+                            background: #F77F00;
+                            color: white;
+                            padding: 8px;
+                            text-decoration: none;
+                            border-radius: 4px;
+                            z-index: 1000;
+                        }
+                        
+                        .skip-link:focus {
+                            top: 6px;
+                        }
+                        
+                        /* Focus visible amélioré */
+                        .form-check-input:focus {
+                            box-shadow: 0 0 0 0.2rem rgba(247, 127, 0, 0.25);
+                            border-color: #F77F00;
+                        }
+                        
+                        /* Animation de chargement pour les pictogrammes */
+                        .icon-loading {
+                            opacity: 0;
+                            animation: iconFadeIn 0.5s ease-out forwards;
+                        }
+                        
+                        @keyframes iconFadeIn {
+                            to { opacity: 1; }
+                        }
+                    </style>
+
+                    <!-- Lien de navigation rapide pour l'accessibilité -->
+                    <a href="#main-form" class="skip-link">Aller au formulaire d'inscription</a>
+
+                    <!-- Header Section modernisée -->
+                    <section class="gradient-bg" style="color: white; padding: 80px 0 60px; position: relative; overflow: hidden;">
+                        <!-- Effet de particules en arrière-plan -->
+                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.1;">
+                            <div style="position: absolute; width: 100px; height: 100px; background: white; border-radius: 50%; top: 20%; left: 10%; animation: float 6s ease-in-out infinite;"></div>
+                            <div style="position: absolute; width: 60px; height: 60px; background: white; border-radius: 50%; top: 60%; right: 15%; animation: float 4s ease-in-out infinite;"></div>
+                            <div style="position: absolute; width: 80px; height: 80px; background: white; border-radius: 50%; top: 40%; left: 80%; animation: float 8s ease-in-out infinite;"></div>
+                        </div>
+                        
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-10 text-center fade-in">
+                                    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(15px); border-radius: 25px; padding: 50px 40px; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+                                        <div style="width: 120px; height: 120px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; animation: pulse 2s infinite;">
+                                            <img src="/ifn_portal_common/static/src/img/icons/icon-128.png" alt="Logo IFN" style="width: 80px; height: 80px; border-radius: 15px;">
+                                        </div>
+                                        <h1 class="hero-title" style="font-size: 3rem; font-weight: 900; margin-bottom: 25px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                                            Rejoignez IFN
+                                        </h1>
+                                        <p class="hero-subtitle" style="font-size: 1.3rem; opacity: 0.95; margin-bottom: 0; line-height: 1.6;">
+                                            Transformez votre activité avec la plateforme numérique du secteur informel
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Form Section modernisée -->
+                    <section style="padding: 80px 0; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10">
+                                    <div class="card border-0 shadow-xl slide-up" style="border-radius: 25px; overflow: hidden; backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.95);">
+                                        <div class="card-body p-5 p-md-5">
+                                            <!-- Étape 1: Type de membre avec pictogrammes -->
+                                            <div class="mb-5">
+                                                <div style="text-align: center; margin-bottom: 40px;">
+                                                    <h2 style="font-size: 2.2rem; font-weight: 800; color: #212121; margin-bottom: 15px; background: linear-gradient(135deg, #F77F00 0%, #009739 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                                                        Quel type d'acteur êtes-vous ?
+                                                    </h2>
+                                                    <p style="color: #6c757d; font-size: 1.1rem; margin-bottom: 0; line-height: 1.6;">
+                                                        Choisissez la catégorie qui correspond le mieux à votre activité
+                                                    </p>
+                                                </div>
+
+                                                <div class="row g-4">
+                                                    <div class="col-md-4 col-sm-6">
+                                                        <div class="card border-3 type-card bounce-hover" style="cursor: pointer; border-color: #e9ecef; min-height: 280px;">
+                                                            <div class="card-body text-center p-4">
+                                                                <input type="radio" name="member_type" value="merchant" id="member_merchant" class="form-check-input d-none" required="required"/>
+                                                                <label for="member_merchant" style="cursor: pointer; margin: 0; display: block;">
+                                                                    <div class="icon-loading" style="background: linear-gradient(135deg, #FFF4E6 0%, #FFF8F0 100%); width: 90px; height: 90px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 8px 25px rgba(247, 127, 0, 0.2); transition: all 0.3s ease;">
+                                                                        <img src="/imgs/icons/marchand_icon.png" alt="Marchand" style="width: 50px; height: 50px; object-fit: contain;">
+                                                                    </div>
+                                                                    <h4 style="color: #F77F00; font-weight: 800; margin-bottom: 12px; font-size: 1.3rem;">Marchand</h4>
+                                                                    <p style="color: #6c757d; font-size: 0.95rem; margin: 0; line-height: 1.5;">
+                                                                        Vendeurs, commerçants, boutiques et marchands ambulants
+                                                                    </p>
+                                                                    <div style="margin-top: 15px; padding: 8px 15px; background: rgba(247, 127, 0, 0.1); border-radius: 20px; color: #F77F00; font-size: 0.85rem; font-weight: 600;">
+                                                                        85% de nos membres
+                                                                    </div>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4 col-sm-6">
+                                                        <div class="card border-3 type-card bounce-hover" style="cursor: pointer; border-color: #e9ecef; min-height: 280px;">
+                                                            <div class="card-body text-center p-4">
+                                                                <input type="radio" name="member_type" value="producer" id="member_producer" class="form-check-input d-none" required="required"/>
+                                                                <label for="member_producer" style="cursor: pointer; margin: 0; display: block;">
+                                                                    <div class="icon-loading" style="background: linear-gradient(135deg, #E8F5E8 0%, #F0FFF0 100%); width: 90px; height: 90px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 8px 25px rgba(0, 151, 57, 0.2); transition: all 0.3s ease;">
+                                                                        <img src="/imgs/icons/producteur_icon.png" alt="Producteur" style="width: 50px; height: 50px; object-fit: contain;">
+                                                                    </div>
+                                                                    <h4 style="color: #009739; font-weight: 800; margin-bottom: 12px; font-size: 1.3rem;">Producteur</h4>
+                                                                    <p style="color: #6c757d; font-size: 0.95rem; margin: 0; line-height: 1.5;">
+                                                                        Agriculteurs, artisans, transformateurs et créateurs
+                                                                    </p>
+                                                                    <div style="margin-top: 15px; padding: 8px 15px; background: rgba(0, 151, 57, 0.1); border-radius: 20px; color: #009739; font-size: 0.85rem; font-weight: 600;">
+                                                                        12% de nos membres
+                                                                    </div>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4 col-sm-12">
+                                                        <div class="card border-3 type-card bounce-hover" style="cursor: pointer; border-color: #e9ecef; min-height: 280px;">
+                                                            <div class="card-body text-center p-4">
+                                                                <input type="radio" name="member_type" value="coop_manager" id="member_coop_manager" class="form-check-input d-none" required="required"/>
+                                                                <label for="member_coop_manager" style="cursor: pointer; margin: 0; display: block;">
+                                                                    <div class="icon-loading" style="background: linear-gradient(135deg, #E6F3FF 0%, #F0F8FF 100%); width: 90px; height: 90px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 8px 25px rgba(0, 123, 255, 0.2); transition: all 0.3s ease;">
+                                                                        <img src="/imgs/icons/cooperative_icon.png" alt="Coopérative" style="width: 50px; height: 50px; object-fit: contain;">
+                                                                    </div>
+                                                                    <h4 style="color: #007bff; font-weight: 800; margin-bottom: 12px; font-size: 1.3rem;">Coopérative</h4>
+                                                                    <p style="color: #6c757d; font-size: 0.95rem; margin: 0; line-height: 1.5;">
+                                                                        Gestionnaires, dirigeants et animateurs de coopératives
+                                                                    </p>
+                                                                    <div style="margin-top: 15px; padding: 8px 15px; background: rgba(0, 123, 255, 0.1); border-radius: 20px; color: #007bff; font-size: 0.85rem; font-weight: 600;">
+                                                                        3% de nos membres
+                                                                    </div>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Formulaire d'inscription modernisé -->
+                                            <form id="ifn-signup-form" method="POST" action="/ifn/signup/submit" class="fade-in">
+                                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                                <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 30px; border-radius: 20px; margin-bottom: 30px;">
+                                                    <h3 style="color: #212121; font-weight: 800; margin-bottom: 25px; text-align: center;">
+                                                        <i class="fa fa-user-edit me-2" style="color: #F77F00;"></i>
+                                                        Vos informations personnelles
+                                                    </h3>
+                                                    
+                                                    <div class="row g-3">
+                                                        <div class="col-md-6">
+                                                            <div class="form-field">
+                                                                <div class="form-icon">
+                                                                    <img src="/imgs/icons/user_icon.png" alt="" style="width: 20px; height: 20px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                                                    <i class="fa fa-user" style="display: none;"></i>
+                                                                </div>
+                                                                <label for="first_name" class="form-label sr-only">Prénom</label>
+                                                                <input type="text" name="first_name" id="first_name" class="form-control form-control-lg"
+                                                                       placeholder="Votre prénom" required="required" aria-label="Prénom"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-field">
+                                                                <div class="form-icon">
+                                                                    <img src="/imgs/icons/user_icon.png" alt="" style="width: 20px; height: 20px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                                                    <i class="fa fa-user" style="display: none;"></i>
+                                                                </div>
+                                                                <label for="last_name" class="form-label sr-only">Nom</label>
+                                                                <input type="text" name="last_name" id="last_name" class="form-control form-control-lg"
+                                                                       placeholder="Votre nom" required="required" aria-label="Nom"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row g-3">
+                                                        <div class="col-md-6">
+                                                            <div class="form-field">
+                                                                <div class="form-icon">
+                                                                    <img src="/imgs/icons/email_icon.png" alt="" style="width: 20px; height: 20px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                                                    <i class="fa fa-envelope" style="display: none;"></i>
+                                                                </div>
+                                                                <label for="email" class="form-label sr-only">Email</label>
+                                                                <input type="email" name="email" id="email" class="form-control form-control-lg"
+                                                                       placeholder="votre@email.com" required="required" aria-label="Adresse email"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-field">
+                                                                <div class="form-icon">
+                                                                    <img src="/imgs/icons/phone_icon.png" alt="" style="width: 20px; height: 20px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                                                    <i class="fa fa-phone" style="display: none;"></i>
+                                                                </div>
+                                                                <label for="phone" class="form-label sr-only">Téléphone</label>
+                                                                <input type="tel" name="phone" id="phone" class="form-control form-control-lg"
+                                                                       placeholder="+225 XX XX XX XX XX" required="required" aria-label="Numéro de téléphone"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div style="background: linear-gradient(135deg, #FFF4E6 0%, #FFF8F0 100%); padding: 30px; border-radius: 20px; margin-bottom: 30px;">
+                                                    <h3 style="color: #F77F00; font-weight: 800; margin-bottom: 25px; text-align: center;">
+                                                        <i class="fa fa-lock me-2"></i>
+                                                        Sécurité de votre compte
+                                                    </h3>
+                                                    
+                                                    <div class="row g-3">
+                                                        <div class="col-md-6">
+                                                            <div class="form-field">
+                                                                <div class="form-icon">
+                                                                    <img src="/imgs/icons/security_icon.png" alt="" style="width: 20px; height: 20px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                                                    <i class="fa fa-lock" style="display: none;"></i>
+                                                                </div>
+                                                                <label for="password" class="form-label sr-only">Mot de passe</label>
+                                                                <input type="password" name="password" id="password" class="form-control form-control-lg"
+                                                                       placeholder="Minimum 8 caractères" required="required" aria-label="Mot de passe" minlength="8"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-field">
+                                                                <div class="form-icon">
+                                                                    <img src="/imgs/icons/security_icon.png" alt="" style="width: 20px; height: 20px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                                                    <i class="fa fa-lock" style="display: none;"></i>
+                                                                </div>
+                                                                <label for="confirm_password" class="form-label sr-only">Confirmer mot de passe</label>
+                                                                <input type="password" name="confirm_password" id="confirm_password" class="form-control form-control-lg"
+                                                                       placeholder="Confirmer le mot de passe" required="required" aria-label="Confirmation du mot de passe"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div style="background: linear-gradient(135deg, #E8F5E8 0%, #F0FFF0 100%); padding: 30px; border-radius: 20px; margin-bottom: 30px;">
+                                                    <h3 style="color: #009739; font-weight: 800; margin-bottom: 25px; text-align: center;">
+                                                        <i class="fa fa-map-marker-alt me-2"></i>
+                                                        Votre localisation
+                                                    </h3>
+                                                    
+                                                    <div class="row g-3">
+                                                        <div class="col-md-6">
+                                                            <div class="form-field">
+                                                                <div class="form-icon">
+                                                                    <img src="/imgs/icons/location_icon.png" alt="" style="width: 20px; height: 20px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                                                    <i class="fa fa-map-marker-alt" style="display: none;"></i>
+                                                                </div>
+                                                                <label for="region" class="form-label sr-only">Région</label>
+                                                                <select name="region" id="region" class="form-select form-select-lg" required="required" aria-label="Région">
+                                                                    <option value="">Sélectionner une région</option>
+                                                                    <option value="Abidjan">🏙️ Abidjan</option>
+                                                                    <option value="Bouaké">🏛️ Bouaké</option>
+                                                                    <option value="Korhogo">🌾 Korhogo</option>
+                                                                    <option value="San-Pédro">⚓ San-Pédro</option>
+                                                                    <option value="Daloa">🌳 Daloa</option>
+                                                                    <option value="Yamoussoukro">🏛️ Yamoussoukro</option>
+                                                                    <option value="Soubré">🌿 Soubré</option>
+                                                                    <option value="Gagnoa">🍫 Gagnoa</option>
+                                                                    <option value="Man">🏔️ Man</option>
+                                                                    <option value="Divo">🌺 Divo</option>
+                                                                    <option value="Odienné">🌾 Odienné</option>
+                                                                    <option value="Agboville">🌿 Agboville</option>
+                                                                    <option value="Abengourou">🍯 Abengourou</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-field">
+                                                                <div class="form-icon">
+                                                                    <img src="/imgs/icons/home_icon.png" alt="" style="width: 20px; height: 20px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                                                    <i class="fa fa-home" style="display: none;"></i>
+                                                                </div>
+                                                                <label for="village" class="form-label sr-only">Ville ou Village</label>
+                                                                <input type="text" name="village" id="village" class="form-control form-control-lg"
+                                                                       placeholder="Votre ville ou village" required="required" aria-label="Ville ou village"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Section conditions d'utilisation -->
+                                                <div style="background: rgba(247, 127, 0, 0.05); padding: 25px; border-radius: 15px; border: 2px solid rgba(247, 127, 0, 0.1); margin-bottom: 30px;">
+                                                    <div class="form-check d-flex align-items-start">
+                                                        <input type="checkbox" class="form-check-input mt-1 me-3" id="terms" required="required" 
+                                                               style="width: 24px; height: 24px; border-radius: 6px; border: 2px solid #F77F00;"/>
+                                                        <label class="form-check-label" for="terms" style="color: #6c757d; line-height: 1.6;">
+                                                            <span style="color: #212121; font-weight: 600;">J'accepte les conditions :</span><br>
+                                                            <a href="/cgu" style="color: #F77F00; font-weight: 600; text-decoration: none;">Conditions Générales d'Utilisation</a>
+                                                            et la <a href="/politique-confidentialite" style="color: #F77F00; font-weight: 600; text-decoration: none;">Politique de Confidentialité</a>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Bouton de soumission -->
+                                                <div class="text-center" style="margin-bottom: 25px;">
+                                                    <button type="submit" class="btn btn-lg submit-btn px-5 py-3"
+                                                            style="background: linear-gradient(135deg, #F77F00 0%, #009739 100%); color: white; border: none; border-radius: 50px; font-weight: 700; font-size: 1.2rem; min-width: 300px; position: relative; overflow: hidden;">
+                                                        <span style="position: relative; z-index: 2;">
+                                                            <i class="fa fa-rocket me-2"></i>
+                                                            Créer mon compte IFN
+                                                        </span>
+                                                    </button>
+                                                </div>
+
+                                                <!-- Lien de connexion -->
+                                                <div class="text-center" style="padding: 20px; background: rgba(108, 117, 125, 0.05); border-radius: 15px;">
+                                                    <p style="color: #6c757d; margin-bottom: 0; font-size: 1.1rem;">
+                                                        <i class="fa fa-sign-in-alt me-2" style="color: #F77F00;"></i>
+                                                        Déjà un compte ?
+                                                        <a href="/web/login" style="color: #F77F00; font-weight: 700; text-decoration: none; padding: 8px 16px; border-radius: 25px; border: 2px solid #F77F00; transition: all 0.3s ease;">
+                                                            Se connecter
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- JavaScript pour les interactions modernes -->
+                <script type="text/javascript">
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Animation des cartes de type de membre
+                        const typeCards = document.querySelectorAll('.type-card');
+                        const radioInputs = document.querySelectorAll('input[name="member_type"]');
+                        
+                        typeCards.forEach(card => {
+                            const radio = card.querySelector('input[type="radio"]');
+                            
+                            // Animation au clic
+                            card.addEventListener('click', function() {
+                                // Retirer la classe active de toutes les cartes
+                                typeCards.forEach(c => c.classList.remove('active'));
+                                
+                                // Ajouter la classe active à la carte cliquée
+                                this.classList.add('active');
+                                
+                                // Cocher le bouton radio correspondant
+                                radio.checked = true;
+                                
+                                // Animation de rebond
+                                this.style.transform = 'scale(1.05)';
+                                setTimeout(() => {
+                                    this.style.transform = '';
+                                }, 200);
+                            });
+                            
+                            // Animation au survol
+                            card.addEventListener('mouseenter', function() {
+                                if (!radio.checked) {
+                                    this.style.transform = 'translateY(-8px)';
+                                }
+                            });
+                            
+                            card.addEventListener('mouseleave', function() {
+                                if (!radio.checked) {
+                                    this.style.transform = '';
+                                }
+                            });
+                        });
+                        
+                        // Gestion de l'état initial (si un radio est pré-sélectionné)
+                        if (radioInputs.length > 0) {
+                            radioInputs.forEach(radio => {
+                                if (radio.checked) {
+                                    radio.closest('.type-card').classList.add('active');
+                                }
+                            });
+                        }
+                        
+                        // Animation des champs de formulaire
+                        const formInputs = document.querySelectorAll('input, select');
+                        formInputs.forEach(input => {
+                            input.addEventListener('focus', function() {
+                                this.closest('.form-field')?.classList.add('focused');
+                            });
+                            
+                            input.addEventListener('blur', function() {
+                                this.closest('.form-field')?.classList.remove('focused');
+                            });
+                        });
+                        
+                        // Validation en temps réel du mot de passe
+                        const passwordField = document.getElementById('password');
+                        const confirmPasswordField = document.getElementById('confirm_password');
+                        
+                        if (passwordField && confirmPasswordField) {
+                            function validatePassword() {
+                                if (passwordField.value !== confirmPasswordField.value) {
+                                    confirmPasswordField.setCustomValidity('Les mots de passe ne correspondent pas');
+                                    confirmPasswordField.style.borderColor = '#dc3545';
+                                } else {
+                                    confirmPasswordField.setCustomValidity('');
+                                    confirmPasswordField.style.borderColor = '#28a745';
+                                }
+                            }
+                            
+                            passwordField.addEventListener('input', validatePassword);
+                            confirmPasswordField.addEventListener('input', validatePassword);
+                        }
+                        
+                        // Animation du bouton de soumission
+                        const submitBtn = document.querySelector('button[type="submit"]');
+                        const form = document.getElementById('ifn-signup-form');
+                        
+                        if (submitBtn && form) {
+                            form.addEventListener('submit', function(e) {
+                                if (!this.checkValidity()) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    
+                                    // Animation de shake pour les champs invalides
+                                    const invalidFields = this.querySelectorAll(':invalid');
+                                    invalidFields.forEach(field => {
+                                        field.style.animation = 'shake 0.5s';
+                                        setTimeout(() => {
+                                            field.style.animation = '';
+                                        }, 500);
+                                    });
+                                    
+                                    return;
+                                }
+                                
+                                // Animation de chargement
+                                submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin me-2"></i>Création en cours...';
+                                submitBtn.disabled = true;
+                                submitBtn.style.opacity = '0.8';
+                            });
+                        }
+                        
+                        // Animation d'apparition progressive
+                        const observerOptions = {
+                            threshold: 0.1,
+                            rootMargin: '0px 0px -50px 0px'
+                        };
+                        
+                        const observer = new IntersectionObserver(function(entries) {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting) {
+                                    entry.target.style.opacity = '1';
+                                    entry.target.style.transform = 'translateY(0)';
+                                }
+                            });
+                        }, observerOptions);
+                        
+                        // Observer les sections pour l'animation
+                        document.querySelectorAll('.slide-up').forEach(section => {
+                            section.style.opacity = '0';
+                            section.style.transform = 'translateY(30px)';
+                            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                            observer.observe(section);
+                        });
+                        
+                        // Amélioration de l'accessibilité clavier
+                        typeCards.forEach(card => {
+                            card.setAttribute('tabindex', '0');
+                            card.addEventListener('keydown', function(e) {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    this.click();
+                                }
+                            });
+                        });
+                        
+                        // Animation de particules flottantes (si supporté)
+                        if (CSS.supports('animation', 'float 1s ease-in-out')) {
+                            const createFloatingParticle = () => {
+                                const particle = document.createElement('div');
+                                particle.style.cssText = `
+                                    position: fixed;
+                                    width: 6px;
+                                    height: 6px;
+                                    background: rgba(247, 127, 0, 0.6);
+                                    border-radius: 50%;
+                                    pointer-events: none;
+                                    z-index: 1000;
+                                    left: ${Math.random() * window.innerWidth}px;
+                                    top: ${window.innerHeight + 10}px;
+                                    animation: float 6s linear infinite;
+                                `;
+                                document.body.appendChild(particle);
+                                
+                                setTimeout(() => {
+                                    particle.remove();
+                                }, 6000);
+                            };
+                            
+                            // Créer une particule toutes les 3 secondes
+                            setInterval(createFloatingParticle, 3000);
+                        }
+                    });
+                    
+                    // CSS pour l'animation shake
+                    const shakeKeyframes = `
+                        @keyframes shake {
+                            0%, 100% { transform: translateX(0); }
+                            25% { transform: translateX(-5px); }
+                            75% { transform: translateX(5px); }
+                        }
+                        
+                        @keyframes float {
+                            0% {
+                                transform: translateY(0) rotate(0deg);
+                                opacity: 0;
+                            }
+                            10% {
+                                opacity: 1;
+                            }
+                            90% {
+                                opacity: 1;
+                            }
+                            100% {
+                                transform: translateY(-100vh) rotate(360deg);
+                                opacity: 0;
+                            }
+                        }
+                        
+                        @keyframes pulse {
+                            0%, 100% {
+                                transform: scale(1);
+                            }
+                            50% {
+                                transform: scale(1.05);
+                            }
+                        }
+                    `;
+                    
+                    // Ajouter les keyframes au document
+                    const styleSheet = document.createElement('style');
+                    styleSheet.textContent = shakeKeyframes;
+                    document.head.appendChild(styleSheet);
+                </script>
+            </t>
+        </template>
+
+        <!-- Route inscription modernisée -->
+        <record id="ifn_signup_modern_route" model="website.page">
+            <field name="name">IFN - Inscription Moderne</field>
+            <field name="url">/ifn/signup</field>
+            <field name="view_id" ref="ifn_signup_modern"/>
+            <field name="website_published">True</field>
+        </record>
+        
+        <!-- Ancienne route (gardée pour compatibilité) -->
+        <record id="ifn_signup_simple_route" model="website.page">
+            <field name="name">IFN - Inscription Simple</field>
+            <field name="url">/ifn/signup/simple</field>
+            <field name="view_id" ref="ifn_signup_simple"/>
+            <field name="website_published">False</field>
+        </record>
+    </data>
+</odoo>

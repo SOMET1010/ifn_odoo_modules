@@ -1,0 +1,441 @@
+/* ==========================================================================
+   IFN Portal Producer - Styles Responsives
+   Optimisé pour mobile, tablette et desktop
+   ========================================================================== */
+
+/* Mobile First - jusqu'à 576px */
+@media (max-width: 575.98px) {
+    .producer-dashboard {
+        padding: 0.5rem;
+    }
+
+    .producer-dashboard h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    /* KPI Cards */
+    .kpi-card {
+        margin-bottom: 1rem;
+        min-height: 80px;
+    }
+
+    .kpi-card .card-title {
+        font-size: 1.25rem;
+    }
+
+    .kpi-card .card-text {
+        font-size: 0.8rem;
+    }
+
+    .kpi-card .fa-2x {
+        font-size: 1.5rem;
+    }
+
+    /* Action Buttons */
+    .action-btn {
+        height: 80px;
+        margin-bottom: 0.75rem;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+        border-radius: 10px;
+    }
+
+    .action-btn .fa-2x {
+        font-size: 1.25rem;
+        margin-bottom: 0.25rem;
+        display: block;
+    }
+
+    .action-btn br {
+        display: none;
+    }
+
+    /* Cards */
+    .card {
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .card-header {
+        padding: 0.75rem 1rem;
+    }
+
+    .card-header h5, .card-header h6 {
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    /* Tables */
+    .table-responsive {
+        border-radius: 10px;
+    }
+
+    .table {
+        font-size: 0.85rem;
+    }
+
+    .table th {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+        white-space: nowrap;
+    }
+
+    .table td {
+        padding: 0.5rem;
+        vertical-align: middle;
+    }
+
+    /* Buttons */
+    .btn {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+    }
+
+    .btn-sm {
+        font-size: 0.75rem;
+        padding: 0.375rem 0.75rem;
+    }
+
+    /* Forms */
+    .form-control, .form-select {
+        font-size: 0.9rem;
+        padding: 0.625rem 0.875rem;
+        border-radius: 8px;
+    }
+
+    .form-label {
+        font-size: 0.85rem;
+        margin-bottom: 0.375rem;
+    }
+
+    /* Modal */
+    .modal-dialog {
+        margin: 1rem;
+    }
+
+    .modal-content {
+        border-radius: 10px;
+    }
+
+    .modal-header {
+        padding: 1rem;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+
+    .modal-footer {
+        padding: 1rem;
+    }
+
+    /* Harvest Cards */
+    .harvest-card {
+        margin-bottom: 1rem;
+    }
+
+    .harvest-card .card-body {
+        padding: 0.75rem;
+    }
+
+    .harvest-card .card-title {
+        font-size: 0.95rem;
+    }
+
+    .harvest-card .card-text {
+        font-size: 0.8rem;
+    }
+
+    /* Course Cards */
+    .course-card {
+        margin-bottom: 1rem;
+    }
+
+    .course-card .card-body {
+        padding: 0.75rem;
+    }
+
+    .course-card .card-title {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .course-card .card-text {
+        font-size: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    /* Profile Page */
+    .qr-code-placeholder {
+        min-height: 150px;
+        padding: 1rem;
+    }
+
+    .qr-code-placeholder .fa-4x {
+        font-size: 2.5rem;
+    }
+
+    /* Dashboard Stats */
+    .dashboard-stats {
+        text-align: center;
+    }
+
+    .dashboard-stats .row {
+        justify-content: center;
+    }
+
+    /* Hide/Resize elements */
+    .d-none-mobile {
+        display: none !important;
+    }
+
+    .text-small-mobile {
+        font-size: 0.8rem !important;
+    }
+
+    /* Spacing adjustments */
+    .mb-4-mobile {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .mt-4-mobile {
+        margin-top: 1.5rem !important;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .producer-dashboard {
+        padding: 1rem;
+    }
+
+    .action-btn {
+        height: 90px;
+        font-size: 0.85rem;
+        padding: 0.75rem;
+    }
+
+    .kpi-card .card-title {
+        font-size: 1.4rem;
+    }
+
+    .harvest-card, .course-card {
+        margin-bottom: 1rem;
+    }
+
+    .table {
+        font-size: 0.9rem;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .producer-dashboard {
+        padding: 1.5rem;
+    }
+
+    .action-btn {
+        height: 100px;
+        font-size: 0.9rem;
+    }
+
+    .kpi-card {
+        margin-bottom: 1.5rem;
+    }
+
+    .harvest-card, .course-card {
+        margin-bottom: 1.5rem;
+        height: calc(100% - 1.5rem);
+    }
+
+    .table {
+        font-size: 0.95rem;
+    }
+
+    .card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .producer-dashboard {
+        padding: 2rem;
+    }
+
+    .action-btn {
+        height: 110px;
+    }
+
+    .harvest-card, .course-card {
+        height: calc(100% - 1rem);
+    }
+
+    .kpi-card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .producer-dashboard {
+        padding: 2.5rem;
+    }
+
+    .action-btn {
+        height: 120px;
+    }
+
+    .harvest-card, .course-card {
+        height: calc(100% - 1rem);
+    }
+
+    .container-fluid {
+        max-width: 1400px;
+    }
+}
+
+/* Orientation spécifique */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .producer-dashboard h1 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .kpi-card {
+        margin-bottom: 0.75rem;
+        min-height: 60px;
+    }
+
+    .kpi-card .card-title {
+        font-size: 1.1rem;
+    }
+
+    .kpi-card .card-text {
+        font-size: 0.7rem;
+    }
+
+    .action-btn {
+        height: 60px;
+        margin-bottom: 0.5rem;
+        padding: 0.375rem;
+        font-size: 0.75rem;
+    }
+
+    .action-btn .fa-2x {
+        font-size: 1rem;
+        margin-bottom: 0.125rem;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    .card-body {
+        padding: 0.75rem;
+    }
+
+    .card-header {
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .fa {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .card-header {
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+/* Print styles */
+@media print {
+    .producer-dashboard {
+        padding: 1rem;
+    }
+
+    .action-btn, .btn, .modal, .offline-indicator, .pwa-install-prompt {
+        display: none !important;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        break-inside: avoid;
+        margin-bottom: 1rem;
+    }
+
+    .table {
+        font-size: 0.8rem;
+    }
+
+    .kpi-card {
+        background: white !important;
+        color: black !important;
+        border: 1px solid #ddd;
+    }
+
+    .badge {
+        background: #f0f0f0 !important;
+        color: black !important;
+        border: 1px solid #ddd;
+    }
+}
+
+/* Accessibilité pour lecteurs d'écran */
+@media (prefers-reduced-motion: reduce) {
+    .action-btn:hover,
+    .harvest-card:hover,
+    .course-card:hover,
+    .kpi-card:hover {
+        transform: none;
+    }
+}
+
+/* Modes de contraste élevé */
+@media (prefers-contrast: high) {
+    .card {
+        border: 2px solid;
+    }
+
+    .btn {
+        border: 2px solid;
+    }
+
+    .form-control, .form-select {
+        border: 2px solid;
+    }
+}
+
+/* Support pour les appareils tactiles */
+@media (hover: none) and (pointer: coarse) {
+    .action-btn:hover,
+    .harvest-card:hover,
+    .course-card:hover,
+    .kpi-card:hover {
+        transform: none;
+    }
+
+    .btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .action-btn {
+        min-height: 88px;
+    }
+
+    .form-control, .form-select {
+        min-height: 44px;
+    }
+}

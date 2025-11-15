@@ -1,0 +1,626 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* ifn_portal_merchant
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-04 23:00+0000\n"
+"PO-Revision-Date: 2024-01-04 23:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ifn_portal_merchant
+#: model:ir.model.fields,field_description:ifn_portal_merchant.field_res_partner__merchant_last_login
+msgid "Last Portal Login"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.model.fields,field_description:ifn_portal_merchant.field_res_partner__merchant_login_count
+msgid "Portal Login Count"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.model.fields,field_description:ifn_portal_merchant.field_res_partner__merchant_portal_enabled
+msgid "Portal Access Enabled"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.model.fields,field_description:ifn_portal_merchant.field_res_partner__voice_enabled
+msgid "Voice Commands Enabled"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.model.fields,field_description:ifn_portal_merchant.field_res_partner__stock_alerts_enabled
+msgid "Stock Alerts"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.model.fields,field_description:ifn_portal_merchant.field_res_partner__payment_notifications_enabled
+msgid "Payment Notifications"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.model.fields,field_description:ifn_portal_merchant.field_res_partner__social_reminders_enabled
+msgid "Social Protection Reminders"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Tableau de Bord"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Chiffre d'Affaires (Aujourd'hui)"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Alertes Stock"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Cotisations Sociales"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Actions Rapides"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Vendre"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Stock"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Approvisionnement"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Encaissements"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Social"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Formation"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Dernières Ventes"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Derniers Encaissements"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_dashboard
+msgid "Adoption Commandes Vocales"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Nouvelle Vente"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Recherche de Produit"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Scanner code-barres / QR code"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Scanner"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Rechercher produit..."
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Parler"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Total Panier"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Panier"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Votre panier est vide"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Paiement"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Mode de Paiement"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Espèces"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Mobile Money"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Crédit"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_sell
+msgid "Encaisser"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_stock
+msgid "Gestion des Stocks"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_stock
+msgid "produits en rupture ou sous le seuil d'alerte"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_stock
+msgid "État des Stocks"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_stock
+msgid "Inventaire Rapide"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_stock
+msgid "Produit"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_stock
+msgid "Quantité Actuelle"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_stock
+msgid "Seuil d'Alerte"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_stock
+msgid "Statut"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_stock
+msgid "Actions"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_stock
+msgid "Derniers Mouvements"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_purchase
+msgid "Approvisionnement"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_purchase
+msgid "Sélection du Fournisseur"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_purchase
+msgid "Ma Coopérative"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_purchase
+msgid "Autre Fournisseur"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_purchase
+msgid "Commande Actuelle"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_purchase
+msgid "articles"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_purchase
+msgid "Catalogue des Produits"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_purchase
+msgid "Récapitulatif de la Commande"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_purchase
+msgid "Aucun produit dans votre commande"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_purchase
+msgid "Passer la Commande"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_purchase
+msgid "La livraison sera effectuée dans 2-3 jours ouvrables"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_payments
+msgid "Encaissements"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_payments
+msgid "Nouveau Paiement"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_payments
+msgid "Enregistrer"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_payments
+msgid "Historique des Paiements"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_payments
+msgid "Type"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_payments
+msgid "Montant"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_payments
+msgid "Client"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_payments
+msgid "Statut"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_payments
+msgid "Aujourd'hui"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_payments
+msgid "Cette semaine"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_payments
+msgid "Ce mois"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_social
+msgid "Protection Sociale"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_social
+msgid "Prochaine échéance"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_social
+msgid "Montant dû"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_social
+msgid "Actions de Paiement"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_social
+msgid "Payer vos cotisations"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_social
+msgid "Régler vos cotisations sociales par Mobile Money"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_social
+msgid "Payer par Mobile Money"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_social
+msgid "Télécharger vos attestations"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_social
+msgid "Obtenir vos attestations de paiement"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_social
+msgid "Télécharger"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_social
+msgid "Historique des Paiements Sociaux"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_social
+msgid "Attestation"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_training
+msgid "Formation Continue"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_training
+msgid "Progression Générale"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_training
+msgid "modules complétés sur"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_training
+msgid "Temps de Formation"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_training
+msgid "Ce mois"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_training
+msgid "Modules Disponibles"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_training
+msgid "En cours"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_training
+msgid "Nouveau"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_training
+msgid "Livraison"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_training
+msgid "Continuer"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_training
+msgid "Commencer"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_training
+msgid "Lecteur Audio"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_training
+msgid "Leçon"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Mon Profil IFN"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Informations Personnelles"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Nom complet"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Téléphone"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Email"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Marché"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Coopérative"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Langue préférée"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Préférences du Portail"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Commandes vocales activées"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Alertes de stock"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Notifications de paiement"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Rappels sociaux"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Mode hors ligne activé"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Enregistrer les modifications"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model:ir.ui.view,arch_db:ifn_portal_merchant.page_profile
+msgid "Afficher QR Code"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model_terms:ir.ui.view,arch_db:ifn_portal_merchant.res_config_settings_view_form
+msgid "Portail Marchand IFN"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model_terms:ir.ui.view,arch_db:ifn_portal_merchant.res_config_settings_view_form
+msgid "Activer le portail pour les marchands IFN"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model_terms:ir.ui.view,arch_db:ifn_portal_merchant.res_config_settings_view_form
+msgid "Approuver automatiquement les inscriptions des marchands"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model_terms:ir.ui.view,arch_db:ifn_portal_merchant.res_config_settings_view_form
+msgid "Activer les commandes vocales dans le portail"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model_terms:ir.ui.view,arch_db:ifn_portal_merchant.res_config_settings_view_form
+msgid "Activer le mode hors ligne avec synchronisation automatique"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model_terms:ir.ui.view,arch_db:ifn_portal_merchant.res_config_settings_view_form
+msgid "Mobile Money"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model_terms:ir.ui.view,arch_db:ifn_portal_merchant.res_config_settings_view_form
+msgid "Liste des fournisseurs Mobile Money disponibles (format JSON)"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model_terms:ir.ui.view,arch_db:ifn_portal_merchant.res_config_settings_view_form
+msgid "Délai d'attente pour les paiements Mobile Money (secondes)"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model_terms:ir.ui.view,arch_db:ifn_portal_merchant.res_config_settings_view_form
+msgid "Gestion des Stocks"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model_terms:ir.ui.view,arch_db:ifn_portal_merchant.res_config_settings_view_form
+msgid "Activer les alertes de stock automatiques"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model_terms:ir.ui.view,arch_db:ifn_portal_merchant.res_config_settings_view_form
+msgid "Seuil d'alerte de stock par défaut"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model_terms:ir.ui.view,arch_db:ifn_portal_merchant.res_config_settings_view_form
+msgid "Notifications"
+msgstr ""
+
+#. module: ifn_portal_merchant
+#: model_terms:ir.ui.view,arch_db:ifn_portal_merchant.res_config_settings_view_form
+msgid "Les notifications seront envoyées aux marchands pour les événements importants (paiements, alertes de stock, livraisons, etc.)"
+msgstr ""

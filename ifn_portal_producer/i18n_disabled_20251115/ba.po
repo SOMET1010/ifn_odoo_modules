@@ -1,0 +1,727 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* ifn_portal_producer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-04 23:15+0000\n"
+"PO-Revision-Date: 2024-11-04 23:15+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+"Language: ba\n"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_dashboard
+msgid "Tableau de bord Producteur"
+msgstr "Anmɛ akliɲɛnkan"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_dashboard
+msgid "Production (kg)"
+msgstr "Sisan (kg)"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_dashboard
+msgid "Taux de vente"
+msgstr "Kakoli sɔrɔli"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_dashboard
+msgid "Revenu cumulé"
+msgstr "Wɛrɛw labanba"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_dashboard
+msgid "Protection sociale"
+msgstr "Sɛbɛnni dɛmɛ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_dashboard
+msgid "Actions rapides"
+msgstr "Cɛya ɲɛnaman"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_harvest
+msgid "Gestion des Récoltes"
+msgstr "Sisan dɛmɛ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_harvest
+msgid "Nouvelle récolte"
+msgstr "Sisan min bɛ sɔrɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_harvest
+msgid "Produit"
+msgstr "Min"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_harvest
+msgid "Quantité (kg)"
+msgstr "Mɔgɔ (kg)"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_harvest
+msgid "Qualité"
+msgstr "Dɔnnya"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_harvest
+msgid "Date de récolte"
+msgstr "Sisan datɛ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_harvest
+msgid "Notes (optionnel)"
+msgstr "Lakinɛ (tɔndɔ)"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_harvest
+msgid "Mes récoltes"
+msgstr "N sisaniw"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_sell
+msgid "Mise en vente"
+msgstr "Wula kɔnɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_sell
+msgid "Récoltes disponibles"
+msgstr "Sisan wɛrɛw"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_sell
+msgid "Mes offres actives"
+msgstr "N wulaw min bɛ sɔrɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_sell
+msgid "Quantité à vendre (kg)"
+msgstr "Mɔgɔ min bɛ tɔ (kg)"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_sell
+msgid "Prix (FCFA/kg)"
+msgstr "Nɔfɔ (FCFA/kg)"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_sell
+msgid "Total estimé"
+msgstr "Sɛbɛnw kalan"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_sell
+msgid "Description (optionnel)"
+msgstr "Kalan (tɔndɔ)"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_orders
+msgid "Commandes reçues"
+msgstr "Kɔmɔnw sɔrɔw"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_orders
+msgid "Commande"
+msgstr "Kɔmɔn"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_orders
+msgid "Acheteur"
+msgstr "Wɛrɛmɔgɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_orders
+msgid "Produits"
+msgstr "Minni"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_orders
+msgid "Montant"
+msgstr "Dɔgɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_orders
+msgid "Date"
+msgstr "Datɛ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_orders
+msgid "Statut"
+msgstr "Jate"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_payments
+msgid "Historique des paiements"
+msgstr "Fɛnw labɔnba"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_payments
+msgid "Total reçu"
+msgstr "Sɛbɛn sɔrɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_payments
+msgid "En attente"
+msgstr "Ka tɛmɛ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_payments
+msgid "Ce mois"
+msgstr "Kalo in"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_payments
+msgid "Transactions récentes"
+msgstr "Sɔrɔdaliw kɔnɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_social
+msgid "Protection sociale"
+msgstr "Sɛbɛnni dɛmɛ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_social
+msgid "Statut CNPS/CNAM/CMU"
+msgstr "Jate CNPS/CNAM/CMU"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_social
+msgid "Vos cotisations sont à jour"
+msgstr "I fɛnw ka fɔrɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_social
+msgid "Vous avez des cotisations en retard"
+msgstr "I bɛ fɛnw min bɛ tɔn"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_social
+msgid "Historique des cotisations"
+msgstr "Fɛnw labɔnba"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_social
+msgid "Période"
+msgstr "Dɛmɛ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_social
+msgid "Type"
+msgstr "Dɔɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_social
+msgid "Actions"
+msgstr "Cɛyaw"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_training
+msgid "Formation"
+msgstr "Kalanbɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_training
+msgid "Cours disponibles"
+msgstr "Kalanw min bɛ sɔrɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_training
+msgid "En cours"
+msgstr "Ka sɔrɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_training
+msgid "Progression"
+msgstr "Sɔrɔli"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_training
+msgid "Certificats"
+msgstr "Sɛbɛnni kunnafoniw"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_training
+msgid "Mes certificats"
+msgstr "N sɛbɛnni kunnafoniw"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_profile
+msgid "Profil producteur"
+msgstr "Akliɲɛnkan baara"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_profile
+msgid "Informations personnelles"
+msgstr "Adamaduniw kunnafoniw"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_profile
+msgid "Nom complet"
+msgstr "Tɔgɔ min bɛ fɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_profile
+msgid "Téléphone"
+msgstr "Telefɔni"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_profile
+msgid "Email"
+msgstr "Imeli"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_profile
+msgid "Localisation"
+msgstr "Bɔnɛ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_profile
+msgid "Langue préférée"
+msgstr "Kan min i bɛ fɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_profile
+msgid "Mon QR Code"
+msgstr "N QR kɔdɛ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_profile
+msgid "Statut du compte"
+msgstr "Kɔnt jate"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_profile
+msgid "Producteur vérifié"
+msgstr "Akliɲɛnka sɔrɔda"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_profile
+msgid "Membre depuis"
+msgstr "Jɛngɛ bɛ san"
+
+#. module: ifn_portal_producer
+#: model:product.product,name:ifn_portal_producer.product_manioc
+msgid "Manioc"
+msgstr "Balan"
+
+#. module: ifn_portal_producer
+#: model:product.product,name:ifn_portal_producer.product_igname
+msgid "Igname"
+msgstr "Yabɛ"
+
+#. module: ifn_portal_producer
+#: model:product.product,name:ifn_portal_producer.product_tomates
+msgid "Tomates fraîches"
+msgstr "Fɛwɛrɛ bɛɛ"
+
+#. module: ifn_portal_producer
+#: model:product.product,name:ifn_portal_producer.product_piment
+msgid "Piment"
+msgstr "Pima"
+
+#. module: ifn_portal_producer
+#: model:product.product,name:ifn_portal_producer.product_banane_plantain
+msgid "Banane plantain"
+msgstr "Bɔtiritɔ"
+
+#. module: ifn_portal_producer
+#: model:product.product,name:ifn_portal_producer.product_riz
+msgid "Riz local"
+msgstr "Nɛrɛw"
+
+#. module: ifn_portal_producer
+#: model:product.product,name:ifn_portal_producer.product_mais
+msgid "Maïs"
+msgstr "Kaba"
+
+#. module: ifn_portal_producer
+#: model:product.product,name:ifn_portal_producer.product_gombo
+msgid "Gombo"
+msgstr "Gbɔmboyɛ"
+
+#. module: ifn_portal_producer
+#: model:product.product,name:ifn_portal_producer.product_aubergine
+msgid "Aubergine"
+msgstr "Bɔnjɔli"
+
+#. module: ifn_portal_producer
+#: model:product.product,name:ifn_portal_producer.product_orange
+msgid "Orange"
+msgstr "Zɛrɛbu"
+
+#. module: ifn_portal_producer
+#: model:product.product,name:ifn_portal_producer.product_mangue
+msgid "Mangue"
+msgstr "Mangoro"
+
+#. module: ifn_portal_producer
+#: model:product.product,name:ifn_portal_producer.product_ananas
+msgid "Ananas"
+msgstr "Anana"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_harvest
+msgid "Enregistrer"
+msgstr "Ka sɛbɛn"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_harvest
+msgid "Annuler"
+msgstr "Ka bɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_sell
+msgid "Publier l'offre"
+msgstr "Ka wula laban"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_sell
+msgid "Annuler"
+msgstr "Ka bɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_profile
+msgid "Enregistrer"
+msgstr "Ka sɛbɛn"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_profile
+msgid "Télécharger"
+msgstr "Ka telecharge"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_res_partner__producer_type
+msgid "Type de producteur"
+msgstr "Akliɲɛnka dɔɔ"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_res_partner__ifn_role
+msgid "Rôle IFN"
+msgstr "Jɛ IFN"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_product_product__ifn_product_type
+msgid "Type de produit IFN"
+msgstr "Min dɔɔ IFN"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_ifn_harvest__quantity_available
+msgid "Quantité disponible"
+msgstr "Mɔgɔ min bɛ sɔrɔ"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_ifn_harvest__state
+msgid "État"
+msgstr "Jate"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_ifn_sale_offer__state
+msgid "État de l'offre"
+msgstr "Wula jate"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_ifn_sale_offer__total_price
+msgid "Prix total"
+msgstr "Nɔfɔ sɛbɛn"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_ifn_training_progress__completion_percentage
+msgid "Pourcentage de complétion"
+msgstr "Sɛbɛn ɔkɛsɛn"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_ifn_training_progress__state
+msgid "État de la progression"
+msgstr "Sɔrɔli jate"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_ifn_social_cotisation__contribution_type
+msgid "Type de cotisation"
+msgstr "Fɛn dɔɔ"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_ifn_social_cotisation__period
+msgid "Période"
+msgstr "Dɛmɛ"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_ifn_social_cotisation__amount
+msgid "Montant"
+msgstr "Dɔgɔ"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_ifn_kpi_snapshot__value
+msgid "Valeur"
+msgstr "Nɔfɔ"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_ifn_kpi_snapshot__unit
+msgid "Unité"
+msgstr "Yɔrɔ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.harvest,state:0
+msgid "Disponible"
+msgstr "Bɛ sɔrɔ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.harvest,state:0
+msgid "Vendu"
+msgstr "Ka tɔ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.harvest,state:0
+msgid "En traitement"
+msgstr "Ka sɔrɔ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.sale.offer,state:0
+msgid "Brouillon"
+msgstr "Sɛbɛn-fɔrɔ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.sale.offer,state:0
+msgid "Publié"
+msgstr "Ka laban"
+
+#. module: ifn_portal_producer
+#: selection:ifn.sale.offer,state:0
+msgid "En pause"
+msgstr "Ka tɛmɛ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.sale.offer,state:0
+msgid "Terminé"
+msgstr "Ka bɔ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.sale.order,state:0
+msgid "Brouillon"
+msgstr "Sɛbɛn-fɔrɔ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.sale.order,state:0
+msgid "Envoyé"
+msgstr "Ka bɔ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.sale.order,state:0
+msgid "Vente"
+msgstr "Wula"
+
+#. module: ifn_portal_producer
+#: selection:ifn.sale.order,state:0
+msgid "Annulé"
+msgstr "Ka bɔ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.social.cotisation,state:0
+msgid "En attente"
+msgstr "Ka tɛmɛ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.social.cotisation,state:0
+msgid "Payé"
+msgstr "Fɔnɔba"
+
+#. module: ifn_portal_producer
+#: selection:ifn.social.cotisation,state:0
+msgid "Annulé"
+msgstr "Ka bɔ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.social.cotisation,state:0
+msgid "Remboursé"
+msgstr "Ka sɔrɔ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.training.progress,state:0
+msgid "Non commencé"
+msgstr "Tè sɔrɔ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.training.progress,state:0
+msgid "En cours"
+msgstr "Ka sɔrɔ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.training.progress,state:0
+msgid "Terminé"
+msgstr "Ka bɔ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.training.progress,state:0
+msgid "Abandonné"
+msgstr "Ka bɔ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.training.certificate,state:0
+msgid "Émis"
+msgstr "Ka bɔ"
+
+#. module: ifn_portal_producer
+#: selection:ifn.training.certificate,state:0
+msgid "Révoqué"
+msgstr "Ka laban"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_res_partner__ifn_uid
+msgid "UID IFN"
+msgstr "UID IFN"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_res_partner__ifn_qr_code
+msgid "Code QR IFN"
+msgstr "QR kɔdɛ IFN"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_res_partner__latitude
+msgid "Latitude"
+msgstr "Latitude"
+
+#. module: ifn_portal_producer
+#: model:ir.model.fields,field_description:ifn_portal_producer.field_res_partner__longitude
+msgid "Longitude"
+msgstr "Longitude"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_dashboard
+msgid "Récentes récoltes"
+msgstr "Sisani min bɛ sɔrɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_dashboard
+msgid "Récentes commandes"
+msgstr "Kɔmɔnw min bɛ sɔrɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_harvest
+msgid "Aucune récolte enregistrée"
+msgstr "Tun sisani tɛ sɛbɛn"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_harvest
+msgid "Commencez par ajouter votre première récolte"
+msgstr "A bɛna i sisani kɔrɔ ka ɲɛsin"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_sell
+msgid "Aucune récolte disponible"
+msgstr "Tun sisani tɛ sɔrɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_sell
+msgid "Veuillez d'abord enregistrer une récolte"
+msgstr "Aw ye da sisani kɔrɔ sɛbɛn"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_orders
+msgid "Aucune commande reçue"
+msgstr "Tun kɔmɔn tɛ sɔrɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_orders
+msgid "Vos commandes apparaîtront ici"
+msgstr "I kɔmɔnw bɛ bɔ nin"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_payments
+msgid "Aucun paiement enregistré"
+msgstr "Tun fɛn tɛ sɛbɛn"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_payments
+msgid "Vos paiements apparaîtront ici"
+msgstr "I fɛnw bɛ bɔ nin"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_social
+msgid "Aucune cotisation enregistrée"
+msgstr "Tun fɛn tɛ sɛbɛn"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_social
+msgid "Votre historique de cotisations apparaîtra ici"
+msgstr "I fɛnw labɔnba bɛ bɔ nin"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_training
+msgid "Aucun cours disponible"
+msgstr "Tun kalan tɛ sɔrɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_training
+msgid "Revenez plus tard pour découvrir de nouveaux cours"
+msgstr "Aw bɛna kɔɲɔ ka kalanw min bɛ sɔrɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_training
+msgid "Aucun certificat obtenu"
+msgstr "Tun sɛbɛnni kunnafoni tɛ sɔrɔ"
+
+#. module: ifn_portal_producer
+#: model_terms:ir.ui.view,arch_db:ifn_portal_producer.page_training
+msgid "Terminez des cours pour obtenir des certificats"
+msgstr "A bɛ kalanw ka bɔ ka sɛbɛnni kunnafoniw sɔrɔ"
+
+#. module: ifn_portal_producer
+#: model:ir.model,name:ifn_portal_producer.model_res_partner
+msgid "Contact"
+msgstr "Damisɛbɛ"
+
+#. module: ifn_portal_producer
+#: model:ir.model,name:ifn_portal_producer.model_ifn_harvest
+msgid "Récolte IFN"
+msgstr "Sisan IFN"
+
+#. module: ifn_portal_producer
+#: model:ir.model,name:ifn_portal_producer.model_ifn_sale_offer
+msgid "Offre de vente IFN"
+msgstr "Wula IFN"
+
+#. module: ifn_portal_producer
+#: model:ir.model,name:ifn_portal_producer.model_ifn_sale_order
+msgid "Commande de vente IFN"
+msgstr "Kɔmɔn wula IFN"
+
+#. module: ifn_portal_producer
+#: model:ir.model,name:ifn_portal_producer.model_ifn_mobile_payment
+msgid "Paiement Mobile Money IFN"
+msgstr "Fɛn Mobile Money IFN"
+
+#. module: ifn_portal_producer
+#: model:ir.model,name:ifn_portal_producer.model_ifn_social_cotisation
+msgid "Cotisation sociale IFN"
+msgstr "Fɛn sɛbɛnni IFN"
+
+#. module: ifn_portal_producer
+#: model:ir.model,name:ifn_portal_producer.model_ifn_training_progress
+msgid "Progression formation IFN"
+msgstr "Sɔrɔli kalanbɔ IFN"
+
+#. module: ifn_portal_producer
+#: model:ir.model,name:ifn_portal_producer.model_ifn_training_certificate
+msgid "Certificat formation IFN"
+msgstr "Sɛbɛnni kunnafoni kalanbɔ IFN"
+
+#. module: ifn_portal_producer
+#: model:ir.model,name:ifn_portal_producer.model_ifn_kpi_snapshot
+msgid "Snapshot KPI IFN"
+msgstr "Snapshot KPI IFN"
+
+#. module: ifn_portal_producer
+#: model:ir.model,name:ifn_portal_producer.model_account_payment
+msgid "Paiement"
+msgstr "Fɛn"
+
+#. module: ifn_portal_producer
+#: model:ir.model,name:ifn_portal_producer.model_product_product
+msgid "Produit"
+msgstr "Min"

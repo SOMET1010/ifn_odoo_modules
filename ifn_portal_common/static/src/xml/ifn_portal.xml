@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Template pour le service worker PWA -->
+        <template id="pwa_service_worker" name="IFN PWA Service Worker">
+            // IFN PWA Service Worker
+            const CACHE_NAME = 'ifn-pwa-v1.0.0';
+            const urlsToCache = [
+                '/web',
+                '/portal',
+                '/ifn_portal_common/static/src/css/ifn_portal.css',
+                '/ifn_portal_common/static/src/js/ifn_sdk.js'
+            ];
+
+            self.addEventListener('install', function(event) {
+                event.waitUntil(
+                    caches.open(CACHE_NAME)
+                        .then(function(cache) {
+                            return cache.addAll(urlsToCache);
+                        })
+                );
+            });
+
+            self.addEventListener('fetch', function(event) {
+                event.respondWith(
+                    caches.match(event.request)
+                        .then(function(response) {
+                            // Cache hit - return response
+                            if (response) {
+                                return response;
+                            }
+                            return fetch(event.request);
+                        })
+                );
+            });
+        </template>
+    </data>
+</odoo>

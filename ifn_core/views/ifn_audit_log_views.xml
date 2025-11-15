@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Vue Liste des Logs Audit -->
+        <record id="view_ifn_audit_log_tree" model="ir.ui.view">
+            <field name="name">ifn.audit.log.tree</field>
+            <field name="model">ifn.audit.log</field>
+            <field name="arch" type="xml">
+                <tree string="Logs d'Audit IFN" decoration-danger="is_anomaly" decoration-warning="is_suspicious">
+                    <field name="create_date"/>
+                    <field name="event_id"/>
+                    <field name="action"/>
+                    <field name="object_model"/>
+                    <field name="object_name"/>
+                    <field name="user_name"/>
+                    <field name="category"/>
+                    <field name="severity"/>
+                    <field name="reviewed"/>
+                    <field name="is_anomaly" widget="boolean_toggle"/>
+                    <field name="is_suspicious" widget="boolean_toggle"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vue Recherche des Logs Audit -->
+        <record id="view_ifn_audit_log_search" model="ir.ui.view">
+            <field name="name">ifn.audit.log.search</field>
+            <field name="model">ifn.audit.log</field>
+            <field name="arch" type="xml">
+                <search string="Recherche Logs Audit">
+                    <field name="create_date"/>
+                    <field name="event_id"/>
+                    <field name="action"/>
+                    <field name="object_model"/>
+                    <field name="object_name"/>
+                    <field name="user_name"/>
+                    <field name="ip_address"/>
+
+                    <filter string="Aujourd'hui" name="today" domain="[('create_date', '>=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)).strftime('%Y-%m-%d %H:%M:%S'))]"/>
+                    <filter string="Cette semaine" name="this_week" domain="[('create_date', '>=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d %H:%M:%S'))]"/>
+                    <filter string="Ce mois" name="this_month" domain="[('create_date', '>=', (context_today() - datetime.timedelta(days=30)).strftime('%Y-%m-%d %H:%M:%S'))]"/>
+                    <separator/>
+                    <filter string="Anomalies" name="anomalies" domain="[('is_anomaly', '=', True)]"/>
+                    <filter string="Activité suspecte" name="suspicious" domain="[('is_suspicious', '=', True)]"/>
+                    <filter string="Action requise" name="requires_action" domain="[('requires_action', '=', True)]"/>
+                    <filter string="Non vérifié" name="unreviewed" domain="[('reviewed', '=', False)]"/>
+                    <separator/>
+                    <filter string="Sécurité" name="security" domain="[('category', '=', 'security')]"/>
+                    <filter string="Protection données" name="data_protection" domain="[('category', '=', 'data_protection')]"/>
+                    <filter string="Contrôle accès" name="access_control" domain="[('category', '=', 'access_control')]"/>
+                    <filter string="Conformité" name="compliance" domain="[('category', '=', 'compliance')]"/>
+                    <separator/>
+                    <filter string="Critique" name="critical" domain="[('severity', '=', 'critical')]"/>
+                    <filter string="Élevé" name="high" domain="[('severity', '=', 'high')]"/>
+                    <filter string="Moyen" name="medium" domain="[('severity', '=', 'medium')]"/>
+                    <filter string="Faible" name="low" domain="[('severity', '=', 'low')]"/>
+                    <separator/>
+                    <filter string="Créations" name="creates" domain="[('action', '=', 'create')]"/>
+                    <filter string="Modifications" name="writes" domain="[('action', '=', 'write')]"/>
+                    <filter string="Suppressions" name="unlinks" domain="[('action', '=', 'unlink')]"/>
+                    <filter string="Connexions" name="logins" domain="[('action', '=', 'login')]"/>
+                    <filter string="Validation profils" name="validations" domain="[('action', '=', 'validate')]"/>
+
+                    <group expand="0" string="Grouper par">
+                        <filter string="Date" name="group_date" context="{'group_by': 'create_date:day'}"/>
+                        <filter string="Action" name="group_action" context="{'group_by': 'action'}"/>
+                        <filter string="Utilisateur" name="group_user" context="{'group_by': 'user_id'}"/>
+                        <filter string="Objet" name="group_object" context="{'group_by': 'object_model'}"/>
+                        <filter string="Catégorie" name="group_category" context="{'group_by': 'category'}"/>
+                        <filter string="Sévérité" name="group_severity" context="{'group_by': 'severity'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Vue Formulaire des Logs Audit -->
+        <record id="view_ifn_audit_log_form" model="ir.ui.view">
+            <field name="name">ifn.audit.log.form</field>
+            <field name="model">ifn.audit.log</field>
+            <field name="arch" type="xml">
+                <form string="Log d'Audit IFN" create="false" edit="false">
+                    <header>
+                        <button name="action_mark_reviewed" type="object" string="Marquer vérifié"
+                                class="btn-success" attrs="{'invisible': [('reviewed', '=', True)]}"/>
+                        <button name="action_ignore_anomaly" type="object" string="Ignorer anomalie"
+                                class="btn-warning" attrs="{'invisible': [('is_anomaly', '=', False)]}"/>
+                        <button name="action_investigate" type="object" string="Investiguer"
+                                class="btn-primary"/>
+                        <button name="action_view_object" type="object" string="Voir Objet"
+                                class="btn-secondary"/>
+                        <field name="severity" widget="badge" decoration-success="severity == 'low'" decoration-warning="severity == 'medium'" decoration-danger="severity == 'high'" decoration-critical="severity == 'critical'"/>
+                        <field name="reviewed" widget="boolean_toggle"/>
+                    </header>
+
+                    <sheet>
+                        <div class="alert alert-warning" role="alert" attrs="{'invisible': [('requires_action', '=', False)]}">
+                            <strong>⚠️ Action requise!</strong> Cet événement nécessite une investigation.
+                        </div>
+
+                        <div class="alert alert-danger" role="alert" attrs="{'invisible': [('is_anomaly', '=', False)]}">
+                            <strong>🚨 Anomalie détectée!</strong> Activité inhabituelle identifiée.
+                        </div>
+
+                        <div class="alert alert-info" role="alert" attrs="{'invisible': [('is_suspicious', '=', False)]}">
+                            <strong>🔍 Activité suspecte!</strong> Horaires ou comportement inhabituels.
+                        </div>
+
+                        <group>
+                            <group string="Informations Générales">
+                                <field name="event_id" readonly="1"/>
+                                <field name="create_date" readonly="1"/>
+                                <field name="action" readonly="1"/>
+                                <field name="category" readonly="1"/>
+                                <field name="severity" readonly="1"/>
+                            </group>
+                            <group string="Utilisateur et Source">
+                                <field name="user_id" readonly="1"/>
+                                <field name="ip_address" readonly="1"/>
+                                <field name="user_agent" readonly="1" widget="text"/>
+                                <field name="session_id" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group string="Objet Audité">
+                            <group>
+                                <field name="object_model" readonly="1"/>
+                                <field name="object_id" readonly="1"/>
+                                <field name="object_name" readonly="1"/>
+                                <field name="object_reference" readonly="1"/>
+                            </group>
+                            <group string="Géolocalisation">
+                                <field name="geo_latitude" readonly="1" widget="float" digits="(10,6)"/>
+                                <field name="geo_longitude" readonly="1" widget="float" digits="(10,6)"/>
+                            </group>
+                        </group>
+
+                        <group string="Détails de l'Action" attrs="{'invisible': [('field_name', '=', False)]}">
+                            <group>
+                                <field name="field_name" readonly="1"/>
+                                <field name="old_value" readonly="1" widget="text"/>
+                                <field name="new_value" readonly="1" widget="text"/>
+                            </group>
+                        </group>
+
+                        <group string="Informations Additionnelles">
+                            <field name="details" readonly="1" widget="text" nolabel="1"/>
+                        </group>
+
+                        <notebook>
+                            <page string="Vérification" name="review" groups="group_ifn_audit">
+                                <group>
+                                    <group string="Statut Vérification">
+                                        <field name="reviewed"/>
+                                        <field name="reviewed_by"/>
+                                        <field name="reviewed_date"/>
+                                    </group>
+                                </group>
+                                <group string="Notes de Vérification">
+                                    <field name="review_notes" nolabel="1" placeholder="Notes sur la vérification de cet événement..."/>
+                                </group>
+                            </page>
+
+                            <page string="Corrélation" name="correlation">
+                                <group>
+                                    <field name="parent_log_id"/>
+                                    <field name="related_log_ids">
+                                        <tree>
+                                            <field name="create_date"/>
+                                            <field name="action"/>
+                                            <field name="object_name"/>
+                                            <field name="user_name"/>
+                                            <field name="severity"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Vue Graphique des Logs Audit -->
+        <record id="view_ifn_audit_log_graph" model="ir.ui.view">
+            <field name="name">ifn.audit.log.graph</field>
+            <field name="model">ifn.audit.log</field>
+            <field name="arch" type="xml">
+                <graph string="Statistiques d'Audit">
+                    <field name="create_date" type="row"/>
+                    <field name="action" type="row"/>
+                    <field name="user_id" type="row"/>
+                    <field name="severity" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Vue Pivot des Logs Audit -->
+        <record id="view_ifn_audit_log_pivot" model="ir.ui.view">
+            <field name="name">ifn.audit.log.pivot</field>
+            <field name="model">ifn.audit.log</field>
+            <field name="arch" type="xml">
+                <pivot string="Analyse d'Audit">
+                    <field name="create_date" type="row"/>
+                    <field name="action" type="row"/>
+                    <field name="user_id" type="row"/>
+                    <field name="object_model" type="row"/>
+                    <field name="severity" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!-- Actions des Logs Audit -->
+        <record id="action_ifn_audit_log" model="ir.actions.act_window">
+            <field name="name">Logs d'Audit IFN</field>
+            <field name="res_model">ifn.audit.log</field>
+            <field name="view_mode">tree,form,graph,pivot</field>
+            <field name="context">{
+                'search_default_this_week': 1,
+                'search_default_group_date': 1
+            }</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Aucun log d'audit disponible
+                </p>
+                <p>
+                    Les logs d'audit enregistrent toutes les activités sensibles
+                    dans le système IFN pour garantir la traçabilité et la sécurité.
+                </p>
+            </field>
+        </record>
+
+        <!-- Action Sécurité (vue filtrée) -->
+        <record id="action_ifn_security_dashboard" model="ir.actions.act_window">
+            <field name="name">Tableau de Bord Sécurité</field>
+            <field name="res_model">ifn.audit.log</field>
+            <field name="view_mode">graph,tree</field>
+            <field name="domain">[('category', 'in', ['security', 'data_protection', 'access_control'])]</field>
+            <field name="context">{
+                'search_default_this_week': 1,
+                'search_default_unreviewed': 1,
+                'search_default_anomalies': 1
+            }</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Aucune alerte de sécurité
+                </p>
+                <p>
+                    Ce tableau de bord affiche les événements de sécurité
+                    et les activités suspectes nécessitant une attention particulière.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

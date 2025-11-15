@@ -1,0 +1,263 @@
+/* =============================================================================
+   IFN Portal Common - Toast Notifications CSS
+   ============================================================================= */
+
+/* Conteneur de toasts */
+.ifn-toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.ifn-toast-container .ifn-toast {
+    pointer-events: auto;
+}
+
+/* Toast de base */
+.ifn-toast {
+    display: flex;
+    align-items: flex-start;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: 12px;
+    max-width: 400px;
+    min-width: 300px;
+    padding: 16px;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-left: 4px solid;
+}
+
+.ifn-toast.ifn-toast--show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Variations de couleurs */
+.ifn-toast.ifn-toast-info {
+    border-left-color: #17a2b8;
+    background: linear-gradient(to right, rgba(23, 162, 184, 0.05), white);
+}
+
+.ifn-toast.ifn-toast-success {
+    border-left-color: #28a745;
+    background: linear-gradient(to right, rgba(40, 167, 69, 0.05), white);
+}
+
+.ifn-toast.ifn-toast-warning {
+    border-left-color: #ffc107;
+    background: linear-gradient(to right, rgba(255, 193, 7, 0.05), white);
+}
+
+.ifn-toast.ifn-toast-error {
+    border-left-color: #dc3545;
+    background: linear-gradient(to right, rgba(220, 53, 69, 0.05), white);
+}
+
+/* Icône du toast */
+.ifn-toast-icon {
+    margin-right: 12px;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.ifn-toast-info .ifn-toast-icon {
+    color: #17a2b8;
+}
+
+.ifn-toast-success .ifn-toast-icon {
+    color: #28a745;
+}
+
+.ifn-toast-warning .ifn-toast-icon {
+    color: #ffc107;
+}
+
+.ifn-toast-error .ifn-toast-icon {
+    color: #dc3545;
+}
+
+/* Contenu du toast */
+.ifn-toast-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.ifn-toast-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+    font-size: 14px;
+}
+
+.ifn-toast-message {
+    color: #666;
+    font-size: 13px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Bouton de fermeture */
+.ifn-toast-close {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 12px;
+    cursor: pointer;
+    color: #999;
+    font-size: 14px;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    flex-shrink: 0;
+}
+
+.ifn-toast-close:hover {
+    opacity: 1;
+    color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .ifn-toast-container {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+    }
+
+    .ifn-toast {
+        max-width: none;
+        min-width: auto;
+        margin-bottom: 8px;
+        padding: 12px;
+    }
+
+    .ifn-toast-icon {
+        font-size: 18px;
+        margin-right: 10px;
+    }
+
+    .ifn-toast-title {
+        font-size: 13px;
+    }
+
+    .ifn-toast-message {
+        font-size: 12px;
+    }
+}
+
+/* Animation pour les toasts multiples */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.ifn-toast {
+    animation: slideInRight 0.3s ease forwards;
+}
+
+.ifn-toast.ifn-toast--hiding {
+    animation: slideOutRight 0.3s ease forwards;
+}
+
+/* Styles pour la bannière hors ligne */
+.ifn-offline-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #ffc107;
+    color: #333;
+    padding: 8px 16px;
+    text-align: center;
+    z-index: 1000;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ifn-offline-banner i {
+    margin-right: 8px;
+}
+
+/* Variables CSS pour les thèmes IFN */
+:root {
+    --ifn-orange: #F77F00;
+    --ifn-green: #06D6A0;
+    --ifn-blue: #118AB2;
+    --ifn-dark: #073B4C;
+    --ifn-light: #FFE66D;
+}
+
+/* Thème IFN pour les toasts */
+.ifn-toast.ifn-toast-ifn {
+    border-left-color: var(--ifn-orange);
+    background: linear-gradient(to right, rgba(247, 127, 0, 0.05), white);
+}
+
+.ifn-toast.ifn-toast-ifn .ifn-toast-icon {
+    color: var(--ifn-orange);
+}
+
+/* Accessibilité */
+.ifn-toast[role="status"] {
+    /* Assure que le lecteur d'écran annonce les toasts */
+}
+
+.ifn-toast[aria-live="polite"] {
+    /* Lecteur d'écran respecte le rythme de l'utilisateur */
+}
+
+/* Support pour le mode contraste élevé */
+@media (prefers-contrast: high) {
+    .ifn-toast {
+        border: 2px solid;
+        background: white;
+    }
+
+    .ifn-toast.ifn-toast-info {
+        border-color: #000;
+    }
+
+    .ifn-toast.ifn-toast-success {
+        border-color: #008000;
+    }
+
+    .ifn-toast.ifn-toast-warning {
+        border-color: #ff8c00;
+    }
+
+    .ifn-toast.ifn-toast-error {
+        border-color: #ff0000;
+    }
+}
+
+/* Support pour le mode réduit mouvement */
+@media (prefers-reduced-motion: reduce) {
+    .ifn-toast,
+    .ifn-toast.ifn-toast--show,
+    .ifn-toast.ifn-toast--hiding {
+        transition: none;
+        animation: none;
+    }
+}

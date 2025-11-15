@@ -1,0 +1,321 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* ifn_portal_common
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 07:00+0000\n"
+"PO-Revision-Date: 2024-01-01 07:00+0000\n"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_signup.js:20
+#, python-format
+msgid "Veuillez sélectionner un type de membre"
+msgstr "Veuillez sélectionner un type de membre"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_signup.js:26
+#, python-format
+msgid "Veuillez remplir tous les champs obligatoires"
+msgstr "Veuillez remplir tous les champs obligatoires"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_signup.js:30
+#, python-format
+msgid "Veuillez entrer une adresse email valide"
+msgstr "Veuillez entrer une adresse email valide"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_signup.js:34
+#, python-format
+msgid "Veuillez entrer un numéro de téléphone valide (format: +225 XX XX XX XX XX)"
+msgstr "Veuillez entrer un numéro de téléphone valide (format: +225 XX XX XX XX XX)"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_signup.js:40
+#, python-format
+msgid "Veuillez sélectionner une région"
+msgstr "Veuillez sélectionner une région"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_signup.js:46
+#, python-format
+msgid "Veuillez remplir tous les champs de mot de passe"
+msgstr "Veuillez remplir tous les champs de mot de passe"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_signup.js:50
+#, python-format
+msgid "Le mot de passe doit contenir au moins 8 caractères"
+msgstr "Le mot de passe doit contenir au moins 8 caractères"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_signup.js:54
+#, python-format
+msgid "Le mot de passe doit contenir au moins une majuscule, une minuscule et un chiffre"
+msgstr "Le mot de passe doit contenir au moins une majuscule, une minuscule et un chiffre"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_signup.js:58
+#, python-format
+msgid "Les mots de passe ne correspondent pas"
+msgstr "Les mots de passe ne correspondent pas"
+
+#. module: ifn_portal_common
+#. openerp-web
+#: code:addons/ifn_portal_common/static/src/js/ifn_signup.js:62
+#, python-format
+msgid "Veuillez accepter les conditions d'utilisation"
+msgstr "Veuillez accepter les conditions d'utilisation"
+"Last-Translator: IFN Team <support@ifn.ci>\n"
+"Language-Team: French <fr@ifn.ci>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.menu_ifn_portal
+msgid "IFN"
+msgstr "IFN"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.menu_ifn_portal_config
+msgid "Portail"
+msgstr "Portail"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.menu_ifn_portal_settings
+msgid "Paramètres"
+msgstr "Paramètres"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.menu_ifn_portal_themes
+msgid "Thèmes"
+msgstr "Thèmes"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.menu_ifn_portal_reports
+msgid "Rapports"
+msgstr "Rapports"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.menu_ifn_portal_users
+msgid "Utilisateurs Portail"
+msgstr "Utilisateurs Portail"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.menu_ifn_portal_access
+msgid "Gestion des Accès"
+msgstr "Gestion des Accès"
+
+#. module: ifn_portal_common
+#: model:ir.ui.menu,name:ifn_portal_common.menu_ifn_portal_preferences
+msgid "Préférences"
+msgstr "Préférences"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__language
+msgid "Langue"
+msgstr "Langue"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__high_contrast
+msgid "Contraste élevé"
+msgstr "Contraste élevé"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__font_size
+msgid "Taille de police"
+msgstr "Taille de police"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__voice_enabled
+msgid "Assistance vocale"
+msgstr "Assistance vocale"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__pwa_notifications
+msgid "Notifications PWA"
+msgstr "Notifications PWA"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__offline_mode
+msgid "Mode hors ligne"
+msgstr "Mode hors ligne"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__auto_sync
+msgid "Synchronisation automatique"
+msgstr "Synchronisation automatique"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__items_per_page
+msgid "Éléments par page"
+msgstr "Éléments par page"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__show_tooltips
+msgid "Afficher les infobulles"
+msgstr "Afficher les infobulles"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__analytics_consent
+msgid "Consentement analytics"
+msgstr "Consentement analytics"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__marketing_consent
+msgid "Consentement marketing"
+msgstr "Consentement marketing"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_preferences__cookies_consent
+msgid "Consentement cookies"
+msgstr "Consentement cookies"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_res_users__ifn_uid
+msgid "UID IFN"
+msgstr "UID IFN"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_res_users__ifn_language
+msgid "Langue IFN"
+msgstr "Langue IFN"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_res_users__ifn_high_contrast
+msgid "Contraste élevé IFN"
+msgstr "Contraste élevé IFN"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_res_users__ifn_font_size
+msgid "Taille de police IFN"
+msgstr "Taille de police IFN"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_res_users__ifn_voice_enabled
+msgid "Assistance vocale IFN"
+msgstr "Assistance vocale IFN"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_res_partner__ifn_uid
+msgid "UID IFN"
+msgstr "UID IFN"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_res_partner__ifn_member_type
+msgid "Type membre IFN"
+msgstr "Type membre IFN"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_notifications__title
+msgid "Titre"
+msgstr "Titre"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_notifications__message
+msgid "Message"
+msgstr "Message"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_notifications__notification_type
+msgid "Type"
+msgstr "Type"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_notifications__priority
+msgid "Priorité"
+msgstr "Priorité"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_notifications__created_at
+msgid "Créée le"
+msgstr "Créée le"
+
+#. module: ifn_portal_common
+#: model:ir.model.fields,field_description:ifn_portal_common.field_ifn_portal_notifications__created_by
+msgid "Créée par"
+msgstr "Créée par"
+
+#. module: ifn_portal_common
+#: selection:ifn_portal.preferences,language
+msgid "Français"
+msgstr "Français"
+
+#. module: ifn_portal_common
+#: selection:ifn_portal.preferences,language
+msgid "Baoulé"
+msgstr "Baoulé"
+
+#. module: ifn_portal_common
+#: selection:ifn_portal.preferences,language
+msgid "Dioula"
+msgstr "Dioula"
+
+#. module: ifn_portal_common
+#: selection:ifn_portal.preferences,font_size
+msgid "Normal"
+msgstr "Normal"
+
+#. module: ifn_portal_common
+#: selection:ifn_portal.preferences,font_size
+msgid "Grand"
+msgstr "Grand"
+
+#. module: ifn_portal_common
+#: selection:ifn_portal.preferences,font_size
+msgid "Très grand"
+msgstr "Très grand"
+
+#. module: ifn_portal_common
+#: selection:ifn_portal.notifications,notification_type
+msgid "Information"
+msgstr "Information"
+
+#. module: ifn_portal_common
+#: selection:ifn_portal.notifications,notification_type
+msgid "Succès"
+msgstr "Succès"
+
+#. module: ifn_portal_common
+#: selection:ifn_portal.notifications,notification_type
+msgid "Avertissement"
+msgstr "Avertissement"
+
+#. module: ifn_portal_common
+#: selection:ifn_portal.notifications,notification_type
+msgid "Erreur"
+msgstr "Erreur"
+
+#. module: ifn_portal_common
+#: selection:ifn_portal.notifications,priority
+msgid "Basse"
+msgstr "Basse"
+
+#. module: ifn_portal_common
+#: selection:ifn_portal.notifications,priority
+msgid "Normale"
+msgstr "Normale"
+
+#. module: ifn_portal_common
+#: selection:ifn_portal.notifications,priority
+msgid "Haute"
+msgstr "Haute"
+
+#. module: ifn_portal_common
+#: selection:ifn_portal.notifications,priority
+msgid "Urgente"
+msgstr "Urgente"

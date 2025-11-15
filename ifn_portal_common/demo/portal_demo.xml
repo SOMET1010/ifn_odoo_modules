@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Données de démonstration pour les préférences utilisateur -->
+        <record id="demo_user_preferences" model="ifn.portal.preferences">
+            <field name="user_id" ref="base.user_demo"/>
+            <field name="language">fr_FR</field>
+            <field name="high_contrast" eval="False"/>
+            <field name="font_size">normal</field>
+            <field name="voice_enabled" eval="False"/>
+            <field name="pwa_notifications" eval="True"/>
+            <field name="offline_mode" eval="True"/>
+            <field name="auto_sync" eval="True"/>
+            <field name="items_per_page">20</field>
+            <field name="show_tooltips" eval="True"/>
+        </record>
+
+        <!-- Données de démonstration pour les notifications -->
+        <record id="demo_notification_welcome" model="ifn.portal.notifications">
+            <field name="title">Bienvenue sur le portail IFN</field>
+            <field name="message" type="html">
+                <![CDATA[
+                    <p>Bienvenue ! Nous sommes ravis de vous accueillir sur votre espace personnel IFN.</p>
+                    <p>Vous pouvez dès maintenant :</p>
+                    <ul>
+                        <li>Consulter vos documents</li>
+                        <li>Gérer vos notifications</li>
+                        <li>Personnaliser vos préférences</li>
+                    </ul>
+                ]]>
+            </field>
+            <field name="notification_type">info</field>
+            <field name="priority">normal</field>
+            <field name="is_global" eval="True"/>
+            <field name="created_by" ref="base.user_admin"/>
+            <field name="category">welcome</field>
+        </record>
+
+        <record id="demo_notification_features" model="ifn.portal.notifications">
+            <field name="title">Découvrez les nouvelles fonctionnalités</field>
+            <field name="message" type="html">
+                <![CDATA[
+                    <p>🎉 Votre portail IFN est maintenant encore plus performant :</p>
+                    <ul>
+                        <li>📱 Installation sur votre mobile (PWA)</li>
+                        <li>🌍 Support multilingue (Français, Baoulé, Dioula)</li>
+                        <li>♿ Accessibilité améliorée</li>
+                        <li>📊 Gestion hors ligne</li>
+                    </ul>
+                ]]>
+            </field>
+            <field name="notification_type">success</field>
+            <field name="priority">high</field>
+            <field name="is_global" eval="True"/>
+            <field name="created_by" ref="base.user_admin"/>
+            <field name="category">features</field>
+        </record>
+
+        <!-- Données de démonstration pour les menus -->
+        <record id="menu_ifn_portal_demo" model="ir.ui.menu">
+            <field name="name">Démo IFN</field>
+            <field name="parent_id" ref="ifn_portal_common.menu_ifn_portal"/>
+            <field name="sequence">999</field>
+        </record>
+
+        <record id="menu_ifn_demo_settings" model="ir.ui.menu">
+            <field name="name">Démo Paramètres</field>
+            <field name="parent_id" ref="menu_ifn_portal_demo"/>
+            <field name="action" ref="action_ifn_demo_settings"/>
+            <field name="sequence">10</field>
+        </record>
+    </data>
+</odoo>

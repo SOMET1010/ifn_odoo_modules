@@ -1,0 +1,538 @@
+/* =============================================================================
+   IFN Portal Common - Styles d'Accessibilité
+   WCAG 2.1 AA Compliance
+   ============================================================================= */
+
+/* Variables de contraste élevé */
+:root {
+  /* Mode contraste élevé */
+  --ifn-high-contrast-bg: #000000;
+  --ifn-high-contrast-text: #FFFFFF;
+  --ifn-high-contrast-primary: #FFFF00;
+  --ifn-high-contrast-secondary: #00FFFF;
+  --ifn-high-contrast-border: #FFFFFF;
+  --ifn-high-contrast-link: #00FF00;
+
+  /* Tailles de police */
+  --ifn-font-size-normal: 16px;
+  --ifn-font-size-large: 18px;
+  --ifn-font-size-xlarge: 20px;
+  --ifn-font-size-xxlarge: 24px;
+
+  /* Espacements pour accessibilité */
+  --ifn-focus-outline-width: 3px;
+  --ifn-focus-outline-color: var(--ifn-orange);
+  --ifn-focus-offset: 2px;
+}
+
+/* =============================================================================
+   Mode contraste élevé
+   ============================================================================= */
+body.high-contrast {
+  background-color: var(--ifn-high-contrast-bg) !important;
+  color: var(--ifn-high-contrast-text) !important;
+}
+
+body.high-contrast .ifn-header {
+  background: var(--ifn-high-contrast-bg) !important;
+  border-bottom: 3px solid var(--ifn-high-contrast-border) !important;
+}
+
+body.high-contrast .ifn-nav .nav-link,
+body.high-contrast .ifn-footer {
+  background-color: var(--ifn-high-contrast-bg) !important;
+  color: var(--ifn-high-contrast-text) !important;
+}
+
+body.high-contrast .ifn-nav .nav-link:hover,
+body.high-contrast .ifn-nav .nav-link.active {
+  background-color: var(--ifn-high-contrast-primary) !important;
+  color: var(--ifn-high-contrast-bg) !important;
+}
+
+body.high-contrast .btn-primary {
+  background-color: var(--ifn-high-contrast-primary) !important;
+  color: var(--ifn-high-contrast-bg) !important;
+  border: 2px solid var(--ifn-high-contrast-border) !important;
+}
+
+body.high-contrast .btn-secondary {
+  background-color: var(--ifn-high-contrast-secondary) !important;
+  color: var(--ifn-high-contrast-bg) !important;
+  border: 2px solid var(--ifn-high-contrast-border) !important;
+}
+
+body.high-contrast .ifn-card {
+  background-color: var(--ifn-high-contrast-bg) !important;
+  border: 2px solid var(--ifn-high-contrast-border) !important;
+  color: var(--ifn-high-contrast-text) !important;
+}
+
+body.high-contrast .ifn-card-primary,
+body.high-contrast .ifn-card-secondary,
+body.high-contrast .ifn-card-success,
+body.high-contrast .ifn-card-info,
+body.high-contrast .ifn-card-warning,
+body.high-contrast .ifn-card-danger {
+  background: var(--ifn-high-contrast-bg) !important;
+  color: var(--ifn-high-contrast-text) !important;
+}
+
+body.high-contrast .form-control,
+body.high-contrast .custom-select {
+  background-color: var(--ifn-high-contrast-bg) !important;
+  color: var(--ifn-high-contrast-text) !important;
+  border: 2px solid var(--ifn-high-contrast-border) !important;
+}
+
+body.high-contrast a {
+  color: var(--ifn-high-contrast-link) !important;
+  text-decoration: underline !important;
+}
+
+body.high-contrast a:hover {
+  color: var(--ifn-high-contrast-primary) !important;
+}
+
+body.high-contrast .ifn-toast {
+  background-color: var(--ifn-high-contrast-bg) !important;
+  color: var(--ifn-high-contrast-text) !important;
+  border: 2px solid var(--ifn-high-contrast-border) !important;
+}
+
+body.high-contrast .table {
+  background-color: var(--ifn-high-contrast-bg) !important;
+  color: var(--ifn-high-contrast-text) !important;
+}
+
+body.high-contrast .table th,
+body.high-contrast .table td {
+  border: 1px solid var(--ifn-high-contrast-border) !important;
+}
+
+/* =============================================================================
+   Tailles de police
+   ============================================================================= */
+body.font-size-normal {
+  font-size: var(--ifn-font-size-normal) !important;
+}
+
+body.font-size-large {
+  font-size: var(--ifn-font-size-large) !important;
+}
+
+body.font-size-xlarge {
+  font-size: var(--ifn-font-size-xlarge) !important;
+}
+
+body.font-size-xxlarge {
+  font-size: var(--ifn-font-size-xxlarge) !important;
+}
+
+/* Ajuster les tailles de police pour les éléments spécifiques */
+.font-size-normal h1 { font-size: 2rem !important; }
+.font-size-normal h2 { font-size: 1.75rem !important; }
+.font-size-normal h3 { font-size: 1.5rem !important; }
+.font-size-normal h4 { font-size: 1.25rem !important; }
+.font-size-normal h5 { font-size: 1.125rem !important; }
+.font-size-normal h6 { font-size: 1rem !important; }
+
+.font-size-large h1 { font-size: 2.25rem !important; }
+.font-size-large h2 { font-size: 2rem !important; }
+.font-size-large h3 { font-size: 1.75rem !important; }
+.font-size-large h4 { font-size: 1.5rem !important; }
+.font-size-large h5 { font-size: 1.25rem !important; }
+.font-size-large h6 { font-size: 1.125rem !important; }
+
+.font-size-xlarge h1 { font-size: 2.5rem !important; }
+.font-size-xlarge h2 { font-size: 2.25rem !important; }
+.font-size-xlarge h3 { font-size: 2rem !important; }
+.font-size-xlarge h4 { font-size: 1.75rem !important; }
+.font-size-xlarge h5 { font-size: 1.5rem !important; }
+.font-size-xlarge h6 { font-size: 1.25rem !important; }
+
+.font-size-xxlarge h1 { font-size: 3rem !important; }
+.font-size-xxlarge h2 { font-size: 2.75rem !important; }
+.font-size-xxlarge h3 { font-size: 2.5rem !important; }
+.font-size-xxlarge h4 { font-size: 2.25rem !important; }
+.font-size-xxlarge h5 { font-size: 2rem !important; }
+.font-size-xxlarge h6 { font-size: 1.75rem !important; }
+
+/* =============================================================================
+   Focus visible (accessibilité clavier)
+   ============================================================================= */
+/* S'assurer que tous les éléments interactifs ont un focus visible */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+[tabindex]:focus {
+  outline: var(--ifn-focus-outline-width) solid var(--ifn-focus-outline-color) !important;
+  outline-offset: var(--ifn-focus-offset) !important;
+}
+
+/* Focus pour les éléments spécifiques IFN */
+.ifn-nav .nav-link:focus,
+.btn:focus,
+.form-control:focus,
+.custom-select:focus,
+.ifn-card:focus,
+.ifn-notification-item:focus,
+.ifn-language-selector .btn:focus,
+.ifn-accessibility-tools .btn:focus {
+  outline: var(--ifn-focus-outline-width) solid var(--ifn-focus-outline-color) !important;
+  outline-offset: var(--ifn-focus-offset) !important;
+  box-shadow: 0 0 0 3px rgba(247, 127, 0, 0.25) !important;
+}
+
+/* =============================================================================
+   Gestion des couleurs (daltonisme)
+   ============================================================================= */
+/* S'assurer que l'information n'est pas seulement véhiculée par la couleur */
+.ifn-notification-item.unread {
+  border-left: 4px solid var(--ifn-orange);
+  font-weight: bold; /* Ajout d'un indice non-couleur */
+}
+
+.ifn-kpi-trend.trend-up::before {
+  content: "↑ ";
+  color: var(--ifn-green);
+}
+
+.ifn-kpi-trend.trend-down::before {
+  content: "↓ ";
+  color: var(--ifn-red);
+}
+
+/* =============================================================================
+   Accessibilité des images
+   ============================================================================= */
+/* S'assurer que les images décoratives ont un alt vide */
+img[alt=""] {
+  display: none;
+}
+
+/* Style pour les images avec alt manquant (debug) */
+img:not([alt]) {
+  border: 2px dashed var(--ifn-red);
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+img:not([alt]):before {
+  content: "ALT MANQUANT";
+  color: var(--ifn-red);
+  font-weight: bold;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+/* =============================================================================
+   Accessibilité des formulaires
+   ============================================================================= */
+/* S'assurer que les labels sont associés aux champs */
+label {
+  font-weight: 600;
+  margin-bottom: var(--ifn-spacing-xs);
+}
+
+/* Groupes de champs */
+.fieldset {
+  border: 1px solid var(--ifn-gray);
+  border-radius: var(--ifn-border-radius);
+  padding: var(--ifn-spacing-md);
+  margin-bottom: var(--ifn-spacing-md);
+}
+
+.fieldset legend {
+  font-weight: 600;
+  color: var(--ifn-orange);
+  padding: 0 var(--ifn-spacing-sm);
+}
+
+/* Messages d'erreur */
+.invalid-feedback {
+  display: block;
+  color: var(--ifn-red);
+  font-size: var(--ifn-font-size-sm);
+  margin-top: var(--ifn-spacing-xs);
+}
+
+/* Messages d'aide */
+.form-text {
+  font-size: var(--ifn-font-size-sm);
+  color: var(--ifn-gray);
+  margin-top: var(--ifn-spacing-xs);
+}
+
+/* =============================================================================
+   Accessibilité des tableaux
+   ============================================================================= */
+.table {
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: var(--ifn-spacing-sm);
+  text-align: left;
+  border: 1px solid var(--ifn-gray-light);
+}
+
+.table th {
+  background-color: var(--ifn-gray-light);
+  font-weight: 600;
+  color: var(--ifn-black);
+}
+
+/* Tableau responsive */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table-responsive table {
+  min-width: 600px;
+}
+
+/* =============================================================================
+   Accessibilité des modales
+   ============================================================================= */
+.modal {
+  z-index: 1050;
+}
+
+.modal-dialog {
+  margin: 1.75rem auto;
+}
+
+.modal-content {
+  border-radius: var(--ifn-border-radius-lg);
+  box-shadow: var(--ifn-box-shadow-lg);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--ifn-gray-light);
+  padding: var(--ifn-spacing-lg);
+}
+
+.modal-footer {
+  border-top: 1px solid var(--ifn-gray-light);
+  padding: var(--ifn-spacing-lg);
+}
+
+/* Focus trap dans les modales */
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* =============================================================================
+   Accessibilité des toasts
+   ============================================================================= */
+.ifn-toast-container {
+  z-index: 1060;
+}
+
+.ifn-toast[role="status"] {
+  /* Pour les lecteurs d'écran */
+  position: relative;
+}
+
+.ifn-toast[role="alert"] {
+  /* Pour les alertes importantes */
+  border-left: 4px solid var(--ifn-red);
+}
+
+/* =============================================================================
+   Accessibilité des animations
+   ============================================================================= */
+/* Respecter la préférence de mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =============================================================================
+   Accessibilité mobile
+   ============================================================================= */
+@media (max-width: 768px) {
+  /* Augmenter la taille des cibles tactiles */
+  .btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: var(--ifn-spacing-sm) var(--ifn-spacing-md);
+  }
+
+  .ifn-nav .nav-link {
+    padding: var(--ifn-spacing-md);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Espacement suffisant entre les liens */
+  .ifn-mobile-menu ul li {
+    margin-bottom: var(--ifn-spacing-sm);
+  }
+
+  .ifn-mobile-menu ul li a {
+    padding: var(--ifn-spacing-md);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Tailles de police plus grandes sur mobile */
+  .font-size-normal { font-size: 18px !important; }
+  .font-size-large { font-size: 20px !important; }
+  .font-size-xlarge { font-size: 22px !important; }
+  .font-size-xxlarge { font-size: 26px !important; }
+}
+
+/* =============================================================================
+   Utilitaires d'accessibilité
+   ============================================================================= */
+/* Cacher visuellement mais garder accessible aux lecteurs d'écran */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Masquer temporairement */
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  padding: inherit !important;
+  margin: inherit !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+}
+
+/* Skip links (liens d'évitement) */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--ifn-orange);
+  color: var(--ifn-white);
+  padding: 8px;
+  text-decoration: none;
+  border-radius: var(--ifn-border-radius);
+  z-index: 1000;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* =============================================================================
+   Indicateurs de chargement accessibles
+   ============================================================================= */
+.ifn-loading[role="status"] {
+  position: relative;
+}
+
+.ifn-loading[role="status"]::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid var(--ifn-gray-light);
+  border-top: 2px solid var(--ifn-orange);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.ifn-loading[role="status"]::after {
+  content: attr(aria-label);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 30px;
+  font-size: var(--ifn-font-size-sm);
+  color: var(--ifn-gray-dark);
+}
+
+/* =============================================================================
+   Contrôle du focus pour les lecteurs d'écran
+   ============================================================================= */
+/* Améliorer la visibilité du focus dans tous les contextes */
+:focus-visible {
+  outline: var(--ifn-focus-outline-width) solid var(--ifn-focus-outline-color) !important;
+  outline-offset: var(--ifn-focus-offset) !important;
+}
+
+/* Support navigateurs plus anciens */
+:focus:not(:focus-visible) {
+  outline: none !important;
+}
+
+/* =============================================================================
+   Gestion des préférences utilisateur
+   ============================================================================= */
+/* Détecter les préférences système */
+@media (prefers-color-scheme: dark) {
+  /* Styles pour le mode sombre si nécessaire */
+}
+
+@media (prefers-contrast: high) {
+  /* Styles pour contraste élevé automatique */
+  body {
+    background-color: var(--ifn-high-contrast-bg) !important;
+    color: var(--ifn-high-contrast-text) !important;
+  }
+}
+
+/* =============================================================================
+   Validation d'accessibilité
+   ============================================================================= */
+/* Classes pour tester l'accessibilité pendant le développement */
+.test-alt-missing img:not([alt]) {
+  border: 3px dashed var(--ifn-red) !important;
+}
+
+.test-alt-missing img:not([alt]):after {
+  content: "ALT MANQUANT" !important;
+  position: absolute;
+  background: var(--ifn-red);
+  color: var(--ifn-white);
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+.test-focus :focus {
+  outline: 5px solid var(--ifn-red) !important;
+  outline-offset: 2px !important;
+}
+
+.test-contrast * {
+  background-color: rgba(255, 0, 0, 0.1) !important;
+}

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Marchés IFN -->
+        <record id="ifn_market_abidjan" model="ifn.market">
+            <field name="name">Marché d'Abidjan</field>
+            <field name="code">ABJ</field>
+            <field name="region">Abidjan</field>
+            <field name="commune">Plateau</field>
+            <field name="address">Boulevard de la République, Abidjan</field>
+            <field name="partner_latitude">5.3600</field>
+            <field name="partner_longitude">-4.0083</field>
+            <field name="phone">+225 20 22 45 67</field>
+            <field name="email">abidjan@ifn.org</field>
+            <field name="description">Principal marché d'Abidjan, centre économique de la Côte d'Ivoire</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="ifn_market_bouake" model="ifn.market">
+            <field name="name">Marché de Bouaké</field>
+            <field name="code">BKE</field>
+            <field name="region">Vallée du Bandama</field>
+            <field name="commune">Bouaké</field>
+            <field name="address">Centre-ville, Bouaké</field>
+            <field name="partner_latitude">7.6933</field>
+            <field name="partner_longitude">-5.0303</field>
+            <field name="phone">+225 31 63 45 23</field>
+            <field name="email">bouake@ifn.org</field>
+            <field name="description">Marché agricole majeur du centre de la Côte d'Ivoire</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="ifn_market_korhogo" model="ifn.market">
+            <field name="name">Marché de Korhogo</field>
+            <field name="code">KHO</field>
+            <field name="region">Savanes</field>
+            <field name="commune">Korhogo</field>
+            <field name="address">Quartier Commerce, Korhogo</field>
+            <field name="partner_latitude">9.4617</field>
+            <field name="partner_longitude">-5.6269</field>
+            <field name="phone">+225 36 74 12 89</field>
+            <field name="email">korhogo@ifn.org</field>
+            <field name="description">Marché principal du nord de la Côte d'Ivoire</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Coopératives IFN -->
+        <record id="ifn_coop_cafe_abidjan" model="ifn.coop">
+            <field name="name">Coopérative des Caféculteurs du Sud</field>
+            <field name="code">CCS</field>
+            <field name="market_id" ref="ifn_market_abidjan"/>
+            <field name="address">Zone Industrielle, Abidjan</field>
+            <field name="city">Abidjan</field>
+            <field name="partner_latitude">5.3400</field>
+            <field name="partner_longitude">-4.0200</field>
+            <field name="manager_name">Konan Yapo</field>
+            <field name="manager_phone">+225 07 89 45 12</field>
+            <field name="manager_email">k.yapo@cafe-coop.ci</field>
+            <field name="phone">+225 21 35 67 89</field>
+            <field name="email">contact@cafe-coop.ci</field>
+            <field name="legal_form">Coopérative Agricole</field>
+            <field name="capacity_storage">500.0</field>
+            <field name="has_cold_storage">True</field>
+            <field name="has_processing">True</field>
+            <field name="services_offered">Collecte, transformation, stockage café</field>
+            <field name="description">Coopérative spécialisée dans la collecte et transformation du café</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="ifn_coop_cacao_bouake" model="ifn.coop">
+            <field name="name">Coopérative Cacao Vallée</field>
+            <field name="code">CCV</field>
+            <field name="market_id" ref="ifn_market_bouake"/>
+            <field name="address">Route de Yamoussoukro, Bouaké</field>
+            <field name="city">Bouaké</field>
+            <field name="partner_latitude">7.7000</field>
+            <field name="partner_longitude">-5.0400</field>
+            <field name="manager_name">Touré Mamadou</field>
+            <field name="manager_phone">+225 07 45 78 23</field>
+            <field name="manager_email">t.mamadou@cacao-vallee.ci</field>
+            <field name="phone">+225 31 45 12 78</field>
+            <field name="email">info@cacao-vallee.ci</field>
+            <field name="legal_form">Coopérative Agricole</field>
+            <field name="capacity_storage">750.0</field>
+            <field name="has_cold_storage">False</field>
+            <field name="has_processing">True</field>
+            <field name="services_offered">Collecte, fermentation, séchage cacao</field>
+            <field name="description">Coopérative de producteurs de cacao de la région de Bouaké</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="ifn_coop_ananas_korhogo" model="ifn.coop">
+            <field name="name">Coopérative Fruitière du Nord</field>
+            <field name="code">CFN</field>
+            <field name="market_id" ref="ifn_market_korhogo"/>
+            <field name="address">Entrée ville, Korhogo</field>
+            <field name="city">Korhogo</field>
+            <field name="partner_latitude">9.4500</field>
+            <field name="partner_longitude">-5.6300</field>
+            <field name="manager_name">Soro Aminata</field>
+            <field name="manager_phone">+225 07 12 45 67</field>
+            <field name="manager_email">s.aminata@fruitiere-nord.ci</field>
+            <field name="phone">+225 36 12 34 56</field>
+            <field name="email">contact@fruitiere-nord.ci</field>
+            <field name="legal_form">Coopérative Agricole</field>
+            <field name="capacity_storage">300.0</field>
+            <field name="has_cold_storage">True</field>
+            <field name="has_processing">False</field>
+            <field name="services_offered">Collecte et conditionnement fruits tropicaux</field>
+            <field name="description">Coopérative spécialisée dans les ananas et mangues</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Zones géographiques -->
+        <record id="ifn_zone_abidjan_sud" model="ifn.zone">
+            <field name="name">Zone Abidjan Sud</field>
+            <field name="code">ABS</field>
+            <field name="zone_type">logistical</field>
+            <field name="partner_latitude">5.3000</field>
+            <field name="partner_longitude">-4.0000</field>
+            <field name="collection_days">Lundi, Mercredi, Vendredi</field>
+            <field name="collection_schedule">6h-10h</field>
+            <field name="has_collection_point">True</field>
+            <field name="contact_name">Koffi Jean</field>
+            <field name="contact_phone">+225 07 23 45 67</field>
+            <field name="description">Zone logistique pour le sud d'Abidjan</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="ifn_zone_centre" model="ifn.zone">
+            <field name="name">Zone Centre Agricole</field>
+            <field name="code">ZCA</field>
+            <field name="zone_type">collection</field>
+            <field name="partner_latitude">7.5000</field>
+            <field name="partner_longitude">-5.0000</field>
+            <field name="collection_days">Mardi, Jeudi, Samedi</field>
+            <field name="collection_schedule">5h-9h</field>
+            <field name="has_collection_point">True</field>
+            <field name="contact_name">Bamba Ousmane</field>
+            <field name="contact_phone">+225 07 45 12 34</field>
+            <field name="description">Zone de collecte agricole du centre</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Catégories de produits de référence -->
+        <record id="ifn_cat_cafe" model="ifn.product.category.ref">
+            <field name="name">Café</field>
+            <field name="code">CAT001</field>
+            <field name="category_type">agricultural</field>
+            <field name="description">Produits café de différentes variétés</field>
+            <field name="perishable">False</field>
+            <field name="is_commodity">True</field>
+            <field name="shelf_life_days">365</field>
+            <field name="storage_requirements">Sec, aéré, à l'abri de l'humidité</field>
+        </record>
+
+        <record id="ifn_cat_cafe_robusta" model="ifn.product.category.ref">
+            <field name="name">Café Robusta</field>
+            <field name="code">CAT0011</field>
+            <field name="parent_id" ref="ifn_cat_cafe"/>
+            <field name="category_type">agricultural</field>
+            <field name="description">Café Robusta de Côte d'Ivoire</field>
+            <field name="perishable">False</field>
+            <field name="is_commodity">True</field>
+            <field name="hs_code">0901.11</field>
+        </record>
+
+        <record id="ifn_cat_cafe_arabica" model="ifn.product.category.ref">
+            <field name="name">Café Arabica</field>
+            <field name="code">CAT0012</field>
+            <field name="parent_id" ref="ifn_cat_cafe"/>
+            <field name="category_type">agricultural</field>
+            <field name="description">Café Arabica de montagne</field>
+            <field name="perishable">False</field>
+            <field name="is_commodity">True</field>
+            <field name="hs_code">0901.21</field>
+        </record>
+
+        <record id="ifn_cat_cacao" model="ifn.product.category.ref">
+            <field name="name">Cacao</field>
+            <field name="code">CAT002</field>
+            <field name="category_type">agricultural</field>
+            <field name="description">Fèves de cacao ivoiriennes</field>
+            <field name="perishable">True</field>
+            <field name="seasonal">True</field>
+            <field name="is_commodity">True</field>
+            <field name="shelf_life_days">180</field>
+            <field name="storage_requirements">Sec, température contrôlée 18-21°C</field>
+            <field name="storage_temperature_min">18</field>
+            <field name="storage_temperature_max">21</field>
+        </record>
+
+        <record id="ifn_cat_fruits_tropicaux" model="ifn.product.category.ref">
+            <field name="name">Fruits Tropicaux</field>
+            <field name="code">CAT003</field>
+            <field name="category_type">agricultural</field>
+            <field name="description">Ananas, mangues, papayes</field>
+            <field name="perishable">True</field>
+            <field name="seasonal">True</field>
+            <field name="is_commodity">True</field>
+            <field name="shelf_life_days">7</field>
+            <field name="has_cold_storage">True</field>
+            <field name="storage_temperature_min">4</field>
+            <field name="storage_temperature_max">8</field>
+        </record>
+
+        <record id="ifn_cat_ananas" model="ifn.product.category.ref">
+            <field name="name">Ananas</field>
+            <field name="code">CAT0031</field>
+            <field name="parent_id" ref="ifn_cat_fruits_tropicaux"/>
+            <field name="category_type">agricultural</field>
+            <field name="description">Ananas Victoria et Cayenne lisse</field>
+            <field name="perishable">True</field>
+            <field name="shelf_life_days">7</field>
+            <field name="hs_code">0804.30</field>
+        </record>
+
+        <record id="ifn_cat_mangue" model="ifn.product.category.ref">
+            <field name="name">Mangue</field>
+            <field name="code">CAT0032</field>
+            <field name="parent_id" ref="ifn_cat_fruits_tropicaux"/>
+            <field name="category_type">agricultural</field>
+            <field name="description">Mangues variétés locales</field>
+            <field name="perishable">True</field>
+            <field name="shelf_life_days">5</field>
+            <field name="hs_code">0804.50</field>
+        </record>
+
+        <record id="ifn_cat_intrants_agricoles" model="ifn.product.category.ref">
+            <field name="name">Intrants Agricoles</field>
+            <field name="code">CAT004</field>
+            <field name="category_type">input</field>
+            <field name="description">Engrais, pesticides, semences</field>
+            <field name="perishable">False</field>
+            <field name="is_commodity">True</field>
+        </record>
+
+        <record id="ifn_cat_produits_transformes" model="ifn.product.category.ref">
+            <field name="name">Produits Transformés</field>
+            <field name="code">CAT005</field>
+            <field name="category_type">processed</field>
+            <field name="description">Produits transformés locaux</field>
+            <field name="perishable">True</field>
+            <field name="is_final_product">True</field>
+            <field name="certification_required">True</field>
+        </record>
+
+    </data>
+</odoo>

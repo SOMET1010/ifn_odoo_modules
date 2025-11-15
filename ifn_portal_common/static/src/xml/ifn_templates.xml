@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Template pour le sélecteur de langue -->
+        <template id="language_selector_template" name="IFN Language Selector">
+            <div class="ifn-language-selector">
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                        type="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                    <i class="fa fa-globe"/> <span t-esc="current_language"/>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#" data-lang="fr">🇫🇷 Français</a>
+                    <a class="dropdown-item" href="#" data-lang="ba">🇨🇮 Baoulé</a>
+                    <a class="dropdown-item" href="#" data-lang="di">🇨🇮 Dioula</a>
+                </div>
+            </div>
+        </template>
+
+        <!-- Template pour le panneau d'accessibilité -->
+        <template id="accessibility_panel_template" name="IFN Accessibility Panel">
+            <div class="ifn-accessibility-panel">
+                <button class="btn btn-sm btn-primary" onclick="toggleAccessibilityPanel()">
+                    <i class="fa fa-universal-access"/>
+                </button>
+                <div class="ifn-accessibility-controls" style="display: none;">
+                    <div class="form-group">
+                        <label>Taille du texte</label>
+                        <input type="range" min="12" max="24" value="16"
+                               onchange="changeFontSize(this.value)"/>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox"
+                                   onchange="toggleHighContrast()"/>
+                            <label class="form-check-label">Contraste élevé</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Template pour les notifications -->
+        <template id="notification_template" name="IFN Notification">
+            <div class="ifn-notification alert" t-att-class="'alert-' + (notification.type or 'info')">
+                <div class="d-flex align-items-center">
+                    <i class="fa fa-info-circle me-2" t-if="notification.type == 'info'"/>
+                    <i class="fa fa-check-circle me-2" t-if="notification.type == 'success'"/>
+                    <i class="fa fa-exclamation-triangle me-2" t-if="notification.type == 'warning'"/>
+                    <i class="fa fa-times-circle me-2" t-if="notification.type == 'error'"/>
+                    <div class="flex-grow-1">
+                        <strong t-esc="notification.title"/>
+                        <p class="mb-0" t-esc="notification.message"/>
+                    </div>
+                    <button type="button" class="btn-close" onclick="closeNotification(this)"/>
+                </div>
+            </div>
+        </template>
+
+        <!-- Template manquant : OverlayContainer -->
+        <template id="web.OverlayContainer" name="Overlay Container">
+            <div class="o_overlay_container">
+                <t t-raw="0"/>
+            </div>
+        </template>
+
+        <!-- Template manquant : UploadProgressToast -->
+        <template id="web_editor.UploadProgressToast" name="Upload Progress Toast">
+            <div class="o_upload_progress_toast">
+                <div class="progress">
+                    <div class="progress-bar" t-att-style="'width: ' + (progress or 0) + '%'" role="progressbar">
+                        <span t-if="progress" t-esc="progress + '%'"/>
+                    </div>
+                </div>
+                <div class="o_upload_progress_info">
+                    <span t-if="filename" t-esc="filename"/>
+                    <button class="btn btn-sm btn-link o_upload_cancel" t-if="cancellable">
+                        <i class="fa fa-times"/>
+                    </button>
+                </div>
+            </div>
+        </template>
+
+    </data>
+</odoo>

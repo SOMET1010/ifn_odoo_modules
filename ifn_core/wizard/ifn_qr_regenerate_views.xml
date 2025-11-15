@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Vue Formulaire Assistant Régénération QR -->
+        <record id="view_ifn_qr_regenerate_wizard_form" model="ir.ui.view">
+            <field name="name">ifn.qr.regenerate.wizard.form</field>
+            <field name="model">ifn.qr.regenerate.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Régénération QR Codes IFN">
+                    <header>
+                        <button name="action_regenerate_qr" type="object" string="Lancer Régénération"
+                                class="btn-primary" attrs="{'invisible': [('total_partners', '=', 0)]}"/>
+                        <button name="action_download_report" type="object" string="Télécharger Rapport"
+                                class="btn-secondary" attrs="{'invisible': [('processed_count', '=', 0)]}"/>
+                        <button name="action_export_errors" type="object" string="Exporter Erreurs"
+                                class="btn-warning" attrs="{'invisible': [('error_count', '=', 0)]}"/>
+                    </header>
+
+                    <sheet>
+                        <div class="oe_title">
+                            <h2>Régénération des QR Codes IFN</h2>
+                            <p class="text-muted">Cet assistant permet de régénérer les QR codes pour les partenaires IFN.</p>
+                        </div>
+
+                        <group>
+                            <group string="Configuration">
+                                <field name="regenerate_all" widget="radio"/>
+                                <field name="partner_ids" widget="many2many_tags"
+                                       attrs="{'invisible': [('regenerate_all', '=', True)], 'required': [('regenerate_all', '=', False)]}"/>
+                            </group>
+                            <group string="Options">
+                                <field name="update_qr_ref"/>
+                                <field name="update_generation_date"/>
+                                <field name="backup_existing"/>
+                            </group>
+                        </group>
+
+                        <group string="Filtres" attrs="{'invisible': [('regenerate_all', '=', False)]}">
+                            <group>
+                                <field name="role_filter"/>
+                                <field name="market_filter_id" options="{'no_create': True}"/>
+                                <field name="coop_filter_id" options="{'no_create': True}"/>
+                            </group>
+                            <group>
+                                <field name="include_inactive"/>
+                                <field name="include_unvalidated"/>
+                            </group>
+                        </group>
+
+                        <group string="Statistiques" attrs="{'invisible': [('processed_count', '=', 0)]}">
+                            <group>
+                                <field name="total_partners"/>
+                                <field name="processed_count"/>
+                            </group>
+                            <group>
+                                <field name="success_count"/>
+                                <field name="error_count"/>
+                            </group>
+                        </group>
+
+                        <notebook attrs="{'invisible': [('errors', '=', False)]}">
+                            <page string="Erreurs" name="errors">
+                                <field name="errors" nolabel="1" widget="text" readonly="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                    <footer>
+                        <div class="alert alert-info" role="alert" attrs="{'invisible': [('total_partners', '=', 0)]}">
+                            <strong>Information:</strong> <field name="total_partners"/> partenaire(s) concerné(s) par la régénération.
+                        </div>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action Assistant Régénération QR -->
+        <record id="action_ifn_qr_regenerate_wizard" model="ir.actions.act_window">
+            <field name="name">Régénérer QR Codes</field>
+            <field name="res_model">ifn.qr.regenerate.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context">{'default_regenerate_all': True}</field>
+        </record>
+
+    </data>
+</odoo>

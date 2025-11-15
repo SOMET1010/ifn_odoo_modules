@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Vue Liste Partenaires IFN -->
+        <record id="view_ifn_partner_tree" model="ir.ui.view">
+            <field name="name">ifn.partner.tree</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree string="Partenaires IFN" default_order="create_date desc">
+                    <field name="ifn_uid"/>
+                    <field name="name"/>
+                    <field name="ifn_member_type"/>
+                    <field name="email"/>
+                    <field name="ifn_primary_phone"/>
+                    <field name="ifn_region"/>
+                    <field name="ifn_verified" widget="toggle"/>
+                    <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vue Kanban Partenaires IFN -->
+        <record id="view_ifn_partner_kanban" model="ir.ui.view">
+            <field name="name">ifn.partner.kanban</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <kanban string="Partenaires IFN" default_group_by="ifn_member_type">
+                    <field name="ifn_uid"/>
+                    <field name="name"/>
+                    <field name="ifn_member_type"/>
+                    <field name="email"/>
+                    <field name="ifn_primary_phone"/>
+                    <field name="ifn_region"/>
+                    <field name="ifn_verified"/>
+                    <field name="ifn_verification_date"/>
+                    <field name="ifn_activity_count"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click o_res_partner_kanban #{record.ifn_verified.value ? 'o_kanban_verified' : ''}">
+                                <div class="o_kanban_record_top mb-0">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name"/>
+                                        </strong>
+                                        <div class="o_kanban_record_subtitle text-muted">
+                                            <field name="ifn_uid"/>
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_manage_button_section">
+                                        <a class="o_kanban_manage_toggle_button" href="#" tabindex="-1">
+                                            <i class="fa fa-ellipsis-v fa-lg"/>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_card_content">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span class="text-muted small">Type</span>
+                                            <div class="fw-bold">
+                                                <field name="ifn_member_type"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <span class="text-muted small">Région</span>
+                                            <div class="fw-bold">
+                                                <field name="ifn_region"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-12">
+                                            <span class="text-muted small">Email</span>
+                                            <div>
+                                                <field name="email"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-12">
+                                            <span class="text-muted small">Téléphone</span>
+                                            <div>
+                                                <field name="ifn_primary_phone"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_manage_bottom_section">
+                                    <div class="row align-items-center">
+                                        <div class="col-6">
+                                            <span class="badge" t-att-class="record.ifn_verified.value ? 'bg-success' : 'bg-warning'">
+                                                <i t-attf-class="#{record.ifn_verified.value ? 'fa fa-check' : 'fa fa-clock'} me-1"/>
+                                                <t t-if="record.ifn_verified.value">Vérifié</t>
+                                                <t t-else="">En attente</t>
+                                            </span>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <span class="badge bg-info">
+                                                <i class="fa fa-chart-line me-1"/>
+                                                <field name="ifn_activity_count"/> activités
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Vue Formulaire Partenaires IFN -->
+        <record id="view_ifn_partner_form" model="ir.ui.view">
+            <field name="name">ifn.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form string="Partenaire IFN">
+                    <header>
+                        <button name="verify_ifn_partner" type="object" string="Vérifier Partenaire"
+                                class="btn btn-primary" attrs="{'invisible': [('ifn_verified', '=', True)]}"/>
+                        <button name="update_ifn_activity" type="object" string="Mettre à jour Activité"
+                                class="btn btn-secondary"/>
+                        <field name="ifn_verified" widget="toggle_button" groups="ifn_core.group_ifn_admin"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="%(action_ifn_partner_activities)d" type="action"
+                                    class="oe_stat_button" icon="fa-chart-line">
+                                <field name="ifn_activity_count" widget="statinfo" string="Activités"/>
+                            </button>
+                            <button name="open_orders" type="object"
+                                    class="oe_stat_button" icon="fa-shopping-cart">
+                                <field name="order_count" widget="statinfo" string="Commandes"/>
+                            </button>
+                            <button name="open_invoices" type="object"
+                                    class="oe_stat_button" icon="fa-file-text-o">
+                                <field name="invoice_count" widget="statinfo" string="Factures"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Nom du partenaire"/>
+                            </h1>
+                            <h2>
+                                <field name="ifn_uid" placeholder="UID IFN"/>
+                            </h2>
+                        </div>
+                        <group>
+                            <group name="ifn_main_info">
+                                <field name="ifn_member_type" widget="radio"/>
+                                <field name="is_company"/>
+                                <field name="parent_id" domain="[('is_company', '=', True)]"/>
+                                <field name="company_type"/>
+                            </group>
+                            <group name="ifn_contact_info">
+                                <field name="email" widget="email"/>
+                                <field name="phone"/>
+                                <field name="ifn_primary_phone"/>
+                                <field name="ifn_secondary_phone"/>
+                                <field name="ifn_whatsapp"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Informations IFN">
+                                <group>
+                                    <group string="Localisation">
+                                        <field name="ifn_region"/>
+                                        <field name="ifn_department"/>
+                                        <field name="ifn_village"/>
+                                        <field name="ifn_coordinates"/>
+                                    </group>
+                                    <group string="Vérification">
+                                        <field name="ifn_verified"/>
+                                        <field name="ifn_verification_date"/>
+                                        <field name="ifn_verified_by"/>
+                                    </group>
+                                </group>
+                                <group string="Activité">
+                                    <field name="ifn_last_activity"/>
+                                    <field name="ifn_activity_count"/>
+                                </group>
+                            </page>
+                            <page string="Coordonnées">
+                                <group>
+                                    <group string="Adresse">
+                                        <field name="street"/>
+                                        <field name="street2"/>
+                                        <field name="city"/>
+                                        <field name="zip"/>
+                                        <field name="country_id"/>
+                                    </group>
+                                    <group string="Contact">
+                                        <field name="phone"/>
+                                        <field name="mobile"/>
+                                        <field name="email"/>
+                                        <field name="website"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Configuration">
+                                <group>
+                                    <group string="Préférences">
+                                        <field name="ifn_language"/>
+                                        <field name="ifn_high_contrast"/>
+                                        <field name="ifn_font_size"/>
+                                        <field name="ifn_voice_enabled"/>
+                                    </group>
+                                    <group string="Accès">
+                                        <field name="user_ids"/>
+                                        <field name="supplier"/>
+                                        <field name="customer"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Vue Recherche Partenaires IFN -->
+        <record id="view_ifn_partner_search" model="ir.ui.view">
+            <field name="name">ifn.partner.search</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <search string="Recherche Partenaires IFN">
+                    <field name="name"/>
+                    <field name="ifn_uid"/>
+                    <field name="ifn_member_type"/>
+                    <field name="email"/>
+                    <field name="ifn_primary_phone"/>
+                    <field name="ifn_region"/>
+
+                    <filter string="Vérifiés" name="verified" domain="[('ifn_verified', '=', True)]"/>
+                    <filter string="Non vérifiés" name="not_verified" domain="[('ifn_verified', '=', False)]"/>
+                    <separator/>
+                    <filter string="Marchands" name="merchants" domain="[('ifn_member_type', '=', 'merchant')]"/>
+                    <filter string="Producteurs" name="producers" domain="[('ifn_member_type', '=', 'producer')]"/>
+                    <filter string="Coopératives" name="cooperatives" domain="[('ifn_member_type', '=', 'coop_manager')]"/>
+                    <separator/>
+                    <filter string="Créés aujourd'hui" name="today" domain="[('create_date', '>=', (context_today()).strftime('%Y-%m-%d'))]"/>
+                    <filter string="Créés cette semaine" name="week" domain="[('create_date', '>=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="Créés ce mois" name="month" domain="[('create_date', '>=', (context_today().replace(day=1)).strftime('%Y-%m-%d'))]"/>
+
+                    <group expand="0" string="Grouper par">
+                        <filter string="Type de membre" name="group_member_type" context="{'group_by': 'ifn_member_type'}"/>
+                        <filter string="Région" name="group_region" context="{'group_by': 'ifn_region'}"/>
+                        <filter string="Statut de vérification" name="group_verified" context="{'group_by': 'ifn_verified'}"/>
+                        <filter string="Date de création" name="group_create_date" context="{'group_by': 'create_date:month'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action Partenaires IFN -->
+        <record id="action_ifn_partners" model="ir.actions.act_window">
+            <field name="name">Partenaires IFN</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="view_ifn_partner_kanban"/>
+            <field name="search_view_id" ref="view_ifn_partner_search"/>
+            <field name="domain">[('ifn_uid', '!=', False)]</field>
+            <field name="context">{'default_is_company': True}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Créez votre premier partenaire IFN
+                </p>
+                <p>
+                    Les partenaires IFN sont les membres de l'écosystème IFN :
+                    marchands, producteurs, coopératives, etc.
+                </p>
+            </field>
+        </record>
+
+        <!-- Vue Liste Utilisateurs IFN -->
+        <record id="view_ifn_user_tree" model="ir.ui.view">
+            <field name="name">ifn.user.tree</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <tree string="Utilisateurs IFN" default_order="create_date desc">
+                    <field name="ifn_uid"/>
+                    <field name="name"/>
+                    <field name="login"/>
+                    <field name="email"/>
+                    <field name="ifn_kyc_level"/>
+                    <field name="ifn_phone_verified" widget="toggle"/>
+                    <field name="ifn_email_verified" widget="toggle"/>
+                    <field name="ifn_last_login"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vue Formulaire Utilisateurs IFN -->
+        <record id="view_ifn_user_form" model="ir.ui.view">
+            <field name="name">ifn.user.form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='login']" position="after">
+                    <group string="Informations IFN">
+                        <field name="ifn_uid"/>
+                        <field name="ifn_kyc_level"/>
+                        <field name="ifn_language"/>
+                        <field name="ifn_high_contrast"/>
+                        <field name="ifn_font_size"/>
+                        <field name="ifn_voice_enabled"/>
+                        <field name="ifn_phone_verified"/>
+                        <field name="ifn_email_verified"/>
+                        <field name="ifn_last_login"/>
+                        <field name="ifn_login_count"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Action Utilisateurs IFN -->
+        <record id="action_ifn_users" model="ir.actions.act_window">
+            <field name="name">Utilisateurs IFN</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.users</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_ifn_user_tree"/>
+            <field name="domain">[('ifn_uid', '!=', False)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Aucun utilisateur IFN trouvé
+                </p>
+                <p>
+                    Les utilisateurs IFN sont les comptes d'accès créés via
+                    le formulaire d'inscription public.
+                </p>
+            </field>
+        </record>
+
+        <!-- Menu Items -->
+        <menuitem id="menu_ifn_portal" name="IFN Portal" sequence="10"
+                  web_icon="ifn_portal_common,static/description/icon.png"/>
+
+        <menuitem id="menu_ifn_partners" name="Partenaires IFN"
+                  parent="menu_ifn_portal" sequence="10"
+                  action="action_ifn_partners"/>
+
+        <menuitem id="menu_ifn_users" name="Utilisateurs IFN"
+                  parent="menu_ifn_portal" sequence="20"
+                  action="action_ifn_users"/>
+    </data>
+</odoo>

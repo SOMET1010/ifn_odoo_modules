@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Social Protection Page -->
+        <template id="page_social" name="Merchant Social">
+            <t t-call="ifn_portal_common.portal_layout">
+                <t t-set="title">Protection Sociale</t>
+
+                <div class="container-fluid ifn-merchant-social">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h1 class="h3">
+                                <i class="fa fa-shield-alt me-2"></i>
+                                Protection Sociale
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- Social Status Overview -->
+                    <div class="row mb-4">
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-check-circle fa-2x text-success mb-2"></i>
+                                    <h6>CNPS</h6>
+                                    <span class="badge bg-success">À jour</span>
+                                    <p class="small text-muted mb-0">Prochaine échéance: 15/02/2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-hospital fa-2x text-info mb-2"></i>
+                                    <h6>CNAM</h6>
+                                    <span class="badge bg-success">À jour</span>
+                                    <p class="small text-muted mb-0">Prochaine échéance: 15/02/2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-heart fa-2x text-danger mb-2"></i>
+                                    <h6>CMU</h6>
+                                    <span class="badge bg-warning">À payer</span>
+                                    <p class="small text-muted mb-0">Montant dû: 5,000 F</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Actions -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Actions de Paiement</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6>Payer vos cotisations</h6>
+                                            <p class="text-muted">Régler vos cotisations sociales par Mobile Money</p>
+                                            <button class="btn btn-success" id="pay-social-btn">
+                                                <i class="fa fa-mobile-alt me-2"></i>
+                                                Payer par Mobile Money
+                                            </button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h6>Télécharger vos attestations</h6>
+                                            <p class="text-muted">Obtenir vos attestations de paiement</p>
+                                            <button class="btn btn-primary" id="download-certificates-btn">
+                                                <i class="fa fa-download me-2"></i>
+                                                Télécharger
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment History -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Historique des Paiements Sociaux</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Type</th>
+                                                    <th>Montant</th>
+                                                    <th>Moyen</th>
+                                                    <th>Statut</th>
+                                                    <th>Documents</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>15/01/2024</td>
+                                                    <td>CNPS</td>
+                                                    <td>15,000 F</td>
+                                                    <td><span class="badge bg-success">Mobile Money</span></td>
+                                                    <td><span class="badge bg-success">Payé</span></td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-primary">
+                                                            <i class="fa fa-file-pdf"></i> Attestation
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>15/12/2023</td>
+                                                    <td>CNAM</td>
+                                                    <td>8,000 F</td>
+                                                    <td><span class="badge bg-success">Mobile Money</span></td>
+                                                    <td><span class="badge bg-success">Payé</span></td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-primary">
+                                                            <i class="fa fa-file-pdf"></i> Attestation
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Training Page -->
+        <template id="page_training" name="Merchant Training">
+            <t t-call="ifn_portal_common.portal_layout">
+                <t t-set="title">Formation</t>
+
+                <div class="container-fluid ifn-merchant-training">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h1 class="h3">
+                                <i class="fa fa-graduation-cap me-2"></i>
+                                Formation Continue
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- Training Progress Overview -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="text-muted mb-2">Progression Générale</h6>
+                                    <div class="progress mb-2" style="height: 25px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 65%">
+                                            65%
+                                        </div>
+                                    </div>
+                                    <small class="text-muted">4 modules complétés sur 6</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted mb-2">Temps de Formation</h6>
+                                    <h3 class="mb-0">12h 30min</h3>
+                                    <small class="text-muted">Ce mois</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Available Courses -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Modules Disponibles</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <!-- Completed Course -->
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card border-success">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="card-title">Gestion de Stock</h6>
+                                                        <span class="badge bg-success">
+                                                            <i class="fa fa-check-circle"></i>
+                                                        </span>
+                                                    </div>
+                                                    <p class="card-text small text-muted">
+                                                        Apprenez à gérer efficacement vos stocks et éviter les ruptures.
+                                                    </p>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <small class="text-muted">
+                                                            <i class="fa fa-clock me-1"></i>
+                                                            2h 15min
+                                                        </small>
+                                                        <button class="btn btn-sm btn-success">
+                                                            <i class="fa fa-download me-1"></i>
+                                                            Certificat
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- In Progress Course -->
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card border-primary">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="card-title">Vente et Clientèle</h6>
+                                                        <span class="badge bg-primary">En cours</span>
+                                                    </div>
+                                                    <p class="card-text small text-muted">
+                                                        Techniques de vente et fidélisation de la clientèle.
+                                                    </p>
+                                                    <div class="progress mb-2" style="height: 8px;">
+                                                        <div class="progress-bar" role="progressbar" style="width: 45%"></div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <small class="text-muted">45% complété</small>
+                                                        <button class="btn btn-sm btn-primary">
+                                                            <i class="fa fa-play me-1"></i>
+                                                            Continuer
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Available Course -->
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="card-title">Finances de Base</h6>
+                                                        <span class="badge bg-secondary">Nouveau</span>
+                                                    </div>
+                                                    <p class="card-text small text-muted">
+                                                        Gestion financière de base pour votre activité.
+                                                    </p>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <small class="text-muted">
+                                                            <i class="fa fa-clock me-1"></i>
+                                                            3h 00min
+                                                        </small>
+                                                        <button class="btn btn-sm btn-outline-primary">
+                                                            <i class="fa fa-play me-1"></i>
+                                                            Commencer
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Audio Player Section -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Lecteur Audio</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-2 text-center">
+                                            <img src="/ifn_portal_merchant/static/src/img/audio-cover.jpg" class="img-fluid rounded" alt="Course cover" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            <h6>Module: Vente et Clientèle</h6>
+                                            <p class="text-muted mb-1">Leçon 3: Techniques de négociation</p>
+                                            <div class="progress" style="height: 4px;">
+                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 30%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <div class="btn-group-vertical" role="group">
+                                                <button class="btn btn-outline-primary btn-sm">
+                                                    <i class="fa fa-backward"></i>
+                                                </button>
+                                                <button class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-pause"></i>
+                                                </button>
+                                                <button class="btn btn-outline-primary btn-sm">
+                                                    <i class="fa fa-forward"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Profile Page -->
+        <template id="page_profile" name="Merchant Profile">
+            <t t-call="ifn_portal_common.portal_layout">
+                <t t-set="title">Profil Marchand</t>
+
+                <div class="container-fluid ifn-merchant-profile">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h1 class="h3">
+                                <i class="fa fa-user me-2"></i>
+                                Mon Profil IFN
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- Profile Info -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <img src="/ifn_portal_merchant/static/src/img/default-avatar.png" class="rounded-circle" style="width: 100px; height: 100px;" alt="Profile" />
+                                    </div>
+                                    <h5><t t-esc="partner.name" /></h5>
+                                    <p class="text-muted">Marchand IFN</p>
+                                    <div class="mb-3">
+                                        <img src="/web/barcode/?value=IFN123456" class="img-fluid" alt="QR Code" />
+                                        <small class="text-muted d-block">IFN123456</small>
+                                    </div>
+                                    <button class="btn btn-outline-primary btn-sm">
+                                        <i class="fa fa-qrcode me-1"></i>
+                                        Afficher QR Code
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Informations Personnelles</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Nom complet</label>
+                                                <input type="text" class="form-control" t-att-value="partner.name" readonly="readonly" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Téléphone</label>
+                                                <input type="tel" class="form-control" t-att-value="partner.mobile or partner.phone" readonly="readonly" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Email</label>
+                                                <input type="email" class="form-control" t-att-value="partner.email" readonly="readonly" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Marché</label>
+                                                <input type="text" class="form-control" placeholder="Marché central" readonly="readonly" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Coopérative</label>
+                                                <input type="text" class="form-control" placeholder="Coopérative IFN Abidjan" readonly="readonly" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Langue préférée</label>
+                                                <select class="form-select">
+                                                    <option value="fr_FR">Français</option>
+                                                    <option value="ba_CI">Baoulé</option>
+                                                    <option value="di_CI">Dioula</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preferences -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Préférences du Portail</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-check form-switch mb-3">
+                                                <input class="form-check-input" type="checkbox" id="voice-enabled" checked="checked" />
+                                                <label class="form-check-label" for="voice-enabled">
+                                                    <i class="fa fa-microphone me-2"></i>
+                                                    Commandes vocales activées
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check form-switch mb-3">
+                                                <input class="form-check-input" type="checkbox" id="stock-alerts" checked="checked" />
+                                                <label class="form-check-label" for="stock-alerts">
+                                                    <i class="fa fa-bell me-2"></i>
+                                                    Alertes de stock
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check form-switch mb-3">
+                                                <input class="form-check-input" type="checkbox" id="payment-notifs" checked="checked" />
+                                                <label class="form-check-label" for="payment-notifs">
+                                                    <i class="fa fa-money-bill me-2"></i>
+                                                    Notifications de paiement
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check form-switch mb-3">
+                                                <input class="form-check-input" type="checkbox" id="social-reminders" checked="checked" />
+                                                <label class="form-check-label" for="social-reminders">
+                                                    <i class="fa fa-shield-alt me-2"></i>
+                                                    Rappels sociaux
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check form-switch mb-3">
+                                                <input class="form-check-input" type="checkbox" id="offline-mode" checked="checked" />
+                                                <label class="form-check-label" for="offline-mode">
+                                                    <i class="fa fa-wifi me-2"></i>
+                                                    Mode hors ligne activé
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Save Button -->
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <button class="btn btn-primary btn-lg">
+                                <i class="fa fa-save me-2"></i>
+                                Enregistrer les modifications
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+    </data>
+</odoo>

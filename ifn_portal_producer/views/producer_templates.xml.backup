@@ -1,0 +1,989 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Template du tableau de bord producteur -->
+        <template id="page_dashboard" name="Tableau de bord Producteur">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="False"/>
+
+                <div class="o_portal_my_home container-fluid producer-dashboard">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="text-center mb-4">
+                                <i class="fa fa-seedling me-2"></i>
+                                Tableau de bord Producteur
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- Cartes KPI -->
+                    <div class="row mb-4">
+                        <div class="col-md-3 col-sm-6 mb-3">
+                            <div class="card bg-primary text-white kpi-card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h4 class="card-title" t-esc="stats.get('total_production', 0)"/>
+                                            <p class="card-text">Production (kg)</p>
+                                        </div>
+                                        <i class="fa fa-leaf fa-2x opacity-75"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 mb-3">
+                            <div class="card bg-success text-white kpi-card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h4 class="card-title" t-esc="stats.get('sale_rate', 0)"/>%
+                                            <p class="card-text">Taux de vente</p>
+                                        </div>
+                                        <i class="fa fa-shopping-cart fa-2x opacity-75"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 mb-3">
+                            <div class="card bg-warning text-white kpi-card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h4 class="card-title">
+                                                <span t-esc="stats.get('total_revenue', 0)"/> FCFA
+                                            </h4>
+                                            <p class="card-text">Revenu cumulé</p>
+                                        </div>
+                                        <i class="fa fa-money-bill-wave fa-2x opacity-75"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 mb-3">
+                            <div class="card bg-info text-white kpi-card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h4 class="card-title" t-esc="stats.get('social_status', 'Non')"/>
+                                            <p class="card-text">Protection sociale</p>
+                                        </div>
+                                        <i class="fa fa-shield-alt fa-2x opacity-75"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Menu principal -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-4">Actions rapides</h5>
+                                    <div class="row">
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <a href="/portal/producer/harvest" class="btn btn-outline-primary btn-lg d-block action-btn">
+                                                <i class="fa fa-seedling fa-2x mb-2"></i><br/>
+                                                Récolte Récolte
+                                            </a>
+                                        </div>
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <a href="/portal/producer/sell" class="btn btn-outline-success btn-lg d-block action-btn">
+                                                <i class="fa fa-tag fa-2x mb-2"></i><br/>
+                                                Vendre
+                                            </a>
+                                        </div>
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <a href="/portal/producer/orders" class="btn btn-outline-info btn-lg d-block action-btn">
+                                                <i class="fa fa-shopping-basket fa-2x mb-2"></i><br/>
+                                                🛍 Commandes
+                                            </a>
+                                        </div>
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <a href="/portal/producer/payments" class="btn btn-outline-warning btn-lg d-block action-btn">
+                                                <i class="fa fa-credit-card fa-2x mb-2"></i><br/>
+                                                💸 Paiements
+                                            </a>
+                                        </div>
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <a href="/portal/producer/social" class="btn btn-outline-secondary btn-lg d-block action-btn">
+                                                <i class="fa fa-heart fa-2x mb-2"></i><br/>
+                                                🛡 Social
+                                            </a>
+                                        </div>
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <a href="/portal/producer/training" class="btn btn-outline-dark btn-lg d-block action-btn">
+                                                <i class="fa fa-graduation-cap fa-2x mb-2"></i><br/>
+                                                Formation
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Activités récentes -->
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">
+                                        <i class="fa fa-seedling me-2"></i>
+                                        Récentes récoltes
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <t t-if="recent_harvests">
+                                        <div class="list-group list-group-flush">
+                                            <t t-foreach="recent_harvests" t-as="harvest">
+                                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <strong t-esc="harvest.product_id.name"/>
+                                                        <small class="text-muted d-block">
+                                                            <span t-esc="harvest.quantity"/> kg -
+                                                            <span t-esc="harvest.date_harvest"/>
+                                                        </small>
+                                                    </div>
+                                                    <span class="badge bg-primary" t-esc="harvest.quality"/>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <p class="text-muted">Aucune récolte récente</p>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">
+                                        <i class="fa fa-shopping-cart me-2"></i>
+                                        Récentes commandes
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <t t-if="recent_orders">
+                                        <div class="list-group list-group-flush">
+                                            <t t-foreach="recent_orders" t-as="order">
+                                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <strong>Commande #<span t-esc="order.name"/></strong>
+                                                        <small class="text-muted d-block">
+                                                            <span t-esc="order.amount_total"/> FCFA -
+                                                            <span t-esc="order.create_date"/>
+                                                        </small>
+                                                    </div>
+                                                    <span class="badge"
+                                                          t-attf-class="bg-{'success' if order.state == 'sale' else 'warning'}"
+                                                          t-esc="order.state"/>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <p class="text-muted">Aucune commande récente</p>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Template page récoltes -->
+        <template id="page_harvest" name="Gestion des Récoltes">
+            <t t-call="portal.portal_layout">
+                <div class="o_portal_my_details container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>
+                                <i class="fa fa-seedling me-2"></i>
+                                Gestion des Récoltes
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- Bouton ajouter récolte -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addHarvestModal">
+                                <i class="fa fa-plus me-2"></i>
+                                Nouvelle récolte
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Liste des récoltes -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Mes récoltes</h5>
+                                </div>
+                                <div class="card-body">
+                                    <t t-if="harvests">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Produit</th>
+                                                        <th>Quantité</th>
+                                                        <th>Qualité</th>
+                                                        <th>Date</th>
+                                                        <th>Statut</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <t t-foreach="harvests" t-as="harvest">
+                                                        <tr>
+                                                            <td t-esc="harvest.product_id.name"/>
+                                                            <td><span t-esc="harvest.quantity"/> kg</td>
+                                                            <td>
+                                                                <span class="badge bg-primary" t-esc="harvest.quality"/>
+                                                            </td>
+                                                            <td t-esc="harvest.date_harvest"/>
+                                                            <td>
+                                                                <span class="badge bg-success" t-esc="harvest.state"/>
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-sm btn-outline-primary">
+                                                                    <i class="fa fa-edit"></i>
+                                                                </button>
+                                                                <button class="btn btn-sm btn-outline-success"
+                                                                        t-if="harvest.state == 'available'">
+                                                                    Vendre
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="text-center py-5">
+                                            <i class="fa fa-seedling fa-3x text-muted mb-3"></i>
+                                            <h5>Aucune récolte enregistrée</h5>
+                                            <p class="text-muted">Commencez par ajouter votre première récolte</p>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal ajouter récolte -->
+                    <div class="modal fade" id="addHarvestModal" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Ajouter une récolte</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="addHarvestForm">
+                                        <div class="mb-3">
+                                            <label class="form-label">Produit</label>
+                                            <select class="form-select" name="product_id" required>
+                                                <option value="">Choisir un produit...</option>
+                                                <t t-foreach="products" t-as="product">
+                                                    <option t-att-value="product.id" t-esc="product.name"/>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Quantité (kg)</label>
+                                            <input type="number" class="form-control" name="quantity" step="0.1" required/>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Qualité</label>
+                                            <select class="form-select" name="quality" required>
+                                                <option value="">Choisir...</option>
+                                                <option value="A">Qualité A</option>
+                                                <option value="B">Qualité B</option>
+                                                <option value="C">Qualité C</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Date de récolte</label>
+                                            <input type="date" class="form-control" name="date_harvest" required/>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Notes (optionnel)</label>
+                                            <textarea class="form-control" name="notes" rows="3"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                    <button type="button" class="btn btn-primary" id="saveHarvestBtn">
+                                        <i class="fa fa-save me-2"></i>Enregistrer
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Template page vente -->
+        <template id="page_sell" name="Mise en vente">
+            <t t-call="portal.portal_layout">
+                <div class="o_portal_my_details container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>
+                                <i class="fa fa-tag me-2"></i>
+                                Mettre en vente
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- Récoltes disponibles -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Récoltes disponibles</h5>
+                                </div>
+                                <div class="card-body">
+                                    <t t-if="available_harvests">
+                                        <div class="row">
+                                            <t t-foreach="available_harvests" t-as="harvest">
+                                                <div class="col-md-4 mb-3">
+                                                    <div class="card harvest-card">
+                                                        <div class="card-body">
+                                                            <h6 class="card-title" t-esc="harvest.product_id.name"/>
+                                                            <p class="card-text">
+                                                                <strong>Quantité:</strong> <span t-esc="harvest.quantity_available"/> kg<br/>
+                                                                <strong>Qualité:</strong> <span class="badge bg-primary" t-esc="harvest.quality"/><br/>
+                                                                <strong>Date:</strong> <span t-esc="harvest.date_harvest"/>
+                                                            </p>
+                                                            <button class="btn btn-success btn-sm w-100"
+                                                                    t-att-data-harvest-id="harvest.id"
+                                                                    onclick="showSellModal(this)">
+                                                                <i class="fa fa-shopping-cart me-2"></i>Vendre
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="text-center py-5">
+                                            <i class="fa fa-warehouse fa-3x text-muted mb-3"></i>
+                                            <h5>Aucune récolte disponible</h5>
+                                            <p class="text-muted">Veuillez d'abord enregistrer une récolte</p>
+                                            <a href="/portal/producer/harvest" class="btn btn-primary">
+                                                <i class="fa fa-plus me-2"></i>Ajouter une récolte
+                                            </a>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Offres actives -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Mes offres actives</h5>
+                                </div>
+                                <div class="card-body">
+                                    <t t-if="active_offers">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Produit</th>
+                                                        <th>Quantité</th>
+                                                        <th>Prix (FCFA/kg)</th>
+                                                        <th>Total</th>
+                                                        <th>Statut</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <t t-foreach="active_offers" t-as="offer">
+                                                        <tr>
+                                                            <td t-esc="offer.harvest_id.product_id.name"/>
+                                                            <td><span t-esc="offer.quantity"/> kg</td>
+                                                            <td><span t-esc="offer.price"/></td>
+                                                            <td><span t-esc="offer.total_price"/> FCFA</td>
+                                                            <td>
+                                                                <span class="badge bg-success" t-esc="offer.state"/>
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-sm btn-outline-warning">
+                                                                    <i class="fa fa-pause"></i>
+                                                                </button>
+                                                                <button class="btn btn-sm btn-outline-danger">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <p class="text-muted">Aucune offre active pour le moment</p>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal vendre -->
+                    <div class="modal fade" id="sellModal" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Mettre en vente</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="sellForm">
+                                        <input type="hidden" name="harvest_id" id="harvestId"/>
+                                        <div class="mb-3">
+                                            <label class="form-label">Quantité à vendre (kg)</label>
+                                            <input type="number" class="form-control" name="quantity" id="sellQuantity" step="0.1" required/>
+                                            <small class="text-muted">Disponible: <span id="availableQuantity">0</span> kg</small>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Prix (FCFA/kg)</label>
+                                            <input type="number" class="form-control" name="price" id="sellPrice" step="10" required/>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Total estimé</label>
+                                            <div class="form-control-plaintext fw-bold">
+                                                <span id="totalPrice">0</span> FCFA
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Description (optionnel)</label>
+                                            <textarea class="form-control" name="description" rows="3"
+                                                      placeholder="Décrivez votre produit..."></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                    <button type="button" class="btn btn-success" id="publishOfferBtn">
+                                        <i class="fa fa-tag me-2"></i>Publier l'offre
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Templates pour les autres pages (commands, payments, social, training, profile) -->
+        <!-- Je vais continuer avec les templates essentiels -->
+
+        <template id="page_orders" name="Commandes reçues">
+            <t t-call="portal.portal_layout">
+                <div class="o_portal_my_details container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>
+                                <i class="fa fa-shopping-basket me-2"></i>
+                                Commandes reçues
+                            </h1>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <t t-if="orders">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Commande</th>
+                                                <th>Acheteur</th>
+                                                <th>Produits</th>
+                                                <th>Montant</th>
+                                                <th>Date</th>
+                                                <th>Statut</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="orders" t-as="order">
+                                                <tr>
+                                                    <td><strong>#<span t-esc="order.name"/></strong></td>
+                                                    <td t-esc="order.buyer_id.name"/>
+                                                    <td>
+                                                        <t t-foreach="order.order_line" t-as="line">
+                                                            <span t-esc="line.product_id.name"/> (<span t-esc="line.product_qty"/> kg)<br/>
+                                                        </t>
+                                                    </td>
+                                                    <td><span t-esc="order.amount_total"/> FCFA</td>
+                                                    <td t-esc="order.date_order"/></td>
+                                                    <td>
+                                                        <span class="badge"
+                                                              t-attf-class="bg-{'warning' if order.state == 'draft' else 'info' if order.state == 'sent' else 'success' if order.state == 'sale' else 'secondary'}"
+                                                              t-esc="order.state"/>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-primary"
+                                                                t-if="order.state == 'sent'"
+                                                                t-att-data-order-id="order.id"
+                                                                onclick="confirmOrder(this)">
+                                                            <i class="fa fa-check me-1"></i>Confirmer
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-info">
+                                                            <i class="fa fa-eye me-1"></i>Voir
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <div class="text-center py-5">
+                                    <i class="fa fa-shopping-basket fa-3x text-muted mb-3"></i>
+                                    <h5>Aucune commande reçue</h5>
+                                    <p class="text-muted">Vos commandes apparaîtront ici</p>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="page_payments" name="Historique des paiements">
+            <t t-call="portal.portal_layout">
+                <div class="o_portal_my_details container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>
+                                <i class="fa fa-credit-card me-2"></i>
+                                Historique des paiements
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- Statistiques paiements -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="card bg-success text-white">
+                                <div class="card-body">
+                                    <h4>Total reçu</h4>
+                                    <h3>0 FCFA</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-warning text-white">
+                                <div class="card-body">
+                                    <h4>En attente</h4>
+                                    <h3>0 FCFA</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-info text-white">
+                                <div class="card-body">
+                                    <h4>Ce mois</h4>
+                                    <h3>0 FCFA</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Liste des paiements -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Transactions récentes</h5>
+                                </div>
+                                <div class="card-body">
+                                    <t t-if="payments or mobile_payments">
+                                        <div class="list-group">
+                                            <t t-foreach="payments" t-as="payment">
+                                                <div class="list-group-item">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div>
+                                                            <h6 class="mb-1">Paiement reçu</h6>
+                                                            <small class="text-muted">
+                                                                <span t-esc="payment.date"/> -
+                                                                <span t-esc="payment.journal_id.name"/>
+                                                            </small>
+                                                        </div>
+                                                        <div class="text-end">
+                                                            <h5 class="mb-0 text-success"><span t-esc="payment.amount"/> FCFA</h5>
+                                                            <span class="badge bg-success">Reçu</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="text-center py-5">
+                                            <i class="fa fa-credit-card fa-3x text-muted mb-3"></i>
+                                            <h5>Aucun paiement enregistré</h5>
+                                            <p class="text-muted">Vos paiements apparaîtront ici</p>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="page_social" name="Protection sociale">
+            <t t-call="portal.portal_layout">
+                <div class="o_portal_my_details container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>
+                                <i class="fa fa-heart me-2"></i>
+                                Protection sociale
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- Statut social actuel -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card bg-primary text-white">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-8">
+                                            <h5>Statut CNPS/CNAM/CMU</h5>
+                                            <p class="mb-0">
+                                                <t t-if="social_status and social_status.is_up_to_date">
+                                                    <i class="fa fa-check-circle me-2"></i>
+                                                    Vos cotisations sont à jour
+                                                </t>
+                                                <t t-else="">
+                                                    <i class="fa fa-exclamation-triangle me-2"></i>
+                                                    Vous avez des cotisations en retard
+                                                </t>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4 text-end">
+                                            <button class="btn btn-light">
+                                                <i class="fa fa-download me-2"></i>Télécharger attestation
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cotisations -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Historique des cotisations</h5>
+                                </div>
+                                <div class="card-body">
+                                    <t t-if="social_contributions">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Période</th>
+                                                        <th>Type</th>
+                                                        <th>Montant</th>
+                                                        <th>Statut</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <t t-foreach="social_contributions" t-as="contribution">
+                                                        <tr>
+                                                            <td t-esc="contribution.period"/>
+                                                            <td t-esc="contribution.contribution_type"/>
+                                                            <td><span t-esc="contribution.amount"/> FCFA</td>
+                                                            <td>
+                                                                <span class="badge"
+                                                                      t-attf-class="bg-{'success' if contribution.state == 'paid' else 'warning'}"
+                                                                      t-esc="contribution.state"/>
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-sm btn-outline-primary"
+                                                                        t-if="contribution.state == 'pending'"
+                                                                        t-att-data-contribution-id="contribution.id"
+                                                                        onclick="paySocialContribution(this)">
+                                                                    <i class="fa fa-mobile-alt me-1"></i>Payer
+                                                                </button>
+                                                                <button class="btn btn-sm btn-outline-info"
+                                                                        t-if="contribution.state == 'paid'">
+                                                                    <i class="fa fa-download me-1"></i>Reçu
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="text-center py-5">
+                                            <i class="fa fa-heart fa-3x text-muted mb-3"></i>
+                                            <h5>Aucune cotisation enregistrée</h5>
+                                            <p class="text-muted">Votre historique de cotisations apparaîtra ici</p>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="page_training" name="Formation">
+            <t t-call="portal.portal_layout">
+                <div class="o_portal_my_details container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>
+                                <i class="fa fa-graduation-cap me-2"></i>
+                                Formation et Certification
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- Statistiques formation -->
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="card bg-info text-white">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-book fa-2x mb-2"></i>
+                                    <h4>0</h4>
+                                    <p class="mb-0">Cours disponibles</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-success text-white">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-play fa-2x mb-2"></i>
+                                    <h4>0</h4>
+                                    <p class="mb-0">En cours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-warning text-white">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-clock fa-2x mb-2"></i>
+                                    <h4>0%</h4>
+                                    <p class="mb-0">Progression</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-primary text-white">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-certificate fa-2x mb-2"></i>
+                                    <h4>0</h4>
+                                    <p class="mb-0">Certificats</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cours disponibles -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Cours disponibles</h5>
+                                </div>
+                                <div class="card-body">
+                                    <t t-if="courses">
+                                        <div class="row">
+                                            <t t-foreach="courses" t-as="course">
+                                                <div class="col-md-4 mb-3">
+                                                    <div class="card course-card">
+                                                        <div class="card-body">
+                                                            <h6 class="card-title" t-esc="course.name"/>
+                                                            <p class="card-text small" t-esc="course.description"/>
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                <small class="text-muted">
+                                                                    <i class="fa fa-clock me-1"></i>
+                                                                    <span t-esc="course.duration"/> min
+                                                                </small>
+                                                                <button class="btn btn-primary btn-sm">
+                                                                    <i class="fa fa-play me-1"></i>Commencer
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <p class="text-muted">Aucun cours disponible pour le moment</p>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certificats obtenus -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Mes certificats</h5>
+                                </div>
+                                <div class="card-body">
+                                    <t t-if="certificates">
+                                        <div class="row">
+                                            <t t-foreach="certificates" t-as="certificate">
+                                                <div class="col-md-4 mb-3">
+                                                    <div class="card border-success">
+                                                        <div class="card-body text-center">
+                                                            <i class="fa fa-certificate fa-3x text-success mb-3"></i>
+                                                            <h6 t-esc="certificate.course_id.name"/>
+                                                            <p class="text-muted small mb-2">
+                                                                Obtenu le <span t-esc="certificate.date_issued"/>
+                                                            </p>
+                                                            <button class="btn btn-outline-success btn-sm">
+                                                                <i class="fa fa-download me-1"></i>Télécharger
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="text-center py-5">
+                                            <i class="fa fa-certificate fa-3x text-muted mb-3"></i>
+                                            <h5>Aucun certificat obtenu</h5>
+                                            <p class="text-muted">Terminez des cours pour obtenir des certificats</p>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="page_profile" name="Profil producteur">
+            <t t-call="portal.portal_layout">
+                <div class="o_portal_my_details container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>
+                                <i class="fa fa-user me-2"></i>
+                                Mon profil
+                            </h1>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Informations principales -->
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Informations personnelles</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Nom complet</label>
+                                                <input type="text" class="form-control" t-att-value="partner.name" readonly/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Téléphone</label>
+                                                <input type="tel" class="form-control" t-att-value="partner.phone"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Email</label>
+                                                <input type="email" class="form-control" t-att-value="partner.email"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Localisation</label>
+                                                <input type="text" class="form-control"
+                                                       t-att-value="partner.city or 'Non renseignée'"/>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <label class="form-label">Langue préférée</label>
+                                                <select class="form-select">
+                                                    <option value="fr" t-att-selected="partner.lang == 'fr'">Français</option>
+                                                    <option value="ba" t-att-selected="partner.lang == 'ba'">Baoulé</option>
+                                                    <option value="di" t-att-selected="partner.lang == 'di'">Dioula</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa fa-save me-2"></i>Enregistrer
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- QR Code et statut -->
+                        <div class="col-md-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5 class="card-title">Mon QR Code</h5>
+                                    <div class="qr-code-placeholder bg-light p-3 mb-3">
+                                        <i class="fa fa-qrcode fa-4x text-muted"></i>
+                                    </div>
+                                    <p class="text-muted small">Scannez pour identifier votre profil</p>
+                                    <button class="btn btn-outline-primary btn-sm">
+                                        <i class="fa fa-download me-1"></i>Télécharger
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card mt-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Statut du compte</h5>
+                                    <div class="text-center">
+                                        <span class="badge bg-success fs-6">Producteur vérifié</span>
+                                        <p class="text-muted small mt-2">
+                                            Membre depuis <span t-esc="partner.create_date[:4]"/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+    </data>
+</odoo>

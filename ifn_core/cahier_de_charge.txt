@@ -1,0 +1,341 @@
+Voici le cahier des charges détaillé et la liste des fonctionnalités du module cœur ifn_core (socle transverse pour tous les autres add-ons ifn_*).
+Objectif : fournir les entités métiers, rôles, sécurité, paramètres, journalisation, et les hooks techniques communs (QR, géoloc, i18n, PWA/offline, événements) pour alimenter les portails Marchand, Producteur et Coopérative.
+
+1) Finalité & périmètre de ifn_core
+
+Finalité : socle unique de données et de sécurité (RBAC) pour l’écosystème IFN (Inclusion Financière/Économique/Numérique).
+
+Couvre : rôles/utilisateurs, profils partenaires (marchés/coops), géolocalisation, QR/identifiants uniques, préférences langue & voix, configuration multi-tenant, tables de référence (marchés, zones, types produits), audit & traçabilité, événements (bus), paramètres système, import/export.
+
+Ne couvre pas : logiques « métier profond » (ventes, stock, paiements, social, formation). Ces fonctions vivent dans ifn_marketplace, ifn_inventory_light, ifn_payments_mobile, ifn_social_protection, ifn_training, ifn_portal_*.
+
+2) Fonctionnalités (vue produit)
+2.1 Identité & partenaire étendu
+
+Profil IFN sur res.partner :
+
+Rôle IFN (marchand/producteur/gestionnaire coop/agent/administrateur).
+
+QR/UID unique (réutilisable pour login portail & vérifications).
+
+Géoloc (lat/lng), marché d’attache, coopérative d’appartenance.
+
+Langue préférée (fr/baoulé/dioula…), consentement voix (STT/TTS), photo.
+
+Attributs sociaux de base (placeholders CNPS/CNAM/CMU – sans logique métier).
+
+Référentiels :
+
+ifn.market (Marchés, adresse, commune, géométrie, codes internes).
+
+ifn.coop (Coopératives, responsables, coordonnées, rattachement marché).
+
+ifn.zone (zones géo/logistiques optionnelles).
+
+ifn.product.category.ref (catégories produit de haut niveau).
+
+2.2 Rôles & Portails (RBAC)
+
+Groupes : ifn_group_merchant, ifn_group_producer, ifn_group_coop_manager, ifn_group_agent, ifn_group_admin.
+
+Record Rules d’isolement :
+
+Acteurs → accès à leurs propres données (dossiers, pièces, préférences).
+
+Coop managers → données des membres de leur coop.
+
+Agents → lecture large + actions limitées (vérif, validation profil).
+
+Multi-company activé (si besoin, isolement par société/tenancy).
+
+2.3 Sécurité & traçabilité
+
+MFA (via dépendance Odoo si utilisé), mot de passe chiffré (standard Odoo).
+
+Audit log (création, modification de champs sensibles, connexions portails, scans QR).
+
+Consentements (voix, partage data) horodatés.
+
+Contrôles : unicité QR/UID, rôles exclusifs (ou compatibilités contrôlées).
+
+2.4 Identifiant & QR
+
+Génération séquence IFN → x_ifn_uid (lisible par humain) + QR (PNG/SVG)
+
+Carte/attestation simple (QWeb) intégrable sur autres modules (ex. reçus).
+
+2.5 Internationalisation & accessibilité
+
+Préférences langue (fr, bci=Baoulé, dyo=Dioula…), fallback FR.
+
+Libellés simplifiés et pictogrammes (feuilles de style & icônes communes).
+
+Stockage des prononciations ou alias vocaux (facultatif) pour NLU.
+
+2.6 Géolocalisation
+
+Champs lat/lng sur partenaires, coops, marchés.
+
+Widget carte (Leaflet) prêt à l’emploi (affichage/édition simple).
+
+Distance/zone (helpers) pour futurs calculs logistiques.
+
+2.7 Paramétrage global
+
+ifn.settings (res.config.settings) :
+
+Bascules : activer portails, activer QR, activer i18n locales.
+
+Clés API externes (stockage chiffré) – sans appels (les connecteurs les consomment).
+
+Délais & politiques (ex : validité carte, TTL QR temporaire).
+
+Séquences : UID, QR, numérotation standard IFN.
+
+2.8 Données & import/export
+
+Gabarits CSV pour marchés, coops, partenaires (rôles).
+
+Importeurs guidés (pré-validation → création en lot).
+
+Export anonymisé (conformité protection des données).
+
+2.9 Bus d’événements (hooks internes)
+
+Bus (mail.activity / bus / bus.longpolling) minimal pour publier :
+
+ifn.partner.created/updated, ifn.qr.generated, ifn.coop.member_joined.
+
+Utilisé par les modules métiers (paiements/stock/reporting) → découplage.
+
+2.10 Socle KPI/Dashboards
+
+Vues pivot/graph rudimentaires (comptes par rôle, répartition marchés/coops, adoption langues).
+
+Modèle ifn.kpi.snapshot (journalisation quotidienne d’indicateurs agrégés) pour alimenter ifn_reporting.
+
+3) Modèle de données (synthèse)
+3.1 Extensions res.partner
+
+x_ifn_role : selection(merchant,producer,coop_manager,agent,admin)
+
+x_ifn_uid : char (unique, index)
+
+x_ifn_qr : binary (QR code), x_ifn_qr_ref : char (hash/ref)
+
+x_ifn_market_id : m2o ifn.market
+
+x_ifn_coop_id : m2o ifn.coop
+
+x_ifn_lang_pref : selection (FR/BA/DI/…)
+
+x_ifn_voice_consent : bool + x_ifn_voice_consent_date : datetime
+
+x_ifn_geo_lat, x_ifn_geo_lng : float
+
+Option social placeholders (ids CNPS/CNAM/CMU – info-only dans core)
+
+3.2 Référentiels
+
+ifn.market : name, code, region, commune, lat/lng, active
+
+ifn.coop : name, code, market_id, manager_partner_id, phone/email, active
+
+ifn.zone : name, code, geometry (WKT ou lat/lng centraux), note
+
+ifn.product.category.ref : name, code, parent_id
+
+3.3 Paramètres & audit
+
+ifn.settings (proxy res.config.settings) : flags & credentials (encrypted)
+
+ifn.audit.log : object_model, object_id, user_id, action, field_name, old_value, new_value, ts
+
+ifn.kpi.snapshot : date, market_id/coop_id (nullable), counts (partners by role), adoption_lang, etc.
+
+Contraintes clés
+
+Unicité : x_ifn_uid, x_ifn_qr_ref, codes market/coop/zone.
+
+Règles : un res.partner n’a qu’1 rôle IFN principal (ou matrice contrôlée).
+
+Lat/Lng valides (-90/+90, -180/+180).
+
+4) Sécurité (ACL & Rules)
+4.1 Groupes
+
+ifn_group_merchant, ifn_group_producer, ifn_group_coop_manager, ifn_group_agent, ifn_group_admin.
+
+4.2 Access CSV (exemples)
+
+Lecture/écriture propre profil pour acteurs.
+
+Lecture/écriture sur ifn.coop réservée aux managers + agents.
+
+Lecture globale ifn.market pour tous (référence publique), écriture admins/agents.
+
+4.3 Record Rules (exemples)
+
+Propriétaire (partenaire) : [('id','=',user.partner_id.id)].
+
+Membres d’une coop (pour manager coop) : [('x_ifn_coop_id','=',user.partner_id.x_ifn_coop_id.id)].
+
+Audit log : lecture admin/agent uniquement.
+
+5) Intégrations & extensibilité
+
+Aucune API externe directe dans ifn_core. Il expose :
+
+Services utilitaires (QR, UID, i18n helpers, geoutils)
+
+Publish Events (bus) pour consommation par ifn_*.
+
+Dépendances ascendantes : base, contacts, portal, (website si portails), web.
+
+Points d’extension : @api.onchange/@api.model_create_multi, mixins, assets front (icônes/pictos), hooks pour PWA (manifeste minimal si ifn_portal_common installé).
+
+6) Performances & scalabilité
+
+Index sur : x_ifn_uid, x_ifn_qr_ref, (x_ifn_market_id, x_ifn_coop_id), (x_ifn_geo_lat, x_ifn_geo_lng).
+
+Limitation taille binaire QR (ou stockage en attachement).
+
+Batch d’imports (1k–10k) avec validations en mémoire.
+
+KPI snapshot par CRON nocturne (agrégation par GROUP BY).
+
+Compatible multi-company / multi-db (RLS côté Postgres non requis mais recommandé si usage avancé).
+
+7) Qualité, conformité & audit
+
+OWASP bonnes pratiques (aucun secret en clair ; credentials chiffrés).
+
+Journalisation des actions sensibles (champs d’identité, rôle, consentement, géoloc).
+
+RGPD-like : droit de rectification/suppression (soft delete : archiver) ; export anonymisé.
+
+8) Interfaces & écrans (minimaux)
+Backend
+
+Menu IFN (Administration) : Marchés, Coopératives, Zones, KPI Snapshots, Audit Logs, Paramètres IFN.
+
+Form Partner (onglet IFN) : rôle, QR/UID, marché/coop, langue, voix, géoloc (widget carte).
+
+Assistants : Générer/Regénérer QR, Affecter rôle, Import guidé.
+
+Portail (si website + ifn_portal_common)
+
+Redirection /portals selon groupe (géré ailleurs) — ifn_core fournit les données.
+
+9) Imports/Exports (gabarits)
+
+markets.csv : name;code;region;commune;lat;lng
+
+coops.csv : name;code;market_code;manager_phone;email
+
+partners.csv : name;phone;role;market_code;coop_code;lang;lat;lng;photo_path
+
+categories.csv : name;code;parent_code
+
+10) Automatisations (CRON)
+
+ifn_cron_kpi_snapshot_daily (quotidien, 02:00) : agrège comptes/roles/adoption langues par marché/coop.
+
+ifn_cron_audit_rotate (hebdo) : purge/archivage des logs > N jours (paramètre).
+
+(Optionnel) ifn_cron_qr_refresh (mensuel) : actualise QR si politique TTL définie.
+
+11) Livrables & tests
+Livrables
+
+Code module (__manifest__.py, modèles, sécurité, vues, data de démo).
+
+Documentation technique : modèles, règles, hooks, événements, ACL.
+
+Guides CSV d’import + exemples.
+
+Jeu de données démo (3 marchés, 2 coops, 12 partenaires multi-rôles).
+
+QWeb attestation simple (QR + UID).
+
+Tests
+
+Unitaires : génération UID/QR, unicités, record rules basiques.
+
+Intégration : import CSV → vérifs référentielles ; création partenaire → bus event.
+
+Sécurité : tests d’accès croisés (acteur ≠ acteur, coop ≠ coop).
+
+Performance : import 10k partenaires (temps & mémoire).
+
+12) Acceptation (critères)
+
+Création d’un partenaire avec UID/QR, rôle, géoloc, marché/coop fonctionne et est journalisée.
+
+ACL/Rules : un marchand ne peut pas lire/éditer le profil d’un autre ; un gestionnaire coop lit uniquement ses membres.
+
+Imports marchés/coops/partenaires réussissent avec rejets tracés.
+
+KPIs journaliers visibles (min. : répartition par rôle & par marché).
+
+Paramètres modifiables via res.config.settings et pris en compte par les modules métiers.
+
+13) Hors scope (pour éviter l’ambiguïté)
+
+Toute logique commerce (ventes/stock), paiements, social, formation, reporting avancé — hors ifn_core, dans les modules dédiés.
+
+14) Squelette technique (extraits)
+__manifest__.py
+{
+  "name": "IFN Core",
+  "version": "1.0",
+  "summary": "Socle données & sécurité pour IFN (rôles, QR, géoloc, référentiels)",
+  "depends": ["base", "contacts", "portal", "web"],
+  "data": [
+    "security/ir.model.access.csv",
+    "security/ifn_rules.xml",
+    "data/ifn_sequences.xml",
+    "views/ifn_market_views.xml",
+    "views/ifn_coop_views.xml",
+    "views/res_partner_ifn_views.xml",
+    "views/ifn_settings_views.xml",
+    "views/ifn_menu.xml",
+    "report/ifn_attestation_templates.xml",
+  ],
+  "installable": True,
+}
+
+Modèle (extrait Partner)
+class ResPartner(models.Model):
+    _inherit = "res.partner"
+
+    x_ifn_role = fields.Selection([
+        ('merchant','Marchand'),
+        ('producer','Producteur'),
+        ('coop_manager','Gestionnaire Coop'),
+        ('agent','Agent'),
+        ('admin','Admin'),
+    ], string="Rôle IFN", index=True)
+
+    x_ifn_uid = fields.Char("UID IFN", copy=False, index=True)
+    x_ifn_qr = fields.Binary("QR IFN", attachment=True)
+    x_ifn_qr_ref = fields.Char("QR Ref", copy=False, index=True)
+
+    x_ifn_market_id = fields.Many2one("ifn.market", string="Marché d'attache")
+    x_ifn_coop_id = fields.Many2one("ifn.coop", string="Coopérative")
+
+    x_ifn_lang_pref = fields.Selection([('fr','Français'),('ba','Baoulé'),('di','Dioula')], default='fr')
+    x_ifn_voice_consent = fields.Boolean("Consentement Voix")
+    x_ifn_voice_consent_date = fields.Datetime("Date consentement")
+
+    x_ifn_geo_lat = fields.Float("Latitude")
+    x_ifn_geo_lng = fields.Float("Longitude")
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        recs = super().create(vals_list)
+        for r in recs:
+            if not r.x_ifn_uid:
+                r._ifn_assign_uid_and_qr()
+            r._ifn_publish_event('ifn.partner.created')
+        return recs
